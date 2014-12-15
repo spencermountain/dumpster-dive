@@ -19,12 +19,14 @@ MongoClient.connect(url, function(err, db) {
   var collection = db.collection('wikipedia');
 
   var xml = new XmlStream(stream);
+  xml._preserveAll=true //keep newlines
+  // xml.preserve('text');
+
   xml.on('endElement: page', function(page) {
     if(page.ns=="0"){
-      var script=page.revision.text['$text']||''
+      var script=page.revision.text["$text"] || ''
       var data=wikipedia.parse(script)
       data.title=page.title
-      data._id=page.title
       console.log(data.title)
       collection.insert(data, function(err, r){
         if(err){console.log(err)}
@@ -39,7 +41,7 @@ MongoClient.connect(url, function(err, db) {
 
   xml.on('end', function(message) {
     console.log('=================done========')
-    setTimeOut(function(){ //let the remaining async writes finish up
+    setTimeout(function(){ //let the remaining async writes finish up
       db.close();
     },3000)
   });

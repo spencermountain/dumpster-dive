@@ -2,8 +2,8 @@
 put a crazy-ass 10Gb wikipedia dump quickly into mongo, without thinking, without loading it into memory, and without any intermediate files, grepping, or nonsense.
 
 ````javascript
-db.wikipedia.findOne({title:"Toronto"}).categories
-//[ "1834 establishments in Canada", "Former colonial capitals in Canada", "Populated places established in 1793", ...]
+db.wikipedia.find({title:"Toronto"})[0].categories
+//[ "Former colonial capitals in Canada", "Populated places established in 1793", ... ]
 ````
 this library uses [xml-stream](https://github.com/assistunion/xml-stream) to navigate the large xml file, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse the article contents into pretty JSON.
 
@@ -42,5 +42,6 @@ db.wikipedia.count({type:"redirect"})
 db.wikipedia.findOne({title:"Toronto"}).categories
 ````
 
-the english wikipedia will work under the same process.
-The download will take an afternoon, the unzipping a few minutes, and the loading/parsing a couple hours.
+#Same for the English wikipedia
+the english wikipedia will work under the same process, but
+the download will take an afternoon, the unzipping a few minutes, and the loading/parsing a couple hours. The en wikipedia dump is 4gb compressed and 40gb uncompressed.
