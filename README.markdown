@@ -1,16 +1,17 @@
-#All the world's knowledge, in yer mongodb
-put a crazy-ass 10Gb wikipedia dump quickly into mongo, without thinking, without loading it into memory, and without any intermediate files, grepping, or nonsense.
+#Wikipedia in yer mongodb
+put a fully-parsed, and crazy million-Gb wikipedia dump quickly into mongo, without thinking, without loading it into memory, and without any intermediate files, grepping, or nonsense.
 
 ````javascript
 db.wikipedia.find({title:"Toronto"})[0].categories
 //[ "Former colonial capitals in Canada", "Populated places established in 1793", ... ]
 ````
-this library uses [xml-stream](https://github.com/assistunion/xml-stream) to navigate the large xml file, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse the article contents into pretty JSON.
+this library uses:
+*[unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream a compressed file
+*[xml-stream](https://github.com/assistunion/xml-stream) to navigate the large xml file, and *[wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse the article contents into pretty JSON.
 
 Using these tools, you can get a highly-queryable wikipedia on a laptop in an afternoon.
 
-dependency node-expat requires node <= v0.10.33
-
+clone and `npm install` then,
 
 ## Load the Afrikaans wikipedia
 The Afrikaans wikipedia (only 33 556 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook.
@@ -19,11 +20,8 @@ The Afrikaans wikipedia (only 33 556 artikels) only takes a few minutes to downl
 # dowload an xml dump (38mb, couple minutes)
 wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
 
-#unzip it (180mb, couple seconds)
-bunzip2 ./afwiki-latest-pages-articles.xml.bz2
-
 #load it into mongo (10-15 minutes)
-node index.js afwiki-latest-pages-articles.xml
+node index.js ./afwiki-latest-pages-articles.xml.bz2
 ````
 yahoo!
 
