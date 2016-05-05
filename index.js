@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 //stream a big wikipedia xml.bz2 file into mongodb
 //node index.js afwiki-latest-pages-articles.xml.bz2
 var fs = require('fs')
