@@ -2,13 +2,13 @@
   "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
   "name": "wikipedia-to-mongodb",
   "description": "stream a wikipedia dump into mongo",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
   },
   "bin": {
-    "wikipedia-to-mongodb": "./src/index.js"
+    "wikipedia-to-mongodb": "./index.js"
   },
   "main": "index.js",
   "engines": [
