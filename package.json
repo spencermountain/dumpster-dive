@@ -1,20 +1,20 @@
 {
-    "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
-    "name": "wikipedia-to-mongodb",
-    "description": "stream a wikipedia dump into mongo",
-    "version": "1.0.0",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
-    },
-    "main": "index.js",
-    "engines": [
-        "node = 0.10.33"
-    ],
-    "dependencies": {
-        "wtf_wikipedia": "*",
-        "xml-stream":"*",
-        "mongodb":"*",
-	"unbzip2-stream": "*"
-    }
+  "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
+  "name": "wikipedia-to-mongodb",
+  "description": "stream a wikipedia dump into mongo",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
+  },
+  "main": "index.js",
+  "engines": [
+    "node = 0.10.33"
+  ],
+  "dependencies": {
+    "mongodb": "^2.1.18",
+    "unbzip2-stream": "^1.0.9",
+    "wtf_wikipedia": "^0.3.2",
+    "xml-stream": "^0.4.5"
+  }
 }
