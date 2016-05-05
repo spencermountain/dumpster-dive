@@ -12,13 +12,14 @@ db.wikipedia.count({type:"redirect"})
 // 124,999...
 ````
 this library uses:
-* [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompressed the gnarly bz2 file
+* [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompress the gnarly bz2 file
 
-* [xml-stream](https://github.com/assistunion/xml-stream) to stream-parse the xml format
+* [xml-stream](https://github.com/assistunion/xml-stream) to stream-parse its xml format
 
-* [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article contents into almost-pretty JSON.
+* [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article wikiscript contents into **almost-pretty** JSON.
 
 
+#Yup,
 clone it and `npm install` then,
 
 ## Load the Afrikaans wikipedia:
@@ -48,6 +49,6 @@ db.wikipedia.count({type:"redirect"})
 db.wikipedia.findOne({title:"Toronto"}).categories
 ````
 
-#Same for the English wikipedia:
+##Same for the English wikipedia:
 the english wikipedia will work under the same process, but
 the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 4gb download and becomes a pretty legit mongo collection uncompressed. It's something like 40gb, but mongo can do it... You can do it!
