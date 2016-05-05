@@ -43,10 +43,10 @@ MongoClient.connect(url, function(err, db) {
   });
 
   xml.on('end', function() {
-    console.log('=================done========')
+    console.log('=================done!========')
     setTimeout(function() { //let the remaining async writes finish up
       db.close();
-    }, 6000)
+    }, 20000)
   });
 
 });
