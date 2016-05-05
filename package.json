@@ -14,6 +14,7 @@
     "dependencies": {
         "wtf_wikipedia": "*",
         "xml-stream":"*",
-        "mongodb":"*"
+        "mongodb":"*",
+	"unbzip2-stream": "*"
     }
 }

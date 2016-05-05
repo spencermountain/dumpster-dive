@@ -6,10 +6,11 @@ var path      = require('path')
 var XmlStream = require('xml-stream')
 var wikipedia= require("wtf_wikipedia")
 var MongoClient = require('mongodb').MongoClient
+var bz2 = require('unbzip2-stream');
 
 // Create a file stream and pass it to XmlStream
 var file= process.argv[2] || 'afwiki-latest-pages-articles.xml';
-var stream = fs.createReadStream(path.join(__dirname, file));
+var stream = fs.createReadStream(path.join(__dirname, file)).pipe(bz2());
 var lang=file.match(/^../)||'--'
 
 // Connect to mongo
