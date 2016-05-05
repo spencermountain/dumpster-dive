@@ -1,5 +1,5 @@
 #Wikipedia in yer mongodb
-put a fully-parsed, and crazy million-Gb wikipedia dump quickly into mongo, without thinking, without loading it into memory, and without any intermediate files, grepping, or nonsense.
+put a crazy million-Gb wikipedia dump quickly into mongo, with fully-parsed wikiscript, without thinking, without loading it into memory, grepping, unzipping, or other nonsense.
 
 ````javascript
 db.wikipedia.find({title:"Toronto"})[0].categories
@@ -7,9 +7,12 @@ db.wikipedia.find({title:"Toronto"})[0].categories
 ````
 this library uses:
 *[unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream a compressed file
-*[xml-stream](https://github.com/assistunion/xml-stream) to navigate the large xml file, and *[wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse the article contents into pretty JSON.
 
-Using these tools, you can get a highly-queryable wikipedia on a laptop in an afternoon.
+*[xml-stream](https://github.com/assistunion/xml-stream) to navigate the large xml file, and
+
+*[wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse the article contents into almost-pretty JSON.
+
+Using these tools, you can get a highly-queryable wikipedia on a laptop in a nice afternoon.
 
 clone and `npm install` then,
 
@@ -42,4 +45,4 @@ db.wikipedia.findOne({title:"Toronto"}).categories
 
 #Same for the English wikipedia
 the english wikipedia will work under the same process, but
-the download will take an afternoon, the unzipping a few minutes, and the loading/parsing a couple hours. The en wikipedia dump is 4gb compressed and 40gb uncompressed.
+the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 4gb download and becomes a pretty legit mongo collection of something like 40gb.
