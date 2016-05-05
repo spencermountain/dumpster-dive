@@ -1,10 +1,10 @@
-#A whole Wikipedia, right in that mongodb
+#A whole Wikipedia, right in mongodb
 put a crazy zillion-Gb wikipedia dump quickly into mongo, with fully-parsed wikiscript, without thinking, without loading it into memory, grepping, unzipping, or other nonsense.
 
 Using this tool, you can get a highly-queryable wikipedia on your laptop in a nice afternoon.
 
 ```bash
-wikipedia-to-mongodb ./my-wikipedia-articles-dump.xml.bz2
+wikipedia-to-mongodb /path/to/my-wikipedia-article-dump.xml.bz2
 ```
 ````javascript
 db.wikipedia.find({title:"Toronto"})[0].categories

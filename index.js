@@ -1,14 +1,18 @@
 //stream a big wikipedia xml.bz2 file into mongodb
 //node index.js afwiki-latest-pages-articles.xml.bz2
 var fs = require('fs')
-var path = require('path')
 var XmlStream = require('xml-stream')
 var wikipedia = require('wtf_wikipedia')
 var MongoClient = require('mongodb').MongoClient
 var bz2 = require('unbzip2-stream');
 
-var file = process.argv[2] || 'afwiki-latest-pages-articles.xml';
-var lang = file.match(/^../) || '--'
+var file = process.argv[2]
+if (!file) {
+  console.log('please supply a filename to the wikipedia article dump')
+  process.exit(1)
+}
+var lang = file.match(/([a-z][a-z])wiki-/) || []
+lang = lang[1] || '-'
 
 // Connect to mongo
 var url = 'mongodb://localhost:27017/' + lang + '_wikipedia';
@@ -19,7 +23,7 @@ MongoClient.connect(url, function(err, db) {
   }
   var collection = db.collection('wikipedia');
   // Create a file stream and pass it to XmlStream
-  var stream = fs.createReadStream(path.join(__dirname, file)).pipe(bz2());
+  var stream = fs.createReadStream(file).pipe(bz2());
   var xml = new XmlStream(stream);
   xml._preserveAll = true //keep newlines
 
