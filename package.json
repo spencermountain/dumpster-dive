@@ -18,7 +18,6 @@
     "commander": "^2.9.0",
     "kue": "^0.11.0",
     "mongodb": "^2.1.18",
-    "mongoskin": "^2.1.0",
     "unbzip2-stream": "^1.0.9",
     "wtf_wikipedia": "^0.3.2",
     "xml-stream": "^0.4.5"

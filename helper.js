@@ -12,4 +12,3 @@ exports.processScript = function(options, cb) {
     return cb()
   })
 }
-

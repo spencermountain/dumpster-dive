@@ -6,13 +6,11 @@ var XmlStream = require('xml-stream')
 var wikipedia = require('wtf_wikipedia')
 var MongoClient = require('mongodb').MongoClient
 var bz2 = require('unbzip2-stream');
-var queue = require('./config/queue');
 var helper = require('./helper')
 
 var program = require('commander');
 
 program
-    //.version(packageData.version)
     .usage('node index.js afwiki-latest-pages-articles.xml.bz2 [options]')
     .option('-w, --worker [worker]', 'Use worker (redis required)')
     .parse(process.argv);
@@ -24,6 +22,14 @@ if (!file) {
 }
 var lang = file.match(/([a-z][a-z])wiki-/) || []
 lang = lang[1] || '-'
+
+
+var queue
+// make redis and queue requirement optional
+if (program.worker) {
+  queue = require('./config/queue');
+}
+
 
 // Connect to mongo
 var url = 'mongodb://localhost:27017/' + lang + '_wikipedia';
@@ -38,11 +44,12 @@ MongoClient.connect(url, function(err, db) {
   var xml = new XmlStream(stream);
   xml._preserveAll = true //keep newlines
 
-  var i = 0;
+  var i = 1;
   xml.on('endElement: page', function(page) {
     if (page.ns === '0') {
       var script = page.revision.text['$text'] || ''
-      console.log(i);
+
+      console.log(page.title + ' ' + i);
       ++i;
 
       var data = {
@@ -76,5 +83,4 @@ MongoClient.connect(url, function(err, db) {
       db.close();
     }, 20000)
   });
-
 });
