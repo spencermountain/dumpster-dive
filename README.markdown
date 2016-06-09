@@ -65,7 +65,7 @@ sudo apt-get install redis-server
 # clone wikipedia-to-mongodb
 git clone git@github.com:spencermountain/wikipedia-to-mongodb.git
 
-#load pages into job queue
+#load pages into job queue (there as additional param -w)
 node index.js ./afwiki-latest-pages-articles.xml.bz2 -w
 
 # start processing jobs (parsing articles and saving to mongodb) on all CPU's
