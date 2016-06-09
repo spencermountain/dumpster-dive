@@ -55,3 +55,22 @@ db.wikipedia.findOne({title:"Toronto"}).categories
 ##Same for the English wikipedia:
 the english wikipedia will work under the same process, but
 the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 4gb download and becomes a pretty legit mongo collection uncompressed. It's something like 40gb, but mongo can do it... You can do it!
+
+##Load wikipedia much faster
+there is yet much faster way (even x10) to import all pages into mongodb but a little more complex. it requires redis installed on your computer and running worker in separate process
+````bash
+# install redis on ubuntu
+sudo apt-get install redis-server
+
+# clone wikipedia-to-mongodb
+git clone git@github.com:spencermountain/wikipedia-to-mongodb.git
+
+#load pages into job queue (there as additional param -w)
+node index.js ./afwiki-latest-pages-articles.xml.bz2 -w
+
+# start processing jobs (parsing articles and saving to mongodb) on all CPU's
+node worker.js
+
+# you can preview processing jobs in kue dashboard (localhost:3000)
+node node_modules/kue/bin/kue-dashboard -p 3000
+````
