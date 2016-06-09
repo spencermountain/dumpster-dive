@@ -6,6 +6,16 @@ var XmlStream = require('xml-stream')
 var wikipedia = require('wtf_wikipedia')
 var MongoClient = require('mongodb').MongoClient
 var bz2 = require('unbzip2-stream');
+var queue = require('./config/queue');
+var helper = require('./helper')
+
+var program = require('commander');
+
+program
+    //.version(packageData.version)
+    .usage('node index.js afwiki-latest-pages-articles.xml.bz2 [options]')
+    .option('-w, --worker [worker]', 'Use worker (redis required)')
+    .parse(process.argv);
 
 var file = process.argv[2]
 if (!file) {
@@ -28,17 +38,30 @@ MongoClient.connect(url, function(err, db) {
   var xml = new XmlStream(stream);
   xml._preserveAll = true //keep newlines
 
+  var i = 0;
   xml.on('endElement: page', function(page) {
     if (page.ns === '0') {
       var script = page.revision.text['$text'] || ''
-      var data = wikipedia.parse(script)
-      data.title = page.title
-      console.log(data.title)
-      collection.insert(data, function(e) {
-        if (e) {
-          console.log(e)
-        }
-      })
+      console.log(i);
+      ++i;
+
+      var data = {
+        title: page.title, script: script
+      }
+
+      if (program.worker) {
+        // we send job to job queue (redis)
+        // run job queue dashboard to see statistics
+        // node node_modules/kue/bin/kue-dashboard -p 3050
+        queue.create('article', data)
+        .removeOnComplete(true)
+        .attempts(3).backoff({delay: 10 * 1000, type:'exponential'})
+        .save();
+      } else {
+        data.collection = collection
+        helper.processScript(data, function(err, res) {
+        })
+      }
     }
   });
 
