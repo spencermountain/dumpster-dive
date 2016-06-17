@@ -1,6 +1,5 @@
 // run job queue dashboard to see statistics
 // node node_modules/kue/bin/kue-dashboard -p 3050
-
 var util = require('util');
 var cluster = require('cluster')
 var clusterWorkerSize = require('os').cpus().length;
@@ -19,7 +18,7 @@ if (cluster.isMaster) {
 
   MongoClient.connect(url, function(err, db) {
     var collection = db.collection('wikipedia');
-    queue.process('article', concurrency, function(job, done){
+    queue.process('article', concurrency, function(job, done) {
       var url = job.data.url;
       var data = job.data
       data.collection = collection;

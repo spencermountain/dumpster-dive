@@ -1,5 +1,6 @@
 var wikipedia = require('wtf_wikipedia')
 
+//this method may run in it's own process
 exports.processScript = function(options, cb) {
   var data = wikipedia.parse(options.script)
   data.title = options.title
@@ -8,7 +9,6 @@ exports.processScript = function(options, cb) {
       console.log(e)
       return cb(e)
     }
-
     return cb()
   })
 }

@@ -1,20 +1,26 @@
 #! /usr/bin/env node
 //stream a big wikipedia xml.bz2 file into mongodb
-//node index.js afwiki-latest-pages-articles.xml.bz2
+// usage:
+//   node index.js afwiki-latest-pages-articles.xml.bz2
 var fs = require('fs')
 var XmlStream = require('xml-stream')
 var wikipedia = require('wtf_wikipedia')
 var MongoClient = require('mongodb').MongoClient
 var bz2 = require('unbzip2-stream');
 var helper = require('./helper')
-
 var program = require('commander');
-
 program
-    .usage('node index.js afwiki-latest-pages-articles.xml.bz2 [options]')
-    .option('-w, --worker [worker]', 'Use worker (redis required)')
-    .parse(process.argv);
+  .usage('node index.js afwiki-latest-pages-articles.xml.bz2 [options]')
+  .option('-w, --worker [worker]', 'Use worker (redis required)')
+  .parse(process.argv);
 
+// make redis and queue requirement optional
+var queue;
+if (program.worker) {
+  queue = require('./config/queue');
+}
+
+//grab the wiki file
 var file = process.argv[2]
 if (!file) {
   console.log('please supply a filename to the wikipedia article dump')
@@ -22,14 +28,6 @@ if (!file) {
 }
 var lang = file.match(/([a-z][a-z])wiki-/) || []
 lang = lang[1] || '-'
-
-
-var queue
-// make redis and queue requirement optional
-if (program.worker) {
-  queue = require('./config/queue');
-}
-
 
 // Connect to mongo
 var url = 'mongodb://localhost:27017/' + lang + '_wikipedia';
@@ -53,7 +51,8 @@ MongoClient.connect(url, function(err, db) {
       ++i;
 
       var data = {
-        title: page.title, script: script
+        title: page.title,
+        script: script
       }
 
       if (program.worker) {
@@ -61,13 +60,15 @@ MongoClient.connect(url, function(err, db) {
         // run job queue dashboard to see statistics
         // node node_modules/kue/bin/kue-dashboard -p 3050
         queue.create('article', data)
-        .removeOnComplete(true)
-        .attempts(3).backoff({delay: 10 * 1000, type:'exponential'})
-        .save();
+          .removeOnComplete(true)
+          .attempts(3).backoff({
+          delay: 10 * 1000,
+          type: 'exponential'
+        })
+          .save();
       } else {
         data.collection = collection
-        helper.processScript(data, function(err, res) {
-        })
+        helper.processScript(data, function(err, res) {})
       }
     }
   });

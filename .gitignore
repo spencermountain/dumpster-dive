@@ -2,3 +2,4 @@ afwiki-latest-pages-articles.xml
 *.bz2
 *.log
 node_modules
+dump.rdb
