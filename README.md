@@ -1,4 +1,4 @@
-#A whole Wikipedia, right in mongodb
+# A whole Wikipedia, right in mongodb
 put a epic **zillion-Gb** [wikipedia dump](https://dumps.wikimedia.org) quickly into mongo, with fully-parsed wikiscript, without thinking, without loading it into memory, grepping, unzipping, or other cli nonsense.
 
 It's a javascript-only one-liner that can get a highly-queryable wikipedia on your laptop in a nice afternoon.
@@ -70,7 +70,7 @@ db.wikipedia.findOne({title:"Toronto"}).categories
 ````
 
 
-##Same for the English wikipedia:
+## Same for the English wikipedia:
 the english wikipedia will work under the same process, but
 the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 4gb download and becomes a pretty legit mongo collection uncompressed. It's something like 40gb, but mongo can do it... You can do it!
 
