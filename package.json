@@ -10,18 +10,24 @@
   "bin": {
     "wikipedia-to-mongodb": "./index.js"
   },
-  "main": "index.js",
-  "engines": [
-    "node = 0.10.33"
-  ],
+  "main": "./index.js",
+  "engines": ["node = 0.10.33"],
+  "scripts": {
+    "test": "\"node_modules/.bin/tape\" \"./tests/*.test.js\" | \"node_modules/.bin/tap-spec\" --color"
+  },
   "dependencies": {
     "commander": "^2.9.0",
     "kue": "^0.11.1",
     "mongodb": "^2.1.18",
     "unbzip2-stream": "^1.0.9",
-    "wtf_wikipedia": "^0.3.2",
+    "wtf_wikipedia": "^2.0.0",
     "xml-stream": "^0.4.5",
     "cluster": "^0.7.7"
   },
-  "license":"MIT"
+  "devDependencies": {
+    "shelljs": "^0.7.8",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.8.0"
+  },
+  "license": "MIT"
 }

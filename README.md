@@ -1,5 +1,5 @@
 # A whole Wikipedia, right in mongodb
-put a epic **zillion-Gb** [wikipedia dump](https://dumps.wikimedia.org) quickly into mongo, with fully-parsed wikiscript, without thinking, without loading it into memory, grepping, unzipping, or other cli nonsense.
+put a hefty [wikipedia dump](https://dumps.wikimedia.org) quickly into mongo, with fully-parsed wikiscript, without thinking, without loading it into memory, grepping, unzipping, or other cli nonsense.
 
 It's a javascript-only one-liner that can get a highly-queryable wikipedia on your laptop in a nice afternoon.
 
@@ -35,17 +35,19 @@ you can do this.
 # #2 get ready
 Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/), and optionally [redis](http://redis.io/)
 
-`git clone git@github.com:spencermountain/wikipedia-to-mongodb.git`
-`cd wikipedia-to-mongodb`
-`npm install`
+```
+git clone git@github.com:spencermountain/wikipedia-to-mongodb.git
+cd wikipedia-to-mongodb
+npm install
+```
 
 # #3 download wikipedia
-The Afrikaans wikipedia (only 33 556 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook.
+The Afrikaans wikipedia (only 33 556 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
 ```bash
 # dowload an xml dump (38mb, couple minutes)
 wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
 ```
-use whichever xml dump you'd like.
+the english/german ones are bigger. Use whichever xml dump you'd like.
 
 # #4 get going
 ```bash
