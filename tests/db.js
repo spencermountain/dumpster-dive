@@ -1,14 +1,14 @@
 const MongoClient = require('mongodb').MongoClient
 const assert = require('assert')
 
-const open = function(dbName, cb) {
+const open = function(dbName, callback) {
   let url = 'mongodb://localhost:27017/' + dbName
   MongoClient.connect(url, function(err, db) {
     if (err) {
       console.log(err)
       process.exit(1)
     }
-    cb(db)
+    callback(db)
   })
 }
 
@@ -18,20 +18,20 @@ const count = function(dbName, cb) {
     let col = db.collection('wikipedia')
     col.count().then(count => {
       db.close()
-      console.log(count)
       cb(count)
     })
   })
 }
 
 //grab a couple
-const first = function(n, dbName, cb) {
+const firstTwo = function(dbName, cb) {
   open(dbName, function(db) {
     let col = db.collection('wikipedia')
     col.find({}).toArray(function(err, docs) {
-      console.log(err)
-      console.log(docs)
-      docs = docs.slice(0, n)
+      if (err) {
+        console.log(err)
+      }
+      docs = docs.slice(0, 2)
       db.close()
       cb(docs)
     })
@@ -53,6 +53,8 @@ const drop = function(dbName, cb) {
 module.exports = {
   count: count,
   drop: drop,
-  first: first
+  firstTwo: firstTwo
 }
-// first(3, 'tempwiki', console.log)
+// firstTwo('tempwiki', console.log)
+// open('tempwiki', console.log)
+// drop('tempwiki', console.log)

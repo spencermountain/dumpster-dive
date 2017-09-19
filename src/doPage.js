@@ -51,7 +51,6 @@ const parse = function(options, cb) {
   data = encodeData(data)
   data.title = options.title
   // data._id = encodeStr(options.title)
-  // console.log(data)
   options.collection.insert(data, function(e) {
     if (e) {
       console.warn(e)
@@ -66,7 +65,7 @@ const plaintext = function(options, cb) {
   let plaintext = wtf.plaintext(options.script)
   let data = {
     title: options.title,
-    _id: options.title,
+    // _id: options.title,
     plaintext: plaintext
   }
   options.collection.insert(data, function(e) {

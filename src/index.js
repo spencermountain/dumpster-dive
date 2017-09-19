@@ -80,9 +80,11 @@ const main = function(obj, callback) {
 
     const done = function() {
       console.log('=================done!=================')
-      db.close()
-      callback()
-      process.exit()
+      col.count().then(count => {
+        console.log(count + "  pages stores in db '" + obj.db + "'")
+        db.close()
+        callback()
+      })
     }
 
     xml.on('end', function() {
