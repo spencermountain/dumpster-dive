@@ -5,10 +5,9 @@ const fs = require('fs')
 const XmlStream = require('xml-stream')
 const MongoClient = require('mongodb').MongoClient
 const bz2 = require('unbzip2-stream')
-const helper = require('./helper')
+const doPage = require('./doPage')
 
 const main = function(obj, callback) {
-  const lang = obj.lang || '-'
   const file = obj.file
   callback = callback || function() {}
 
@@ -20,17 +19,18 @@ const main = function(obj, callback) {
   // make redis and queue requirement optional
   let queue = null
   if (obj.worker) {
-    queue = require('./config/queue')
+    console.log('===using queue!====')
+    queue = require('./queue')
   }
 
   // Connect to mongo
-  let url = 'mongodb://localhost:27017/' + lang
+  let url = 'mongodb://localhost:27017/' + obj.db
   MongoClient.connect(url, function(err, db) {
     if (err) {
       console.log(err)
       process.exit(1)
     }
-    let collection = db.collection('wikipedia')
+    let col = db.collection('wikipedia')
     // Create a file stream and pass it to XmlStream
     let stream = fs.createReadStream(file).pipe(bz2())
     let xml = new XmlStream(stream)
@@ -41,7 +41,7 @@ const main = function(obj, callback) {
       if (page.ns === '0') {
         let script = page.revision.text['$text'] || ''
 
-        console.log(page.title + ' ' + i)
+        // console.log(page.title + ' ' + i)
         ++i
 
         let data = {
@@ -63,8 +63,8 @@ const main = function(obj, callback) {
             })
             .save()
         } else {
-          data.collection = collection
-          helper.processScript(data, function(err, res) {})
+          data.collection = col
+          doPage.parse(data, function(err, res) {})
         }
       }
     })
@@ -78,17 +78,18 @@ const main = function(obj, callback) {
       console.log('=================done!========')
       db.close()
       callback()
+      process.exit()
     }
 
     xml.on('end', function() {
       if (!queue) {
         done()
       } else {
-        console.log('--- letting the queue finish-up...')
-        //let the remaining async writes finish up
+        //let any remaining async writes complete
+        console.log('--- just letting the queue finish-up...')
         setTimeout(function() {
           done()
-        }, 20000)
+        }, 20000) //20 seconds
       }
     })
   })

@@ -4,7 +4,7 @@ let main = require('../src/index')
 
 let parseArgs = function() {
   program
-    .usage('node index.js afwiki-latest-pages-articles.xml.bz2 [options]')
+    .usage('node index.js enwiki-latest-pages-articles.xml.bz2 [options]')
     .option('-w, --worker [worker]', 'Use worker (redis required)')
     .option('-plain, --plaintext [plaintext]', 'if true, store plaintext wikipedia articles')
     .parse(process.argv)
@@ -16,15 +16,14 @@ let parseArgs = function() {
     process.exit(1)
   }
   //try to make-up the language name for the db
-  let lang = 'wikipedia'
+  let db = 'wikipedia'
   if (file.match(/-latest-pages-articles/)) {
-    lang = file.match(/([a-z]+)-latest/) || []
-    lang = lang[1] || 'wikipedia'
+    db = file.match(/([a-z]+)-latest/) || []
+    db = db[1] || 'wikipedia'
   }
-  console.log(program)
   return {
     file: file,
-    lang: lang,
+    db: db,
     worker: program.worker
   }
 }

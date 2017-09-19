@@ -4,19 +4,9 @@ let util = require('util')
 let cluster = require('cluster')
 let clusterWorkerSize = require('os').cpus().length
 let concurrency = 1
-let helper = require('./helper')
-var kue = require('kue')
+let doPage = require('./doPage')
 let MongoClient = require('mongodb').MongoClient
-
-var queue = kue.createQueue({
-  prefix: 'q',
-  jobEvents: false,
-  redis: {
-    port: 6379,
-    host: 'localhost'
-    //auth: ''
-  }
-})
+let queue = require('./queue')
 
 if (cluster.isMaster) {
   for (let i = 0; i < clusterWorkerSize; i++) {
@@ -32,10 +22,7 @@ if (cluster.isMaster) {
       let url = job.data.url
       let data = job.data
       data.collection = collection
-      helper.processScript(data, function(err, res) {
-        //console.log('processed');
-        done(err, res)
-      })
+      doPage.parse(data, done)
     })
   })
 }
