@@ -50,7 +50,8 @@ const parse = function(options, cb) {
   let data = wtf.parse(options.script)
   data = encodeData(data)
   data.title = options.title
-  // data._id = encodeStr(options.title)
+  data._id = encodeStr(options.title)
+  // options.collection.update({ _id: data._id }, data, { upsert: true }, function(e) {
   options.collection.insert(data, function(e) {
     if (e) {
       console.warn(e)

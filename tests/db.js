@@ -57,4 +57,4 @@ module.exports = {
 }
 // firstTwo('tempwiki', console.log)
 // open('tempwiki', console.log)
-// drop('tempwiki', console.log)
+drop('smallwiki', console.log)

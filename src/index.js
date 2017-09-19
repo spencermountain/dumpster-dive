@@ -81,7 +81,7 @@ const main = function(obj, callback) {
     const done = function() {
       console.log('=================done!=================')
       col.count().then(count => {
-        console.log(count + "  pages stores in db '" + obj.db + "'")
+        console.log(count + "  pages stored in db '" + obj.db + "'")
         db.close()
         callback()
       })
