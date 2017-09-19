@@ -3,7 +3,6 @@
 //   node index.js afwiki-latest-pages-articles.xml.bz2
 const fs = require('fs')
 const XmlStream = require('xml-stream')
-const wikipedia = require('wtf_wikipedia')
 const MongoClient = require('mongodb').MongoClient
 const bz2 = require('unbzip2-stream')
 const helper = require('./helper')
@@ -14,7 +13,7 @@ const main = function(obj, callback) {
   callback = callback || function() {}
 
   if (!file) {
-    console.log('please supply a filename to the wikipedia article dump')
+    console.log('please supply a filename for the wikipedia article dump in bz2 format')
     process.exit(1)
   }
 
@@ -80,11 +79,12 @@ const main = function(obj, callback) {
       db.close()
       callback()
     }
+
     xml.on('end', function() {
       if (!queue) {
         done()
       } else {
-        console.log('--- letting the queue drain...')
+        console.log('--- letting the queue finish-up...')
         //let the remaining async writes finish up
         setTimeout(function() {
           done()
