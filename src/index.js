@@ -7,6 +7,11 @@ const MongoClient = require('mongodb').MongoClient
 const bz2 = require('unbzip2-stream')
 const doPage = require('./doPage')
 
+const leftPad = function(str) {
+  var pad = '                              '
+  return str + pad.substring(0, pad.length - str.length)
+}
+
 const main = function(obj, callback) {
   const file = obj.file
   callback = callback || function() {}
@@ -19,7 +24,6 @@ const main = function(obj, callback) {
   // make redis and queue requirement optional
   let queue = null
   if (obj.worker) {
-    console.log('===using queue!====')
     queue = require('./queue')
   }
 
@@ -41,7 +45,7 @@ const main = function(obj, callback) {
       if (page.ns === '0') {
         let script = page.revision.text['$text'] || ''
 
-        // console.log(page.title + ' ' + i)
+        console.log(leftPad(page.title) + ' ' + i)
         ++i
 
         let data = {
@@ -75,7 +79,7 @@ const main = function(obj, callback) {
     })
 
     const done = function() {
-      console.log('=================done!========')
+      console.log('=================done!=================')
       db.close()
       callback()
       process.exit()

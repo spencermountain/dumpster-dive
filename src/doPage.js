@@ -24,7 +24,7 @@ const encodeData = function(data) {
       })
     })
   }
-  //cleanup tables
+  //cleanup table-keys
   if (data.sections && data.sections.length > 0) {
     data.sections.forEach(o => {
       if (o.tables && o.tables.length > 0) {
@@ -49,12 +49,12 @@ const encodeData = function(data) {
 const parse = function(options, cb) {
   let data = wtf.parse(options.script)
   data = encodeData(data)
-  // console.log(data)
   data.title = options.title
-  data._id = encodeStr(options.title)
+  // data._id = encodeStr(options.title)
+  // console.log(data)
   options.collection.insert(data, function(e) {
     if (e) {
-      console.log(e)
+      console.warn(e)
       return cb(e)
     }
     return cb()

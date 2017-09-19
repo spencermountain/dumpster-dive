@@ -1,8 +1,8 @@
 const MongoClient = require('mongodb').MongoClient
 const assert = require('assert')
 
-const open = function(lang, cb) {
-  let url = 'mongodb://localhost:27017/' + lang
+const open = function(dbName, cb) {
+  let url = 'mongodb://localhost:27017/' + dbName
   MongoClient.connect(url, function(err, db) {
     if (err) {
       console.log(err)
@@ -13,8 +13,8 @@ const open = function(lang, cb) {
 }
 
 //count all pages
-const count = function(lang, cb) {
-  open(lang, function(db) {
+const count = function(dbName, cb) {
+  open(dbName, function(db) {
     let col = db.collection('wikipedia')
     col.count().then(count => {
       db.close()
@@ -25,10 +25,12 @@ const count = function(lang, cb) {
 }
 
 //grab a couple
-const first = function(n, lang, cb) {
-  open(lang, function(db) {
+const first = function(n, dbName, cb) {
+  open(dbName, function(db) {
     let col = db.collection('wikipedia')
     col.find({}).toArray(function(err, docs) {
+      console.log(err)
+      console.log(docs)
       docs = docs.slice(0, n)
       db.close()
       cb(docs)
@@ -37,8 +39,8 @@ const first = function(n, lang, cb) {
 }
 
 //delete all pages
-const drop = function(lang, cb) {
-  open(lang, function(db) {
+const drop = function(dbName, cb) {
+  open(dbName, function(db) {
     let col = db.collection('wikipedia')
     col.deleteMany({})
     setTimeout(function() {
