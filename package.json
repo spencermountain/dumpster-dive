@@ -8,9 +8,9 @@
     "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
   },
   "bin": {
-    "wikipedia-to-mongodb": "./index.js"
+    "wiki2mongo": "./src/index.js"
   },
-  "main": "./index.js",
+  "main": "./src/index.js",
   "engines": ["node = 0.10.33"],
   "scripts": {
     "test": "\"node_modules/.bin/tape\" \"./tests/*.test.js\" | \"node_modules/.bin/tap-spec\" --color"
