@@ -12,6 +12,7 @@ const open = function(lang, cb) {
   })
 }
 
+//count all pages
 const count = function(lang, cb) {
   open(lang, function(db) {
     let col = db.collection('wikipedia')
@@ -23,18 +24,19 @@ const count = function(lang, cb) {
   })
 }
 
-const first = function(n, cb) {
+//grab a couple
+const first = function(n, lang, cb) {
   open(lang, function(db) {
     let col = db.collection('wikipedia')
     col.find({}).toArray(function(err, docs) {
       docs = docs.slice(0, n)
-      console.log(docs)
       db.close()
       cb(docs)
     })
   })
 }
 
+//delete all pages
 const drop = function(lang, cb) {
   open(lang, function(db) {
     let col = db.collection('wikipedia')
