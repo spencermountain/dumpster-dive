@@ -53,3 +53,4 @@ module.exports = {
   drop: drop,
   first: first
 }
+first(3, 'tempwiki', console.log)

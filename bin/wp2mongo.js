@@ -6,6 +6,7 @@ let parseArgs = function() {
   program
     .usage('node index.js afwiki-latest-pages-articles.xml.bz2 [options]')
     .option('-w, --worker [worker]', 'Use worker (redis required)')
+    .option('-plain, --plaintext [plaintext]', 'if true, store plaintext wikipedia articles')
     .parse(process.argv)
 
   //grab the wiki file
@@ -20,6 +21,7 @@ let parseArgs = function() {
     lang = file.match(/([a-z]+)-latest/) || []
     lang = lang[1] || 'wikipedia'
   }
+  console.log(program)
   return {
     file: file,
     lang: lang,

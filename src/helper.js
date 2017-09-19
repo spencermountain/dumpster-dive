@@ -4,6 +4,7 @@ let wtf = require('wtf_wikipedia')
 exports.processScript = function(options, cb) {
   let data = wtf.parse(options.script)
   data.title = options.title
+  data._id = options.title
   options.collection.insert(data, function(e) {
     if (e) {
       console.log(e)

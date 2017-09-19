@@ -10,9 +10,9 @@ test('test-real-smallwiki', function(t) {
     exec('./bin/wp2mongo.js ./tests/smallwiki-latest-pages-articles.xml.bz2')
     db.count('smallwiki', count => {
       t.equal(count, 1047, 'count-is-correct')
-      db.drop('smallwiki', () => {
-        t.end()
-      })
+      // db.drop('smallwiki', () => {
+      t.end()
+      // })
     })
   })
 })
@@ -26,15 +26,16 @@ test('manually-made-tinywiki', function(t) {
   db.drop(obj.lang, () => {
     wp2mongo(obj, () => {
       db.first(2, obj.lang, docs => {
+        console.log(docs)
         t.equal(docs.length, 2, 'two records')
 
-        let hello = docs.find(d => d.title === 'Hello')
+        let hello = docs.find(d => d._id === 'Hello')
         t.equal(hello.categories.length, 0, 'no categories')
         t.equal(hello.images.length, 0, 'no image')
         t.equal(hello.infoboxes.length, 0, 'no infobox')
         t.equal(hello.sections.length, 1, 'one infobox')
 
-        let toronto = docs.find(d => d.title === 'Toronto')
+        let toronto = docs.find(d => d._id === 'Toronto')
         t.equal(toronto.sections.length, 3, 'three infobox')
         t.equal(toronto.categories.length, 3, 'three categories')
         t.equal(toronto.images.length, 1, 'one image')
