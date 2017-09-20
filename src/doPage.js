@@ -63,11 +63,10 @@ const parse = function(options, cb) {
 
 //get readable text from the wiki markup
 const plaintext = function(options, cb) {
-  let plaintext = wtf.plaintext(options.script)
   let data = {
     title: options.title,
-    // _id: options.title,
-    plaintext: plaintext
+    _id: encodeStr(options.title),
+    plaintext: wtf.plaintext(options.script)
   }
   options.collection.insert(data, function(e) {
     if (e) {

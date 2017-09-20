@@ -24,7 +24,8 @@ let parseArgs = function() {
   return {
     file: file,
     db: db,
-    worker: program.worker
+    worker: program.worker,
+    plaintext: program.plaintext
   }
 }
 

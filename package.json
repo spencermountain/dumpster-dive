@@ -2,13 +2,13 @@
   "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
   "name": "wikipedia-to-mongodb",
   "description": "get a wikipedia dump parsed into mongodb",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
   },
   "bin": {
-    "wiki2mongo": "./src/index.js"
+    "wp2mongo": "./bin/wp2mongo.js"
   },
   "main": "./src/index.js",
   "engines": ["node = 0.10.33"],

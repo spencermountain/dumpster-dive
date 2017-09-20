@@ -32,6 +32,15 @@ db.wikipedia.count({type:"redirect"})
 ````
 
 ### Options
+#### human-readable plaintext **--plaintext**
+```js
+wp2mongo({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true}, console.log)
+[{
+	_id:'Toronto',
+	title:'Toronto',
+  plaintext:'Toronto is the most populous city in Canada and the provincial capital of Ontario, with a population in 2016 of 2,731,571...'
+}]
+```
 #### go faster with Redis **--worker**
 there is yet much faster way (even x10) to import all pages into mongodb but a little more complex. it requires redis installed on your computer and running worker in separate process.
 

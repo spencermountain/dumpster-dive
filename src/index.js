@@ -68,7 +68,11 @@ const main = function(obj, callback) {
             .save()
         } else {
           data.collection = col
-          doPage.parse(data, function(err, res) {})
+          if (obj.plaintext) {
+            doPage.plaintext(data, function() {})
+          } else {
+            doPage.parse(data, function() {})
+          }
         }
       }
     })
