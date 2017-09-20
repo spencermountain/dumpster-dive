@@ -1,5 +1,6 @@
-var kue = require('kue')
-var queue = kue.createQueue({
+let kue = require('kue')
+
+let queue = kue.createQueue({
   prefix: 'q',
   jobEvents: false,
   redis: {
@@ -7,6 +8,6 @@ var queue = kue.createQueue({
     host: 'localhost'
     //auth: ''
   }
-});
+})
 
-module.exports = queue;
+module.exports = queue
