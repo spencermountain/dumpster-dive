@@ -19,27 +19,16 @@ wp2mongo({file:'./enwiki-latest-pages-articles.xml.bz2', db: 'enwiki'}, callback
 ```
 
 then check out the articles in mongo:
-````javascript
-mongo        //enter the mongo shell
-use enwiki   //grab the database
+````bash
+$ mongo        //enter the mongo shell
+use enwiki     //grab the database
 
 db.wikipedia.find({title:"Toronto"})[0].categories
-//[ "Former colonial capitals in Canada",
-//  "Populated places established in 1793",
-//  ...]
+#[ "Former colonial capitals in Canada",
+#  "Populated places established in 1793" ...]
 db.wikipedia.count({type:"redirect"})
-// 124,999...
+# 124,999...
 ````
-
-### how it works:
-this library uses:
-* [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompress the gnarly bz2 file
-
-* [xml-stream](https://github.com/assistunion/xml-stream) to stream-parse its xml format
-
-* [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article wikiscript contents into JSON.
-
-* [redis](http://redis.io/) to (optionally) put wikiscript parsing on separate threads :metal:
 
 # 1)
 you can do this.
@@ -84,11 +73,9 @@ db.wikipedia.count({type:"redirect"})
 db.wikipedia.findOne({title:"Toronto"}).categories
 ````
 
-
-## Same for the English wikipedia:
+### Same for the English wikipedia:
 the english wikipedia will work under the same process, but
 the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 4gb download and becomes a pretty legit mongo collection uncompressed. It's something like 40gb, but mongo can do it... You can do it!
-
 
 ### Options
 #### human-readable plaintext **--plaintext**
@@ -122,6 +109,16 @@ node src/worker.js
 # you can preview processing jobs in kue dashboard (localhost:3000)
 node node_modules/kue/bin/kue-dashboard -p 3000
 ````
+
+### how it works:
+this library uses:
+* [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompress the gnarly bz2 file
+
+* [xml-stream](https://github.com/assistunion/xml-stream) to stream-parse its xml format
+
+* [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article wikiscript contents into JSON.
+
+* [redis](http://redis.io/) to (optionally) put wikiscript parsing on separate threads :metal:
 
 ### Addendum:
 #### \_ids
