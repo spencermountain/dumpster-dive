@@ -3,3 +3,4 @@
 
 * renames bin cmd to `wiki2mongo`
 * supports use from cli, or use via javascript `require()`
+* support --plaintext flag

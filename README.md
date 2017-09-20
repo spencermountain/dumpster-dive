@@ -1,9 +1,9 @@
-# A whole Wikipedia, right in mongodb
-put a hefty [wikipedia dump](https://dumps.wikimedia.org) quickly into mongo, with fully-parsed wikiscript, without thinking, without loading it into memory, grepping, unzipping, or other cli nonsense.
+# A whole Wikipedia, sitting in mongodb
+put your hefty [wikipedia dump](https://dumps.wikimedia.org) into mongo, with fully-parsed wikiscript - without thinking, without loading it into memory, grepping, unzipping, or other crazy command-line nonsense.
 
-It's a javascript-only one-liner that can get a highly-queryable wikipedia on your laptop in a nice afternoon.
+It's a javascript one-liner that puts a highly-queryable wikipedia on your laptop in a nice afternoon.
 
-It also uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into *nearly-nice* json.
+It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into *almost-nice* json.
 
 ```bash
 npm install -g wikipedia-to-mongodb
@@ -31,15 +31,76 @@ db.wikipedia.count({type:"redirect"})
 // 124,999...
 ````
 
+### how it works:
+this library uses:
+* [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompress the gnarly bz2 file
+
+* [xml-stream](https://github.com/assistunion/xml-stream) to stream-parse its xml format
+
+* [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article wikiscript contents into JSON.
+
+* [redis](http://redis.io/) to (optionally) put wikiscript parsing on separate threads :metal:
+
+# 1)
+you can do this.
+a few Gb. you can do this.
+you can do this.
+# 2) get ready
+Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/), and optionally [redis](http://redis.io/)
+
+```
+git clone git@github.com:spencermountain/wikipedia-to-mongodb.git
+cd wikipedia-to-mongodb
+npm install
+```
+
+# 3) download wikipedia
+The Afrikaans wikipedia (only 33 556 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
+```bash
+# dowload an xml dump (38mb, couple minutes)
+wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
+```
+the english/german ones are bigger. Use whichever xml dump you'd like.
+
+# 4) get going
+```bash
+#load it into mongo (10-15 minutes)
+wikipedia-to-mongodb ./afwiki-latest-pages-articles.xml.bz2
+```
+
+# 5) check out your data
+to view your data in the mongo console,
+````javascript
+$ mongo
+use af_wikipedia
+
+//shows a random page
+db.wikipedia.find().skip(200).limit(2)
+
+//count the redirects (~5,000 in afrikaans)
+db.wikipedia.count({type:"redirect"})
+
+//find a specific page
+db.wikipedia.findOne({title:"Toronto"}).categories
+````
+
+
+## Same for the English wikipedia:
+the english wikipedia will work under the same process, but
+the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 4gb download and becomes a pretty legit mongo collection uncompressed. It's something like 40gb, but mongo can do it... You can do it!
+
+
 ### Options
 #### human-readable plaintext **--plaintext**
 ```js
 wp2mongo({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true}, console.log)
+/*
 [{
-	_id:'Toronto',
-	title:'Toronto',
-  plaintext:'Toronto is the most populous city in Canada and the provincial capital of Ontario, with a population in 2016 of 2,731,571...'
+  _id:'Toronto',
+  title:'Toronto',
+  plaintext:'Toronto is the most populous city in Canada and the provincial capital...'
 }]
+*/
 ```
 #### go faster with Redis **--worker**
 there is yet much faster way (even x10) to import all pages into mongodb but a little more complex. it requires redis installed on your computer and running worker in separate process.
@@ -62,68 +123,7 @@ node src/worker.js
 node node_modules/kue/bin/kue-dashboard -p 3000
 ````
 
-### how it works:
-this library uses:
-* [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompress the gnarly bz2 file
-
-* [xml-stream](https://github.com/assistunion/xml-stream) to stream-parse its xml format
-
-* [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article wikiscript contents into **almost-pretty** JSON.
-
-* [redis](http://redis.io/) to (optionally) put wikiscript parsing on separate threads :metal:
-
-# #1
-you can do this.
-a few Gb. you can do this.
-you can do this.
-# #2 get ready
-Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/), and optionally [redis](http://redis.io/)
-
-```
-git clone git@github.com:spencermountain/wikipedia-to-mongodb.git
-cd wikipedia-to-mongodb
-npm install
-```
-
-# #3 download wikipedia
-The Afrikaans wikipedia (only 33 556 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
-```bash
-# dowload an xml dump (38mb, couple minutes)
-wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
-```
-the english/german ones are bigger. Use whichever xml dump you'd like.
-
-# #4 get going
-```bash
-#load it into mongo (10-15 minutes)
-wikipedia-to-mongodb ./afwiki-latest-pages-articles.xml.bz2
-```
-
-# #5 check out your data
-to view your data in the mongo console,
-````javascript
-$ mongo
-use af_wikipedia
-
-//shows a random page
-db.wikipedia.find().skip(200).limit(2)
-
-//count the redirects (~5,000 in afrikaans)
-db.wikipedia.count({type:"redirect"})
-
-//find a specific page
-db.wikipedia.findOne({title:"Toronto"}).categories
-````
-
-
-## Same for the English wikipedia:
-the english wikipedia will work under the same process, but
-the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 4gb download and becomes a pretty legit mongo collection uncompressed. It's something like 40gb, but mongo can do it... You can do it!
-
-
-
-### Addendum
-
+### Addendum:
 #### \_ids
 since wikimedia makes all pages have globally unique titles, we also use them for the mongo `_id` fields.
 The benefit is that if it crashes half-way through, or if you want to run it again, running this script repeatedly will not multiply your data. We do a 'upsert' on record.
