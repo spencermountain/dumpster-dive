@@ -20,8 +20,8 @@ wp2mongo({file:'./enwiki-latest-pages-articles.xml.bz2', db: 'enwiki'}, callback
 
 then check out the articles in mongo:
 ````bash
-$ mongo        //enter the mongo shell
-use enwiki     //grab the database
+$ mongo        #enter the mongo shell
+use enwiki     #grab the database
 
 db.wikipedia.find({title:"Toronto"})[0].categories
 #[ "Former colonial capitals in Canada",
@@ -37,7 +37,7 @@ you can do this.
 # 2) get ready
 Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/), and optionally [redis](http://redis.io/)
 
-```
+```bash
 git clone git@github.com:spencermountain/wikipedia-to-mongodb.git
 cd wikipedia-to-mongodb
 npm install
@@ -133,4 +133,5 @@ $  -->  \u0024
 .  -->  \u002e
 ```
 
+### PRs welcome!
 MIT
