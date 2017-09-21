@@ -44,7 +44,7 @@ npm install
 ```
 
 # 3) download wikipedia
-The Afrikaans wikipedia (only 33 556 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
+The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
 ```bash
 # dowload an xml dump (38mb, couple minutes)
 wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
@@ -54,7 +54,7 @@ the english/german ones are bigger. Use whichever xml dump you'd like.
 # 4) get going
 ```bash
 #load it into mongo (10-15 minutes)
-wikipedia-to-mongodb ./afwiki-latest-pages-articles.xml.bz2
+bin/wp2mongo.js ./afwiki-latest-pages-articles.xml.bz2
 ```
 
 # 5) check out your data
@@ -75,7 +75,8 @@ db.wikipedia.findOne({title:"Toronto"}).categories
 
 ### Same for the English wikipedia:
 the english wikipedia will work under the same process, but
-the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 4gb download and becomes a pretty legit mongo collection uncompressed. It's something like 40gb, but mongo can do it... You can do it!
+the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 13 GB (for [enwiki-20170901-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20170901/enwiki-20170901-pages-articles.xml.bz2)), and becomes a pretty legit mongo collection uncompressed. It's something like ?, but mongo can do it... You can do it!
+
 
 ### Options
 #### human-readable plaintext **--plaintext**
@@ -101,7 +102,7 @@ sudo apt-get install # (or `brew install redis` on a mac)
 git clone git@github.com:spencermountain/wikipedia-to-mongodb.git && cd wikipedia-to-mongodb
 
 #load pages into job queue
-wp2mongo ./afwiki-latest-pages-articles.xml.bz2 --worker
+bin/wp2mongo.js ./afwiki-latest-pages-articles.xml.bz2 --worker
 
 # start processing jobs (parsing articles and saving to mongodb) on all CPU's
 node src/worker.js
