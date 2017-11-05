@@ -32,12 +32,14 @@ db.wikipedia.count({type:"redirect"})
 
 # Steps:
 
-## 1)
-you can do this.
-a few Gb. you can do this.
+### 1) 💪
 you can do this.
 
-## 2) get ready
+a few Gb. you can do this.
+
+you can do this.
+
+### 2) get ready
 Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/), and optionally [redis](http://redis.io/)
 
 ```bash
@@ -45,7 +47,7 @@ npm install -g wikipedia-to-mongodb
 ```
 that gives you the global command `wp2mongo`.
 
-## 3) download a wikipedia
+### 3) download a wikipedia
 The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
 ```bash
 # dowload an xml dump (38mb, couple minutes)
@@ -53,15 +55,15 @@ wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.
 ```
 the english/german ones are bigger. Use whichever xml dump you'd like. The download page is weird, but you'll want the most-common format `${LANG}wiki-latest-pages-articles.xml.bz2 `
 
-## 4) get going
+### 4) get-going
 ```bash
 #load it into mongo (10-15 minutes)
 wp2mongo ./afwiki-latest-pages-articles.xml.bz2
 ```
-## 5) take a bath
+### 5) take a bath
 put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there. Honestly, it feels great. The en-wiki dump should take a few hours. You deserve a break once and a while.
 
-## 6) check-out your data
+### 6) check-out your data
 to view your data in the mongo console,
 ````javascript
 $ mongo
