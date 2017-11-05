@@ -1,4 +1,4 @@
-# A whole Wikipedia, sitting in mongodb
+# A whole Wikipedia dump, in mongodb.
 put your hefty [wikipedia dump](https://dumps.wikimedia.org) into mongo, with fully-parsed wikiscript - without thinking, without loading it into memory, grepping, unzipping, or other crazy command-line nonsense.
 
 It's a javascript one-liner that puts a highly-queryable wikipedia on your laptop in a nice afternoon.
@@ -30,34 +30,38 @@ db.wikipedia.count({type:"redirect"})
 # 124,999...
 ````
 
-# 1)
+# Steps:
+
+## 1)
 you can do this.
 a few Gb. you can do this.
 you can do this.
-# 2) get ready
+
+## 2) get ready
 Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/), and optionally [redis](http://redis.io/)
 
 ```bash
-git clone git@github.com:spencermountain/wikipedia-to-mongodb.git
-cd wikipedia-to-mongodb
-npm install
+npm install -g wikipedia-to-mongodb
 ```
+that gives you the global command `wp2mongo`.
 
-# 3) download wikipedia
+## 3) download a wikipedia
 The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
 ```bash
 # dowload an xml dump (38mb, couple minutes)
 wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
 ```
-the english/german ones are bigger. Use whichever xml dump you'd like.
+the english/german ones are bigger. Use whichever xml dump you'd like. The download page is weird, but you'll want the most-common format `${LANG}wiki-latest-pages-articles.xml.bz2 `
 
-# 4) get going
+## 4) get going
 ```bash
 #load it into mongo (10-15 minutes)
-bin/wp2mongo.js ./afwiki-latest-pages-articles.xml.bz2
+wp2mongo ./afwiki-latest-pages-articles.xml.bz2
 ```
+## 5) take a bath
+put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there. Honestly, it feels great. The en-wiki dump should take a few hours. You deserve a break once and a while.
 
-# 5) check out your data
+## 6) check-out your data
 to view your data in the mongo console,
 ````javascript
 $ mongo
@@ -75,7 +79,7 @@ db.wikipedia.findOne({title:"Toronto"}).categories
 
 ### Same for the English wikipedia:
 the english wikipedia will work under the same process, but
-the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 13 GB (for [enwiki-20170901-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20170901/enwiki-20170901-pages-articles.xml.bz2)), and becomes a pretty legit mongo collection uncompressed. It's something like ?, but mongo can do it... You can do it!
+the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 13 GB (for [enwiki-20170901-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20170901/enwiki-20170901-pages-articles.xml.bz2)), and becomes a pretty legit mongo collection uncompressed. It's something like 51GB, but mongo can do it... You can do it!
 
 
 ### Options
@@ -124,7 +128,7 @@ this library uses:
 ### Addendum:
 #### \_ids
 since wikimedia makes all pages have globally unique titles, we also use them for the mongo `_id` fields.
-The benefit is that if it crashes half-way through, or if you want to run it again, running this script repeatedly will not multiply your data. We do a 'upsert' on record.
+The benefit is that if it crashes half-way through, or if you want to run it again, running this script repeatedly will not multiply your data. We do a 'upsert' on the record.
 
 #### encoding special characters
 mongo has some opinions on special-characters in some of its data. It is weird, but we're using this [standard(ish)](https://stackoverflow.com/a/30254815/168877) form of encoding them:
