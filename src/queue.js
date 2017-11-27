@@ -1,4 +1,4 @@
-let kue = require('kue')
+let kue = require('kue');
 
 let queue = kue.createQueue({
   prefix: 'q',
@@ -8,6 +8,6 @@ let queue = kue.createQueue({
     host: 'localhost'
     //auth: ''
   }
-})
+});
 
-module.exports = queue
+module.exports = queue;
