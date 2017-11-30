@@ -60,9 +60,16 @@ const encodeData = function(data) {
 //get parsed json from the wiki markup
 const parse = function(options, cb) {
   let data = wtf.parse(options.script);
+  //dont insert this if it's a redirect
+  if (options.skip_redirects === true && data.type === 'redirect') {
+    return cb()
+  }
+  if (options.skip_disambig === true && data.type === 'disambiguation') {
+    return cb()
+  }
   data = encodeData(data);
-  data.title = options.title;
-  data._id = encodeStr(options.title);
+  data.title = data.title || options.title;
+  data._id = encodeStr(data.title);
   // options.collection.update({ _id: data._id }, data, { upsert: true }, function(e) {
   options.collection.insert(data, function(e) {
     if (e) {

@@ -12,8 +12,8 @@ const leftPad = function(str) {
   return str + pad.substring(0, pad.length - str.length);
 };
 
-const main = function(obj, callback) {
-  const file = obj.file;
+const main = function(options, callback) {
+  const file = options.file;
   callback = callback || function() {};
 
   if (!file) {
@@ -23,12 +23,12 @@ const main = function(obj, callback) {
 
   // make redis and queue requirement optional
   let queue = null;
-  if (obj.worker) {
+  if (options.worker) {
     queue = require('./queue');
   }
 
   // Connect to mongo
-  let url = 'mongodb://localhost:27017/' + obj.db;
+  let url = 'mongodb://localhost:27017/' + options.db;
   MongoClient.connect(url, function(err, db) {
     if (err) {
       console.log(err);
@@ -50,10 +50,12 @@ const main = function(obj, callback) {
 
         let data = {
           title: page.title,
-          script: script
+          script: script,
+          skip_redirects: options.skip_redirects,
+          skip_disambig: options.skip_disambig,
         };
 
-        if (obj.worker) {
+        if (options.worker) {
           // we send job to job queue (redis)
           // run job queue dashboard to see statistics
           // node node_modules/kue/bin/kue-dashboard -p 3050
@@ -69,7 +71,7 @@ const main = function(obj, callback) {
         } else {
           data.collection = col;
           try {
-            if (obj.plaintext) {
+            if (options.plaintext) {
               doPage.plaintext(data, function() {});
             } else {
               doPage.parse(data, function() {});
@@ -82,14 +84,14 @@ const main = function(obj, callback) {
     });
 
     xml.on('error', function(message) {
-      console.log('Parsing as ' + (encoding || 'auto') + ' failed: ' + message);
+      console.log('Parsing failed: ' + message);
       db.close();
     });
 
     const done = function() {
       console.log('=================done!=================');
       col.count().then(count => {
-        console.log(count + "  pages stored in db '" + obj.db + "'");
+        console.log(count + "  pages stored in db '" + options.db + "'");
         db.close();
         callback();
       });

@@ -117,6 +117,18 @@ node src/worker.js
 node node_modules/kue/bin/kue-dashboard -p 3000
 ````
 
+#### skip unnecessary pages **--skip_disambig**, **--skip_redirects**
+this can make it go faster too, by skipping entries in the dump that aren't full-on articles.
+```js
+let obj = {
+	file: './path/enwiki-latest-pages-articles.xml.bz2',
+	db: 'enwiki',
+	skip_redirects: true,
+	skip_disambig: true,
+}
+wp2mongo(obj, () => console.log('done!') )
+```
+
 ### how it works:
 this library uses:
 * [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompress the gnarly bz2 file

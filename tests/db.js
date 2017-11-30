@@ -24,14 +24,14 @@ const count = function(dbName, cb) {
 }
 
 //grab a couple
-const firstTwo = function(dbName, cb) {
+const firstTen = function(dbName, cb) {
   open(dbName, function(db) {
     let col = db.collection('wikipedia')
     col.find({}).toArray(function(err, docs) {
       if (err) {
         console.log(err)
       }
-      docs = docs.slice(0, 2)
+      docs = docs.slice(0, 10)
       db.close()
       cb(docs)
     })
@@ -53,7 +53,7 @@ const drop = function(dbName, cb) {
 module.exports = {
   count: count,
   drop: drop,
-  firstTwo: firstTwo
+  firstTen: firstTen
 }
 // firstTwo('tempwiki', console.log)
 // open('tempwiki', console.log)
