@@ -5,10 +5,10 @@ let main = require('../src/index')
 let parseArgs = function() {
   program
     .usage('node index.js enwiki-latest-pages-articles.xml.bz2 [options]')
-    .option('-w, --worker [worker]', 'Use worker (redis required)')
-    .option('-plain, --plaintext [plaintext]', 'if true, store plaintext wikipedia articles')
-    .option('-skip_redirects [skip_redirects]', 'if true, skips-over pages that are redirects')
-    .option('-skip_disambig [skip_disambig]', 'if true, skips-over disambiguation pages')
+    .option('-w, --worker', 'Use worker (redis required)')
+    .option('-plain, --plaintext', 'if true, store plaintext wikipedia articles')
+    .option('--skip_redirects', 'if true, skips-over pages that are redirects')
+    .option('--skip_disambig', 'if true, skips-over disambiguation pages')
     .parse(process.argv)
 
   //grab the wiki file
