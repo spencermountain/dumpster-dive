@@ -9,6 +9,8 @@ let parseArgs = function() {
     .option('-plain, --plaintext', 'if true, store plaintext wikipedia articles')
     .option('--skip_redirects', 'if true, skips-over pages that are redirects')
     .option('--skip_disambig', 'if true, skips-over disambiguation pages')
+    .option('--skip_first <n>', 'ignore the first n pages', parseInt)
+    .option('--verbose', 'print each article title to the console')
     .parse(process.argv)
 
   //grab the wiki file
@@ -30,6 +32,8 @@ let parseArgs = function() {
     plaintext: program.plaintext,
     skip_disambig: program.skip_disambig,
     skip_redirects: program.skip_redirects,
+    skip_first: program.skip_first,
+    verbose: program.verbose,
   }
 }
 

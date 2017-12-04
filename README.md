@@ -125,6 +125,8 @@ let obj = {
 	db: 'enwiki',
 	skip_redirects: true,
 	skip_disambig: true,
+	skip_first: 1000, // ignore the first 1k pages
+	verbose: true, // print each article title
 }
 wp2mongo(obj, () => console.log('done!') )
 ```

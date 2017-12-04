@@ -8,10 +8,14 @@ const bz2 = require('unbzip2-stream');
 const doPage = require('./page');
 
 const main = function(options, callback) {
-  const file = options.file;
+  options.skip_first = options.skip_first || 0
+  options.verbose = options.verbose || false
   callback = callback || function() {};
 
-  if (!file) {
+  if (options.skip_first > 0) {
+    console.log('\n\n\n -- skipping first ' + options.skip_first + ' articles...')
+  }
+  if (!options.file) {
     console.log('please supply a filename for the wikipedia article dump in bz2 format');
     process.exit(1);
   }
@@ -31,7 +35,7 @@ const main = function(options, callback) {
     }
     options.collection = db.collection('wikipedia');
     // Create a file stream and pass it to XmlStream
-    let stream = fs.createReadStream(file).pipe(bz2());
+    let stream = fs.createReadStream(options.file).pipe(bz2());
     let xml = new XmlStream(stream);
     xml._preserveAll = true; //keep newlines
 
@@ -58,7 +62,9 @@ const main = function(options, callback) {
 
     xml.on('endElement: page', function(page) {
       i += 1
-      doPage(page, options, queue, function() {})
+      if (i > options.skip_first) {
+        doPage(page, options, queue, function() {})
+      }
     });
 
     xml.on('error', function(message) {

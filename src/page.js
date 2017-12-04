@@ -21,8 +21,9 @@ const doPage = function(page, options, queue, cb) {
   if (page.ns === '0') {
     let script = page.revision.text['$text'] || '';
 
-    // console.log(leftPad(page.title));
-
+    if (options.verbose === true) {
+      console.log(page.title);
+    }
     let data = {
       title: page.title,
       script: script,

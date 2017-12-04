@@ -7,3 +7,6 @@
 ### v2.3.0
 * add try/catch
 * supoprt --skip_redirects && --skip_disambig
+### v2.4.0
+* add a 3s 'break' to avoid build-up of mongo inserts
+* add new --verbose and --skip_first options
