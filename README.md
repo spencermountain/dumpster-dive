@@ -129,7 +129,7 @@ let obj = {
 wp2mongo(obj, () => console.log('done!') )
 ```
 
-### how it works:
+## how it works:
 this library uses:
 * [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompress the gnarly bz2 file
 
@@ -139,18 +139,20 @@ this library uses:
 
 * [redis](http://redis.io/) to (optionally) put wikiscript parsing on separate threads :metal:
 
-### Addendum:
-#### \_ids
+## Addendum:
+### \_ids
 since wikimedia makes all pages have globally unique titles, we also use them for the mongo `_id` fields.
 The benefit is that if it crashes half-way through, or if you want to run it again, running this script repeatedly will not multiply your data. We do a 'upsert' on the record.
 
-#### encoding special characters
+### encoding special characters
 mongo has some opinions on special-characters in some of its data. It is weird, but we're using this [standard(ish)](https://stackoverflow.com/a/30254815/168877) form of encoding them:
 ```
 \  -->  \\
 $  -->  \u0024
 .  -->  \u002e
 ```
+### Non-wikipedias
+This library should also work on other wikis with standard xml dumps from [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki). I haven't tested them, but the wtf_wikipedia supports all sorts of non-standard wiktionary/wikivoyage templates, and if you can get a bz-compressed xml dump from your wiki, this should work fine. Open an issue if you find something weird.
 
 ### PRs welcome!
 MIT

@@ -5,12 +5,7 @@ const fs = require('fs');
 const XmlStream = require('xml-stream');
 const MongoClient = require('mongodb').MongoClient;
 const bz2 = require('unbzip2-stream');
-const doPage = require('./doPage');
-
-const leftPad = function(str) {
-  var pad = '                              ';
-  return str + pad.substring(0, pad.length - str.length);
-};
+const doPage = require('./page');
 
 const main = function(options, callback) {
   const file = options.file;
@@ -34,53 +29,36 @@ const main = function(options, callback) {
       console.log(err);
       process.exit(1);
     }
-    let col = db.collection('wikipedia');
+    options.collection = db.collection('wikipedia');
     // Create a file stream and pass it to XmlStream
     let stream = fs.createReadStream(file).pipe(bz2());
     let xml = new XmlStream(stream);
     xml._preserveAll = true; //keep newlines
 
     let i = 1;
+    let last = 0
+
+    //this is our logger
+    console.log('\n\n --- starting xml parsing --\n')
+    let logger = setInterval(function() {
+      let diff = (i - last).toLocaleString()
+      console.log('\n\n+' + diff + ' pages  - -  (at #' + i.toLocaleString() + ')')
+      last = i
+    }, 5000);
+
+    //this lets us a clear the queue
+    let holdUp = setInterval(function() {
+      console.log('\n\n-- taking a quick break..--')
+      xml.pause();
+      setTimeout(function() {
+        xml.resume();
+        console.log('.. ok back. \n')
+      }, 3000)
+    }, 30000);
+
     xml.on('endElement: page', function(page) {
-      if (page.ns === '0') {
-        let script = page.revision.text['$text'] || '';
-
-        console.log(leftPad(page.title) + ' ' + i);
-        ++i;
-
-        let data = {
-          title: page.title,
-          script: script,
-          skip_redirects: options.skip_redirects,
-          skip_disambig: options.skip_disambig,
-        };
-
-        if (options.worker) {
-          // we send job to job queue (redis)
-          // run job queue dashboard to see statistics
-          // node node_modules/kue/bin/kue-dashboard -p 3050
-          queue
-            .create('article', data)
-            .removeOnComplete(true)
-            .attempts(3)
-            .backoff({
-              delay: 10 * 1000,
-              type: 'exponential'
-            })
-            .save();
-        } else {
-          data.collection = col;
-          try {
-            if (options.plaintext) {
-              doPage.plaintext(data, function() {});
-            } else {
-              doPage.parse(data, function() {});
-            }
-          } catch (err) {
-            console.log(err);
-          }
-        }
-      }
+      i += 1
+      doPage(page, options, queue, function() {})
     });
 
     xml.on('error', function(message) {
@@ -90,9 +68,11 @@ const main = function(options, callback) {
 
     const done = function() {
       console.log('=================done!=================');
-      col.count().then(count => {
+      options.collection.count().then(count => {
         console.log(count + "  pages stored in db '" + options.db + "'");
         db.close();
+        clearInterval(logger)
+        clearInterval(holdUp)
         callback();
       });
     };

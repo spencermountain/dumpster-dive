@@ -58,7 +58,7 @@ const encodeData = function(data) {
 };
 
 //get parsed json from the wiki markup
-const parse = function(options, cb) {
+const parse = function(options, collection, cb) {
   let data = wtf.parse(options.script);
   //dont insert this if it's a redirect
   if (options.skip_redirects === true && data.type === 'redirect') {
@@ -71,7 +71,7 @@ const parse = function(options, cb) {
   data.title = data.title || options.title;
   data._id = encodeStr(data.title);
   // options.collection.update({ _id: data._id }, data, { upsert: true }, function(e) {
-  options.collection.insert(data, function(e) {
+  collection.insert(data, function(e) {
     if (e) {
       console.warn(e);
       return cb(e);
@@ -81,13 +81,13 @@ const parse = function(options, cb) {
 };
 
 //get readable text from the wiki markup
-const plaintext = function(options, cb) {
+const plaintext = function(options, collection, cb) {
   let data = {
     title: options.title,
     _id: encodeStr(options.title),
     plaintext: wtf.plaintext(options.script)
   };
-  options.collection.insert(data, function(e) {
+  collection.insert(data, function(e) {
     if (e) {
       console.log(e);
       return cb(e);
