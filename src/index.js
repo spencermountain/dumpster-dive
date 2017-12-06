@@ -10,6 +10,8 @@ const doPage = require('./page');
 const main = function(options, callback) {
   options.skip_first = options.skip_first || 0
   options.verbose = options.verbose || false
+  options.threshold = options.threshold || 5000000
+  options.start_delay = options.start_delay || 1000
   callback = callback || function() {};
 
   if (options.skip_first > 0) {
@@ -40,7 +42,9 @@ const main = function(options, callback) {
     xml._preserveAll = true; //keep newlines
 
     let i = 1;
-    let last = 0
+    let last = 0;
+	let pauseThreshold = options.threshold
+	let startDelay = options.start_delay
 
     //this is our logger
     console.log('\n\n --- starting xml parsing --\n')
@@ -52,12 +56,15 @@ const main = function(options, callback) {
 
     //this lets us a clear the queue
     let holdUp = setInterval(function() {
-      console.log('\n\n-- taking a quick break..--')
-      xml.pause();
-      setTimeout(function() {
-        xml.resume();
-        console.log('.. ok back. \n')
-      }, 3000)
+	  if (i > pauseThreshold) {
+        console.log('\n\n-- taking a quick break..--')
+		let duration = Math.round((i / pauseThreshold) * startDelay);
+        xml.pause();
+        setTimeout(function() {
+          xml.resume();
+          console.log('.. ok back. \n')
+        }, duration)
+	  }
     }, 30000);
 
     xml.on('endElement: page', function(page) {
