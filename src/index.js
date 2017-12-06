@@ -43,6 +43,7 @@ const main = function(options, callback) {
 
     let i = 1;
     let last = 0;
+	let skipFirst = options.skip_first;
 	let pauseThreshold = options.threshold;
 	let startDelay = options.start_delay
 
@@ -56,7 +57,7 @@ const main = function(options, callback) {
 
     //this lets us a clear the queue
     let holdUp = setInterval(function() {
-	  if (i > pauseThreshold) {
+	  if (i > pauseThreshold && i > skipFirst) {
         console.log('\n\n-- taking a quick break..--')
 		let duration = Math.round((i / pauseThreshold) * startDelay);
         xml.pause();
@@ -69,7 +70,7 @@ const main = function(options, callback) {
 
     xml.on('endElement: page', function(page) {
       i += 1
-      if (i > options.skip_first) {
+      if (i > skipFirst) {
         doPage(page, options, queue, function() {})
       }
     });
