@@ -11,6 +11,8 @@ let parseArgs = function() {
     .option('--skip_disambig', 'if true, skips-over disambiguation pages')
     .option('--skip_first <n>', 'ignore the first n pages', parseInt)
     .option('--verbose', 'print each article title to the console')
+	.option('--threshold <n>', 'number of articles to parse before introducing a delay every 30 seconds for the MongoDB queue to catch up; defaults to 5,000,000')
+	.option('--start_delay <n>', 'initial delay (when the threshold is reached) in milliseconds; defaults to 1,000, and increases in proportion to the number of articles parsed')
     .parse(process.argv)
 
   //grab the wiki file
