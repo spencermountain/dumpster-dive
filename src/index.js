@@ -43,7 +43,7 @@ const main = function(options, callback) {
 
     let i = 1;
     let last = 0;
-	let pauseThreshold = options.threshold
+	let pauseThreshold = options.threshold;
 	let startDelay = options.start_delay
 
     //this is our logger
