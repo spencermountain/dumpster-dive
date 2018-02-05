@@ -4,7 +4,7 @@ let util = require('util');
 let cluster = require('cluster');
 let clusterWorkerSize = require('os').cpus().length;
 let concurrency = 1;
-let doPage = require('./doPage');
+let doPage = require('./parse');
 let MongoClient = require('mongodb').MongoClient;
 let queue = require('./queue');
 
