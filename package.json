@@ -10,10 +10,10 @@
   "bin": {
     "wp2mongo": "./bin/wp2mongo.js"
   },
+  "engines": {
+    "node": ">4.8.6"
+  },
   "main": "./src/index.js",
-  "engines": [
-    "node = 0.10.33"
-  ],
   "scripts": {
     "test": "\"node_modules/.bin/tape\" \"./tests/*.test.js\" | \"node_modules/.bin/tap-spec\" --color"
   },

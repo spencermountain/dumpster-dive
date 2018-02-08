@@ -1,7 +1,6 @@
-let wtf = require('wtf_wikipedia');
-//these methods may run in their own processes
-
+// mongo has some opinions about what characters are allowed as keys and ids.
 //https://stackoverflow.com/questions/12397118/mongodb-dot-in-key-name/30254815#30254815
+
 const encodeStr = function(str) {
   return str
     .replace(/\\/g, '\\\\')
@@ -56,47 +55,7 @@ const encodeData = function(data) {
   }
   return data;
 };
-
-//get parsed json from the wiki markup
-const parse = function(options, collection, cb) {
-  let data = wtf.parse(options.script);
-  //dont insert this if it's a redirect
-  if (options.skip_redirects === true && data.type === 'redirect') {
-    return cb()
-  }
-  if (options.skip_disambig === true && data.type === 'disambiguation') {
-    return cb()
-  }
-  data = encodeData(data);
-  data.title = data.title || options.title;
-  data._id = encodeStr(data.title);
-  // options.collection.update({ _id: data._id }, data, { upsert: true }, function(e) {
-  collection.insert(data, function(e) {
-    if (e) {
-      console.warn(e);
-      return cb(e);
-    }
-    return cb();
-  });
-};
-
-//get readable text from the wiki markup
-const plaintext = function(options, collection, cb) {
-  let data = {
-    title: options.title,
-    _id: encodeStr(options.title),
-    plaintext: wtf.plaintext(options.script)
-  };
-  collection.insert(data, function(e) {
-    if (e) {
-      console.log(e);
-      return cb(e);
-    }
-    return cb();
-  });
-};
-
 module.exports = {
-  parse: parse,
-  plaintext: plaintext
-};
+  encodeData: encodeData,
+  encodeStr: encodeStr
+}
