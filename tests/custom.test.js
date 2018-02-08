@@ -1,9 +1,6 @@
 let test = require('tape')
-var exec = require('shelljs').exec
-const MongoClient = require('mongodb').MongoClient
 let db = require('./db')
 let wp2mongo = require('../')
-
 /*
 //to update the bz2,
 rm ./tests/tinywiki-latest-pages-articles.xml.bz2 && bzip2 -z ./tests/tinywiki-latest-pages-articles.xml
@@ -38,29 +35,29 @@ test('custom-made-tinywiki', function(t) {
   })
 })
 
-test('no-redirects', function(t) {
-  let obj = {
-    file: './tests/tinywiki-latest-pages-articles.xml.bz2',
-    db: 'tempwikiskip',
-    skip_redirects: true,
-    skip_disambig: true,
-  }
-  db.drop(obj.db, () => {
-    wp2mongo(obj, () => {
-      db.firstTen(obj.db, docs => {
-        t.equal(docs.length, 5, 'five records')
-
-        let redirect = docs.find(d => d.title === 'Redirect page')
-        t.equal(undefined, redirect, 'no redirect-page')
-
-        let disambig = docs.find(d => d.title === 'Disambiguation page')
-        t.equal(undefined, disambig, 'no disambig-page')
-
-        let toronto = docs.find(d => d.title === 'Toronto')
-        t.equal("Toronto", toronto._id, 'has _id')
-        t.equal("Toronto", toronto.title, 'has title')
-        t.end()
-      })
-    })
-  })
-})
+// test('no-redirects', function(t) {
+//   let obj = {
+//     file: './tests/tinywiki-latest-pages-articles.xml.bz2',
+//     db: 'tempwikiskip',
+//     skip_redirects: true,
+//     skip_disambig: true,
+//   }
+//   db.drop(obj.db, () => {
+//     wp2mongo(obj, () => {
+//       db.firstTen(obj.db, docs => {
+//         t.equal(docs.length, 5, 'five records')
+//
+//         let redirect = docs.find(d => d.title === 'Redirect page')
+//         t.equal(undefined, redirect, 'no redirect-page')
+//
+//         let disambig = docs.find(d => d.title === 'Disambiguation page')
+//         t.equal(undefined, disambig, 'no disambig-page')
+//
+//         let toronto = docs.find(d => d.title === 'Toronto')
+//         t.equal("Toronto", toronto._id, 'has _id')
+//         t.equal("Toronto", toronto.title, 'has title')
+//         t.end()
+//       })
+//     })
+//   })
+// })

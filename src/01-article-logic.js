@@ -1,11 +1,11 @@
 //logic for parsing an object's xml
 const parseWiki = require('./02-parse-wiki');
-const plaintext = require('./_plaintext');
+const plaintext = require('./02-plaintext');
 
 // we send job to job queue (redis)
 // run job queue dashboard to see statistics
 // node node_modules/kue/bin/kue-dashboard -p 3050
-const doQueue = function(queue, data) {
+const addToQueue = function(queue, data) {
   queue
     .create('article', data)
     .removeOnComplete(true)
@@ -18,7 +18,7 @@ const doQueue = function(queue, data) {
 }
 
 // get wikiscript from the xml, parse it, and send it to mongo
-const doPage = function(page, options, queue, cb) {
+const doArticle = function(page, options, queue, cb) {
   //ignore 'talk pages', etc.
   if (page.ns === '0') {
     if (options.verbose === true) {
@@ -33,7 +33,7 @@ const doPage = function(page, options, queue, cb) {
     };
     //if we're using redis,
     if (queue !== null) {
-      doQueue(queue, data)
+      addToQueue(queue, data)
     } else {
       try {
         //if we're just storing article text
@@ -49,4 +49,4 @@ const doPage = function(page, options, queue, cb) {
     }
   }
 }
-module.exports = doPage
+module.exports = doArticle

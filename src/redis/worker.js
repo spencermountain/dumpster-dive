@@ -2,7 +2,7 @@ let cluster = require('cluster');
 let clusterWorkerSize = require('os').cpus().length;
 let MongoClient = require('mongodb').MongoClient;
 let parseWiki = require('../02-parse-wiki');
-let plaintext = require('../_plaintext');
+let plaintext = require('../02-plaintext');
 let queue = require('./queue');
 let concurrency = 1;
 // run job queue dashboard to see statistics

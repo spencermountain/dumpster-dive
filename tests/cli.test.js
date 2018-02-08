@@ -1,8 +1,6 @@
 let test = require('tape')
 var exec = require('shelljs').exec
-const MongoClient = require('mongodb').MongoClient
 let db = require('./db')
-let wp2mongo = require('../')
 
 // this test actually writes to mongodb! ( in the tlg-wikipedia table)
 test('test-real-smallwiki', function(t) {

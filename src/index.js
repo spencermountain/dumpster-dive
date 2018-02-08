@@ -9,13 +9,12 @@ const doArticle = require('./01-article-logic');
 const done = require('./_done');
 const defaults = {
   skip_first: 0,
-  verbose: true,
-  start_delay: 1000
+  verbose: true
 }
 
 //open up a mongo db, and start xml-streaming..
 const main = function(options, callback) {
-  options = Object.assign(defaults, options)
+  options = Object.assign(options, defaults)
   callback = callback || function() {};
   //this is required
   if (!options.file) {
@@ -49,7 +48,9 @@ const main = function(options, callback) {
     xml.on('endElement: page', function(page) {
       i += 1 //increment counter
       if (i > options.skip_first) {
-        doArticle(page, options, queue, function() {})
+        doArticle(page, options, queue, function() {
+          console.log('  - ')
+        })
       }
     });
 
@@ -60,19 +61,13 @@ const main = function(options, callback) {
     });
 
     xml.on('end', function() {
-      if (!queue) {
-        //finish-up immediately!
+      //let any remaining async writes complete
+      console.log('--- just letting the queue finish-up...');
+      setTimeout(function() {
         done(options, db);
+        db.close();
         callback();
-      } else {
-        //let any remaining async writes complete
-        console.log('--- just letting the queue finish-up...');
-        setTimeout(function() {
-          done(options, db);
-          db.close();
-          callback();
-        }, 20000); //20 seconds
-      }
+      }, 5000); //5 seconds
     });
   });
 };

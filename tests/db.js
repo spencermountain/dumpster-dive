@@ -1,5 +1,4 @@
 const MongoClient = require('mongodb').MongoClient
-const assert = require('assert')
 
 const open = function(dbName, callback) {
   let url = 'mongodb://localhost:27017/' + dbName
@@ -16,9 +15,9 @@ const open = function(dbName, callback) {
 const count = function(dbName, cb) {
   open(dbName, function(db) {
     let col = db.collection('wikipedia')
-    col.count().then(count => {
+    col.count().then(len => {
       db.close()
-      cb(count)
+      cb(len)
     })
   })
 }
