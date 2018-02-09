@@ -5,7 +5,9 @@ const transform = require('./02-transform-wiki');
 const doArticle = function(page, options) {
   //ignore 'talk pages', etc.
   if (page.ns === '0') {
-    console.log(page.title);
+    if (options.verbose === true){
+      console.log(page.title);
+    }
     let script = page.revision.text['$text'] || '';
     let data = {
       title: page.title,

@@ -5,11 +5,12 @@ let main = require('../src/index')
 let parseArgs = function() {
   program
     .usage('node index.js enwiki-latest-pages-articles.xml.bz2 [options]')
-    .option('-w, --worker', 'Use worker (redis required)')
+    .option('--batch_size <n>', 'Number of pages inserted to Mongo at once. (default=10)', parseInt)
+    .option('--skip_first <n>', 'ignore the first n pages, and do not pause while handling those pages', parseInt)
+    .option('--auto_skip', 'auto skip number of documents in the target collection')
     .option('-plain, --plaintext', 'if true, store plaintext wikipedia articles instead of raw json data')
     .option('--skip_redirects', 'if true, skips-over pages that are redirects')
     .option('--skip_disambig', 'if true, skips-over disambiguation pages')
-    .option('--skip_first <n>', 'ignore the first n pages, and do not pause while handling those pages', parseInt)
     .option('--verbose', 'print each article title to the console')
     .parse(process.argv)
 
@@ -28,14 +29,15 @@ let parseArgs = function() {
   return {
     file: file,
     db: db,
-    worker: program.worker,
+    batch_size: program.batch_size || 10,
     plaintext: program.plaintext,
     skip_disambig: program.skip_disambig,
     skip_redirects: program.skip_redirects,
-    skip_first: program.skip_first || 0,
+    auto_skip: program.auto_skip,
+    skip_first: program.skip_first,
     verbose: program.verbose,
   }
 }
-
 let obj = parseArgs()
+console.log(obj);
 main(obj)
