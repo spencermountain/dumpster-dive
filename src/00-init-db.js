@@ -17,10 +17,6 @@ const init = function(options, callback) {
   if (options.skip_first > 0) {
     console.log('\n\n\n -- skipping first ' + options.skip_first + ' articles...')
   }
-  // make redis and queue requirement optional
-  if (options.worker) {
-    options.queue = require('./redis/queue');
-  }
   // Connect to mongo
   let url = 'mongodb://localhost:27017/' + options.db;
   MongoClient.connect(url, function(err, db) {

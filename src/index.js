@@ -31,13 +31,13 @@ const main = function(options, callback) {
         //add these to a queue of pages
         if (data !== null) {
           queue.push(data)
+          //should we write to the db now?
           if (queue.length >= batchSize) {
-            xml.pause()
+            xml.pause() //hold-up for now
             writeDb(queue, options.collection, () => {
-              console.log('\n\n')
-              xml.resume()
+              queue = []
+              xml.resume() //ok, go again
             })
-            queue = []
           }
         }
       }
