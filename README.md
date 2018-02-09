@@ -37,7 +37,7 @@ you can do this.
 a few Gb. you can do this.
 
 ### 2) get ready
-Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/), and optionally [redis](http://redis.io/)
+Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/)
 
 ```bash
 # start mongo
@@ -61,7 +61,7 @@ the english/german ones are bigger. Use whichever xml dump you'd like. The [down
 wp2mongo ./afwiki-latest-pages-articles.xml.bz2
 ```
 ### 5) take a bath
-just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there, it feels great. You deserve a break once and a while. The en-wiki dump should take a few hours. Should be done before dinner.
+just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there, it feels great. You deserve a break once and a while. The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
 
 ### 6) check-out your data
 to view your data in the mongo console,
@@ -96,26 +96,6 @@ wp2mongo({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true}, console.log)
 }]
 */
 ```
-#### go faster with Redis **--worker**
-there is yet much faster way (even x10) to import all pages into mongodb but a little more complex. it requires redis installed on your computer and running worker in separate process.
-
-It also gives you a cool dashboard, to watch the progress.
-````bash
-# install redis
-sudo apt-get install # (or `brew install redis` on a mac)
-
-# clone the repo
-git clone git@github.com:spencermountain/wikipedia-to-mongodb.git && cd wikipedia-to-mongodb
-
-#load pages into job queue
-bin/wp2mongo.js ./afwiki-latest-pages-articles.xml.bz2 --worker
-
-# start processing jobs (parsing articles and saving to mongodb) on all CPU's
-node src/worker.js
-
-# you can preview processing jobs in kue dashboard (localhost:3000)
-node node_modules/kue/bin/kue-dashboard -p 3000
-````
 
 #### skip unnecessary pages **--skip_disambig**, **--skip_redirects**
 this can make it go faster too, by skipping entries in the dump that aren't full-on articles.
