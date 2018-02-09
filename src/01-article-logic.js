@@ -20,7 +20,7 @@ const addToQueue = function(queue, data) {
 const doArticle = function(page, options) {
   //ignore 'talk pages', etc.
   if (page.ns === '0') {
-    // console.log(page.title);
+    console.log(page.title);
     let script = page.revision.text['$text'] || '';
     let data = {
       title: page.title,

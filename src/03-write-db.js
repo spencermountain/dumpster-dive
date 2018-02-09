@@ -9,7 +9,7 @@ const writeDb = function(arr, collection, callback) {
       if (err) {
         console.log(err)
       } else {
-        console.log("+" + result.result.n);
+        console.log(" - -  +" + result.result.n);
       }
       callback()
     }

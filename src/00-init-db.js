@@ -28,8 +28,7 @@ const init = function(options, callback) {
       console.log(err);
       process.exit(1);
     }
-    options.dbName = options.db
-    options.db = db
+    options.database = db
     options.collection = db.collection('wikipedia');
     callback(options)
   })

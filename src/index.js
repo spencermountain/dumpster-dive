@@ -45,7 +45,7 @@ const main = function(options, callback) {
 
     xml.on('error', function(message) {
       console.log('Parsing failed: ' + message);
-      db.close();
+      options.database.close();
       callback()
     });
 

@@ -3,8 +3,8 @@
 const done = function(options, callback) {
   console.log('\n=================done!=================\n');
   options.collection.count().then(count => {
-    console.log(count + "  pages stored in db '" + options.dbName + "'");
-    options.db.close();
+    console.log(count + "  pages stored in db '" + options.db + "'");
+    options.database.close();
     callback()
   });
 };
