@@ -1,6 +1,5 @@
 //logic for parsing an object's xml
-const parseWiki = require('./02-parse-wiki');
-const plaintext = require('./02-plaintext');
+const transform = require('./02-transform-wiki');
 
 // we send job to job queue (redis)
 // run job queue dashboard to see statistics
@@ -18,35 +17,27 @@ const addToQueue = function(queue, data) {
 }
 
 // get wikiscript from the xml, parse it, and send it to mongo
-const doArticle = function(page, options, queue, cb) {
+const doArticle = function(page, options) {
   //ignore 'talk pages', etc.
   if (page.ns === '0') {
-    if (options.verbose === true) {
-      console.log(page.title);
-    }
+    // console.log(page.title);
     let script = page.revision.text['$text'] || '';
     let data = {
       title: page.title,
-      script: script,
-      skip_redirects: options.skip_redirects,
-      skip_disambig: options.skip_disambig,
+      script: script
     };
     //if we're using redis,
-    if (queue !== null) {
-      addToQueue(queue, data)
+    if (options.queue) {
+      addToQueue(options.queue, data)
     } else {
       try {
-        //if we're just storing article text
-        if (options.plaintext) {
-          plaintext(data, options.collection, cb);
-        } else {
-          //if we're storing full json
-          parseWiki(data, options.collection, cb);
-        }
+        return transform(data, options)
       } catch (err) {
         console.log(err);
+        return null
       }
     }
   }
+  return null
 }
 module.exports = doArticle

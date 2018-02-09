@@ -3,44 +3,23 @@
 //   node index.js afwiki-latest-pages-articles.xml.bz2
 const fs = require('fs');
 const XmlStream = require('xml-stream');
-const MongoClient = require('mongodb').MongoClient;
 const bz2 = require('unbzip2-stream');
+const init = require('./00-init-db');
 const doArticle = require('./01-article-logic');
+const writeDb = require('./03-write-db');
 const done = require('./_done');
-const defaults = {
-  skip_first: 0,
-  verbose: true
-}
+const batchSize = 10
 
 //open up a mongo db, and start xml-streaming..
 const main = function(options, callback) {
-  options = Object.assign(options, defaults)
-  callback = callback || function() {};
-  //this is required
-  if (!options.file) {
-    console.log('please supply a filename for the wikipedia article dump in bz2 format');
-    process.exit(1);
-  }
-  // make redis and queue requirement optional
-  let queue = null;
-  if (options.worker) {
-    queue = require('./redis/queue');
-  }
-  //log a handy msg about skipping..
-  if (options.skip_first > 0) {
-    console.log('\n\n\n -- skipping first ' + options.skip_first + ' articles...')
-  }
+  callback = callback || function() {}
   // Connect to mongo
-  let url = 'mongodb://localhost:27017/' + options.db;
-  MongoClient.connect(url, function(err, db) {
+  init(options, function(params) {
     let i = 1; //the # article we're on
-    if (err) {
-      console.log(err);
-      process.exit(1);
-    }
-    options.collection = db.collection('wikipedia');
+    let queue = [] //the articles to write
+
     // Create a file stream and pass it to XmlStream
-    let stream = fs.createReadStream(options.file).pipe(bz2());
+    let stream = fs.createReadStream(params.file).pipe(bz2());
     let xml = new XmlStream(stream);
     xml._preserveAll = true; //keep newlines
 
@@ -48,9 +27,19 @@ const main = function(options, callback) {
     xml.on('endElement: page', function(page) {
       i += 1 //increment counter
       if (i > options.skip_first) {
-        doArticle(page, options, queue, function() {
-          console.log('  - ')
-        })
+        let data = doArticle(page, params, queue)
+        //add these to a queue of pages
+        if (data !== null) {
+          queue.push(data)
+          if (queue.length >= batchSize) {
+            xml.pause()
+            writeDb(queue, options.collection, () => {
+              console.log('\n\n')
+              xml.resume()
+            })
+            queue = []
+          }
+        }
       }
     });
 
@@ -61,14 +50,15 @@ const main = function(options, callback) {
     });
 
     xml.on('end', function() {
-      //let any remaining async writes complete
-      console.log('--- just letting the queue finish-up...');
-      setTimeout(function() {
-        done(options, db);
-        db.close();
-        callback();
-      }, 5000); //5 seconds
+      if (queue.length > 0) {
+        writeDb(queue, options.collection, () => {
+          done(options, callback)
+        })
+      } else {
+        done(options, callback)
+      }
     });
+
   });
 };
 
