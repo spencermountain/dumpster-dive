@@ -24,7 +24,7 @@ workerLogs = {};
 workerLog = function(msg) {
   var name;
   if (msg) {
-    if (workerLogs[name = msg.pid] == null) {
+    if (workerLogs[name = msg.pid] === undefined) {
       workerLogs[name] = {};
     }
     workerLogs[msg.pid] = msg;

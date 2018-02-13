@@ -6,7 +6,6 @@ const multithreader = require("./multithreader")
 const noop = () => {
 }
 
-var jobBegin = 0
 process.on('unhandledRejection', up => {
   console.log(up)
 })

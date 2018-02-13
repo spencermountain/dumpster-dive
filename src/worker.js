@@ -21,15 +21,13 @@ log4js.configure({
 const logger = log4js.getLogger('cheese');
 
 const xmlSplit = async (options, chunkSize, workerNr) => {
-  var cpuCount,
-    file,
+  var file,
     insertToDb,
     lineNumber,
     lr,
     page,
     pageCount,
-    pages,
-    size;
+    pages;
 
   if (workerNr === 0) {
     startByte = 0
