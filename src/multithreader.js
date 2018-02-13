@@ -1,4 +1,10 @@
-var WorkerNodes, cpuCount, fs, start, workerLog, workerLogs, workerNodes;
+var WorkerNodes,
+  cpuCount,
+  fs,
+  start,
+  workerLog,
+  workerLogs,
+  workerNodes;
 
 WorkerNodes = require('worker-nodes');
 
@@ -8,7 +14,7 @@ cpus = require('os').cpus()
 cpuCount = cpus.length;
 
 workerNodes = new WorkerNodes(__dirname + '/worker.js', {
-  minWorkers: cpuCount-1,
+  minWorkers: cpuCount - 1,
   autoStart: true,
   maxTasksPerWorker: 1
 });
@@ -21,12 +27,13 @@ workerLog = function(msg) {
     if (workerLogs[name = msg.pid] == null) {
       workerLogs[name] = {};
     }
-    return workerLogs[msg.pid] = msg;
+    workerLogs[msg.pid] = msg;
   }
 };
 
 start = async function(options) {
-  var chunkSize, size;
+  var chunkSize,
+    size;
   size = fs.statSync(options.file)["size"];
   chunkSize = Math.floor(size / cpuCount);
   console.log(`${cpuCount} cpu cores detected. file size (bytes): ${size} file will be divided into: ${cpuCount} each process will be given (bytes): ${chunkSize}`);
@@ -35,7 +42,7 @@ start = async function(options) {
 
 
   await workerNodes.ready();
-  cpus.forEach((val,key) => {
+  cpus.forEach((val, key) => {
     workerNodes.call(options, chunkSize, key);
   });
 };
@@ -52,4 +59,6 @@ process.on('SIGINT', async function() {
   return process.exit();
 });
 
-module.exports = {start:start}
+module.exports = {
+  start: start
+}

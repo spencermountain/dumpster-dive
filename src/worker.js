@@ -1,30 +1,45 @@
 const LineByLineReader = require('line-by-line')
-const fs   = require("fs")
 const init = require('./00-init-db');
 const log4js = require('log4js');
 
 log4js.configure({
-  appenders: { cheese: { type: 'file', filename: __dirname+'/../worker.logs' } },
-  categories: { default: { appenders: ['cheese'], level: 'info' } }
+  appenders: {
+    cheese: {
+      type: 'file',
+      filename: __dirname + '/../worker.logs'
+    }
+  },
+  categories: {
+    default: {
+      appenders: ['cheese'],
+      level: 'info'
+    }
+  }
 });
 
 
 const logger = log4js.getLogger('cheese');
 
 const xmlSplit = async (options, chunkSize, workerNr) => {
-  var cpuCount, file, insertToDb, lineNumber, lr, page, pageCount, pages, size;
-    
-  if (workerNr === 0){
+  var cpuCount,
+    file,
+    insertToDb,
+    lineNumber,
+    lr,
+    page,
+    pageCount,
+    pages,
+    size;
+
+  if (workerNr === 0) {
     startByte = 0
-  }
-  else
-  {
+  } else {
     // start a megabyte earlier
-    startByte = (workerNr*chunkSize)-1000000
+    startByte = (workerNr * chunkSize) - 1000000
   }
-  
+
   // end 2 megabytes later so we don't lose pages cut by chunks
-  endByte   = startByte+chunkSize+3000000
+  endByte = startByte + chunkSize + 3000000
 
 
   logger.info(`worker pid:${process.pid} is now alive. startByte: ${startByte} endByte: ${endByte}`)
@@ -50,12 +65,12 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     }
     lr.pause();
     insertMany = Object.assign([], pages);
-    logger.info("inserting",insertMany.length,"documents. first:", insertMany[0]._id, "and last:", insertMany[insertMany.length - 1]._id);
+    logger.info("inserting", insertMany.length, "documents. first:", insertMany[0]._id, "and last:", insertMany[insertMany.length - 1]._id);
     pages = [];
     options.db.collection("queue").insertMany(insertMany, function() {
       // tbd. error checks
     });
-    logger.info("batch complete in: "+((Date.now()-jobBegin)/1000)+" secs")
+    logger.info("batch complete in: " + ((Date.now() - jobBegin) / 1000) + " secs")
     jobBegin = Date.now()
     return lr.resume();
   };
@@ -63,7 +78,7 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     // 'err' contains error object
     return logger.error("linereader error");
   });
-  
+
   lr.on('line', function(line) {
     lineNumber++;
     if (page) {
@@ -85,13 +100,13 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
       pageCount++;
     }
     if (page && line.indexOf("</page>") !== -1) {
-      if (!skipPage){
+      if (!skipPage) {
         pages.push(page);
       }
       skipPage = false;
       page = null;
       if (pageCount % options.batch_size === 0) {
-        return insertToDb();
+        insertToDb();
       }
     }
   });
@@ -99,9 +114,9 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     // All lines are read, file is closed now.
     // insert remaining pages.
     insertToDb();
-    logger.info(`worker pid:${process.pid} is done. inserted ${pageCount} pages in ${((Date.now()-jobBegin)/1000)} secs.`);
+    logger.info(`worker pid:${process.pid} is done. inserted ${pageCount} pages in ${((Date.now() - jobBegin) / 1000)} secs.`);
     // process.exit()
-    return 
+    return
   });
 };
 
