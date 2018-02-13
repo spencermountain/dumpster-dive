@@ -15,7 +15,8 @@
   },
   "main": "./src/index.js",
   "scripts": {
-    "test": "\"node_modules/.bin/tape\" \"./tests/*.test.js\" | \"node_modules/.bin/tap-spec\" --color"
+    "test": "\"node_modules/.bin/tape\" \"./tests/*.test.js\" | \"node_modules/.bin/tap-spec\" --color",
+    "cleanup":"rm ./worker.logs && touch ./worker.logs"
   },
   "dependencies": {
     "cluster": "^0.7.7",

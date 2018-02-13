@@ -18,8 +18,8 @@ const main = async (options, callback = noop ) => {
   await init(options)
   setInterval(async () => {
     count = await options.db.collection("queue").count()
-    console.log(`final doc count: ${count} in last 60 seconds.`)
-  }, 60000)
+    console.log(`final doc count: ${count} in last 10 seconds.`)
+  }, 10000)
 
 }
 

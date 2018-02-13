@@ -8,7 +8,7 @@ test('plaintext', function(t) {
     db: 'plainwiki',
     plaintext: true
   }
-  db.drop(obj.db, () => {
+  db.drop(obj.db, 'wikipedia', () => {
     wp2mongo(obj, () => {
       db.firstTen(obj.db, docs => {
         t.equal(docs.length, 7, '7 records')

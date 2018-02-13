@@ -1,6 +1,7 @@
 const LineByLineReader = require('line-by-line')
 const init = require('./00-init-db');
 const log4js = require('log4js');
+const config = require('../config')
 
 log4js.configure({
   appenders: {
@@ -16,18 +17,16 @@ log4js.configure({
     }
   }
 });
-
-
 const logger = log4js.getLogger('cheese');
 
 const xmlSplit = async (options, chunkSize, workerNr) => {
-  var file,
-    insertToDb,
+  var insertToDb,
     lineNumber,
     lr,
     page,
     pageCount,
-    pages;
+    pages,
+    skipPage;
 
   if (workerNr === 0) {
     startByte = 0
@@ -35,16 +34,13 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     // start a megabyte earlier
     startByte = (workerNr * chunkSize) - 1000000
   }
-
   // end 2 megabytes later so we don't lose pages cut by chunks
   endByte = startByte + chunkSize + 3000000
-
 
   logger.info(`worker pid:${process.pid} is now alive. startByte: ${startByte} endByte: ${endByte}`)
   await init(options)
 
-  file = options.file;
-  lr = new LineByLineReader(file, {
+  lr = new LineByLineReader(options.file, {
     start: startByte,
     end: endByte
   });
@@ -52,9 +48,10 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
   page = null;
   pageCount = 0;
   pages = [];
-  var skipPage = false;
+  skipPage = false;
   workerBegin = Date.now()
   jobBegin = Date.now()
+
   insertToDb = function() {
     var insertMany;
     if (pages.length === 0) {
@@ -65,15 +62,17 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     insertMany = Object.assign([], pages);
     logger.info("inserting", insertMany.length, "documents. first:", insertMany[0]._id, "and last:", insertMany[insertMany.length - 1]._id);
     pages = [];
-    options.db.collection("queue").insertMany(insertMany, function() {
+    options.db.collection(config.queueLocation).insertMany(insertMany, function() {
       // tbd. error checks
     });
     logger.info("batch complete in: " + ((Date.now() - jobBegin) / 1000) + " secs")
     jobBegin = Date.now()
     return lr.resume();
   };
+
   lr.on('error', function(err) {
     // 'err' contains error object
+    console.error(err)
     return logger.error("linereader error");
   });
 

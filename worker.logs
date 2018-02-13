@@ -1,0 +1,50 @@
+[2018-02-13T14:54:54.409] [INFO] cheese - worker pid:82033 is now alive. startByte: 150021017 endByte: 304042034
+[2018-02-13T14:54:54.409] [INFO] cheese - worker pid:82032 is now alive. startByte: 0 endByte: 154021017
+[2018-02-13T14:54:54.410] [INFO] cheese - worker pid:82035 is now alive. startByte: 452063051 endByte: 606084068
+[2018-02-13T14:54:54.420] [INFO] cheese - worker pid:82034 is now alive. startByte: 301042034 endByte: 455063051
+[2018-02-13T14:55:20.898] [INFO] cheese - inserting 33890 documents. first: Taliesin West and last: Shunt (electrical)
+[2018-02-13T14:55:22.059] [INFO] cheese - inserting 30299 documents. first: Euston Road and last: Government shutdown in the United States
+[2018-02-13T14:55:22.171] [INFO] cheese - inserting 37801 documents. first: Low Countries and last: Stephen Baldwin
+[2018-02-13T14:55:22.387] [INFO] cheese - batch complete in: 27.881 secs
+[2018-02-13T14:55:22.387] [INFO] cheese - worker pid:82035 is done. inserted 62328 pages in 0 secs.
+[2018-02-13T14:55:23.873] [INFO] cheese - batch complete in: 29.396 secs
+[2018-02-13T14:55:23.873] [INFO] cheese - worker pid:82034 is done. inserted 62522 pages in 0 secs.
+[2018-02-13T14:55:23.887] [INFO] cheese - batch complete in: 29.409 secs
+[2018-02-13T14:55:23.887] [INFO] cheese - worker pid:82033 is done. inserted 63109 pages in 0 secs.
+[2018-02-13T14:59:46.077] [INFO] cheese - worker pid:82583 is now alive. startByte: 0 endByte: 154021017
+[2018-02-13T14:59:46.081] [INFO] cheese - worker pid:82586 is now alive. startByte: 452063051 endByte: 606084068
+[2018-02-13T14:59:46.080] [INFO] cheese - worker pid:82584 is now alive. startByte: 150021017 endByte: 304042034
+[2018-02-13T14:59:46.081] [INFO] cheese - worker pid:82585 is now alive. startByte: 301042034 endByte: 455063051
+[2018-02-13T15:00:08.929] [INFO] cheese - inserting 33890 documents. first: Taliesin West and last: Shunt (electrical)
+[2018-02-13T15:00:09.652] [INFO] cheese - inserting 37801 documents. first: Low Countries and last: Stephen Baldwin
+[2018-02-13T15:00:09.933] [INFO] cheese - batch complete in: 23.806 secs
+[2018-02-13T15:00:09.933] [INFO] cheese - worker pid:82586 is done. inserted 62328 pages in 0 secs.
+[2018-02-13T15:00:10.063] [INFO] cheese - inserting 30299 documents. first: Euston Road and last: Government shutdown in the United States
+[2018-02-13T15:00:11.221] [INFO] cheese - batch complete in: 25.095 secs
+[2018-02-13T15:00:11.221] [INFO] cheese - worker pid:82584 is done. inserted 63109 pages in 0 secs.
+[2018-02-13T15:00:11.781] [INFO] cheese - batch complete in: 25.612 secs
+[2018-02-13T15:00:11.782] [INFO] cheese - worker pid:82585 is done. inserted 62522 pages in 0.001 secs.
+[2018-02-13T15:01:57.901] [INFO] cheese - worker pid:82844 is now alive. startByte: 0 endByte: 154021017
+[2018-02-13T15:01:57.901] [INFO] cheese - worker pid:82845 is now alive. startByte: 150021017 endByte: 304042034
+[2018-02-13T15:01:57.902] [INFO] cheese - worker pid:82846 is now alive. startByte: 301042034 endByte: 455063051
+[2018-02-13T15:01:57.903] [INFO] cheese - worker pid:82847 is now alive. startByte: 452063051 endByte: 606084068
+[2018-02-13T15:07:09.121] [INFO] cheese - worker pid:83540 is now alive. startByte: 0 endByte: 154021017
+[2018-02-13T15:07:09.122] [INFO] cheese - worker pid:83541 is now alive. startByte: 150021017 endByte: 304042034
+[2018-02-13T15:07:09.126] [INFO] cheese - worker pid:83543 is now alive. startByte: 452063051 endByte: 606084068
+[2018-02-13T15:07:09.125] [INFO] cheese - worker pid:83542 is now alive. startByte: 301042034 endByte: 455063051
+[2018-02-13T15:07:31.442] [INFO] cheese - inserting 33890 documents. first: Taliesin West and last: Shunt (electrical)
+[2018-02-13T15:07:32.822] [INFO] cheese - inserting 37801 documents. first: Low Countries and last: Stephen Baldwin
+[2018-02-13T15:07:32.865] [INFO] cheese - inserting 30299 documents. first: Euston Road and last: Government shutdown in the United States
+[2018-02-13T15:08:19.245] [INFO] cheese - worker pid:83671 is now alive. startByte: 452063051 endByte: 606084068
+[2018-02-13T15:08:19.244] [INFO] cheese - worker pid:83669 is now alive. startByte: 150021017 endByte: 304042034
+[2018-02-13T15:08:19.244] [INFO] cheese - worker pid:83668 is now alive. startByte: 0 endByte: 154021017
+[2018-02-13T15:08:19.244] [INFO] cheese - worker pid:83670 is now alive. startByte: 301042034 endByte: 455063051
+[2018-02-13T15:08:41.262] [INFO] cheese - inserting 33890 documents. first: Taliesin West and last: Shunt (electrical)
+[2018-02-13T15:08:42.210] [INFO] cheese - inserting 37801 documents. first: Low Countries and last: Stephen Baldwin
+[2018-02-13T15:08:42.218] [INFO] cheese - batch complete in: 22.929 secs
+[2018-02-13T15:08:42.219] [INFO] cheese - worker pid:83671 is done. inserted 62328 pages in 0 secs.
+[2018-02-13T15:08:42.939] [INFO] cheese - inserting 30299 documents. first: Euston Road and last: Government shutdown in the United States
+[2018-02-13T15:08:43.161] [INFO] cheese - batch complete in: 23.871 secs
+[2018-02-13T15:08:43.161] [INFO] cheese - worker pid:83669 is done. inserted 63109 pages in 0 secs.
+[2018-02-13T15:08:44.564] [INFO] cheese - batch complete in: 25.252 secs
+[2018-02-13T15:08:44.565] [INFO] cheese - worker pid:83670 is done. inserted 62522 pages in 0.001 secs.

@@ -10,7 +10,7 @@ test('custom-made-tinywiki', function(t) {
     file: './tests/tinywiki-latest-pages-articles.xml.bz2',
     db: 'tempwiki',
   }
-  db.drop(obj.db, () => {
+  db.drop(obj.db, 'wikipedia', () => {
     wp2mongo(obj, () => {
       db.firstTen(obj.db, docs => {
         t.equal(docs.length, 7, 'seven records')
