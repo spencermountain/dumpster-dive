@@ -1,50 +1,1131 @@
-[2018-02-13T14:54:54.409] [INFO] cheese - worker pid:82033 is now alive. startByte: 150021017 endByte: 304042034
-[2018-02-13T14:54:54.409] [INFO] cheese - worker pid:82032 is now alive. startByte: 0 endByte: 154021017
-[2018-02-13T14:54:54.410] [INFO] cheese - worker pid:82035 is now alive. startByte: 452063051 endByte: 606084068
-[2018-02-13T14:54:54.420] [INFO] cheese - worker pid:82034 is now alive. startByte: 301042034 endByte: 455063051
-[2018-02-13T14:55:20.898] [INFO] cheese - inserting 33890 documents. first: Taliesin West and last: Shunt (electrical)
-[2018-02-13T14:55:22.059] [INFO] cheese - inserting 30299 documents. first: Euston Road and last: Government shutdown in the United States
-[2018-02-13T14:55:22.171] [INFO] cheese - inserting 37801 documents. first: Low Countries and last: Stephen Baldwin
-[2018-02-13T14:55:22.387] [INFO] cheese - batch complete in: 27.881 secs
-[2018-02-13T14:55:22.387] [INFO] cheese - worker pid:82035 is done. inserted 62328 pages in 0 secs.
-[2018-02-13T14:55:23.873] [INFO] cheese - batch complete in: 29.396 secs
-[2018-02-13T14:55:23.873] [INFO] cheese - worker pid:82034 is done. inserted 62522 pages in 0 secs.
-[2018-02-13T14:55:23.887] [INFO] cheese - batch complete in: 29.409 secs
-[2018-02-13T14:55:23.887] [INFO] cheese - worker pid:82033 is done. inserted 63109 pages in 0 secs.
-[2018-02-13T14:59:46.077] [INFO] cheese - worker pid:82583 is now alive. startByte: 0 endByte: 154021017
-[2018-02-13T14:59:46.081] [INFO] cheese - worker pid:82586 is now alive. startByte: 452063051 endByte: 606084068
-[2018-02-13T14:59:46.080] [INFO] cheese - worker pid:82584 is now alive. startByte: 150021017 endByte: 304042034
-[2018-02-13T14:59:46.081] [INFO] cheese - worker pid:82585 is now alive. startByte: 301042034 endByte: 455063051
-[2018-02-13T15:00:08.929] [INFO] cheese - inserting 33890 documents. first: Taliesin West and last: Shunt (electrical)
-[2018-02-13T15:00:09.652] [INFO] cheese - inserting 37801 documents. first: Low Countries and last: Stephen Baldwin
-[2018-02-13T15:00:09.933] [INFO] cheese - batch complete in: 23.806 secs
-[2018-02-13T15:00:09.933] [INFO] cheese - worker pid:82586 is done. inserted 62328 pages in 0 secs.
-[2018-02-13T15:00:10.063] [INFO] cheese - inserting 30299 documents. first: Euston Road and last: Government shutdown in the United States
-[2018-02-13T15:00:11.221] [INFO] cheese - batch complete in: 25.095 secs
-[2018-02-13T15:00:11.221] [INFO] cheese - worker pid:82584 is done. inserted 63109 pages in 0 secs.
-[2018-02-13T15:00:11.781] [INFO] cheese - batch complete in: 25.612 secs
-[2018-02-13T15:00:11.782] [INFO] cheese - worker pid:82585 is done. inserted 62522 pages in 0.001 secs.
-[2018-02-13T15:01:57.901] [INFO] cheese - worker pid:82844 is now alive. startByte: 0 endByte: 154021017
-[2018-02-13T15:01:57.901] [INFO] cheese - worker pid:82845 is now alive. startByte: 150021017 endByte: 304042034
-[2018-02-13T15:01:57.902] [INFO] cheese - worker pid:82846 is now alive. startByte: 301042034 endByte: 455063051
-[2018-02-13T15:01:57.903] [INFO] cheese - worker pid:82847 is now alive. startByte: 452063051 endByte: 606084068
-[2018-02-13T15:07:09.121] [INFO] cheese - worker pid:83540 is now alive. startByte: 0 endByte: 154021017
-[2018-02-13T15:07:09.122] [INFO] cheese - worker pid:83541 is now alive. startByte: 150021017 endByte: 304042034
-[2018-02-13T15:07:09.126] [INFO] cheese - worker pid:83543 is now alive. startByte: 452063051 endByte: 606084068
-[2018-02-13T15:07:09.125] [INFO] cheese - worker pid:83542 is now alive. startByte: 301042034 endByte: 455063051
-[2018-02-13T15:07:31.442] [INFO] cheese - inserting 33890 documents. first: Taliesin West and last: Shunt (electrical)
-[2018-02-13T15:07:32.822] [INFO] cheese - inserting 37801 documents. first: Low Countries and last: Stephen Baldwin
-[2018-02-13T15:07:32.865] [INFO] cheese - inserting 30299 documents. first: Euston Road and last: Government shutdown in the United States
-[2018-02-13T15:08:19.245] [INFO] cheese - worker pid:83671 is now alive. startByte: 452063051 endByte: 606084068
-[2018-02-13T15:08:19.244] [INFO] cheese - worker pid:83669 is now alive. startByte: 150021017 endByte: 304042034
-[2018-02-13T15:08:19.244] [INFO] cheese - worker pid:83668 is now alive. startByte: 0 endByte: 154021017
-[2018-02-13T15:08:19.244] [INFO] cheese - worker pid:83670 is now alive. startByte: 301042034 endByte: 455063051
-[2018-02-13T15:08:41.262] [INFO] cheese - inserting 33890 documents. first: Taliesin West and last: Shunt (electrical)
-[2018-02-13T15:08:42.210] [INFO] cheese - inserting 37801 documents. first: Low Countries and last: Stephen Baldwin
-[2018-02-13T15:08:42.218] [INFO] cheese - batch complete in: 22.929 secs
-[2018-02-13T15:08:42.219] [INFO] cheese - worker pid:83671 is done. inserted 62328 pages in 0 secs.
-[2018-02-13T15:08:42.939] [INFO] cheese - inserting 30299 documents. first: Euston Road and last: Government shutdown in the United States
-[2018-02-13T15:08:43.161] [INFO] cheese - batch complete in: 23.871 secs
-[2018-02-13T15:08:43.161] [INFO] cheese - worker pid:83669 is done. inserted 63109 pages in 0 secs.
-[2018-02-13T15:08:44.564] [INFO] cheese - batch complete in: 25.252 secs
-[2018-02-13T15:08:44.565] [INFO] cheese - worker pid:83670 is done. inserted 62522 pages in 0.001 secs.
+[2018-02-13T15:44:09.170] [INFO] cheese - worker pid:87782 is now alive. starting: 0 B ending: 146.89 MB
+[2018-02-13T15:44:09.171] [INFO] cheese - worker pid:87784 is now alive. starting: 287.1 MB ending: 433.98 MB
+[2018-02-13T15:44:09.171] [INFO] cheese - worker pid:87783 is now alive. starting: 143.07 MB ending: 289.96 MB
+[2018-02-13T15:44:09.171] [INFO] cheese - worker pid:87785 is now alive. starting: 431.12 MB ending: 578.01 MB
+[2018-02-13T15:44:09.673] [INFO] cheese - inserting 503 documents. first: Low Countries and last: San Diego Padres
+[2018-02-13T15:44:09.675] [INFO] cheese - inserting 492 documents. first: Taliesin West and last: The Hunchback of Notre Dame (1939 movie)
+[2018-02-13T15:44:09.706] [INFO] cheese - batch complete in: 0.475 secs
+[2018-02-13T15:44:09.706] [INFO] cheese - batch complete in: 0.469 secs
+[2018-02-13T15:44:09.719] [INFO] cheese - inserting 596 documents. first: Euston Road and last: University of California, San Diego
+[2018-02-13T15:44:09.782] [INFO] cheese - batch complete in: 0.56 secs
+[2018-02-13T15:44:09.855] [INFO] cheese - inserting 640 documents. first: April and last: Football
+[2018-02-13T15:44:09.917] [INFO] cheese - batch complete in: 0.712 secs
+[2018-02-13T15:44:10.004] [INFO] cheese - inserting 417 documents. first: Balk and last: Barákapuszta
+[2018-02-13T15:44:10.011] [INFO] cheese - inserting 854 documents. first: Drew Carey and last: Sillanwali Tehsil
+[2018-02-13T15:44:10.032] [INFO] cheese - batch complete in: 0.325 secs
+[2018-02-13T15:44:10.056] [INFO] cheese - batch complete in: 0.35 secs
+[2018-02-13T15:44:10.127] [INFO] cheese - inserting 566 documents. first: University of California and last: Volans (disambiguation)
+[2018-02-13T15:44:10.159] [INFO] cheese - batch complete in: 0.377 secs
+[2018-02-13T15:44:10.343] [INFO] cheese - inserting 501 documents. first: Chris Clifford and last: Listening
+[2018-02-13T15:44:10.367] [INFO] cheese - batch complete in: 0.335 secs
+[2018-02-13T15:44:10.387] [INFO] cheese - inserting 540 documents. first: Puran Tehsil and last: Car accident
+[2018-02-13T15:44:10.409] [INFO] cheese - batch complete in: 0.353 secs
+[2018-02-13T15:44:10.456] [INFO] cheese - inserting 588 documents. first: Georgy Malenkov and last: Crocodylomorph
+[2018-02-13T15:44:10.483] [INFO] cheese - batch complete in: 0.324 secs
+[2018-02-13T15:44:10.580] [INFO] cheese - inserting 834 documents. first: Poland and last: Socrates
+[2018-02-13T15:44:10.646] [INFO] cheese - batch complete in: 0.729 secs
+[2018-02-13T15:44:10.718] [INFO] cheese - inserting 583 documents. first: Cookies 'N' Beans and last: Hässleholm
+[2018-02-13T15:44:10.719] [INFO] cheese - inserting 609 documents. first: Malden, Massachusetts and last: Dorah Pass
+[2018-02-13T15:44:10.746] [INFO] cheese - batch complete in: 0.337 secs
+[2018-02-13T15:44:10.750] [INFO] cheese - batch complete in: 0.383 secs
+[2018-02-13T15:44:10.842] [INFO] cheese - inserting 433 documents. first: Lepidosauromorph and last: James B. Dudley
+[2018-02-13T15:44:10.860] [INFO] cheese - batch complete in: 0.377 secs
+[2018-02-13T15:44:10.986] [INFO] cheese - inserting 575 documents. first: Höganäs and last: WaveBird Wireless Controller
+[2018-02-13T15:44:11.006] [INFO] cheese - inserting 519 documents. first: Gondogoro Pass and last: Richard Widmark
+[2018-02-13T15:44:11.012] [INFO] cheese - batch complete in: 0.262 secs
+[2018-02-13T15:44:11.029] [INFO] cheese - batch complete in: 0.283 secs
+[2018-02-13T15:44:11.097] [INFO] cheese - inserting 656 documents. first: Dante Alighieri and last: Psoriasis
+[2018-02-13T15:44:11.105] [INFO] cheese - inserting 376 documents. first: Duck and Cover and last: Volcano Rabbit
+[2018-02-13T15:44:11.119] [INFO] cheese - batch complete in: 0.258 secs
+[2018-02-13T15:44:11.148] [INFO] cheese - batch complete in: 0.501 secs
+[2018-02-13T15:44:11.294] [INFO] cheese - inserting 650 documents. first: Battle of Bataan and last: The Wyatt Family
+[2018-02-13T15:44:11.308] [INFO] cheese - inserting 504 documents. first: Virgin Atlantic Airways and last: Polarization
+[2018-02-13T15:44:11.317] [INFO] cheese - batch complete in: 0.305 secs
+[2018-02-13T15:44:11.331] [INFO] cheese - batch complete in: 0.302 secs
+[2018-02-13T15:44:11.472] [INFO] cheese - inserting 539 documents. first: Happy Science and last: Validity
+[2018-02-13T15:44:11.493] [INFO] cheese - batch complete in: 0.373 secs
+[2018-02-13T15:44:11.603] [INFO] cheese - inserting 610 documents. first: Dolores Huerta and last: Mr. Lordi
+[2018-02-13T15:44:11.624] [INFO] cheese - batch complete in: 0.307 secs
+[2018-02-13T15:44:11.689] [INFO] cheese - inserting 732 documents. first: Dance, Dance and last: Varsity letter
+[2018-02-13T15:44:11.708] [INFO] cheese - inserting 756 documents. first: Jurassic Park and last: Baltic Sea
+[2018-02-13T15:44:11.714] [INFO] cheese - batch complete in: 0.383 secs
+[2018-02-13T15:44:11.766] [INFO] cheese - batch complete in: 0.618 secs
+[2018-02-13T15:44:11.793] [INFO] cheese - inserting 565 documents. first: King Duncan and last: Beriberi
+[2018-02-13T15:44:11.825] [INFO] cheese - batch complete in: 0.332 secs
+[2018-02-13T15:44:11.859] [INFO] cheese - inserting 410 documents. first: Anti-balaka and last: Sune Bergström
+[2018-02-13T15:44:11.873] [INFO] cheese - batch complete in: 0.249 secs
+[2018-02-13T15:44:12.119] [INFO] cheese - inserting 537 documents. first: Linear mapping and last: Lassie Lou Ahern
+[2018-02-13T15:44:12.126] [INFO] cheese - inserting 565 documents. first: Free content and last: MySims
+[2018-02-13T15:44:12.138] [INFO] cheese - batch complete in: 0.265 secs
+[2018-02-13T15:44:12.151] [INFO] cheese - batch complete in: 0.437 secs
+[2018-02-13T15:44:12.358] [INFO] cheese - inserting 571 documents. first: Hanna Maron and last: Paco Peña
+[2018-02-13T15:44:12.384] [INFO] cheese - batch complete in: 0.246 secs
+[2018-02-13T15:44:12.472] [INFO] cheese - inserting 593 documents. first: The Sun (newspaper) and last: Live from SoHo (Maroon 5 album)
+[2018-02-13T15:44:12.507] [INFO] cheese - batch complete in: 0.356 secs
+[2018-02-13T15:44:12.598] [INFO] cheese - inserting 661 documents. first: Scandinavia and last: Laws of war
+[2018-02-13T15:44:12.638] [INFO] cheese - inserting 565 documents. first: Gerard Mortier and last: Warren Lamb
+[2018-02-13T15:44:12.649] [INFO] cheese - batch complete in: 0.882 secs
+[2018-02-13T15:44:12.657] [INFO] cheese - batch complete in: 0.273 secs
+[2018-02-13T15:44:12.770] [INFO] cheese - inserting 652 documents. first: Île-de-Bréhat and last: Seckington
+[2018-02-13T15:44:12.823] [INFO] cheese - batch complete in: 0.997 secs
+[2018-02-13T15:44:12.874] [INFO] cheese - inserting 602 documents. first: Alexander Berkman and last: Ordered pair
+[2018-02-13T15:44:12.900] [INFO] cheese - batch complete in: 0.393 secs
+[2018-02-13T15:44:12.930] [INFO] cheese - inserting 548 documents. first: Rodeo of Chile and last: Armando Peraza
+[2018-02-13T15:44:12.951] [INFO] cheese - batch complete in: 0.294 secs
+[2018-02-13T15:44:12.985] [INFO] cheese - inserting 482 documents. first: Maharashtra and last: Seafood
+[2018-02-13T15:44:13.014] [INFO] cheese - batch complete in: 0.365 secs
+[2018-02-13T15:44:13.273] [INFO] cheese - inserting 587 documents. first: St Just in Penwith and last: Primula
+[2018-02-13T15:44:13.320] [INFO] cheese - inserting 617 documents. first: Shirley Chisholm and last: Power Rangers Zeo
+[2018-02-13T15:44:13.354] [INFO] cheese - batch complete in: 0.53 secs
+[2018-02-13T15:44:13.378] [INFO] cheese - batch complete in: 0.427 secs
+[2018-02-13T15:44:13.428] [INFO] cheese - inserting 578 documents. first: Arts and crafts and last: Chesterfield
+[2018-02-13T15:44:13.454] [INFO] cheese - inserting 358 documents. first: Peer review and last: Pipette
+[2018-02-13T15:44:13.472] [INFO] cheese - batch complete in: 0.572 secs
+[2018-02-13T15:44:13.478] [INFO] cheese - batch complete in: 0.464 secs
+[2018-02-13T15:44:13.709] [INFO] cheese - inserting 621 documents. first: Power Rangers Turbo and last: Powhatan, Louisiana
+[2018-02-13T15:44:13.726] [INFO] cheese - batch complete in: 0.348 secs
+[2018-02-13T15:44:13.802] [INFO] cheese - inserting 515 documents. first: Protura and last: Milan Hlavsa
+[2018-02-13T15:44:13.829] [INFO] cheese - batch complete in: 0.475 secs
+[2018-02-13T15:44:13.841] [INFO] cheese - inserting 465 documents. first: Formation and evolution of the Solar System and last: Christopher Nolan
+[2018-02-13T15:44:13.869] [INFO] cheese - batch complete in: 0.397 secs
+[2018-02-13T15:44:13.882] [INFO] cheese - inserting 602 documents. first: Muscle and last: Blackcurrant
+[2018-02-13T15:44:13.918] [INFO] cheese - batch complete in: 0.439 secs
+[2018-02-13T15:44:14.026] [INFO] cheese - inserting 626 documents. first: Karlheinz Böhm and last: Wells, British Columbia
+[2018-02-13T15:44:14.038] [INFO] cheese - inserting 186 documents. first: Olympic (band) and last: Middle Triassic
+[2018-02-13T15:44:14.050] [INFO] cheese - batch complete in: 0.323 secs
+[2018-02-13T15:44:14.062] [INFO] cheese - batch complete in: 0.233 secs
+[2018-02-13T15:44:14.192] [INFO] cheese - inserting 622 documents. first: Foucault pendulum and last: Captain Jack Harkness
+[2018-02-13T15:44:14.213] [INFO] cheese - batch complete in: 0.344 secs
+[2018-02-13T15:44:14.225] [INFO] cheese - inserting 561 documents. first: Date and last: Evo Morales
+[2018-02-13T15:44:14.267] [INFO] cheese - batch complete in: 0.349 secs
+[2018-02-13T15:44:14.321] [INFO] cheese - inserting 484 documents. first: Surya and last: Goatwhore
+[2018-02-13T15:44:14.357] [INFO] cheese - batch complete in: 0.307 secs
+[2018-02-13T15:44:14.382] [INFO] cheese - inserting 420 documents. first: Shahab al-Din Suhrawardi and last: Hemerophile
+[2018-02-13T15:44:14.409] [INFO] cheese - batch complete in: 0.347 secs
+[2018-02-13T15:44:14.549] [INFO] cheese - inserting 552 documents. first: Hurricane Fico and last: British Rail Class 103
+[2018-02-13T15:44:14.573] [INFO] cheese - batch complete in: 0.36 secs
+[2018-02-13T15:44:14.650] [INFO] cheese - inserting 663 documents. first: Lake Titicaca and last: Spider
+[2018-02-13T15:44:14.654] [INFO] cheese - inserting 602 documents. first: Rural Municipality of Brenda and last: Maximum Overload
+[2018-02-13T15:44:14.711] [INFO] cheese - batch complete in: 0.444 secs
+[2018-02-13T15:44:14.736] [INFO] cheese - batch complete in: 0.378 secs
+[2018-02-13T15:44:14.868] [INFO] cheese - inserting 402 documents. first: The Winter's Tale and last: 1961 World Ice Hockey Championships
+[2018-02-13T15:44:14.901] [INFO] cheese - batch complete in: 0.492 secs
+[2018-02-13T15:44:15.020] [INFO] cheese - inserting 791 documents. first: British Rail Class 104 and last: La Chapelle-Hermier
+[2018-02-13T15:44:15.047] [INFO] cheese - batch complete in: 0.474 secs
+[2018-02-13T15:44:15.161] [INFO] cheese - inserting 626 documents. first: 1760s and last: Odisha
+[2018-02-13T15:44:15.186] [INFO] cheese - inserting 642 documents. first: Idde Schultz and last: Hyatt Center
+[2018-02-13T15:44:15.191] [INFO] cheese - batch complete in: 0.48 secs
+[2018-02-13T15:44:15.224] [INFO] cheese - batch complete in: 0.488 secs
+[2018-02-13T15:44:15.271] [INFO] cheese - inserting 312 documents. first: 1961 Stanley Cup Finals and last: Pylorus
+[2018-02-13T15:44:15.289] [INFO] cheese - batch complete in: 0.388 secs
+[2018-02-13T15:44:15.325] [INFO] cheese - inserting 987 documents. first: La Chapelle-Palluau and last: Peyrieu
+[2018-02-13T15:44:15.351] [INFO] cheese - batch complete in: 0.304 secs
+[2018-02-13T15:44:15.466] [INFO] cheese - inserting 553 documents. first: Punjab (India) and last: Polyunsaturated fat
+[2018-02-13T15:44:15.489] [INFO] cheese - batch complete in: 0.298 secs
+[2018-02-13T15:44:15.548] [INFO] cheese - inserting 618 documents. first: Leo Burnett Building and last: Ram Trucks
+[2018-02-13T15:44:15.578] [INFO] cheese - batch complete in: 0.354 secs
+[2018-02-13T15:44:15.596] [INFO] cheese - inserting 879 documents. first: Nashville, Arkansas and last: Monpezat
+[2018-02-13T15:44:15.597] [INFO] cheese - inserting 348 documents. first: Huxley family and last: AKUT Search and Rescue Association
+[2018-02-13T15:44:15.615] [INFO] cheese - batch complete in: 0.326 secs
+[2018-02-13T15:44:15.632] [INFO] cheese - batch complete in: 0.281 secs
+[2018-02-13T15:44:15.769] [INFO] cheese - inserting 459 documents. first: The North Avenue Irregulars and last: Ionia
+[2018-02-13T15:44:15.787] [INFO] cheese - batch complete in: 0.298 secs
+[2018-02-13T15:44:15.854] [INFO] cheese - inserting 570 documents. first: Tropical Storm Norma (1970) and last: Naturalism (literature)
+[2018-02-13T15:44:15.875] [INFO] cheese - batch complete in: 0.297 secs
+[2018-02-13T15:44:15.916] [INFO] cheese - inserting 923 documents. first: Monségur, Pyrénées-Atlantiques and last: Folembray
+[2018-02-13T15:44:15.937] [INFO] cheese - batch complete in: 0.305 secs
+[2018-02-13T15:44:15.950] [INFO] cheese - inserting 458 documents. first: The Twelve Days of Christmas (song) and last: Video camera
+[2018-02-13T15:44:15.970] [INFO] cheese - batch complete in: 0.354 secs
+[2018-02-13T15:44:16.031] [INFO] cheese - inserting 428 documents. first: Harmonic and last: Małkinia Górna
+[2018-02-13T15:44:16.048] [INFO] cheese - batch complete in: 0.261 secs
+[2018-02-13T15:44:16.150] [INFO] cheese - inserting 996 documents. first: Fonsommes and last: Gaudiempré
+[2018-02-13T15:44:16.173] [INFO] cheese - batch complete in: 0.236 secs
+[2018-02-13T15:44:16.188] [INFO] cheese - inserting 637 documents. first: Moose Pond and last: Samantha Power
+[2018-02-13T15:44:16.211] [INFO] cheese - batch complete in: 0.336 secs
+[2018-02-13T15:44:16.285] [INFO] cheese - inserting 536 documents. first: Pope Innocent VI and last: Mesosaurus
+[2018-02-13T15:44:16.309] [INFO] cheese - batch complete in: 0.339 secs
+[2018-02-13T15:44:16.380] [INFO] cheese - inserting 998 documents. first: Gavrelle and last: Olive Hill, Kentucky
+[2018-02-13T15:44:16.382] [INFO] cheese - inserting 461 documents. first: John C. Calhoun and last: Constantine the Great
+[2018-02-13T15:44:16.400] [INFO] cheese - batch complete in: 0.352 secs
+[2018-02-13T15:44:16.401] [INFO] cheese - batch complete in: 0.228 secs
+[2018-02-13T15:44:16.531] [INFO] cheese - inserting 617 documents. first: Edward J. Perkins and last: Gueudecourt
+[2018-02-13T15:44:16.559] [INFO] cheese - batch complete in: 0.348 secs
+[2018-02-13T15:44:16.669] [INFO] cheese - inserting 378 documents. first: Bokbunja ju and last: Lilly Ledbetter Fair Pay Act of 2009
+[2018-02-13T15:44:16.673] [INFO] cheese - inserting 497 documents. first: Cleopatra VII and last: Eagle (disambiguation)
+[2018-02-13T15:44:16.682] [INFO] cheese - inserting 990 documents. first: Orchard Grass Hills, Kentucky and last: Dayton, Iowa
+[2018-02-13T15:44:16.694] [INFO] cheese - batch complete in: 0.384 secs
+[2018-02-13T15:44:16.702] [INFO] cheese - batch complete in: 0.302 secs
+[2018-02-13T15:44:16.712] [INFO] cheese - batch complete in: 0.311 secs
+[2018-02-13T15:44:16.834] [INFO] cheese - inserting 543 documents. first: Guignemicourt and last: Caravan (travellers)
+[2018-02-13T15:44:16.855] [INFO] cheese - batch complete in: 0.295 secs
+[2018-02-13T15:44:16.973] [INFO] cheese - inserting 958 documents. first: De Soto, Iowa and last: Natural gas vehicle
+[2018-02-13T15:44:16.999] [INFO] cheese - batch complete in: 0.273 secs
+[2018-02-13T15:44:17.038] [INFO] cheese - inserting 646 documents. first: Hide (musician) and last: Aegukga
+[2018-02-13T15:44:17.068] [INFO] cheese - batch complete in: 0.361 secs
+[2018-02-13T15:44:17.127] [INFO] cheese - inserting 473 documents. first: International Food Policy Research Institute and last: Mina (singer)
+[2018-02-13T15:44:17.136] [INFO] cheese - inserting 477 documents. first: Flying University and last: John Diefenbaker
+[2018-02-13T15:44:17.152] [INFO] cheese - batch complete in: 0.458 secs
+[2018-02-13T15:44:17.156] [INFO] cheese - batch complete in: 0.301 secs
+[2018-02-13T15:44:17.334] [INFO] cheese - inserting 779 documents. first: Bustuchin and last: British Rail Class D2/12
+[2018-02-13T15:44:17.362] [INFO] cheese - batch complete in: 0.362 secs
+[2018-02-13T15:44:17.399] [INFO] cheese - inserting 507 documents. first: Conquest and last: Engineered languages
+[2018-02-13T15:44:17.421] [INFO] cheese - batch complete in: 0.353 secs
+[2018-02-13T15:44:17.478] [INFO] cheese - inserting 454 documents. first: Maynard Ferguson and last: The Five
+[2018-02-13T15:44:17.497] [INFO] cheese - batch complete in: 0.345 secs
+[2018-02-13T15:44:17.669] [INFO] cheese - inserting 933 documents. first: British Rail Class D3/1 and last: British Rail Class D3/14
+[2018-02-13T15:44:17.679] [INFO] cheese - inserting 482 documents. first: Pronghorn and last: 1534
+[2018-02-13T15:44:17.690] [INFO] cheese - batch complete in: 0.328 secs
+[2018-02-13T15:44:17.697] [INFO] cheese - batch complete in: 0.276 secs
+[2018-02-13T15:44:17.710] [INFO] cheese - inserting 488 documents. first: Omar Karami and last: Frederik H. Kreuger
+[2018-02-13T15:44:17.730] [INFO] cheese - batch complete in: 0.574 secs
+[2018-02-13T15:44:18.055] [INFO] cheese - inserting 577 documents. first: 1708 and last: Lady Macbeth of the Mtsensk District
+[2018-02-13T15:44:18.081] [INFO] cheese - batch complete in: 0.384 secs
+[2018-02-13T15:44:18.143] [INFO] cheese - inserting 497 documents. first: List of Independent Administrative Institutes in Japan and last: Saskatoon Blades
+[2018-02-13T15:44:18.149] [INFO] cheese - inserting 547 documents. first: British Rail Class D16/1 and last: Keita Goto
+[2018-02-13T15:44:18.173] [INFO] cheese - inserting 581 documents. first: Statutory rape and last: Chevrolet Traverse
+[2018-02-13T15:44:18.179] [INFO] cheese - batch complete in: 0.489 secs
+[2018-02-13T15:44:18.177] [INFO] cheese - batch complete in: 0.68 secs
+[2018-02-13T15:44:18.211] [INFO] cheese - batch complete in: 0.481 secs
+[2018-02-13T15:44:18.396] [INFO] cheese - inserting 502 documents. first: Adoption and last: Runestone
+[2018-02-13T15:44:18.414] [INFO] cheese - batch complete in: 0.333 secs
+[2018-02-13T15:44:18.571] [INFO] cheese - inserting 603 documents. first: Zhelyu Zhelev and last: Väröbacka
+[2018-02-13T15:44:18.604] [INFO] cheese - batch complete in: 0.393 secs
+[2018-02-13T15:44:18.611] [INFO] cheese - inserting 620 documents. first: Type 4 150 mm howitzer and last: Cape Henry Light
+[2018-02-13T15:44:18.643] [INFO] cheese - batch complete in: 0.465 secs
+[2018-02-13T15:44:18.688] [INFO] cheese - inserting 502 documents. first: Shunichiro Okano and last: Erich von dem Bach-Zelewski
+[2018-02-13T15:44:18.713] [INFO] cheese - inserting 582 documents. first: Balcony and last: Electrolysis
+[2018-02-13T15:44:18.713] [INFO] cheese - batch complete in: 0.534 secs
+[2018-02-13T15:44:18.748] [INFO] cheese - batch complete in: 0.334 secs
+[2018-02-13T15:44:18.929] [INFO] cheese - inserting 581 documents. first: Innuendo (song) and last: Diabolus in Musica
+[2018-02-13T15:44:18.960] [INFO] cheese - batch complete in: 0.356 secs
+[2018-02-13T15:44:19.031] [INFO] cheese - inserting 533 documents. first: Jurassic and last: NASCAR
+[2018-02-13T15:44:19.068] [INFO] cheese - batch complete in: 0.32 secs
+[2018-02-13T15:44:19.081] [INFO] cheese - inserting 571 documents. first: Will Mellor and last: Mono no aware
+[2018-02-13T15:44:19.101] [INFO] cheese - batch complete in: 0.388 secs
+[2018-02-13T15:44:19.124] [INFO] cheese - inserting 433 documents. first: Washington Irving and last: Herero
+[2018-02-13T15:44:19.146] [INFO] cheese - batch complete in: 0.503 secs
+[2018-02-13T15:44:19.302] [INFO] cheese - inserting 580 documents. first: Señorita Pólvora and last: Orillia
+[2018-02-13T15:44:19.331] [INFO] cheese - batch complete in: 0.371 secs
+[2018-02-13T15:44:19.409] [INFO] cheese - inserting 561 documents. first: Monument and last: Ghost light
+[2018-02-13T15:44:19.435] [INFO] cheese - batch complete in: 0.367 secs
+[2018-02-13T15:44:19.466] [INFO] cheese - inserting 525 documents. first: Salmon (color) and last: Nisio Isin
+[2018-02-13T15:44:19.474] [INFO] cheese - inserting 374 documents. first: Lake Wobegon and last: Clarke County, Alabama
+[2018-02-13T15:44:19.484] [INFO] cheese - batch complete in: 0.383 secs
+[2018-02-13T15:44:19.508] [INFO] cheese - batch complete in: 0.362 secs
+[2018-02-13T15:44:19.585] [INFO] cheese - inserting 516 documents. first: West Perth, Ontario and last: Truncated icosahedron
+[2018-02-13T15:44:19.607] [INFO] cheese - batch complete in: 0.275 secs
+[2018-02-13T15:44:19.701] [INFO] cheese - inserting 479 documents. first: Roman Giertych and last: Centre-Val de Loire
+[2018-02-13T15:44:19.723] [INFO] cheese - batch complete in: 0.287 secs
+[2018-02-13T15:44:19.826] [INFO] cheese - inserting 368 documents. first: Grove Hill, Alabama and last: Karl Pearson
+[2018-02-13T15:44:19.840] [INFO] cheese - batch complete in: 0.332 secs
+[2018-02-13T15:44:19.854] [INFO] cheese - inserting 445 documents. first: Kapok and last: Comcast Center
+[2018-02-13T15:44:19.869] [INFO] cheese - batch complete in: 0.384 secs
+[2018-02-13T15:44:20.044] [INFO] cheese - inserting 419 documents. first: Champagne-Ardenne and last: Gerhard Armauer Hansen
+[2018-02-13T15:44:20.061] [INFO] cheese - batch complete in: 0.338 secs
+[2018-02-13T15:44:20.179] [INFO] cheese - inserting 372 documents. first: HCJB and last: Brooks Range
+[2018-02-13T15:44:20.183] [INFO] cheese - inserting 599 documents. first: Truncated octahedron and last: The Girl Next Door (2004 movie)
+[2018-02-13T15:44:20.194] [INFO] cheese - batch complete in: 0.325 secs
+[2018-02-13T15:44:20.205] [INFO] cheese - batch complete in: 0.598 secs
+[2018-02-13T15:44:20.252] [INFO] cheese - inserting 549 documents. first: Yutyrannus and last: Constitution of Albania
+[2018-02-13T15:44:20.281] [INFO] cheese - batch complete in: 0.441 secs
+[2018-02-13T15:44:20.382] [INFO] cheese - inserting 574 documents. first: Fire station and last: Taj Mahal (musician)
+[2018-02-13T15:44:20.409] [INFO] cheese - batch complete in: 0.347 secs
+[2018-02-13T15:44:20.539] [INFO] cheese - inserting 563 documents. first: José Gaspar Rodríguez de Francia y Velasco and last: Messerschmitt Bf 110
+[2018-02-13T15:44:20.548] [INFO] cheese - inserting 617 documents. first: Prince Edward, Duke of York and Albany and last: Crossosomatales
+[2018-02-13T15:44:20.558] [INFO] cheese - batch complete in: 0.353 secs
+[2018-02-13T15:44:20.574] [INFO] cheese - batch complete in: 0.379 secs
+[2018-02-13T15:44:20.658] [INFO] cheese - inserting 559 documents. first: Napa, California and last: Yu Gamdong
+[2018-02-13T15:44:20.679] [INFO] cheese - batch complete in: 0.397 secs
+[2018-02-13T15:44:20.695] [INFO] cheese - inserting 527 documents. first: Floyd Patterson and last: Medieval music
+[2018-02-13T15:44:20.713] [INFO] cheese - batch complete in: 0.304 secs
+[2018-02-13T15:44:20.897] [INFO] cheese - inserting 414 documents. first: Aquanaut and last: Airbourne
+[2018-02-13T15:44:20.919] [INFO] cheese - batch complete in: 0.361 secs
+[2018-02-13T15:44:21.004] [INFO] cheese - inserting 589 documents. first: Yangnyeong and last: Bahrainona
+[2018-02-13T15:44:21.005] [INFO] cheese - inserting 666 documents. first: Waterfowl and last: 2008
+[2018-02-13T15:44:21.012] [INFO] cheese - inserting 547 documents. first: Neolithic and last: Lake Van
+[2018-02-13T15:44:21.024] [INFO] cheese - batch complete in: 0.345 secs
+[2018-02-13T15:44:21.038] [INFO] cheese - batch complete in: 0.464 secs
+[2018-02-13T15:44:21.044] [INFO] cheese - batch complete in: 0.33 secs
+[2018-02-13T15:44:21.337] [INFO] cheese - inserting 526 documents. first: Bahraini and last: Wing-banded Antbird
+[2018-02-13T15:44:21.350] [INFO] cheese - inserting 549 documents. first: Falafel and last: Dwarf hamster
+[2018-02-13T15:44:21.362] [INFO] cheese - batch complete in: 0.338 secs
+[2018-02-13T15:44:21.368] [INFO] cheese - batch complete in: 0.33 secs
+[2018-02-13T15:44:21.398] [INFO] cheese - inserting 461 documents. first: Love? and last: Ted Hartley
+[2018-02-13T15:44:21.406] [INFO] cheese - inserting 610 documents. first: Kurdish language and last: Sickle
+[2018-02-13T15:44:21.431] [INFO] cheese - batch complete in: 0.386 secs
+[2018-02-13T15:44:21.439] [INFO] cheese - batch complete in: 0.52 secs
+[2018-02-13T15:44:21.672] [INFO] cheese - inserting 488 documents. first: Damien Rice and last: Technical University of Berlin
+[2018-02-13T15:44:21.691] [INFO] cheese - batch complete in: 0.323 secs
+[2018-02-13T15:44:21.716] [INFO] cheese - inserting 492 documents. first: Seine and last: Cyclone Jal
+[2018-02-13T15:44:21.743] [INFO] cheese - batch complete in: 0.381 secs
+[2018-02-13T15:44:21.784] [INFO] cheese - inserting 590 documents. first: Kilometres per hour and last: U.S. Open
+[2018-02-13T15:44:21.804] [INFO] cheese - inserting 490 documents. first: Joint-stock company and last: Luciano García Alén
+[2018-02-13T15:44:21.810] [INFO] cheese - batch complete in: 0.379 secs
+[2018-02-13T15:44:21.831] [INFO] cheese - batch complete in: 0.391 secs
+[2018-02-13T15:44:22.018] [INFO] cheese - inserting 450 documents. first: Leeds Rhinos and last: Tomokazu Hirama
+[2018-02-13T15:44:22.034] [INFO] cheese - batch complete in: 0.342 secs
+[2018-02-13T15:44:22.074] [INFO] cheese - inserting 555 documents. first: Hurricane Bud (2012) and last: St. Osyth
+[2018-02-13T15:44:22.110] [INFO] cheese - batch complete in: 0.367 secs
+[2018-02-13T15:44:22.129] [INFO] cheese - inserting 558 documents. first: World Cup and last: Himeji Castle
+[2018-02-13T15:44:22.150] [INFO] cheese - batch complete in: 0.34 secs
+[2018-02-13T15:44:22.170] [INFO] cheese - inserting 522 documents. first: Sergei Filippenkov and last: Noble orchid
+[2018-02-13T15:44:22.195] [INFO] cheese - batch complete in: 0.364 secs
+[2018-02-13T15:44:22.386] [INFO] cheese - inserting 600 documents. first: Kazushi Isoyama and last: Félix María Samaniego
+[2018-02-13T15:44:22.404] [INFO] cheese - batch complete in: 0.37 secs
+[2018-02-13T15:44:22.438] [INFO] cheese - inserting 482 documents. first: Tang Dynasty and last: Hilbert's paradox of the Grand Hotel
+[2018-02-13T15:44:22.455] [INFO] cheese - batch complete in: 0.305 secs
+[2018-02-13T15:44:22.479] [INFO] cheese - inserting 440 documents. first: Ahmad and last: Wyre Forest
+[2018-02-13T15:44:22.494] [INFO] cheese - inserting 480 documents. first: Great Oakley and last: Arranged marriage
+[2018-02-13T15:44:22.498] [INFO] cheese - batch complete in: 0.303 secs
+[2018-02-13T15:44:22.524] [INFO] cheese - batch complete in: 0.414 secs
+[2018-02-13T15:44:22.739] [INFO] cheese - inserting 505 documents. first: Opposite number and last: Flamingo
+[2018-02-13T15:44:22.743] [INFO] cheese - inserting 539 documents. first: Jan Góra and last: Isaiah Washington
+[2018-02-13T15:44:22.755] [INFO] cheese - inserting 580 documents. first: Vermilion (song) and last: Ryo Nurishi
+[2018-02-13T15:44:22.761] [INFO] cheese - batch complete in: 0.306 secs
+[2018-02-13T15:44:22.768] [INFO] cheese - batch complete in: 0.27 secs
+[2018-02-13T15:44:22.785] [INFO] cheese - inserting 375 documents. first: Eastern diamondback rattlesnake and last: Greta Van Susteren
+[2018-02-13T15:44:22.793] [INFO] cheese - batch complete in: 0.389 secs
+[2018-02-13T15:44:22.808] [INFO] cheese - batch complete in: 0.283 secs
+[2018-02-13T15:44:23.037] [INFO] cheese - inserting 326 documents. first: Magnesium oxide and last: Tanystropheus
+[2018-02-13T15:44:23.046] [INFO] cheese - inserting 553 documents. first: Stock (firearm) and last: I Will Never Let You Down
+[2018-02-13T15:44:23.051] [INFO] cheese - batch complete in: 0.29 secs
+[2018-02-13T15:44:23.071] [INFO] cheese - batch complete in: 0.303 secs
+[2018-02-13T15:44:23.106] [INFO] cheese - inserting 439 documents. first: Tucker Carlson and last: Mel Stuart
+[2018-02-13T15:44:23.121] [INFO] cheese - batch complete in: 0.313 secs
+[2018-02-13T15:44:23.131] [INFO] cheese - inserting 582 documents. first: Aaron Lennon and last: Cornish, Maine
+[2018-02-13T15:44:23.153] [INFO] cheese - batch complete in: 0.36 secs
+[2018-02-13T15:44:23.335] [INFO] cheese - inserting 400 documents. first: Yuryuzan and last: British occupation zone
+[2018-02-13T15:44:23.351] [INFO] cheese - inserting 219 documents. first: Sweet Dreams Are Made of This and last: Hideaki Kitajima
+[2018-02-13T15:44:23.358] [INFO] cheese - batch complete in: 0.205 secs
+[2018-02-13T15:44:23.357] [INFO] cheese - batch complete in: 0.306 secs
+[2018-02-13T15:44:23.389] [INFO] cheese - inserting 432 documents. first: The Elements of Style and last: Mass grave
+[2018-02-13T15:44:23.409] [INFO] cheese - batch complete in: 0.338 secs
+[2018-02-13T15:44:23.502] [INFO] cheese - inserting 478 documents. first: Conrad Bain and last: American spadefoot toads
+[2018-02-13T15:44:23.533] [INFO] cheese - batch complete in: 0.412 secs
+[2018-02-13T15:44:23.589] [INFO] cheese - inserting 258 documents. first: Shigemaru Takenokoshi and last: Norihiro Nishi
+[2018-02-13T15:44:23.600] [INFO] cheese - batch complete in: 0.241 secs
+[2018-02-13T15:44:23.732] [INFO] cheese - inserting 502 documents. first: Greater Hesse and last: Pineal gland
+[2018-02-13T15:44:23.736] [INFO] cheese - inserting 481 documents. first: Fred West and last: Dunellen, New Jersey
+[2018-02-13T15:44:23.764] [INFO] cheese - batch complete in: 0.407 secs
+[2018-02-13T15:44:23.768] [INFO] cheese - batch complete in: 0.359 secs
+[2018-02-13T15:44:24.017] [INFO] cheese - inserting 636 documents. first: Theory and last: Der Rosenkavalier
+[2018-02-13T15:44:24.038] [INFO] cheese - batch complete in: 0.438 secs
+[2018-02-13T15:44:24.063] [INFO] cheese - inserting 514 documents. first: Notaden and last: Eileen Brennan
+[2018-02-13T15:44:24.089] [INFO] cheese - inserting 591 documents. first: Gamma-Hydroxybutyric acid and last: Tropical Storm Ingrid (2007)
+[2018-02-13T15:44:24.093] [INFO] cheese - batch complete in: 0.559 secs
+[2018-02-13T15:44:24.124] [INFO] cheese - inserting 550 documents. first: 2016 Kumamoto earthquakes and last: Perlin noise
+[2018-02-13T15:44:24.126] [INFO] cheese - batch complete in: 0.362 secs
+[2018-02-13T15:44:24.161] [INFO] cheese - batch complete in: 0.393 secs
+[2018-02-13T15:44:24.450] [INFO] cheese - inserting 556 documents. first: Dagger and last: Heredity
+[2018-02-13T15:44:24.463] [INFO] cheese - inserting 610 documents. first: 61 (number) and last: Sommeri
+[2018-02-13T15:44:24.469] [INFO] cheese - batch complete in: 0.43 secs
+[2018-02-13T15:44:24.472] [INFO] cheese - inserting 594 documents. first: Derek Jameson and last: List of cities in Serbia
+[2018-02-13T15:44:24.481] [INFO] cheese - batch complete in: 0.355 secs
+[2018-02-13T15:44:24.491] [INFO] cheese - batch complete in: 0.398 secs
+[2018-02-13T15:44:24.545] [INFO] cheese - inserting 534 documents. first: Mireia Lalaguna and last: Masada
+[2018-02-13T15:44:24.565] [INFO] cheese - batch complete in: 0.404 secs
+[2018-02-13T15:44:24.790] [INFO] cheese - inserting 516 documents. first: Variation and last: C.A. Belgrano
+[2018-02-13T15:44:24.807] [INFO] cheese - batch complete in: 0.338 secs
+[2018-02-13T15:44:24.828] [INFO] cheese - inserting 497 documents. first: Davis Cleveland and last: Small Smiles Dental Centers
+[2018-02-13T15:44:24.846] [INFO] cheese - batch complete in: 0.355 secs
+[2018-02-13T15:44:24.923] [INFO] cheese - inserting 680 documents. first: Cave of the Patriarchs and last: Nassau (state)
+[2018-02-13T15:44:24.949] [INFO] cheese - batch complete in: 0.383 secs
+[2018-02-13T15:44:25.146] [INFO] cheese - inserting 532 documents. first: Denmark at the 1972 Summer Paralympics and last: Pakistan Television
+[2018-02-13T15:44:25.157] [INFO] cheese - inserting 603 documents. first: Stettfurt and last: Kotoko
+[2018-02-13T15:44:25.165] [INFO] cheese - batch complete in: 0.319 secs
+[2018-02-13T15:44:25.185] [INFO] cheese - inserting 626 documents. first: Michael Clarke Duncan and last: Doddinghurst
+[2018-02-13T15:44:25.210] [INFO] cheese - batch complete in: 0.729 secs
+[2018-02-13T15:44:25.227] [INFO] cheese - batch complete in: 0.42 secs
+[2018-02-13T15:44:25.353] [INFO] cheese - inserting 561 documents. first: Exo's Showtime and last: Armenia in the Eurovision Song Contest 2016
+[2018-02-13T15:44:25.417] [INFO] cheese - batch complete in: 0.468 secs
+[2018-02-13T15:44:25.546] [INFO] cheese - inserting 349 documents. first: Wawiriya Burton and last: Dhamrai Jagannath Roth
+[2018-02-13T15:44:25.572] [INFO] cheese - batch complete in: 0.407 secs
+[2018-02-13T15:44:25.573] [INFO] cheese - inserting 642 documents. first: Mariano José de Larra and last: Mélodie
+[2018-02-13T15:44:25.597] [INFO] cheese - batch complete in: 0.386 secs
+[2018-02-13T15:44:25.604] [INFO] cheese - inserting 575 documents. first: Railway semaphore signal and last: Preston Wamsley
+[2018-02-13T15:44:25.625] [INFO] cheese - batch complete in: 0.398 secs
+[2018-02-13T15:44:25.772] [INFO] cheese - inserting 614 documents. first: Social issue and last: Guairá Department
+[2018-02-13T15:44:25.797] [INFO] cheese - batch complete in: 0.38 secs
+[2018-02-13T15:44:25.967] [INFO] cheese - inserting 462 documents. first: Killer Instinct and last: Ryu Hyun-Jin
+[2018-02-13T15:44:25.973] [INFO] cheese - inserting 384 documents. first: Jennifer Government: NationStates and last: Gerardus Mercator
+[2018-02-13T15:44:25.992] [INFO] cheese - inserting 543 documents. first: Stage6 and last: Barrack (disambiguation)
+[2018-02-13T15:44:26.003] [INFO] cheese - batch complete in: 0.378 secs
+[2018-02-13T15:44:25.996] [INFO] cheese - batch complete in: 0.424 secs
+[2018-02-13T15:44:26.056] [INFO] cheese - batch complete in: 0.459 secs
+[2018-02-13T15:44:26.285] [INFO] cheese - inserting 398 documents. first: Skyfall and last: Bat'leth
+[2018-02-13T15:44:26.313] [INFO] cheese - batch complete in: 0.317 secs
+[2018-02-13T15:44:26.389] [INFO] cheese - inserting 514 documents. first: Julie Trustrup Jensen and last: Madurai district
+[2018-02-13T15:44:26.433] [INFO] cheese - batch complete in: 0.636 secs
+[2018-02-13T15:44:26.474] [INFO] cheese - inserting 471 documents. first: Almond cake and last: Winter Youth Olympic Games
+[2018-02-13T15:44:26.481] [INFO] cheese - inserting 436 documents. first: Jacob Obrecht and last: Suleiman the Magnificent
+[2018-02-13T15:44:26.498] [INFO] cheese - batch complete in: 0.495 secs
+[2018-02-13T15:44:26.508] [INFO] cheese - batch complete in: 0.452 secs
+[2018-02-13T15:44:26.839] [INFO] cheese - inserting 607 documents. first: 2016 Kaikoura earthquake and last: List of caravanserais in Azerbaijan
+[2018-02-13T15:44:26.884] [INFO] cheese - inserting 493 documents. first: Evelina and last: Weight training
+[2018-02-13T15:44:26.910] [INFO] cheese - batch complete in: 0.411 secs
+[2018-02-13T15:44:26.960] [INFO] cheese - batch complete in: 0.527 secs
+[2018-02-13T15:44:26.995] [INFO] cheese - inserting 544 documents. first: Kālidāsa and last: Islam Karimov
+[2018-02-13T15:44:27.019] [INFO] cheese - batch complete in: 0.511 secs
+[2018-02-13T15:44:27.054] [INFO] cheese - inserting 466 documents. first: Great-billed Heron and last: Kenneth Walker
+[2018-02-13T15:44:27.107] [INFO] cheese - batch complete in: 0.794 secs
+[2018-02-13T15:44:27.331] [INFO] cheese - inserting 559 documents. first: Egyptian goose and last: David Copperfield
+[2018-02-13T15:44:27.359] [INFO] cheese - batch complete in: 0.399 secs
+[2018-02-13T15:44:27.480] [INFO] cheese - inserting 611 documents. first: Kate Bosworth and last: Brosses
+[2018-02-13T15:44:27.480] [INFO] cheese - inserting 559 documents. first: Weekly Shonen Jump and last: Les Pommerats
+[2018-02-13T15:44:27.500] [INFO] cheese - batch complete in: 0.391 secs
+[2018-02-13T15:44:27.516] [INFO] cheese - batch complete in: 0.497 secs
+[2018-02-13T15:44:27.570] [INFO] cheese - inserting 557 documents. first: Gang and last: Jazz piano
+[2018-02-13T15:44:27.598] [INFO] cheese - batch complete in: 0.688 secs
+[2018-02-13T15:44:27.674] [INFO] cheese - inserting 480 documents. first: Dadou and last: Đinh Xuân Lâm
+[2018-02-13T15:44:27.687] [INFO] cheese - batch complete in: 0.328 secs
+[2018-02-13T15:44:27.757] [INFO] cheese - inserting 717 documents. first: Bussières, Yonne and last: Monétay-sur-Loire
+[2018-02-13T15:44:27.772] [INFO] cheese - batch complete in: 0.272 secs
+[2018-02-13T15:44:27.871] [INFO] cheese - inserting 467 documents. first: Saignelégier and last: Haripur District
+[2018-02-13T15:44:27.896] [INFO] cheese - batch complete in: 0.38 secs
+[2018-02-13T15:44:27.992] [INFO] cheese - inserting 461 documents. first: Arnold Spielberg and last: Starships
+[2018-02-13T15:44:28.007] [INFO] cheese - batch complete in: 0.32 secs
+[2018-02-13T15:44:28.022] [INFO] cheese - inserting 673 documents. first: Apito and last: Eoghan Quigg
+[2018-02-13T15:44:28.034] [INFO] cheese - inserting 582 documents. first: Monétay-sur-Allier and last: Cold Stone Creamery
+[2018-02-13T15:44:28.046] [INFO] cheese - batch complete in: 0.448 secs
+[2018-02-13T15:44:28.051] [INFO] cheese - batch complete in: 0.279 secs
+[2018-02-13T15:44:28.253] [INFO] cheese - inserting 530 documents. first: Sybrand van Haersma Buma and last: Qin Shi Huang
+[2018-02-13T15:44:28.323] [INFO] cheese - batch complete in: 0.316 secs
+[2018-02-13T15:44:28.335] [INFO] cheese - inserting 618 documents. first: Karak District and last: Transformer
+[2018-02-13T15:44:28.364] [INFO] cheese - batch complete in: 0.468 secs
+[2018-02-13T15:44:28.397] [INFO] cheese - inserting 424 documents. first: Max Schmitt in a Single Scull and last: Padmashali
+[2018-02-13T15:44:28.409] [INFO] cheese - batch complete in: 0.358 secs
+[2018-02-13T15:44:28.530] [INFO] cheese - inserting 644 documents. first: Imhotep and last: Yoshiaki Shimojo
+[2018-02-13T15:44:28.557] [INFO] cheese - batch complete in: 0.511 secs
+[2018-02-13T15:44:28.612] [INFO] cheese - inserting 691 documents. first: Abigail Kubeka and last: Time in Pakistan
+[2018-02-13T15:44:28.632] [INFO] cheese - batch complete in: 0.309 secs
+[2018-02-13T15:44:28.684] [INFO] cheese - inserting 542 documents. first: Ballycastle, County Antrim and last: The Life and Times of Scrooge McDuck
+[2018-02-13T15:44:28.704] [INFO] cheese - batch complete in: 0.34 secs
+[2018-02-13T15:44:28.723] [INFO] cheese - inserting 472 documents. first: 2012 Trinidad and Tobago Quadrangular Twenty20 and last: Henri Bergson
+[2018-02-13T15:44:28.742] [INFO] cheese - batch complete in: 0.332 secs
+[2018-02-13T15:44:28.886] [INFO] cheese - inserting 595 documents. first: Matteo Ferrari and last: Heterodontosaur
+[2018-02-13T15:44:28.910] [INFO] cheese - batch complete in: 0.352 secs
+[2018-02-13T15:44:28.945] [INFO] cheese - inserting 723 documents. first: Wels and last: Michalovce
+[2018-02-13T15:44:28.966] [INFO] cheese - inserting 385 documents. first: General Certificate of Secondary Education and last: Hugh Orde
+[2018-02-13T15:44:28.972] [INFO] cheese - batch complete in: 0.34 secs
+[2018-02-13T15:44:28.982] [INFO] cheese - batch complete in: 0.278 secs
+[2018-02-13T15:44:29.022] [INFO] cheese - inserting 446 documents. first: Lee Radziwill and last: Cepheid variable
+[2018-02-13T15:44:29.036] [INFO] cheese - batch complete in: 0.294 secs
+[2018-02-13T15:44:29.292] [INFO] cheese - inserting 443 documents. first: GloFish and last: Protest the Hero
+[2018-02-13T15:44:29.313] [INFO] cheese - batch complete in: 0.277 secs
+[2018-02-13T15:44:29.336] [INFO] cheese - inserting 650 documents. first: Mr. Pogo and last: Grini concentration camp
+[2018-02-13T15:44:29.347] [INFO] cheese - inserting 579 documents. first: Antti Niemi and last: Riojasaurus
+[2018-02-13T15:44:29.353] [INFO] cheese - inserting 597 documents. first: Candy Lo and last: Bering Strait
+[2018-02-13T15:44:29.362] [INFO] cheese - batch complete in: 0.39 secs
+[2018-02-13T15:44:29.367] [INFO] cheese - batch complete in: 0.457 secs
+[2018-02-13T15:44:29.400] [INFO] cheese - batch complete in: 0.417 secs
+[2018-02-13T15:44:29.583] [INFO] cheese - inserting 456 documents. first: Reaction intermediate and last: Anne Hutchinson
+[2018-02-13T15:44:29.596] [INFO] cheese - batch complete in: 0.283 secs
+[2018-02-13T15:44:29.612] [INFO] cheese - inserting 215 documents. first: Nicol David and last: Charles Mackerras
+[2018-02-13T15:44:29.622] [INFO] cheese - batch complete in: 0.255 secs
+[2018-02-13T15:44:29.693] [INFO] cheese - inserting 643 documents. first: Ludwigslust-Parchim Rural District and last: Flag of Luxembourg
+[2018-02-13T15:44:29.713] [INFO] cheese - batch complete in: 0.35 secs
+[2018-02-13T15:44:29.771] [INFO] cheese - inserting 384 documents. first: Monolophosaurus and last: Shot (ice hockey)
+[2018-02-13T15:44:29.793] [INFO] cheese - batch complete in: 0.393 secs
+[2018-02-13T15:44:29.842] [INFO] cheese - inserting 283 documents. first: Matariki Network of Universities and last: Mazu (goddess)
+[2018-02-13T15:44:29.855] [INFO] cheese - batch complete in: 0.259 secs
+[2018-02-13T15:44:30.023] [INFO] cheese - inserting 470 documents. first: Renault Mégane and last: JPEG
+[2018-02-13T15:44:30.046] [INFO] cheese - batch complete in: 0.424 secs
+[2018-02-13T15:44:30.126] [INFO] cheese - inserting 603 documents. first: T. Rex Autopsy and last: Sumiteru Taniguchi
+[2018-02-13T15:44:30.141] [INFO] cheese - inserting 407 documents. first: Banquo and last: Quicksand (movie)
+[2018-02-13T15:44:30.148] [INFO] cheese - batch complete in: 0.435 secs
+[2018-02-13T15:44:30.169] [INFO] cheese - batch complete in: 0.314 secs
+[2018-02-13T15:44:30.210] [INFO] cheese - inserting 534 documents. first: Goal (ice hockey) and last: Ain
+[2018-02-13T15:44:30.244] [INFO] cheese - batch complete in: 0.451 secs
+[2018-02-13T15:44:30.579] [INFO] cheese - inserting 653 documents. first: Sunao Tsuboi and last: Fatehpur Sikri
+[2018-02-13T15:44:30.604] [INFO] cheese - inserting 486 documents. first: Nuss Procedure and last: Race movie
+[2018-02-13T15:44:30.610] [INFO] cheese - batch complete in: 0.462 secs
+[2018-02-13T15:44:30.650] [INFO] cheese - batch complete in: 0.481 secs
+[2018-02-13T15:44:30.746] [INFO] cheese - inserting 581 documents. first: WilliamsF1 Grand Prix results and last: Sodium iodide
+[2018-02-13T15:44:30.782] [INFO] cheese - batch complete in: 0.736 secs
+[2018-02-13T15:44:30.783] [INFO] cheese - inserting 481 documents. first: Aisne and last: University of Kansas
+[2018-02-13T15:44:30.823] [INFO] cheese - batch complete in: 0.579 secs
+[2018-02-13T15:44:30.985] [INFO] cheese - inserting 400 documents. first: Ted Manson and last: Dora Baltea
+[2018-02-13T15:44:30.997] [INFO] cheese - batch complete in: 0.347 secs
+[2018-02-13T15:44:31.048] [INFO] cheese - inserting 640 documents. first: Murmansk Oblast and last: Hurricane Ophelia
+[2018-02-13T15:44:31.075] [INFO] cheese - batch complete in: 0.465 secs
+[2018-02-13T15:44:31.163] [INFO] cheese - inserting 565 documents. first: Sodium fluoride and last: Silicon oxide
+[2018-02-13T15:44:31.161] [INFO] cheese - inserting 456 documents. first: University of Pennsylvania and last: Boeing 757
+[2018-02-13T15:44:31.184] [INFO] cheese - batch complete in: 0.361 secs
+[2018-02-13T15:44:31.201] [INFO] cheese - batch complete in: 0.419 secs
+[2018-02-13T15:44:31.254] [INFO] cheese - inserting 483 documents. first: Jaime Herrera Beutler and last: Tahiti rail
+[2018-02-13T15:44:31.270] [INFO] cheese - batch complete in: 0.273 secs
+[2018-02-13T15:44:31.469] [INFO] cheese - inserting 286 documents. first: Arrondissement of Ambert and last: Shimmer and Shine
+[2018-02-13T15:44:31.485] [INFO] cheese - batch complete in: 0.41 secs
+[2018-02-13T15:44:31.491] [INFO] cheese - inserting 738 documents. first: List of National Hockey League arenas and last: Ohey
+[2018-02-13T15:44:31.507] [INFO] cheese - inserting 486 documents. first: Frank Kelso and last: Burnham-on-Crouch
+[2018-02-13T15:44:31.521] [INFO] cheese - batch complete in: 0.337 secs
+[2018-02-13T15:44:31.525] [INFO] cheese - batch complete in: 0.255 secs
+[2018-02-13T15:44:31.580] [INFO] cheese - inserting 505 documents. first: Jean Cocteau and last: Carlton Football Club
+[2018-02-13T15:44:31.607] [INFO] cheese - batch complete in: 0.406 secs
+[2018-02-13T15:44:31.758] [INFO] cheese - inserting 201 documents. first: Katalin Szőke and last: Lindokuhle
+[2018-02-13T15:44:31.765] [INFO] cheese - batch complete in: 0.28 secs
+[2018-02-13T15:44:31.817] [INFO] cheese - inserting 666 documents. first: Olen and last: Georg Cantor
+[2018-02-13T15:44:31.827] [INFO] cheese - inserting 559 documents. first: Cold Norton and last: Bonaventure
+[2018-02-13T15:44:31.836] [INFO] cheese - batch complete in: 0.315 secs
+[2018-02-13T15:44:31.846] [INFO] cheese - batch complete in: 0.321 secs
+[2018-02-13T15:44:32.012] [INFO] cheese - inserting 538 documents. first: Essendon Football Club and last: Tiruchirappalli
+[2018-02-13T15:44:32.033] [INFO] cheese - batch complete in: 0.426 secs
+[2018-02-13T15:44:32.165] [INFO] cheese - inserting 676 documents. first: Pay-per-view and last: Antwerp (province)
+[2018-02-13T15:44:32.192] [INFO] cheese - inserting 598 documents. first: Game Revolution and last: Flower pot
+[2018-02-13T15:44:32.195] [INFO] cheese - batch complete in: 0.359 secs
+[2018-02-13T15:44:32.212] [INFO] cheese - batch complete in: 0.366 secs
+[2018-02-13T15:44:32.266] [INFO] cheese - inserting 268 documents. first: Scottish &amp; Newcastle and last: Rikard Wolff
+[2018-02-13T15:44:32.277] [INFO] cheese - batch complete in: 0.512 secs
+[2018-02-13T15:44:32.331] [INFO] cheese - inserting 495 documents. first: ROM (disambiguation) and last: Power line
+[2018-02-13T15:44:32.347] [INFO] cheese - batch complete in: 0.314 secs
+[2018-02-13T15:44:32.423] [INFO] cheese - inserting 467 documents. first: Thulium and last: Suceava
+[2018-02-13T15:44:32.438] [INFO] cheese - batch complete in: 0.243 secs
+[2018-02-13T15:44:32.508] [INFO] cheese - inserting 86 documents. first: Earle Hyman and last: Shunt (electrical)
+[2018-02-13T15:44:32.517] [INFO] cheese - batch complete in: 0.24 secs
+[2018-02-13T15:44:32.518] [INFO] cheese - worker pid:87785 is done. inserted 62328 pages in 0 secs.
+[2018-02-13T15:44:32.565] [INFO] cheese - inserting 716 documents. first: Bernadette Lafont and last: Volksmarine
+[2018-02-13T15:44:32.593] [INFO] cheese - batch complete in: 0.381 secs
+[2018-02-13T15:44:32.607] [INFO] cheese - inserting 484 documents. first: Dean of Invention and last: Gorgonopsid
+[2018-02-13T15:44:32.624] [INFO] cheese - batch complete in: 0.277 secs
+[2018-02-13T15:44:32.683] [INFO] cheese - inserting 506 documents. first: Baiu Mountains and last: Tony Lazzeri
+[2018-02-13T15:44:32.701] [INFO] cheese - batch complete in: 0.263 secs
+[2018-02-13T15:44:32.842] [INFO] cheese - inserting 509 documents. first: Buddy Scott and last: Godmanchester
+[2018-02-13T15:44:32.853] [INFO] cheese - inserting 569 documents. first: Gorgonops and last: Air navigation
+[2018-02-13T15:44:32.856] [INFO] cheese - batch complete in: 0.263 secs
+[2018-02-13T15:44:32.871] [INFO] cheese - batch complete in: 0.247 secs
+[2018-02-13T15:44:32.990] [INFO] cheese - inserting 639 documents. first: Revolution Studios and last: Lehigh Valley IronPigs
+[2018-02-13T15:44:33.013] [INFO] cheese - batch complete in: 0.311 secs
+[2018-02-13T15:44:33.141] [INFO] cheese - inserting 495 documents. first: PewDiePie and last: British Darts Organisation
+[2018-02-13T15:44:33.154] [INFO] cheese - batch complete in: 0.298 secs
+[2018-02-13T15:44:33.159] [INFO] cheese - inserting 604 documents. first: Kristi Yamaguchi and last: Genetic counselling
+[2018-02-13T15:44:33.186] [INFO] cheese - batch complete in: 0.315 secs
+[2018-02-13T15:44:33.217] [INFO] cheese - inserting 27 documents. first: Susan Collins and last: Stephen Baldwin
+[2018-02-13T15:44:33.219] [INFO] cheese - batch complete in: 0.033 secs
+[2018-02-13T15:44:33.219] [INFO] cheese - worker pid:87783 is done. inserted 63109 pages in 0 secs.
+[2018-02-13T15:44:33.251] [INFO] cheese - inserting 196 documents. first: Fishbourne Roman Palace and last: Government shutdown in the United States
+[2018-02-13T15:44:33.256] [INFO] cheese - batch complete in: 0.102 secs
+[2018-02-13T15:44:33.256] [INFO] cheese - worker pid:87784 is done. inserted 62522 pages in 0 secs.
+[2018-02-13T15:44:33.261] [INFO] cheese - inserting 632 documents. first: Le Horps and last: Book of Tobit
+[2018-02-13T15:44:33.275] [INFO] cheese - batch complete in: 0.262 secs
+[2018-02-13T15:44:33.490] [INFO] cheese - inserting 591 documents. first: Forbidden City and last: Vince J. McMahon
+[2018-02-13T15:44:33.505] [INFO] cheese - batch complete in: 0.23 secs
+[2018-02-13T15:44:33.720] [INFO] cheese - inserting 556 documents. first: René Adler and last: Hongwu Emperor
+[2018-02-13T15:44:33.733] [INFO] cheese - batch complete in: 0.228 secs
+[2018-02-13T15:44:33.902] [INFO] cheese - inserting 605 documents. first: Soulja Boy Tell 'Em and last: Execution unit
+[2018-02-13T15:44:33.913] [INFO] cheese - batch complete in: 0.18 secs
+[2018-02-13T15:44:34.110] [INFO] cheese - inserting 557 documents. first: Pre-1600 Atlantic hurricane seasons and last: Grammy Award for Best Song Written for a Motion Picture, Television or Other Visual Media
+[2018-02-13T15:44:34.125] [INFO] cheese - batch complete in: 0.212 secs
+[2018-02-13T15:44:34.294] [INFO] cheese - inserting 557 documents. first: Bonnie Raitt and last: Amfissa
+[2018-02-13T15:44:34.306] [INFO] cheese - batch complete in: 0.181 secs
+[2018-02-13T15:44:34.499] [INFO] cheese - inserting 560 documents. first: Tann, Hesse and last: Westward Ho!
+[2018-02-13T15:44:34.519] [INFO] cheese - batch complete in: 0.213 secs
+[2018-02-13T15:44:34.706] [INFO] cheese - inserting 635 documents. first: Bude and last: Écorpain
+[2018-02-13T15:44:34.725] [INFO] cheese - batch complete in: 0.206 secs
+[2018-02-13T15:44:34.847] [INFO] cheese - inserting 987 documents. first: Épineu-le-Chevreuil and last: Barling, Arkansas
+[2018-02-13T15:44:34.857] [INFO] cheese - batch complete in: 0.132 secs
+[2018-02-13T15:44:34.995] [INFO] cheese - inserting 877 documents. first: Bey, Ain and last: Angaïs
+[2018-02-13T15:44:35.005] [INFO] cheese - batch complete in: 0.148 secs
+[2018-02-13T15:44:35.154] [INFO] cheese - inserting 946 documents. first: Anglet and last: Grand View, Idaho
+[2018-02-13T15:44:35.165] [INFO] cheese - batch complete in: 0.16 secs
+[2018-02-13T15:44:35.290] [INFO] cheese - inserting 974 documents. first: Grangeville, Idaho and last: Aubin-Saint-Vaast
+[2018-02-13T15:44:35.303] [INFO] cheese - batch complete in: 0.138 secs
+[2018-02-13T15:44:35.418] [INFO] cheese - inserting 998 documents. first: Aubrometz and last: Marlow, Oklahoma
+[2018-02-13T15:44:35.429] [INFO] cheese - batch complete in: 0.126 secs
+[2018-02-13T15:44:35.567] [INFO] cheese - inserting 996 documents. first: Maud, Oklahoma and last: Warsaw, Illinois
+[2018-02-13T15:44:35.578] [INFO] cheese - batch complete in: 0.149 secs
+[2018-02-13T15:44:35.722] [INFO] cheese - inserting 962 documents. first: Washington, Illinois and last: Marions
+[2018-02-13T15:44:35.736] [INFO] cheese - batch complete in: 0.158 secs
+[2018-02-13T15:44:35.919] [INFO] cheese - inserting 943 documents. first: Marsas, Gironde and last: Gyé-sur-Seine
+[2018-02-13T15:44:35.936] [INFO] cheese - batch complete in: 0.2 secs
+[2018-02-13T15:44:36.097] [INFO] cheese - inserting 806 documents. first: Hampigny and last: Saint-André-sur-Orne
+[2018-02-13T15:44:36.108] [INFO] cheese - batch complete in: 0.172 secs
+[2018-02-13T15:44:36.316] [INFO] cheese - inserting 693 documents. first: Saint-Arnoult, Calvados and last: Link reaction
+[2018-02-13T15:44:36.333] [INFO] cheese - batch complete in: 0.225 secs
+[2018-02-13T15:44:36.565] [INFO] cheese - inserting 523 documents. first: Rift (geology) and last: Harrow &amp; Wealdstone station
+[2018-02-13T15:44:36.582] [INFO] cheese - batch complete in: 0.249 secs
+[2018-02-13T15:44:36.782] [INFO] cheese - inserting 508 documents. first: Lemon Drop Mangosteen and last: Liliales
+[2018-02-13T15:44:36.794] [INFO] cheese - batch complete in: 0.212 secs
+[2018-02-13T15:44:36.981] [INFO] cheese - inserting 562 documents. first: Drill and last: Beringen
+[2018-02-13T15:44:36.994] [INFO] cheese - batch complete in: 0.199 secs
+[2018-02-13T15:44:37.205] [INFO] cheese - inserting 585 documents. first: Beloeil and last: Goat's milk cheese
+[2018-02-13T15:44:37.216] [INFO] cheese - batch complete in: 0.222 secs
+[2018-02-13T15:44:37.403] [INFO] cheese - inserting 219 documents. first: Webcomic and last: Seal (device)
+[2018-02-13T15:44:37.411] [INFO] cheese - batch complete in: 0.195 secs
+[2018-02-13T15:44:37.590] [INFO] cheese - inserting 586 documents. first: The Attitude Era and last: João Justino Amaral dos Santos
+[2018-02-13T15:44:37.606] [INFO] cheese - batch complete in: 0.195 secs
+[2018-02-13T15:44:37.851] [INFO] cheese - inserting 636 documents. first: Zé Sérgio and last: Alberto Gilardino
+[2018-02-13T15:44:37.865] [INFO] cheese - batch complete in: 0.259 secs
+[2018-02-13T15:44:38.080] [INFO] cheese - inserting 579 documents. first: Angelo Peruzzi and last: The Real Ghostbusters
+[2018-02-13T15:44:38.093] [INFO] cheese - batch complete in: 0.228 secs
+[2018-02-13T15:44:38.268] [INFO] cheese - inserting 535 documents. first: Messianic Judaism and last: Missy Peregrym
+[2018-02-13T15:44:38.279] [INFO] cheese - batch complete in: 0.186 secs
+[2018-02-13T15:44:38.434] [INFO] cheese - inserting 381 documents. first: Ken Follett and last: Chanakya
+[2018-02-13T15:44:38.442] [INFO] cheese - batch complete in: 0.163 secs
+[2018-02-13T15:44:38.638] [INFO] cheese - inserting 610 documents. first: Trowel and last: Gresham's law
+[2018-02-13T15:44:38.655] [INFO] cheese - batch complete in: 0.212 secs
+[2018-02-13T15:44:38.853] [INFO] cheese - inserting 609 documents. first: Benjamin Netanyahu and last: Hideki Uchidate
+[2018-02-13T15:44:38.869] [INFO] cheese - batch complete in: 0.214 secs
+[2018-02-13T15:44:39.088] [INFO] cheese - inserting 635 documents. first: Ricardo Pereira and last: Ukrainian Premier League
+[2018-02-13T15:44:39.102] [INFO] cheese - batch complete in: 0.233 secs
+[2018-02-13T15:44:39.247] [INFO] cheese - inserting 349 documents. first: Susumu Oki and last: Daisuke Tomita
+[2018-02-13T15:44:39.257] [INFO] cheese - batch complete in: 0.155 secs
+[2018-02-13T15:44:39.339] [INFO] cheese - inserting 98 documents. first: Seiichiro Okuno and last: Mesonychid
+[2018-02-13T15:44:39.342] [INFO] cheese - batch complete in: 0.085 secs
+[2018-02-13T15:44:39.542] [INFO] cheese - inserting 598 documents. first: Andrewsarchus and last: Wavelet transform
+[2018-02-13T15:44:39.558] [INFO] cheese - batch complete in: 0.216 secs
+[2018-02-13T15:44:39.763] [INFO] cheese - inserting 556 documents. first: Gladys Knight and last: Verbenaceae
+[2018-02-13T15:44:39.777] [INFO] cheese - batch complete in: 0.219 secs
+[2018-02-13T15:44:39.949] [INFO] cheese - inserting 544 documents. first: Reinaldo da Cruz Oliveira and last: Michael Waltrip
+[2018-02-13T15:44:39.960] [INFO] cheese - batch complete in: 0.183 secs
+[2018-02-13T15:44:40.116] [INFO] cheese - inserting 580 documents. first: Jean Simmons and last: Issey Nakajima-Farran
+[2018-02-13T15:44:40.127] [INFO] cheese - batch complete in: 0.167 secs
+[2018-02-13T15:44:40.374] [INFO] cheese - inserting 658 documents. first: Toshimitsu Asai and last: Leap year starting on Thursday
+[2018-02-13T15:44:40.392] [INFO] cheese - batch complete in: 0.265 secs
+[2018-02-13T15:44:40.530] [INFO] cheese - inserting 397 documents. first: Leap year starting on Saturday and last: Winnebago County, Wisconsin
+[2018-02-13T15:44:40.538] [INFO] cheese - batch complete in: 0.146 secs
+[2018-02-13T15:44:40.729] [INFO] cheese - inserting 417 documents. first: Chiton and last: Viral life cycle
+[2018-02-13T15:44:40.739] [INFO] cheese - batch complete in: 0.201 secs
+[2018-02-13T15:44:40.884] [INFO] cheese - inserting 497 documents. first: Empathy and last: Faber Drive
+[2018-02-13T15:44:40.899] [INFO] cheese - batch complete in: 0.16 secs
+[2018-02-13T15:44:41.125] [INFO] cheese - inserting 579 documents. first: Abubakari Yakubu and last: Eric S. Raymond
+[2018-02-13T15:44:41.139] [INFO] cheese - batch complete in: 0.24 secs
+[2018-02-13T15:44:41.344] [INFO] cheese - inserting 570 documents. first: Bourne End, Buckinghamshire and last: Glioblastoma multiforme
+[2018-02-13T15:44:41.358] [INFO] cheese - batch complete in: 0.219 secs
+[2018-02-13T15:44:41.567] [INFO] cheese - inserting 661 documents. first: Jordan Schroeder and last: Regeneration
+[2018-02-13T15:44:41.582] [INFO] cheese - batch complete in: 0.224 secs
+[2018-02-13T15:44:41.792] [INFO] cheese - inserting 653 documents. first: Lowell, Massachusetts and last: Theanine
+[2018-02-13T15:44:41.806] [INFO] cheese - batch complete in: 0.224 secs
+[2018-02-13T15:44:41.997] [INFO] cheese - inserting 583 documents. first: Bichon Frisé and last: John Michael Wright
+[2018-02-13T15:44:42.008] [INFO] cheese - batch complete in: 0.202 secs
+[2018-02-13T15:44:42.155] [INFO] cheese - inserting 330 documents. first: Frank Leboeuf and last: Badwater Basin
+[2018-02-13T15:44:42.167] [INFO] cheese - batch complete in: 0.159 secs
+[2018-02-13T15:44:42.307] [INFO] cheese - inserting 365 documents. first: Brian Campbell and last: Katarina Waters
+[2018-02-13T15:44:42.315] [INFO] cheese - batch complete in: 0.148 secs
+[2018-02-13T15:44:42.544] [INFO] cheese - inserting 542 documents. first: Because (The Beatles song) and last: Circuit Gilles Villeneuve
+[2018-02-13T15:44:42.558] [INFO] cheese - batch complete in: 0.243 secs
+[2018-02-13T15:44:42.813] [INFO] cheese - inserting 598 documents. first: A1 and last: Sandpaper
+[2018-02-13T15:44:42.832] [INFO] cheese - batch complete in: 0.274 secs
+[2018-02-13T15:44:43.016] [INFO] cheese - inserting 489 documents. first: Corundum and last: Quatour pour la fin du temps
+[2018-02-13T15:44:43.027] [INFO] cheese - batch complete in: 0.195 secs
+[2018-02-13T15:44:43.271] [INFO] cheese - inserting 531 documents. first: National parks of New Zealand and last: Steve Hrymnak
+[2018-02-13T15:44:43.286] [INFO] cheese - batch complete in: 0.259 secs
+[2018-02-13T15:44:43.456] [INFO] cheese - inserting 523 documents. first: Board of directors and last: Maria Antonia of Spain
+[2018-02-13T15:44:43.466] [INFO] cheese - batch complete in: 0.18 secs
+[2018-02-13T15:44:43.627] [INFO] cheese - inserting 496 documents. first: Cleisthenes and last: Dooly the Little Dinosaur
+[2018-02-13T15:44:43.636] [INFO] cheese - batch complete in: 0.17 secs
+[2018-02-13T15:44:43.774] [INFO] cheese - inserting 496 documents. first: Harold Brown and last: Safe from Harm (song)
+[2018-02-13T15:44:43.784] [INFO] cheese - batch complete in: 0.148 secs
+[2018-02-13T15:44:43.966] [INFO] cheese - inserting 612 documents. first: Admiralty and last: Zack Ryder
+[2018-02-13T15:44:43.982] [INFO] cheese - batch complete in: 0.198 secs
+[2018-02-13T15:44:44.161] [INFO] cheese - inserting 581 documents. first: Pinacosaurus and last: Frances Fisher
+[2018-02-13T15:44:44.173] [INFO] cheese - batch complete in: 0.191 secs
+[2018-02-13T15:44:44.336] [INFO] cheese - inserting 559 documents. first: Fredonia, Kansas and last: The Kids Are All Right (movie)
+[2018-02-13T15:44:44.354] [INFO] cheese - batch complete in: 0.181 secs
+[2018-02-13T15:44:44.540] [INFO] cheese - inserting 534 documents. first: I Spit on Your Grave (2010 movie) and last: Personal grooming
+[2018-02-13T15:44:44.553] [INFO] cheese - batch complete in: 0.199 secs
+[2018-02-13T15:44:44.721] [INFO] cheese - inserting 429 documents. first: Firework (song) and last: Safeway Inc.
+[2018-02-13T15:44:44.735] [INFO] cheese - batch complete in: 0.182 secs
+[2018-02-13T15:44:44.883] [INFO] cheese - inserting 387 documents. first: Gamma-ray burst and last: Order of the Indian Empire
+[2018-02-13T15:44:44.892] [INFO] cheese - batch complete in: 0.157 secs
+[2018-02-13T15:44:45.088] [INFO] cheese - inserting 595 documents. first: Garden State Parkway and last: Vermiculite
+[2018-02-13T15:44:45.104] [INFO] cheese - batch complete in: 0.212 secs
+[2018-02-13T15:44:45.405] [INFO] cheese - inserting 565 documents. first: Food politics and last: Périgueux
+[2018-02-13T15:44:45.420] [INFO] cheese - batch complete in: 0.316 secs
+[2018-02-13T15:44:45.823] [INFO] cheese - inserting 676 documents. first: Communes of the Dordogne department and last: Bray, Berkshire
+[2018-02-13T15:44:45.843] [INFO] cheese - batch complete in: 0.423 secs
+[2018-02-13T15:44:46.038] [INFO] cheese - inserting 512 documents. first: Joseph Whittaker (botanist) and last: Afghanistan at the Olympics
+[2018-02-13T15:44:46.054] [INFO] cheese - batch complete in: 0.211 secs
+[2018-02-13T15:44:46.266] [INFO] cheese - inserting 451 documents. first: Hypodermic needle and last: Barnard's star
+[2018-02-13T15:44:46.281] [INFO] cheese - batch complete in: 0.227 secs
+[2018-02-13T15:44:46.423] [INFO] cheese - inserting 276 documents. first: Punjabi language movement and last: Ice cap
+[2018-02-13T15:44:46.432] [INFO] cheese - batch complete in: 0.151 secs
+[2018-02-13T15:44:46.620] [INFO] cheese - inserting 386 documents. first: Carbon–hydrogen bond activation and last: Ireland (disambiguation)
+[2018-02-13T15:44:46.633] [INFO] cheese - batch complete in: 0.201 secs
+[2018-02-13T15:44:46.804] [INFO] cheese - inserting 343 documents. first: Banbasa and last: National Museum of Australia
+[2018-02-13T15:44:46.814] [INFO] cheese - batch complete in: 0.181 secs
+[2018-02-13T15:44:46.999] [INFO] cheese - inserting 376 documents. first: Terminal Velocity (video game) and last: Stronger (Kelly Clarkson album)
+[2018-02-13T15:44:47.009] [INFO] cheese - batch complete in: 0.195 secs
+[2018-02-13T15:44:47.189] [INFO] cheese - inserting 365 documents. first: Henry Cooper and last: Schengen Area
+[2018-02-13T15:44:47.198] [INFO] cheese - batch complete in: 0.189 secs
+[2018-02-13T15:44:47.381] [INFO] cheese - inserting 475 documents. first: Superstition and last: Sequoia
+[2018-02-13T15:44:47.392] [INFO] cheese - batch complete in: 0.194 secs
+[2018-02-13T15:44:47.596] [INFO] cheese - inserting 489 documents. first: New Bern, North Carolina and last: Kan'en
+[2018-02-13T15:44:47.609] [INFO] cheese - batch complete in: 0.217 secs
+[2018-02-13T15:44:47.800] [INFO] cheese - inserting 403 documents. first: Kanpō and last: Tamara Toumanova
+[2018-02-13T15:44:47.817] [INFO] cheese - batch complete in: 0.208 secs
+[2018-02-13T15:44:48.057] [INFO] cheese - inserting 467 documents. first: Faizal Yusof and last: Glaucous
+[2018-02-13T15:44:48.071] [INFO] cheese - batch complete in: 0.254 secs
+[2018-02-13T15:44:48.253] [INFO] cheese - inserting 444 documents. first: Cliff Richard and last: Golden Sun (series)
+[2018-02-13T15:44:48.263] [INFO] cheese - batch complete in: 0.192 secs
+[2018-02-13T15:44:48.625] [INFO] cheese - inserting 551 documents. first: 19th G7 summit and last: Yozo Aoki
+[2018-02-13T15:44:48.646] [INFO] cheese - batch complete in: 0.383 secs
+[2018-02-13T15:44:48.906] [INFO] cheese - inserting 567 documents. first: South India and last: 2011–12 United States network television schedule
+[2018-02-13T15:44:48.922] [INFO] cheese - batch complete in: 0.276 secs
+[2018-02-13T15:44:49.079] [INFO] cheese - inserting 408 documents. first: Comedytime Saturday and last: Red Bridge (Tasmania)
+[2018-02-13T15:44:49.088] [INFO] cheese - batch complete in: 0.166 secs
+[2018-02-13T15:44:49.261] [INFO] cheese - inserting 382 documents. first: Cable-stayed bridge and last: Hitachi, Ibaraki
+[2018-02-13T15:44:49.275] [INFO] cheese - batch complete in: 0.186 secs
+[2018-02-13T15:44:49.456] [INFO] cheese - inserting 403 documents. first: Third Geneva Convention and last: Grey bamboo lemur
+[2018-02-13T15:44:49.467] [INFO] cheese - batch complete in: 0.192 secs
+[2018-02-13T15:44:49.716] [INFO] cheese - inserting 584 documents. first: Angola colobus and last: Luanda Province
+[2018-02-13T15:44:49.732] [INFO] cheese - batch complete in: 0.265 secs
+[2018-02-13T15:44:49.959] [INFO] cheese - inserting 569 documents. first: Historic Monuments and Sites of Hiraizumi and last: Cannibalism in animals
+[2018-02-13T15:44:49.973] [INFO] cheese - batch complete in: 0.241 secs
+[2018-02-13T15:44:50.184] [INFO] cheese - inserting 564 documents. first: Curtsey and last: Rangpur
+[2018-02-13T15:44:50.196] [INFO] cheese - batch complete in: 0.223 secs
+[2018-02-13T15:44:50.381] [INFO] cheese - inserting 520 documents. first: Rangpur, Bangladesh and last: Pseudoscorpion
+[2018-02-13T15:44:50.394] [INFO] cheese - batch complete in: 0.198 secs
+[2018-02-13T15:44:50.580] [INFO] cheese - inserting 490 documents. first: Astacus astacus and last: Andreas Vesalius
+[2018-02-13T15:44:50.594] [INFO] cheese - batch complete in: 0.2 secs
+[2018-02-13T15:44:50.759] [INFO] cheese - inserting 546 documents. first: Rembert Dodoens and last: Job for a Cowboy
+[2018-02-13T15:44:50.769] [INFO] cheese - batch complete in: 0.175 secs
+[2018-02-13T15:44:51.001] [INFO] cheese - inserting 451 documents. first: Chhatrapati Shivaji Terminus and last: Dick Van Dyke
+[2018-02-13T15:44:51.016] [INFO] cheese - batch complete in: 0.247 secs
+[2018-02-13T15:44:51.165] [INFO] cheese - inserting 383 documents. first: Eli Wallach and last: Hardee's
+[2018-02-13T15:44:51.174] [INFO] cheese - batch complete in: 0.158 secs
+[2018-02-13T15:44:51.344] [INFO] cheese - inserting 439 documents. first: Easy Rider and last: Neomorphinae
+[2018-02-13T15:44:51.357] [INFO] cheese - batch complete in: 0.183 secs
+[2018-02-13T15:44:51.585] [INFO] cheese - inserting 488 documents. first: Backpropagation and last: Robert Hughes (critic)
+[2018-02-13T15:44:51.596] [INFO] cheese - batch complete in: 0.239 secs
+[2018-02-13T15:44:51.867] [INFO] cheese - inserting 584 documents. first: Steve Harvey and last: Cleator Moor
+[2018-02-13T15:44:51.884] [INFO] cheese - batch complete in: 0.288 secs
+[2018-02-13T15:44:52.056] [INFO] cheese - inserting 519 documents. first: Haile and last: Ralph Bellamy
+[2018-02-13T15:44:52.071] [INFO] cheese - batch complete in: 0.187 secs
+[2018-02-13T15:44:52.263] [INFO] cheese - inserting 517 documents. first: United States Hockey Hall of Fame and last: Giuseppe Tomasi di Lampedusa
+[2018-02-13T15:44:52.274] [INFO] cheese - batch complete in: 0.203 secs
+[2018-02-13T15:44:52.448] [INFO] cheese - inserting 469 documents. first: Mute swan and last: James Murdoch (journalist)
+[2018-02-13T15:44:52.460] [INFO] cheese - batch complete in: 0.185 secs
+[2018-02-13T15:44:52.663] [INFO] cheese - inserting 370 documents. first: Edmund Papinot and last: Sereno Peck Fenn
+[2018-02-13T15:44:52.672] [INFO] cheese - batch complete in: 0.212 secs
+[2018-02-13T15:44:52.798] [INFO] cheese - inserting 351 documents. first: John Andrews and last: Robert Eugene Bush
+[2018-02-13T15:44:52.805] [INFO] cheese - batch complete in: 0.133 secs
+[2018-02-13T15:44:53.048] [INFO] cheese - inserting 567 documents. first: Televisión Nacional de Chile and last: Protectionist Party
+[2018-02-13T15:44:53.064] [INFO] cheese - batch complete in: 0.259 secs
+[2018-02-13T15:44:53.248] [INFO] cheese - inserting 451 documents. first: Fallingwater and last: Avrilly, Allier
+[2018-02-13T15:44:53.261] [INFO] cheese - batch complete in: 0.197 secs
+[2018-02-13T15:44:53.397] [INFO] cheese - inserting 678 documents. first: Richard Blanco and last: Martha
+[2018-02-13T15:44:53.406] [INFO] cheese - batch complete in: 0.145 secs
+[2018-02-13T15:44:53.547] [INFO] cheese - inserting 730 documents. first: Charles Roven and last: 983
+[2018-02-13T15:44:53.559] [INFO] cheese - batch complete in: 0.153 secs
+[2018-02-13T15:44:53.676] [INFO] cheese - inserting 484 documents. first: 982 and last: Robert M. La Follette, Sr.
+[2018-02-13T15:44:53.684] [INFO] cheese - batch complete in: 0.125 secs
+[2018-02-13T15:44:53.832] [INFO] cheese - inserting 404 documents. first: The Piano Teacher and last: Ann Sothern
+[2018-02-13T15:44:53.840] [INFO] cheese - batch complete in: 0.156 secs
+[2018-02-13T15:44:53.991] [INFO] cheese - inserting 483 documents. first: Gustavo Santaolalla and last: Poás Volcano National Park
+[2018-02-13T15:44:53.999] [INFO] cheese - batch complete in: 0.159 secs
+[2018-02-13T15:44:54.139] [INFO] cheese - inserting 462 documents. first: Mr. Saturday Night and last: Andrea Feldman
+[2018-02-13T15:44:54.147] [INFO] cheese - batch complete in: 0.148 secs
+[2018-02-13T15:44:54.258] [INFO] cheese - inserting 407 documents. first: Bill Wendell and last: Daína Chaviano
+[2018-02-13T15:44:54.267] [INFO] cheese - batch complete in: 0.12 secs
+[2018-02-13T15:44:54.389] [INFO] cheese - inserting 386 documents. first: Angélica Gorodischer and last: The Pink Panther 2
+[2018-02-13T15:44:54.396] [INFO] cheese - batch complete in: 0.129 secs
+[2018-02-13T15:44:54.517] [INFO] cheese - inserting 295 documents. first: Boston National Historical Park and last: Panchayat town
+[2018-02-13T15:44:54.522] [INFO] cheese - batch complete in: 0.126 secs
+[2018-02-13T15:44:54.681] [INFO] cheese - inserting 488 documents. first: Translocation (botany) and last: Vör
+[2018-02-13T15:44:54.690] [INFO] cheese - batch complete in: 0.168 secs
+[2018-02-13T15:44:54.830] [INFO] cheese - inserting 486 documents. first: Rán and last: Oceanus Hopkins
+[2018-02-13T15:44:54.841] [INFO] cheese - batch complete in: 0.151 secs
+[2018-02-13T15:44:54.956] [INFO] cheese - inserting 378 documents. first: Division of Cowper and last: Ymir
+[2018-02-13T15:44:54.962] [INFO] cheese - batch complete in: 0.121 secs
+[2018-02-13T15:44:55.096] [INFO] cheese - inserting 486 documents. first: Thomas Tinker and last: Bridgette Andersen
+[2018-02-13T15:44:55.104] [INFO] cheese - batch complete in: 0.142 secs
+[2018-02-13T15:44:55.242] [INFO] cheese - inserting 553 documents. first: Kary Mullis and last: Motala
+[2018-02-13T15:44:55.250] [INFO] cheese - batch complete in: 0.146 secs
+[2018-02-13T15:44:55.403] [INFO] cheese - inserting 508 documents. first: Vadstena and last: Northampton Saints
+[2018-02-13T15:44:55.413] [INFO] cheese - batch complete in: 0.163 secs
+[2018-02-13T15:44:55.599] [INFO] cheese - inserting 669 documents. first: Worcester Warriors and last: Degerfors Municipality
+[2018-02-13T15:44:55.611] [INFO] cheese - batch complete in: 0.198 secs
+[2018-02-13T15:44:55.816] [INFO] cheese - inserting 617 documents. first: Söderköping Municipality and last: Eve Hewson
+[2018-02-13T15:44:55.830] [INFO] cheese - batch complete in: 0.219 secs
+[2018-02-13T15:44:55.973] [INFO] cheese - inserting 519 documents. first: Ali Hewson and last: Godzilla (2014 movie)
+[2018-02-13T15:44:55.982] [INFO] cheese - batch complete in: 0.152 secs
+[2018-02-13T15:44:56.165] [INFO] cheese - inserting 489 documents. first: Anguirus and last: Nature photography
+[2018-02-13T15:44:56.175] [INFO] cheese - batch complete in: 0.193 secs
+[2018-02-13T15:44:56.316] [INFO] cheese - inserting 434 documents. first: Tetanuran and last: Christian Gottfried Ehrenberg
+[2018-02-13T15:44:56.325] [INFO] cheese - batch complete in: 0.15 secs
+[2018-02-13T15:44:56.493] [INFO] cheese - inserting 497 documents. first: Afro-Haitian and last: Expected value
+[2018-02-13T15:44:56.502] [INFO] cheese - batch complete in: 0.177 secs
+[2018-02-13T15:44:56.667] [INFO] cheese - inserting 612 documents. first: Canaletto and last: Kaohsiung Mosque
+[2018-02-13T15:44:56.679] [INFO] cheese - batch complete in: 0.176 secs
+[2018-02-13T15:44:56.826] [INFO] cheese - inserting 588 documents. first: Taipei Cultural Mosque and last: Court Appointed Special Advocate
+[2018-02-13T15:44:56.838] [INFO] cheese - batch complete in: 0.159 secs
+[2018-02-13T15:44:56.971] [INFO] cheese - inserting 628 documents. first: Mac McGarry and last: Tomáš Plekanec
+[2018-02-13T15:44:56.985] [INFO] cheese - batch complete in: 0.147 secs
+[2018-02-13T15:44:57.130] [INFO] cheese - inserting 592 documents. first: Ray Frederick and last: Shonda Rhimes
+[2018-02-13T15:44:57.140] [INFO] cheese - batch complete in: 0.155 secs
+[2018-02-13T15:44:57.274] [INFO] cheese - inserting 418 documents. first: Oswestry and last: Ioannis Grivas
+[2018-02-13T15:44:57.281] [INFO] cheese - batch complete in: 0.141 secs
+[2018-02-13T15:44:57.416] [INFO] cheese - inserting 537 documents. first: Rafael Addiego Bruno and last: David Krejčí
+[2018-02-13T15:44:57.424] [INFO] cheese - batch complete in: 0.143 secs
+[2018-02-13T15:44:57.553] [INFO] cheese - inserting 582 documents. first: Alexandre Borges and last: Richard Coogan
+[2018-02-13T15:44:57.566] [INFO] cheese - batch complete in: 0.142 secs
+[2018-02-13T15:44:57.701] [INFO] cheese - inserting 579 documents. first: Karl Otto Götz and last: Open University of Israel
+[2018-02-13T15:44:57.709] [INFO] cheese - batch complete in: 0.143 secs
+[2018-02-13T15:44:57.860] [INFO] cheese - inserting 553 documents. first: Birgitta Valberg and last: Gallatin, Tennessee
+[2018-02-13T15:44:57.869] [INFO] cheese - batch complete in: 0.16 secs
+[2018-02-13T15:44:58.021] [INFO] cheese - inserting 614 documents. first: Virgilio Barco Vargas and last: Chamba State
+[2018-02-13T15:44:58.031] [INFO] cheese - batch complete in: 0.162 secs
+[2018-02-13T15:44:58.177] [INFO] cheese - inserting 615 documents. first: Wild Bill Hickok and last: Karlheinz Hackl
+[2018-02-13T15:44:58.189] [INFO] cheese - batch complete in: 0.158 secs
+[2018-02-13T15:44:58.346] [INFO] cheese - inserting 632 documents. first: Division of Maranoa and last: Ken Dodd
+[2018-02-13T15:44:58.358] [INFO] cheese - batch complete in: 0.169 secs
+[2018-02-13T15:44:58.492] [INFO] cheese - inserting 475 documents. first: Grass Valley, California and last: Feixi County
+[2018-02-13T15:44:58.500] [INFO] cheese - batch complete in: 0.141 secs
+[2018-02-13T15:44:58.656] [INFO] cheese - inserting 597 documents. first: Feidong County and last: Problem (Ariana Grande song)
+[2018-02-13T15:44:58.668] [INFO] cheese - batch complete in: 0.168 secs
+[2018-02-13T15:44:58.847] [INFO] cheese - inserting 658 documents. first: Yevgeny Samoteykin and last: Josh Meyers
+[2018-02-13T15:44:58.860] [INFO] cheese - batch complete in: 0.192 secs
+[2018-02-13T15:44:59.015] [INFO] cheese - inserting 607 documents. first: Danny Masterson and last: Laura Bell Bundy
+[2018-02-13T15:44:59.028] [INFO] cheese - batch complete in: 0.168 secs
+[2018-02-13T15:44:59.166] [INFO] cheese - inserting 580 documents. first: Alex Avila and last: Defensin
+[2018-02-13T15:44:59.176] [INFO] cheese - batch complete in: 0.148 secs
+[2018-02-13T15:44:59.361] [INFO] cheese - inserting 640 documents. first: Málaga Cathedral and last: Assassin's Creed: Revelations
+[2018-02-13T15:44:59.373] [INFO] cheese - batch complete in: 0.197 secs
+[2018-02-13T15:44:59.508] [INFO] cheese - inserting 608 documents. first: Lieutenant general and last: Herman Teirlinck
+[2018-02-13T15:44:59.522] [INFO] cheese - batch complete in: 0.148 secs
+[2018-02-13T15:44:59.666] [INFO] cheese - inserting 500 documents. first: Alice Nahon and last: Juke Girl
+[2018-02-13T15:44:59.675] [INFO] cheese - batch complete in: 0.153 secs
+[2018-02-13T15:44:59.818] [INFO] cheese - inserting 481 documents. first: The Marrying Man and last: Infrared telescope
+[2018-02-13T15:44:59.831] [INFO] cheese - batch complete in: 0.156 secs
+[2018-02-13T15:45:00.127] [INFO] cheese - inserting 511 documents. first: Løjenkær and last: Dolores Gray
+[2018-02-13T15:45:00.137] [INFO] cheese - batch complete in: 0.306 secs
+[2018-02-13T15:45:00.332] [INFO] cheese - inserting 598 documents. first: Mildred Miller and last: Bergeforsen
+[2018-02-13T15:45:00.346] [INFO] cheese - batch complete in: 0.209 secs
+[2018-02-13T15:45:00.510] [INFO] cheese - inserting 605 documents. first: Stavreviken and last: Still Alice
+[2018-02-13T15:45:00.521] [INFO] cheese - batch complete in: 0.174 secs
+[2018-02-13T15:45:00.695] [INFO] cheese - inserting 588 documents. first: I'm Going Slightly Mad and last: Tierra de reyes
+[2018-02-13T15:45:00.712] [INFO] cheese - batch complete in: 0.191 secs
+[2018-02-13T15:45:00.881] [INFO] cheese - inserting 561 documents. first: Logogram and last: Call of Duty: Black Ops III
+[2018-02-13T15:45:00.895] [INFO] cheese - batch complete in: 0.183 secs
+[2018-02-13T15:45:01.038] [INFO] cheese - inserting 510 documents. first: Titan arum and last: Asiatic linsang
+[2018-02-13T15:45:01.049] [INFO] cheese - batch complete in: 0.154 secs
+[2018-02-13T15:45:01.397] [INFO] cheese - inserting 619 documents. first: Donald Wrye and last: Mario Biaggi
+[2018-02-13T15:45:01.412] [INFO] cheese - batch complete in: 0.363 secs
+[2018-02-13T15:45:01.595] [INFO] cheese - inserting 544 documents. first: Cristiano Araújo and last: Tribute to Jerusalem
+[2018-02-13T15:45:01.610] [INFO] cheese - batch complete in: 0.198 secs
+[2018-02-13T15:45:01.828] [INFO] cheese - inserting 417 documents. first: Jerusalem Forest and last: Dorothy Kilgallen
+[2018-02-13T15:45:01.839] [INFO] cheese - batch complete in: 0.229 secs
+[2018-02-13T15:45:02.084] [INFO] cheese - inserting 459 documents. first: Martin Ritt and last: Strelka Institute for Media, Architecture and Design
+[2018-02-13T15:45:02.110] [INFO] cheese - batch complete in: 0.271 secs
+[2018-02-13T15:45:02.311] [INFO] cheese - inserting 490 documents. first: United States National Arboretum and last: List of people from New York
+[2018-02-13T15:45:02.329] [INFO] cheese - batch complete in: 0.219 secs
+[2018-02-13T15:45:02.531] [INFO] cheese - inserting 514 documents. first: List of people from Ohio and last: Carlos Oroza
+[2018-02-13T15:45:02.545] [INFO] cheese - batch complete in: 0.215 secs
+[2018-02-13T15:45:02.726] [INFO] cheese - inserting 446 documents. first: Heinz Oberhummer and last: Stuck in the Middle (TV series)
+[2018-02-13T15:45:02.735] [INFO] cheese - batch complete in: 0.19 secs
+[2018-02-13T15:46:54.951] [INFO] cheese - worker pid:88126 is now alive. starting: 143.07 MB ending: 289.96 MB
+[2018-02-13T15:46:54.950] [INFO] cheese - worker pid:88125 is now alive. starting: 0 B ending: 146.89 MB
+[2018-02-13T15:46:54.952] [INFO] cheese - worker pid:88128 is now alive. starting: 431.12 MB ending: 578.01 MB
+[2018-02-13T15:46:54.951] [INFO] cheese - worker pid:88127 is now alive. starting: 287.1 MB ending: 433.98 MB
+[2018-02-13T15:46:55.424] [INFO] cheese - inserting 503 documents. first: Low Countries and last: San Diego Padres
+[2018-02-13T15:46:55.459] [INFO] cheese - inserting 492 documents. first: Taliesin West and last: The Hunchback of Notre Dame (1939 movie)
+[2018-02-13T15:46:55.462] [INFO] cheese - batch complete in: 0.465 secs
+[2018-02-13T15:46:55.493] [INFO] cheese - inserting 596 documents. first: Euston Road and last: University of California, San Diego
+[2018-02-13T15:46:55.498] [INFO] cheese - batch complete in: 0.477 secs
+[2018-02-13T15:46:55.544] [INFO] cheese - batch complete in: 0.545 secs
+[2018-02-13T15:46:55.597] [INFO] cheese - inserting 640 documents. first: April and last: Football
+[2018-02-13T15:46:55.662] [INFO] cheese - batch complete in: 0.664 secs
+[2018-02-13T15:46:55.738] [INFO] cheese - inserting 854 documents. first: Drew Carey and last: Sillanwali Tehsil
+[2018-02-13T15:46:55.772] [INFO] cheese - batch complete in: 0.309 secs
+[2018-02-13T15:46:55.845] [INFO] cheese - inserting 417 documents. first: Balk and last: Barákapuszta
+[2018-02-13T15:46:55.875] [INFO] cheese - batch complete in: 0.377 secs
+[2018-02-13T15:46:55.896] [INFO] cheese - inserting 566 documents. first: University of California and last: Volans (disambiguation)
+[2018-02-13T15:46:55.944] [INFO] cheese - batch complete in: 0.4 secs
+[2018-02-13T15:46:56.110] [INFO] cheese - inserting 540 documents. first: Puran Tehsil and last: Car accident
+[2018-02-13T15:46:56.133] [INFO] cheese - batch complete in: 0.361 secs
+[2018-02-13T15:46:56.206] [INFO] cheese - inserting 501 documents. first: Chris Clifford and last: Listening
+[2018-02-13T15:46:56.226] [INFO] cheese - batch complete in: 0.351 secs
+[2018-02-13T15:46:56.229] [INFO] cheese - inserting 588 documents. first: Georgy Malenkov and last: Crocodylomorph
+[2018-02-13T15:46:56.265] [INFO] cheese - batch complete in: 0.321 secs
+[2018-02-13T15:46:56.284] [INFO] cheese - inserting 834 documents. first: Poland and last: Socrates
+[2018-02-13T15:46:56.341] [INFO] cheese - batch complete in: 0.679 secs
+[2018-02-13T15:46:56.450] [INFO] cheese - inserting 609 documents. first: Malden, Massachusetts and last: Dorah Pass
+[2018-02-13T15:46:56.469] [INFO] cheese - batch complete in: 0.336 secs
+[2018-02-13T15:46:56.546] [INFO] cheese - inserting 583 documents. first: Cookies 'N' Beans and last: Hässleholm
+[2018-02-13T15:46:56.573] [INFO] cheese - batch complete in: 0.347 secs
+[2018-02-13T15:46:56.600] [INFO] cheese - inserting 433 documents. first: Lepidosauromorph and last: James B. Dudley
+[2018-02-13T15:46:56.617] [INFO] cheese - batch complete in: 0.352 secs
+[2018-02-13T15:46:56.723] [INFO] cheese - inserting 519 documents. first: Gondogoro Pass and last: Richard Widmark
+[2018-02-13T15:46:56.741] [INFO] cheese - batch complete in: 0.272 secs
+[2018-02-13T15:46:56.800] [INFO] cheese - inserting 656 documents. first: Dante Alighieri and last: Psoriasis
+[2018-02-13T15:46:56.816] [INFO] cheese - inserting 575 documents. first: Höganäs and last: WaveBird Wireless Controller
+[2018-02-13T15:46:56.836] [INFO] cheese - batch complete in: 0.263 secs
+[2018-02-13T15:46:56.838] [INFO] cheese - batch complete in: 0.497 secs
+[2018-02-13T15:46:56.883] [INFO] cheese - inserting 376 documents. first: Duck and Cover and last: Volcano Rabbit
+[2018-02-13T15:46:56.901] [INFO] cheese - batch complete in: 0.284 secs
+[2018-02-13T15:46:57.018] [INFO] cheese - inserting 504 documents. first: Virgin Atlantic Airways and last: Polarization
+[2018-02-13T15:46:57.034] [INFO] cheese - batch complete in: 0.292 secs
+[2018-02-13T15:46:57.122] [INFO] cheese - inserting 650 documents. first: Battle of Bataan and last: The Wyatt Family
+[2018-02-13T15:46:57.143] [INFO] cheese - batch complete in: 0.307 secs
+[2018-02-13T15:46:57.214] [INFO] cheese - inserting 539 documents. first: Happy Science and last: Validity
+[2018-02-13T15:46:57.244] [INFO] cheese - batch complete in: 0.343 secs
+[2018-02-13T15:46:57.370] [INFO] cheese - inserting 756 documents. first: Jurassic Park and last: Baltic Sea
+[2018-02-13T15:46:57.370] [INFO] cheese - inserting 732 documents. first: Dance, Dance and last: Varsity letter
+[2018-02-13T15:46:57.394] [INFO] cheese - batch complete in: 0.359 secs
+[2018-02-13T15:46:57.405] [INFO] cheese - inserting 610 documents. first: Dolores Huerta and last: Mr. Lordi
+[2018-02-13T15:46:57.423] [INFO] cheese - batch complete in: 0.585 secs
+[2018-02-13T15:46:57.426] [INFO] cheese - batch complete in: 0.282 secs
+[2018-02-13T15:46:57.554] [INFO] cheese - inserting 565 documents. first: King Duncan and last: Beriberi
+[2018-02-13T15:46:57.581] [INFO] cheese - batch complete in: 0.337 secs
+[2018-02-13T15:46:57.672] [INFO] cheese - inserting 410 documents. first: Anti-balaka and last: Sune Bergström
+[2018-02-13T15:46:57.685] [INFO] cheese - batch complete in: 0.259 secs
+[2018-02-13T15:46:57.757] [INFO] cheese - inserting 565 documents. first: Free content and last: MySims
+[2018-02-13T15:46:57.780] [INFO] cheese - batch complete in: 0.386 secs
+[2018-02-13T15:46:57.939] [INFO] cheese - inserting 537 documents. first: Linear mapping and last: Lassie Lou Ahern
+[2018-02-13T15:46:57.961] [INFO] cheese - batch complete in: 0.276 secs
+[2018-02-13T15:46:58.088] [INFO] cheese - inserting 593 documents. first: The Sun (newspaper) and last: Live from SoHo (Maroon 5 album)
+[2018-02-13T15:46:58.121] [INFO] cheese - batch complete in: 0.341 secs
+[2018-02-13T15:46:58.194] [INFO] cheese - inserting 571 documents. first: Hanna Maron and last: Paco Peña
+[2018-02-13T15:46:58.212] [INFO] cheese - batch complete in: 0.25 secs
+[2018-02-13T15:46:58.227] [INFO] cheese - inserting 661 documents. first: Scandinavia and last: Laws of war
+[2018-02-13T15:46:58.283] [INFO] cheese - batch complete in: 0.86 secs
+[2018-02-13T15:46:58.471] [INFO] cheese - inserting 565 documents. first: Gerard Mortier and last: Warren Lamb
+[2018-02-13T15:46:58.477] [INFO] cheese - inserting 602 documents. first: Alexander Berkman and last: Ordered pair
+[2018-02-13T15:46:58.486] [INFO] cheese - inserting 652 documents. first: Île-de-Bréhat and last: Seckington
+[2018-02-13T15:46:58.494] [INFO] cheese - batch complete in: 0.282 secs
+[2018-02-13T15:46:58.514] [INFO] cheese - batch complete in: 0.393 secs
+[2018-02-13T15:46:58.544] [INFO] cheese - batch complete in: 0.963 secs
+[2018-02-13T15:46:58.606] [INFO] cheese - inserting 482 documents. first: Maharashtra and last: Seafood
+[2018-02-13T15:46:58.636] [INFO] cheese - batch complete in: 0.353 secs
+[2018-02-13T15:46:58.745] [INFO] cheese - inserting 548 documents. first: Rodeo of Chile and last: Armando Peraza
+[2018-02-13T15:46:58.766] [INFO] cheese - batch complete in: 0.271 secs
+[2018-02-13T15:46:58.882] [INFO] cheese - inserting 578 documents. first: Arts and crafts and last: Chesterfield
+[2018-02-13T15:46:58.894] [INFO] cheese - inserting 358 documents. first: Peer review and last: Pipette
+[2018-02-13T15:46:58.910] [INFO] cheese - batch complete in: 0.396 secs
+[2018-02-13T15:46:58.919] [INFO] cheese - batch complete in: 0.283 secs
+[2018-02-13T15:46:58.927] [INFO] cheese - inserting 587 documents. first: St Just in Penwith and last: Primula
+[2018-02-13T15:46:58.957] [INFO] cheese - batch complete in: 0.413 secs
+[2018-02-13T15:46:59.021] [INFO] cheese - inserting 617 documents. first: Shirley Chisholm and last: Power Rangers Zeo
+[2018-02-13T15:46:59.044] [INFO] cheese - batch complete in: 0.277 secs
+[2018-02-13T15:46:59.267] [INFO] cheese - inserting 465 documents. first: Formation and evolution of the Solar System and last: Christopher Nolan
+[2018-02-13T15:46:59.286] [INFO] cheese - batch complete in: 0.375 secs
+[2018-02-13T15:46:59.335] [INFO] cheese - inserting 602 documents. first: Muscle and last: Blackcurrant
+[2018-02-13T15:46:59.365] [INFO] cheese - inserting 621 documents. first: Power Rangers Turbo and last: Powhatan, Louisiana
+[2018-02-13T15:46:59.366] [INFO] cheese - batch complete in: 0.447 secs
+[2018-02-13T15:46:59.379] [INFO] cheese - inserting 515 documents. first: Protura and last: Milan Hlavsa
+[2018-02-13T15:46:59.392] [INFO] cheese - batch complete in: 0.348 secs
+[2018-02-13T15:46:59.406] [INFO] cheese - batch complete in: 0.449 secs
+[2018-02-13T15:46:59.585] [INFO] cheese - inserting 622 documents. first: Foucault pendulum and last: Captain Jack Harkness
+[2018-02-13T15:46:59.606] [INFO] cheese - batch complete in: 0.32 secs
+[2018-02-13T15:46:59.609] [INFO] cheese - inserting 186 documents. first: Olympic (band) and last: Middle Triassic
+[2018-02-13T15:46:59.627] [INFO] cheese - batch complete in: 0.221 secs
+[2018-02-13T15:46:59.661] [INFO] cheese - inserting 561 documents. first: Date and last: Evo Morales
+[2018-02-13T15:46:59.679] [INFO] cheese - inserting 626 documents. first: Karlheinz Böhm and last: Wells, British Columbia
+[2018-02-13T15:46:59.682] [INFO] cheese - batch complete in: 0.316 secs
+[2018-02-13T15:46:59.711] [INFO] cheese - batch complete in: 0.319 secs
+[2018-02-13T15:46:59.905] [INFO] cheese - inserting 552 documents. first: Hurricane Fico and last: British Rail Class 103
+[2018-02-13T15:46:59.910] [INFO] cheese - inserting 420 documents. first: Shahab al-Din Suhrawardi and last: Hemerophile
+[2018-02-13T15:46:59.926] [INFO] cheese - inserting 484 documents. first: Surya and last: Goatwhore
+[2018-02-13T15:46:59.930] [INFO] cheese - batch complete in: 0.323 secs
+[2018-02-13T15:46:59.935] [INFO] cheese - batch complete in: 0.308 secs
+[2018-02-13T15:46:59.954] [INFO] cheese - batch complete in: 0.243 secs
+[2018-02-13T15:47:00.015] [INFO] cheese - inserting 663 documents. first: Lake Titicaca and last: Spider
+[2018-02-13T15:47:00.044] [INFO] cheese - batch complete in: 0.362 secs
+[2018-02-13T15:47:00.228] [INFO] cheese - inserting 791 documents. first: British Rail Class 104 and last: La Chapelle-Hermier
+[2018-02-13T15:47:00.238] [INFO] cheese - inserting 602 documents. first: Rural Municipality of Brenda and last: Maximum Overload
+[2018-02-13T15:47:00.248] [INFO] cheese - batch complete in: 0.318 secs
+[2018-02-13T15:47:00.260] [INFO] cheese - inserting 402 documents. first: The Winter's Tale and last: 1961 World Ice Hockey Championships
+[2018-02-13T15:47:00.261] [INFO] cheese - batch complete in: 0.307 secs
+[2018-02-13T15:47:00.279] [INFO] cheese - batch complete in: 0.344 secs
+[2018-02-13T15:47:00.337] [INFO] cheese - inserting 626 documents. first: 1760s and last: Odisha
+[2018-02-13T15:47:00.367] [INFO] cheese - batch complete in: 0.323 secs
+[2018-02-13T15:47:00.475] [INFO] cheese - inserting 987 documents. first: La Chapelle-Palluau and last: Peyrieu
+[2018-02-13T15:47:00.498] [INFO] cheese - batch complete in: 0.25 secs
+[2018-02-13T15:47:00.577] [INFO] cheese - inserting 312 documents. first: 1961 Stanley Cup Finals and last: Pylorus
+[2018-02-13T15:47:00.585] [INFO] cheese - inserting 642 documents. first: Idde Schultz and last: Hyatt Center
+[2018-02-13T15:47:00.590] [INFO] cheese - batch complete in: 0.311 secs
+[2018-02-13T15:47:00.604] [INFO] cheese - inserting 553 documents. first: Punjab (India) and last: Polyunsaturated fat
+[2018-02-13T15:47:00.609] [INFO] cheese - batch complete in: 0.348 secs
+[2018-02-13T15:47:00.629] [INFO] cheese - batch complete in: 0.262 secs
+[2018-02-13T15:47:00.725] [INFO] cheese - inserting 879 documents. first: Nashville, Arkansas and last: Monpezat
+[2018-02-13T15:47:00.755] [INFO] cheese - batch complete in: 0.257 secs
+[2018-02-13T15:47:00.886] [INFO] cheese - inserting 459 documents. first: The North Avenue Irregulars and last: Ionia
+[2018-02-13T15:47:00.890] [INFO] cheese - inserting 348 documents. first: Huxley family and last: AKUT Search and Rescue Association
+[2018-02-13T15:47:00.903] [INFO] cheese - batch complete in: 0.313 secs
+[2018-02-13T15:47:00.902] [INFO] cheese - batch complete in: 0.273 secs
+[2018-02-13T15:47:00.911] [INFO] cheese - inserting 618 documents. first: Leo Burnett Building and last: Ram Trucks
+[2018-02-13T15:47:00.935] [INFO] cheese - batch complete in: 0.326 secs
+[2018-02-13T15:47:01.015] [INFO] cheese - inserting 923 documents. first: Monségur, Pyrénées-Atlantiques and last: Folembray
+[2018-02-13T15:47:01.038] [INFO] cheese - batch complete in: 0.283 secs
+[2018-02-13T15:47:01.131] [INFO] cheese - inserting 428 documents. first: Harmonic and last: Małkinia Górna
+[2018-02-13T15:47:01.147] [INFO] cheese - batch complete in: 0.245 secs
+[2018-02-13T15:47:01.191] [INFO] cheese - inserting 570 documents. first: Tropical Storm Norma (1970) and last: Naturalism (literature)
+[2018-02-13T15:47:01.201] [INFO] cheese - inserting 458 documents. first: The Twelve Days of Christmas (song) and last: Video camera
+[2018-02-13T15:47:01.210] [INFO] cheese - batch complete in: 0.274 secs
+[2018-02-13T15:47:01.218] [INFO] cheese - batch complete in: 0.315 secs
+[2018-02-13T15:47:01.238] [INFO] cheese - inserting 996 documents. first: Fonsommes and last: Gaudiempré
+[2018-02-13T15:47:01.260] [INFO] cheese - batch complete in: 0.222 secs
+[2018-02-13T15:47:01.433] [INFO] cheese - inserting 461 documents. first: John C. Calhoun and last: Constantine the Great
+[2018-02-13T15:47:01.435] [INFO] cheese - inserting 998 documents. first: Gavrelle and last: Olive Hill, Kentucky
+[2018-02-13T15:47:01.456] [INFO] cheese - batch complete in: 0.309 secs
+[2018-02-13T15:47:01.466] [INFO] cheese - batch complete in: 0.206 secs
+[2018-02-13T15:47:01.511] [INFO] cheese - inserting 637 documents. first: Moose Pond and last: Samantha Power
+[2018-02-13T15:47:01.526] [INFO] cheese - inserting 536 documents. first: Pope Innocent VI and last: Mesosaurus
+[2018-02-13T15:47:01.534] [INFO] cheese - batch complete in: 0.323 secs
+[2018-02-13T15:47:01.555] [INFO] cheese - batch complete in: 0.337 secs
+[2018-02-13T15:47:01.690] [INFO] cheese - inserting 497 documents. first: Cleopatra VII and last: Eagle (disambiguation)
+[2018-02-13T15:47:01.720] [INFO] cheese - batch complete in: 0.264 secs
+[2018-02-13T15:47:01.734] [INFO] cheese - inserting 990 documents. first: Orchard Grass Hills, Kentucky and last: Dayton, Iowa
+[2018-02-13T15:47:01.758] [INFO] cheese - batch complete in: 0.292 secs
+[2018-02-13T15:47:01.799] [INFO] cheese - inserting 617 documents. first: Edward J. Perkins and last: Gueudecourt
+[2018-02-13T15:47:01.820] [INFO] cheese - batch complete in: 0.286 secs
+[2018-02-13T15:47:01.849] [INFO] cheese - inserting 378 documents. first: Bokbunja ju and last: Lilly Ledbetter Fair Pay Act of 2009
+[2018-02-13T15:47:01.872] [INFO] cheese - batch complete in: 0.316 secs
+[2018-02-13T15:47:01.974] [INFO] cheese - inserting 958 documents. first: De Soto, Iowa and last: Natural gas vehicle
+[2018-02-13T15:47:01.996] [INFO] cheese - batch complete in: 0.238 secs
+[2018-02-13T15:47:02.021] [INFO] cheese - inserting 646 documents. first: Hide (musician) and last: Aegukga
+[2018-02-13T15:47:02.045] [INFO] cheese - batch complete in: 0.325 secs
+[2018-02-13T15:47:02.056] [INFO] cheese - inserting 543 documents. first: Guignemicourt and last: Caravan (travellers)
+[2018-02-13T15:47:02.078] [INFO] cheese - batch complete in: 0.258 secs
+[2018-02-13T15:47:02.269] [INFO] cheese - inserting 473 documents. first: International Food Policy Research Institute and last: Mina (singer)
+[2018-02-13T15:47:02.293] [INFO] cheese - inserting 779 documents. first: Bustuchin and last: British Rail Class D2/12
+[2018-02-13T15:47:02.293] [INFO] cheese - batch complete in: 0.421 secs
+[2018-02-13T15:47:02.327] [INFO] cheese - batch complete in: 0.331 secs
+[2018-02-13T15:47:02.348] [INFO] cheese - inserting 507 documents. first: Conquest and last: Engineered languages
+[2018-02-13T15:47:02.356] [INFO] cheese - inserting 477 documents. first: Flying University and last: John Diefenbaker
+[2018-02-13T15:47:02.371] [INFO] cheese - batch complete in: 0.326 secs
+[2018-02-13T15:47:02.372] [INFO] cheese - batch complete in: 0.293 secs
+[2018-02-13T15:47:02.601] [INFO] cheese - inserting 454 documents. first: Maynard Ferguson and last: The Five
+[2018-02-13T15:47:02.620] [INFO] cheese - batch complete in: 0.327 secs
+[2018-02-13T15:47:02.623] [INFO] cheese - inserting 933 documents. first: British Rail Class D3/1 and last: British Rail Class D3/14
+[2018-02-13T15:47:02.625] [INFO] cheese - inserting 482 documents. first: Pronghorn and last: 1534
+[2018-02-13T15:47:02.643] [INFO] cheese - batch complete in: 0.316 secs
+[2018-02-13T15:47:02.646] [INFO] cheese - batch complete in: 0.275 secs
+[2018-02-13T15:47:02.906] [INFO] cheese - inserting 488 documents. first: Omar Karami and last: Frederik H. Kreuger
+[2018-02-13T15:47:02.919] [INFO] cheese - inserting 577 documents. first: 1708 and last: Lady Macbeth of the Mtsensk District
+[2018-02-13T15:47:02.925] [INFO] cheese - batch complete in: 0.553 secs
+[2018-02-13T15:47:02.942] [INFO] cheese - batch complete in: 0.295 secs
+[2018-02-13T15:47:03.065] [INFO] cheese - inserting 547 documents. first: British Rail Class D16/1 and last: Keita Goto
+[2018-02-13T15:47:03.085] [INFO] cheese - batch complete in: 0.442 secs
+[2018-02-13T15:47:03.206] [INFO] cheese - inserting 502 documents. first: Adoption and last: Runestone
+[2018-02-13T15:47:03.224] [INFO] cheese - batch complete in: 0.282 secs
+[2018-02-13T15:47:03.226] [INFO] cheese - inserting 497 documents. first: List of Independent Administrative Institutes in Japan and last: Saskatoon Blades
+[2018-02-13T15:47:03.259] [INFO] cheese - batch complete in: 0.639 secs
+[2018-02-13T15:47:03.317] [INFO] cheese - inserting 581 documents. first: Statutory rape and last: Chevrolet Traverse
+[2018-02-13T15:47:03.336] [INFO] cheese - batch complete in: 0.411 secs
+[2018-02-13T15:47:03.475] [INFO] cheese - inserting 502 documents. first: Shunichiro Okano and last: Erich von dem Bach-Zelewski
+[2018-02-13T15:47:03.487] [INFO] cheese - inserting 582 documents. first: Balcony and last: Electrolysis
+[2018-02-13T15:47:03.500] [INFO] cheese - batch complete in: 0.415 secs
+[2018-02-13T15:47:03.508] [INFO] cheese - batch complete in: 0.284 secs
+[2018-02-13T15:47:03.585] [INFO] cheese - inserting 620 documents. first: Type 4 150 mm howitzer and last: Cape Henry Light
+[2018-02-13T15:47:03.612] [INFO] cheese - inserting 603 documents. first: Zhelyu Zhelev and last: Väröbacka
+[2018-02-13T15:47:03.619] [INFO] cheese - batch complete in: 0.36 secs
+[2018-02-13T15:47:03.632] [INFO] cheese - batch complete in: 0.295 secs
+[2018-02-13T15:47:03.778] [INFO] cheese - inserting 533 documents. first: Jurassic and last: NASCAR
+[2018-02-13T15:47:03.796] [INFO] cheese - batch complete in: 0.288 secs
+[2018-02-13T15:47:03.838] [INFO] cheese - inserting 571 documents. first: Will Mellor and last: Mono no aware
+[2018-02-13T15:47:03.867] [INFO] cheese - batch complete in: 0.367 secs
+[2018-02-13T15:47:03.931] [INFO] cheese - inserting 581 documents. first: Innuendo (song) and last: Diabolus in Musica
+[2018-02-13T15:47:03.950] [INFO] cheese - batch complete in: 0.318 secs
+[2018-02-13T15:47:04.043] [INFO] cheese - inserting 433 documents. first: Washington Irving and last: Herero
+[2018-02-13T15:47:04.066] [INFO] cheese - batch complete in: 0.447 secs
+[2018-02-13T15:47:04.111] [INFO] cheese - inserting 561 documents. first: Monument and last: Ghost light
+[2018-02-13T15:47:04.134] [INFO] cheese - batch complete in: 0.338 secs
+[2018-02-13T15:47:04.198] [INFO] cheese - inserting 525 documents. first: Salmon (color) and last: Nisio Isin
+[2018-02-13T15:47:04.218] [INFO] cheese - batch complete in: 0.351 secs
+[2018-02-13T15:47:04.282] [INFO] cheese - inserting 580 documents. first: Señorita Pólvora and last: Orillia
+[2018-02-13T15:47:04.341] [INFO] cheese - batch complete in: 0.39 secs
+[2018-02-13T15:47:04.411] [INFO] cheese - inserting 374 documents. first: Lake Wobegon and last: Clarke County, Alabama
+[2018-02-13T15:47:04.446] [INFO] cheese - inserting 479 documents. first: Roman Giertych and last: Centre-Val de Loire
+[2018-02-13T15:47:04.449] [INFO] cheese - batch complete in: 0.382 secs
+[2018-02-13T15:47:04.471] [INFO] cheese - batch complete in: 0.337 secs
+[2018-02-13T15:47:04.618] [INFO] cheese - inserting 445 documents. first: Kapok and last: Comcast Center
+[2018-02-13T15:47:04.632] [INFO] cheese - batch complete in: 0.413 secs
+[2018-02-13T15:47:04.656] [INFO] cheese - inserting 516 documents. first: West Perth, Ontario and last: Truncated icosahedron
+[2018-02-13T15:47:04.672] [INFO] cheese - batch complete in: 0.331 secs
+[2018-02-13T15:47:04.746] [INFO] cheese - inserting 368 documents. first: Grove Hill, Alabama and last: Karl Pearson
+[2018-02-13T15:47:04.750] [INFO] cheese - inserting 419 documents. first: Champagne-Ardenne and last: Gerhard Armauer Hansen
+[2018-02-13T15:47:04.760] [INFO] cheese - batch complete in: 0.311 secs
+[2018-02-13T15:47:04.778] [INFO] cheese - batch complete in: 0.307 secs
+[2018-02-13T15:47:04.970] [INFO] cheese - inserting 372 documents. first: HCJB and last: Brooks Range
+[2018-02-13T15:47:04.987] [INFO] cheese - batch complete in: 0.355 secs
+[2018-02-13T15:47:05.105] [INFO] cheese - inserting 574 documents. first: Fire station and last: Taj Mahal (musician)
+[2018-02-13T15:47:05.132] [INFO] cheese - batch complete in: 0.354 secs
+[2018-02-13T15:47:05.185] [INFO] cheese - inserting 549 documents. first: Yutyrannus and last: Constitution of Albania
+[2018-02-13T15:47:05.211] [INFO] cheese - batch complete in: 0.451 secs
+[2018-02-13T15:47:05.232] [INFO] cheese - inserting 599 documents. first: Truncated octahedron and last: The Girl Next Door (2004 movie)
+[2018-02-13T15:47:05.254] [INFO] cheese - batch complete in: 0.582 secs
+[2018-02-13T15:47:05.324] [INFO] cheese - inserting 617 documents. first: Prince Edward, Duke of York and Albany and last: Crossosomatales
+[2018-02-13T15:47:05.350] [INFO] cheese - batch complete in: 0.362 secs
+[2018-02-13T15:47:05.411] [INFO] cheese - inserting 527 documents. first: Floyd Patterson and last: Medieval music
+[2018-02-13T15:47:05.430] [INFO] cheese - batch complete in: 0.298 secs
+[2018-02-13T15:47:05.543] [INFO] cheese - inserting 559 documents. first: Napa, California and last: Yu Gamdong
+[2018-02-13T15:47:05.570] [INFO] cheese - inserting 563 documents. first: José Gaspar Rodríguez de Francia y Velasco and last: Messerschmitt Bf 110
+[2018-02-13T15:47:05.578] [INFO] cheese - batch complete in: 0.367 secs
+[2018-02-13T15:47:05.595] [INFO] cheese - batch complete in: 0.341 secs
+[2018-02-13T15:47:05.727] [INFO] cheese - inserting 547 documents. first: Neolithic and last: Lake Van
+[2018-02-13T15:47:05.752] [INFO] cheese - batch complete in: 0.322 secs
+[2018-02-13T15:47:05.783] [INFO] cheese - inserting 666 documents. first: Waterfowl and last: 2008
+[2018-02-13T15:47:05.808] [INFO] cheese - batch complete in: 0.458 secs
+[2018-02-13T15:47:05.903] [INFO] cheese - inserting 589 documents. first: Yangnyeong and last: Bahrainona
+[2018-02-13T15:47:05.931] [INFO] cheese - batch complete in: 0.353 secs
+[2018-02-13T15:47:05.931] [INFO] cheese - inserting 414 documents. first: Aquanaut and last: Airbourne
+[2018-02-13T15:47:05.950] [INFO] cheese - batch complete in: 0.355 secs
+[2018-02-13T15:47:06.085] [INFO] cheese - inserting 610 documents. first: Kurdish language and last: Sickle
+[2018-02-13T15:47:06.099] [INFO] cheese - inserting 549 documents. first: Falafel and last: Dwarf hamster
+[2018-02-13T15:47:06.106] [INFO] cheese - batch complete in: 0.354 secs
+[2018-02-13T15:47:06.123] [INFO] cheese - batch complete in: 0.315 secs
+[2018-02-13T15:47:06.245] [INFO] cheese - inserting 526 documents. first: Bahraini and last: Wing-banded Antbird
+[2018-02-13T15:47:06.266] [INFO] cheese - batch complete in: 0.335 secs
+[2018-02-13T15:47:06.419] [INFO] cheese - inserting 461 documents. first: Love? and last: Ted Hartley
+[2018-02-13T15:47:06.425] [INFO] cheese - inserting 488 documents. first: Damien Rice and last: Technical University of Berlin
+[2018-02-13T15:47:06.425] [INFO] cheese - inserting 590 documents. first: Kilometres per hour and last: U.S. Open
+[2018-02-13T15:47:06.441] [INFO] cheese - batch complete in: 0.318 secs
+[2018-02-13T15:47:06.462] [INFO] cheese - batch complete in: 0.356 secs
+[2018-02-13T15:47:06.464] [INFO] cheese - batch complete in: 0.514 secs
+[2018-02-13T15:47:06.578] [INFO] cheese - inserting 492 documents. first: Seine and last: Cyclone Jal
+[2018-02-13T15:47:06.612] [INFO] cheese - batch complete in: 0.346 secs
+[2018-02-13T15:47:06.771] [INFO] cheese - inserting 450 documents. first: Leeds Rhinos and last: Tomokazu Hirama
+[2018-02-13T15:47:06.795] [INFO] cheese - batch complete in: 0.354 secs
+[2018-02-13T15:47:06.819] [INFO] cheese - inserting 558 documents. first: World Cup and last: Himeji Castle
+[2018-02-13T15:47:06.841] [INFO] cheese - batch complete in: 0.379 secs
+[2018-02-13T15:47:06.858] [INFO] cheese - inserting 490 documents. first: Joint-stock company and last: Luciano García Alén
+[2018-02-13T15:47:06.888] [INFO] cheese - batch complete in: 0.424 secs
+[2018-02-13T15:47:06.978] [INFO] cheese - inserting 555 documents. first: Hurricane Bud (2012) and last: St. Osyth
+[2018-02-13T15:47:07.002] [INFO] cheese - batch complete in: 0.39 secs
+[2018-02-13T15:47:07.112] [INFO] cheese - inserting 482 documents. first: Tang Dynasty and last: Hilbert's paradox of the Grand Hotel
+[2018-02-13T15:47:07.128] [INFO] cheese - batch complete in: 0.287 secs
+[2018-02-13T15:47:07.164] [INFO] cheese - inserting 600 documents. first: Kazushi Isoyama and last: Félix María Samaniego
+[2018-02-13T15:47:07.198] [INFO] cheese - batch complete in: 0.403 secs
+[2018-02-13T15:47:07.208] [INFO] cheese - inserting 522 documents. first: Sergei Filippenkov and last: Noble orchid
+[2018-02-13T15:47:07.230] [INFO] cheese - batch complete in: 0.341 secs
+[2018-02-13T15:47:07.399] [INFO] cheese - inserting 480 documents. first: Great Oakley and last: Arranged marriage
+[2018-02-13T15:47:07.416] [INFO] cheese - inserting 505 documents. first: Opposite number and last: Flamingo
+[2018-02-13T15:47:07.422] [INFO] cheese - batch complete in: 0.42 secs
+[2018-02-13T15:47:07.440] [INFO] cheese - batch complete in: 0.312 secs
+[2018-02-13T15:47:07.501] [INFO] cheese - inserting 440 documents. first: Ahmad and last: Wyre Forest
+[2018-02-13T15:47:07.522] [INFO] cheese - batch complete in: 0.292 secs
+[2018-02-13T15:47:07.546] [INFO] cheese - inserting 580 documents. first: Vermilion (song) and last: Ryo Nurishi
+[2018-02-13T15:47:07.567] [INFO] cheese - batch complete in: 0.369 secs
+[2018-02-13T15:47:07.670] [INFO] cheese - inserting 375 documents. first: Eastern diamondback rattlesnake and last: Greta Van Susteren
+[2018-02-13T15:47:07.680] [INFO] cheese - inserting 326 documents. first: Magnesium oxide and last: Tanystropheus
+[2018-02-13T15:47:07.686] [INFO] cheese - batch complete in: 0.264 secs
+[2018-02-13T15:47:07.699] [INFO] cheese - batch complete in: 0.259 secs
+[2018-02-13T15:47:07.776] [INFO] cheese - inserting 539 documents. first: Jan Góra and last: Isaiah Washington
+[2018-02-13T15:47:07.793] [INFO] cheese - batch complete in: 0.271 secs
+[2018-02-13T15:47:07.886] [INFO] cheese - inserting 582 documents. first: Aaron Lennon and last: Cornish, Maine
+[2018-02-13T15:47:07.908] [INFO] cheese - batch complete in: 0.341 secs
+[2018-02-13T15:47:07.959] [INFO] cheese - inserting 439 documents. first: Tucker Carlson and last: Mel Stuart
+[2018-02-13T15:47:07.977] [INFO] cheese - batch complete in: 0.291 secs
+[2018-02-13T15:47:07.993] [INFO] cheese - inserting 400 documents. first: Yuryuzan and last: British occupation zone
+[2018-02-13T15:47:08.011] [INFO] cheese - batch complete in: 0.312 secs
+[2018-02-13T15:47:08.050] [INFO] cheese - inserting 553 documents. first: Stock (firearm) and last: I Will Never Let You Down
+[2018-02-13T15:47:08.070] [INFO] cheese - batch complete in: 0.277 secs
+[2018-02-13T15:47:08.100] [INFO] cheese - inserting 219 documents. first: Sweet Dreams Are Made of This and last: Hideaki Kitajima
+[2018-02-13T15:47:08.107] [INFO] cheese - batch complete in: 0.199 secs
+[2018-02-13T15:47:08.318] [INFO] cheese - inserting 258 documents. first: Shigemaru Takenokoshi and last: Norihiro Nishi
+[2018-02-13T15:47:08.320] [INFO] cheese - inserting 502 documents. first: Greater Hesse and last: Pineal gland
+[2018-02-13T15:47:08.327] [INFO] cheese - batch complete in: 0.22 secs
+[2018-02-13T15:47:08.347] [INFO] cheese - batch complete in: 0.336 secs
+[2018-02-13T15:47:08.359] [INFO] cheese - inserting 432 documents. first: The Elements of Style and last: Mass grave
+[2018-02-13T15:47:08.361] [INFO] cheese - inserting 478 documents. first: Conrad Bain and last: American spadefoot toads
+[2018-02-13T15:47:08.378] [INFO] cheese - batch complete in: 0.308 secs
+[2018-02-13T15:47:08.379] [INFO] cheese - batch complete in: 0.402 secs
+[2018-02-13T15:47:08.637] [INFO] cheese - inserting 591 documents. first: Gamma-Hydroxybutyric acid and last: Tropical Storm Ingrid (2007)
+[2018-02-13T15:47:08.656] [INFO] cheese - inserting 481 documents. first: Fred West and last: Dunellen, New Jersey
+[2018-02-13T15:47:08.658] [INFO] cheese - batch complete in: 0.311 secs
+[2018-02-13T15:47:08.686] [INFO] cheese - inserting 636 documents. first: Theory and last: Der Rosenkavalier
+[2018-02-13T15:47:08.685] [INFO] cheese - batch complete in: 0.307 secs
+[2018-02-13T15:47:08.730] [INFO] cheese - batch complete in: 0.403 secs
+[2018-02-13T15:47:08.865] [INFO] cheese - inserting 514 documents. first: Notaden and last: Eileen Brennan
+[2018-02-13T15:47:08.889] [INFO] cheese - batch complete in: 0.51 secs

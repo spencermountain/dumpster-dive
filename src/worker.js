@@ -1,6 +1,7 @@
 const LineByLineReader = require('line-by-line')
 const init = require('./00-init-db');
 const log4js = require('log4js');
+const filesize = require('filesize');
 const config = require('../config')
 
 log4js.configure({
@@ -37,7 +38,7 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
   // end 2 megabytes later so we don't lose pages cut by chunks
   endByte = startByte + chunkSize + 3000000
 
-  logger.info(`worker pid:${process.pid} is now alive. startByte: ${startByte} endByte: ${endByte}`)
+  logger.info(`worker pid:${process.pid} is now alive. starting: ${filesize(startByte)} ending: ${filesize(endByte)}`)
   await init(options)
 
   lr = new LineByLineReader(options.file, {
@@ -62,7 +63,7 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     insertMany = Object.assign([], pages);
     logger.info("inserting", insertMany.length, "documents. first:", insertMany[0]._id, "and last:", insertMany[insertMany.length - 1]._id);
     pages = [];
-    options.db.collection(config.queueLocation).insertMany(insertMany, function() {
+    options.db.collection(config.queue).insertMany(insertMany, function() {
       // tbd. error checks
     });
     logger.info("batch complete in: " + ((Date.now() - jobBegin) / 1000) + " secs")

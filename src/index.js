@@ -2,8 +2,12 @@
 // usage:
 //   node index.js afwiki-latest-pages-articles.xml.bz2
 const init = require('./00-init-db');
+const config = require('../config')
 const multithreader = require("./multithreader")
 const noop = () => {
+}
+const defaults = {
+  batch_size: config.batch_size
 }
 
 process.on('unhandledRejection', up => {
@@ -12,13 +16,13 @@ process.on('unhandledRejection', up => {
 
 //open up a mongo db, and start xml-streaming..
 const main = async (options, callback = noop ) => {
-  params = Object.assign({}, options);
+  params = Object.assign({}, options, defaults);
   multithreader.start(params)
 
   await init(options)
   setInterval(async () => {
-    count = await options.db.collection("queue").count()
-    console.log(`final doc count: ${count} in last 10 seconds.`)
+    count = await options.db.collection(config.queue).count()
+    console.log(`queue size: ${count}`)
   }, 10000)
 
 }
