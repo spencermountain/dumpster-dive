@@ -38,9 +38,13 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
   // end 2 megabytes later so we don't lose pages cut by chunks
   endByte = startByte + chunkSize + 3000000
 
-  logger.info(`worker pid:${process.pid} is now alive. starting: ${filesize(startByte)} ending: ${filesize(endByte)}`)
+  logger.info(`
+    worker pid:${process.pid} is now alive.
+    starting: ${filesize(startByte)} ending: ${filesize(endByte)}
+`)
   await init(options)
 
+  //begin our line-reader at this specific place
   lr = new LineByLineReader(options.file, {
     start: startByte,
     end: endByte
@@ -72,7 +76,6 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
   };
 
   lr.on('error', function(err) {
-    // 'err' contains error object
     console.error(err)
     return logger.error("linereader error");
   });
@@ -95,6 +98,7 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
         skipPage = true;
       }
     }
+    //begin storing this page's xml contents
     if (line.indexOf("<page>") !== -1) {
       page = {
         body: line,
@@ -108,6 +112,7 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
       }
       skipPage = false;
       page = null;
+      //once we have some pages to write, put them in mongo
       if (pageCount % options.batch_size === 0) {
         insertToDb();
       }

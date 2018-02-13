@@ -22,10 +22,10 @@ workerNodes = new WorkerNodes(__dirname + '/worker.js', {
 // };
 
 const start = async function(options) {
-  var chunkSize,
-    size;
-  size = fs.statSync(options.file)["size"];
-  chunkSize = Math.floor(size / cpuCount);
+  //divide the size of the xml file, by the number of cpus:
+  const size = fs.statSync(options.file)["size"];
+  const chunkSize = Math.floor(size / cpuCount);
+
   console.log(`${cpuCount} cpu cores detected.
     ${filesize(size)} file will be divided into ${cpuCount} zones
      - each process will be given: ${filesize(chunkSize)}
@@ -33,7 +33,6 @@ const start = async function(options) {
 ok, launching ${cpuCount} processes. do ctrl-c to kill all.
 do tail -f ./worker.logs on a separate terminal window for logs.
 `)
-
 
   await workerNodes.ready();
   cpus.forEach((val, key) => {
@@ -44,8 +43,6 @@ do tail -f ./worker.logs on a separate terminal window for logs.
 process.on('unhandledRejection', function(up) {
   return console.log(up);
 });
-
-// setInterval((function() {}), 2000);
 
 process.on('SIGINT', async function() {
   console.log("Cleaning up child processes...");
