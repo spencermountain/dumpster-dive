@@ -21,10 +21,16 @@
     "cluster": "^0.7.7",
     "commander": "^2.12.0",
     "kue": "^0.11.1",
+    "line-by-line": "^0.1.6",
+    "log4js": "^2.5.3",
+    "moment": "^2.20.1",
+    "momentjs": "^2.0.0",
     "mongodb": "^2.2.33",
     "unbzip2-stream": "^1.0.9",
+    "worker-nodes": "^1.6.0",
     "wtf_wikipedia": "^2.4.2",
-    "xml-stream": "^0.4.5"
+    "xml-stream": "^0.4.5",
+    "xmlsplit": "^1.2.8"
   },
   "devDependencies": {
     "shelljs": "^0.7.8",

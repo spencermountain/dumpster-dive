@@ -34,7 +34,7 @@ let parseArgs = function() {
     skip_disambig: program.skip_disambig,
     skip_redirects: program.skip_redirects,
     auto_skip: program.auto_skip,
-    skip_first: program.skip_first,
+    skip_first: program.skip_first || 0,
     verbose: program.verbose,
   }
 }
