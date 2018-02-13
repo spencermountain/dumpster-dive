@@ -39,6 +39,7 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
   page = null;
   pageCount = 0;
   pages = [];
+  var skipPage = false;
   workerBegin = Date.now()
   jobBegin = Date.now()
   insertToDb = function() {
@@ -72,6 +73,9 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
           page._id = line.substring(line.lastIndexOf("<title>") + 7, line.lastIndexOf("</title>"));
         }
       }
+      if (line.indexOf("<anything we don't want to insert>")) {
+        skipPage = true;
+      }
     }
     if (line.indexOf("<page>") !== -1) {
       page = {
@@ -81,7 +85,10 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
       pageCount++;
     }
     if (page && line.indexOf("</page>") !== -1) {
-      pages.push(page);
+      if (!skipPage){
+        pages.push(page);
+      }
+      skipPage = false;
       page = null;
       if (pageCount % options.batch_size === 0) {
         return insertToDb();
