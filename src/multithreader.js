@@ -7,9 +7,7 @@ var WorkerNodes,
   workerNodes;
 
 WorkerNodes = require('worker-nodes');
-
 fs = require("fs");
-
 cpus = require('os').cpus()
 cpuCount = cpus.length;
 
@@ -38,7 +36,7 @@ start = async function(options) {
   chunkSize = Math.floor(size / cpuCount);
   console.log(`${cpuCount} cpu cores detected. file size (bytes): ${size} file will be divided into: ${cpuCount} each process will be given (bytes): ${chunkSize}`);
   console.log(`launching ${cpuCount} processes. do ctrl-c to kill all.`);
-  console.log("do tail -f ../worker.logs on a separate terminal window for logs.");
+  console.log("do tail -f ./worker.logs on a separate terminal window for logs.");
 
 
   await workerNodes.ready();

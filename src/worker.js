@@ -86,7 +86,12 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
           page._id = line.substring(line.lastIndexOf("<title>") + 7, line.lastIndexOf("</title>"));
         }
       }
-      if (line.indexOf("<anything we don't want to insert>")) {
+      //skip any pages not in the '0' namespace
+      if (line.indexOf("<ns>") !== -1 && line.indexOf("<ns>0</ns>") === -1) {
+        skipPage = true;
+      }
+      //skip pages that are a redirect, too
+      if (line.indexOf("<redirect title=") !== -1) {
         skipPage = true;
       }
     }

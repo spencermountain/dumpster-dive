@@ -2,9 +2,12 @@ const MongoClient = require('mongodb').MongoClient;
 const fs = require("fs")
 
 //start it up running
-const init = async (options={skip_first:0,verbose:true}) => {
+const init = async ( options = {
+    skip_first: 0,
+    verbose: true
+  } ) => {
 
-  return new Promise( async (resolve,reject) => {
+  return new Promise(async (resolve, reject) => {
     //this is required
     if (!fs.existsSync(options.file)) {
       console.log('please supply a filename for the wikipedia article dump in xml format');
@@ -16,8 +19,8 @@ const init = async (options={skip_first:0,verbose:true}) => {
     }
     // Connect to mongo
     let url = 'mongodb://localhost:27017/' + options.db;
-    options.db            = await MongoClient.connect(url)
-    options.collection    = options.db.collection('wikipedia');
+    options.db = await MongoClient.connect(url)
+    options.collection = options.db.collection('wikipedia');
 
     // if (options.auto_skip) {
     //   options.skip_first = await options.collection.count()
