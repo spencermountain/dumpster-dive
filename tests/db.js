@@ -38,9 +38,9 @@ const firstTen = function(dbName, cb) {
 }
 
 //delete all pages
-const drop = function(dbName, cb) {
+const drop = function(dbName, colName, cb) {
   open(dbName, function(db) {
-    let col = db.collection('wikipedia')
+    let col = db.collection(colName)
     col.deleteMany({})
     setTimeout(function() {
       db.close()
@@ -56,4 +56,4 @@ module.exports = {
 }
 // firstTwo('tempwiki', console.log)
 // open('tempwiki', console.log)
-drop('smallwiki', console.log)
+// drop('smallwiki', 'wikipedia',console.log)
