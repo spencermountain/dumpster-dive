@@ -17,10 +17,11 @@ checkWriteSuccess = (preCount,postCount,arr) => {
   return
 }
 
-const writeDb = async (arr, options, callback) => {
+const writeDb = async (arr, options, coll) => {
   return new Promise( async (resolve,reject)=>{
-    // let preCount = await options.collection.count()
-    options.collection.insertMany( arr, { ordered: true }, async (err, result) => {
+    //let preCount = await options.collection.count()
+    //arrr = [{arr:arr}]
+    options.db.collection(coll).insertMany( arr, { ordered: false }, async (err, result) => {
         if (err) {
             // collect insert errors...
             // tbd. skip duplicate key errors
@@ -28,9 +29,10 @@ const writeDb = async (arr, options, callback) => {
             // options.errCollection.insertMany(err.writeErrors,{ordered:false},()=>{})
           }
 
-        // let postCount = await options.collection.count()
+        let count = await options.collection.count()
         // checkWriteSuccess(preCount,postCount,arr)
-        resolve()
+
+        resolve(`${arr.length} docs inserted. total:${count}`)
       })
     })
   }

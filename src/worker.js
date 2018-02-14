@@ -2,14 +2,17 @@ const LineByLineReader = require('line-by-line')
 const fs   = require("fs")
 const init = require('./00-init-db');
 const log4js = require('log4js');
+const doArticle = require('./01-article-logic');
+
 
 log4js.configure({
-  appenders: { cheese: { type: 'file', filename: __dirname+'/../worker.logs' } },
+  appenders: { cheese: { type: 'file', filename: '/tmp/worker.logs' } },
   categories: { default: { appenders: ['cheese'], level: 'info' } }
 });
 
 
 const logger = log4js.getLogger('cheese');
+
 
 const xmlSplit = async (options, chunkSize, workerNr) => {
   var cpuCount, file, insertToDb, lineNumber, lr, page, pageCount, pages, size;
@@ -35,74 +38,91 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     start: startByte,
     end: endByte
   });
-  lineNumber = 0;
+
+
   page = null;
   pageCount = 0;
   pages = [];
-  var skipPage = false;
   workerBegin = Date.now()
   jobBegin = Date.now()
-  insertToDb = function() {
-    var insertMany;
-    if (pages.length === 0) {
-      // shouldn't happen.
-      return logger.error("err: empty pages arr");
-    }
+  doArticleTimeCounter = 0
+  insertToDb = function(last) {
     lr.pause();
-    insertMany = Object.assign([], pages);
-    logger.info("inserting",insertMany.length,"documents. first:", insertMany[0]._id, "and last:", insertMany[insertMany.length - 1]._id);
+    process.send({type:"insertToDb",pages:pages,length:pages.length,pid: process.pid, timeSpent:{total:Date.now()-workerBegin,doArticle:doArticleTimeCounter}})
     pages = [];
-    options.db.collection("queue").insertMany(insertMany, function() {
-      // tbd. error checks
-    });
-    logger.info("batch complete in: "+((Date.now()-jobBegin)/1000)+" secs")
     jobBegin = Date.now()
-    return lr.resume();
+    doArticleTimeCounter = 0
+    workerBegin = Date.now()
+    logger.info(`batch complete: worker pid:${process.pid} inserted ${pageCount} pages in ${((Date.now()-workerBegin)/1000)} secs. doArticle took ${doArticleTimeCounter/1000} secs.`);
+    lr.resume();
+    if(last){
+      process.send({type:"workerDone",pid:process.pid})
+    }
   };
-  lr.on('error', function(err) {
+  lr.on('error', (err) => {
     // 'err' contains error object
-    return logger.error("linereader error");
+    logger.error("linereader error");
   });
   
-  lr.on('line', function(line) {
-    lineNumber++;
+  lr.on('line', (line) => {
+
+    if (line.indexOf("<page>") !== -1) {
+      page = {body:line, skip: false, title: null}
+      pageCount++;
+    }    
+    
     if (page) {
       page.body += line;
-      if (!page.title) {
-        if (line.indexOf("<title>") !== -1) {
-          page._id = line.substring(line.lastIndexOf("<title>") + 7, line.lastIndexOf("</title>"));
+
+      if (!page.title && line.indexOf("<title>") !== -1) {
+        page.title = line.substring(line.lastIndexOf("<title>") + 7, line.lastIndexOf("</title>"));
+      }
+      
+      if (line.indexOf("<ns>") > -1){ 
+        if(line.indexOf("<ns>0</ns>") === -1) {
+          logger.info("skipping",page.title)
+          page.skip = true;
         }
       }
-      if (line.indexOf("<anything we don't want to insert>")) {
-        skipPage = true;
+
+      if (line.indexOf("</page>") !== -1) {
+        if (!page.skip) {
+          doArticleTime = Date.now()
+          doArticle(page.body,options,(pageObj)=>{
+            doArticleTimeCounter += Date.now()-doArticleTime
+            if (pageObj){
+              pages.push(pageObj);          
+            }
+            if (pageCount % options.batch_size === 0) {
+              insertToDb();
+            }
+          })
+        }
+        page = null;
       }
-    }
-    if (line.indexOf("<page>") !== -1) {
-      page = {
-        body: line,
-        lr: lineNumber
-      };
-      pageCount++;
-    }
-    if (page && line.indexOf("</page>") !== -1) {
-      if (!skipPage){
-        pages.push(page);
-      }
-      skipPage = false;
-      page = null;
-      if (pageCount % options.batch_size === 0) {
-        return insertToDb();
-      }
+
+      // let's catch these before parsing for extra speed.
+
+      // if (options.skip_redirects === true && data.type === 'redirect') {
+      //   return null
+      // }
+      // if (options.skip_disambig === true && data.type === 'disambiguation') {
+      //   return null
+      // }
+
     }
   });
-  return lr.on('end', function() {
+  
+  lr.on('end', function() {
     // All lines are read, file is closed now.
     // insert remaining pages.
-    insertToDb();
-    logger.info(`worker pid:${process.pid} is done. inserted ${pageCount} pages in ${((Date.now()-jobBegin)/1000)} secs.`);
+    insertToDb(true);
+    logger.info(`worker pid:${process.pid} is done. inserted ${pageCount} pages in ${((Date.now()-workerBegin)/1000)} secs. doArticle took ${doArticleTimeCounter/1000} secs.`);
     // process.exit()
-    return 
+    
+    
   });
+  return(process.pid)
 };
 
-module.exports = xmlSplit
+module.exports = {xmlSplit}

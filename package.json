@@ -26,10 +26,13 @@
     "moment": "^2.20.1",
     "momentjs": "^2.0.0",
     "mongodb": "^2.2.33",
+    "prettysize": "^1.1.0",
+    "string-to-stream": "^1.1.0",
     "unbzip2-stream": "^1.0.9",
     "worker-nodes": "^1.6.0",
     "wtf_wikipedia": "^2.4.2",
     "xml-stream": "^0.4.5",
+    "xml2js": "^0.4.19",
     "xmlsplit": "^1.2.8"
   },
   "devDependencies": {
