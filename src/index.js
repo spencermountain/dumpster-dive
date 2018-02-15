@@ -1,9 +1,10 @@
 //stream a big wikipedia xml.bz2 file into mongodb
 // usage:
 //   node index.js afwiki-latest-pages-articles.xml.bz2
-const init = require('./00-init-db');
+const init = require('./01-init-db');
+const mt = require("./02-multithreader")
 const writeDb = require('./03-write-db');
-const mt = require("./multithreader")
+const config = require('../config');
 
 process.on('unhandledRejection', up => {
   console.log(up)
@@ -23,7 +24,7 @@ const main = async (options) => {
     if (msg.type === "insertToDb") {
       // console.log("-->",msg.length,msg.pages.length)
       writing++
-      res = await writeDb(msg.pages, options, "wikipedia")
+      res = await writeDb(msg.pages, options)
       writing--
       console.log("worker " + msg.pid + ":" + res + ` batch took ${Math.round((msg.timeSpent.total) / 1000)} secs. --doArticle()-- took ${Math.round(msg.timeSpent.doArticle / 1000)} secs.`)
     }
@@ -41,10 +42,10 @@ const main = async (options) => {
   })
 
   // await init(options)
-  // setInterval( async () => {
-  //   count = await options.db.collection("queue").count()
-  //   console.log(`final doc count: ${count} in last 60 seconds.`)
-  // },60000)
+  setInterval(async () => {
+    count = await options.db.collection(config.collection).count()
+    console.log(`pages: ${count}`)
+  }, 10000)
 
 }
 

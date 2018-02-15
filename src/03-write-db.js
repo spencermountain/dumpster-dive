@@ -1,4 +1,4 @@
-
+const config = require("../config")
 //
 checkWriteSuccess = (preCount, postCount, arr) => {
   if (preCount + arr.length === postCount) {
@@ -16,11 +16,11 @@ checkWriteSuccess = (preCount, postCount, arr) => {
   return
 }
 
-const writeDb = async (arr, options, coll) => {
+const writeDb = async (arr, options) => {
   return new Promise(async (resolve) => {
     //let preCount = await options.collection.count()
     //arrr = [{arr:arr}]
-    options.db.collection(coll).insertMany(arr, {
+    options.db.collection(config.collection).insertMany(arr, {
       ordered: false
     }, async (err) => {
       if (err) {

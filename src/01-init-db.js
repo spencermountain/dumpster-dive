@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const fs = require("fs")
+const config = require("../config")
 
 //start it up running
 const init = async ( options = {
@@ -20,7 +21,7 @@ const init = async ( options = {
     // Connect to mongo
     let url = 'mongodb://localhost:27017/' + options.db;
     options.db = await MongoClient.connect(url)
-    options.collection = options.db.collection('wikipedia');
+    options.collection = options.db.collection(config.collection);
 
     // if (options.auto_skip) {
     //   options.skip_first = await options.collection.count()

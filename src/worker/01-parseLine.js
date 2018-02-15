@@ -1,18 +1,4 @@
-const parseWiki = require('./parseWiki');
 require('./_polyfill');
-
-//reached the end
-const donePage = function(state, options, insertToDb) {
-  parseWiki(state.body, options, (pageObj) => {
-    doArticleTimeCounter += Date.now() - doArticleTime
-    if (pageObj) {
-      pages.push(pageObj);
-    }
-    if (pageCount % options.batch_size === 0) {
-      insertToDb();
-    }
-  })
-}
 
 const startPage = function() {
   return {
@@ -22,9 +8,8 @@ const startPage = function() {
     skip: false
   }
 }
-
 //
-const parseLine = function(line, state, options, insertToDb) {
+const parseLine = function(line, state, donePage) {
   //we're currently grabbing wikitext..
   if (state.inside === true) {
     //finish it!
@@ -57,6 +42,14 @@ const parseLine = function(line, state, options, insertToDb) {
   //skip redirects too..
   if (line.includes('<redirect title="')) {
     state.skip = true;
+    return state
+  }
+  //grab this title, sorta it's handy
+  if (line.includes('<title>')) {
+    let m = line.match(/<title>(.*)<\/title>/)
+    if (m && m[1]) {
+      state.title = m[1]
+    }
     return state
   }
   //not skipping, and waiting for <text> to start..

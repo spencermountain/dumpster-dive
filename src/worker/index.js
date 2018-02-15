@@ -1,7 +1,8 @@
 const LineByLineReader = require('line-by-line')
-const init = require('../00-init-db');
+const init = require('../01-init-db');
 const logger = require('./_logger')
-const parseLine = require('./parseLine')
+const parseLine = require('./01-parseLine')
+const parseWiki = require('./02-parseWiki');
 
 const xmlSplit = async (options, chunkSize, workerNr) => {
   var startByte,
@@ -58,13 +59,28 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
       })
     }
   };
+
+  //reached the end of a page
+  const donePage = function(page) {
+    parseWiki(page.body, options, (pageObj) => {
+      doArticleTimeCounter += Date.now() - doArticleTime
+      if (pageObj) {
+        pages.push(pageObj);
+      }
+      console.log(page.title)
+      if (pageCount % options.batch_size === 0) {
+        insertToDb();
+      }
+    })
+  }
+
   lr.on('error', () => {
     // 'err' contains error object
     logger.error("linereader error");
   });
 
   lr.on('line', (line) => {
-    state = parseLine(line, state, options, insertToDb)
+    state = parseLine(line, state, donePage)
   });
 
   lr.on('end', function() {
