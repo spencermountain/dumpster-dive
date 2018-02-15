@@ -1,16 +1,11 @@
-var WorkerNodes,
-  cpuCount,
-  fs,
-  workerLogs,
-  workerNodes;
 const pretty = require('prettysize');
-WorkerNodes = require('worker-nodes');
-fs = require("fs");
+const WorkerNodes = require('worker-nodes');
+const fs = require("fs");
 const EventEmitter = require('events');
-cpus = require('os').cpus()
-cpuCount = cpus.length;
+const cpus = require('os').cpus()
+const cpuCount = cpus.length;
 
-workerNodes = new WorkerNodes(__dirname + '/worker.js', {
+let workerNodes = new WorkerNodes(__dirname + '/worker/index.js', {
   minWorkers: cpuCount - 1,
   autoStart: true,
   maxTasksPerWorker: 1
@@ -43,7 +38,6 @@ class Worker extends EventEmitter {
     console.log(`launching ${cpuCount} processes. do ctrl-c to kill all.`);
     console.log("do tail -f /tmp/worker.logs on a separate terminal window for logs.");
 
-
     //await workerNodes.ready();
     var workerCount = 0
     cpus.forEach((val, key) => {
@@ -56,10 +50,8 @@ class Worker extends EventEmitter {
             worker.process.child.on("message", async (msg2) => {
               this.emit("msg", msg2);
               if (msg.type === "workerDone") {
-                workerCount--
-                //console.log(workerCount)
+                workerCount -= 1
                 if (workerCount === 0) {
-                  //console.log("all done.")
                   await workerNodes.terminate()
                   this.emit("allWorkersFinished");
                 }
@@ -67,12 +59,9 @@ class Worker extends EventEmitter {
             })
           })
         }
-        ;
-      });
-    });
+      })
+    })
   }
-  ;
-
 }
 
 process.on('unhandledRejection', function(up) {

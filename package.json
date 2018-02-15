@@ -16,7 +16,7 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "\"node_modules/.bin/tape\" \"./tests/*.test.js\" | \"node_modules/.bin/tap-spec\" --color",
-    "cleanup": "rm ./worker.logs && touch ./worker.logs"
+    "cleanup": "rm /tmp/worker.logs && touch /tmp/worker.logs"
   },
   "dependencies": {
     "cluster": "^0.7.7",
@@ -25,17 +25,12 @@
     "kue": "^0.11.1",
     "line-by-line": "^0.1.6",
     "log4js": "^2.5.3",
-    "moment": "^2.20.1",
-    "momentjs": "^2.0.0",
     "mongodb": "^2.2.33",
     "prettysize": "^1.1.0",
     "string-to-stream": "^1.1.0",
     "unbzip2-stream": "^1.0.9",
     "worker-nodes": "^1.6.0",
-    "wtf_wikipedia": "^2.4.2",
-    "xml-stream": "^0.4.5",
-    "xml2js": "^0.4.19",
-    "xmlsplit": "^1.2.8"
+    "wtf_wikipedia": "^2.4.2"
   },
   "devDependencies": {
     "shelljs": "^0.7.8",
