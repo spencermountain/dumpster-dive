@@ -6,6 +6,6 @@ const dbName = 'tmpwiki'
 w2m({
   file: path,
   db: dbName,
-  batch_size: 30,
-  plaintext: true
+  batch_size: 1000,
+  plaintext: false
 })

@@ -61,17 +61,16 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
   };
 
   //reached the end of a page
-  const donePage = function(page) {
-    parseWiki(page.body, options, (pageObj) => {
-      doArticleTimeCounter += Date.now() - doArticleTime
-      if (pageObj) {
-        pages.push(pageObj);
-      }
-      console.log(page.title)
-      if (pageCount % options.batch_size === 0) {
-        insertToDb();
-      }
-    })
+  const donePage = function(pageObj) {
+    pageCount += 1
+    pageObj = parseWiki(pageObj, options)
+    if (pageObj !== null) {
+      pages.push(pageObj);
+    }
+    // doArticleTimeCounter += Date.now() - doArticleTime
+    if (pageCount % options.batch_size === 0) {
+      insertToDb();
+    }
   }
 
   lr.on('error', () => {

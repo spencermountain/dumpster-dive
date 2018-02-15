@@ -5,7 +5,7 @@ const encode = require('./_encode');
 const plaintext = function(page) {
   return {
     title: page.title,
-    _id: encode.encodeStr(page.title),
+    _id: encode.encodeStr(page.title || ''),
     plaintext: wtf.plaintext(page.script)
   };
 }
@@ -21,7 +21,7 @@ const parseData = function(page, options) {
     return null
   }
   data = encode.encodeData(data);
-  data.title = data.title || page.title;
+  data.title = data.title || page.title || '';
   data._id = encode.encodeStr(data.title);
   return data
 };

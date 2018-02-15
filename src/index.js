@@ -45,7 +45,7 @@ const main = async (options) => {
   setInterval(async () => {
     count = await options.db.collection(config.collection).count()
     console.log(`pages: ${count}`)
-  }, 10000)
+  }, 5000)
 
 }
 

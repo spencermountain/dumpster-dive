@@ -2,7 +2,7 @@ require('./_polyfill');
 
 const startPage = function() {
   return {
-    body: '',
+    script: '',
     title: null,
     inside: false,
     skip: false
@@ -14,13 +14,12 @@ const parseLine = function(line, state, donePage) {
   if (state.inside === true) {
     //finish it!
     if (line.includes("</text>")) {
-      state.body = line.replace(/<\/text>.*/, '')
-      donePage(state, insertToDb)
-      state = startPage()
-      return state
+      state.script = line.replace(/<\/text>.*/, '')
+      donePage(state)
+      return startPage()
     }
     //keep going!
-    state.body += line
+    state.script += line
     return state
   }
   //we're waiting for the page to end..
@@ -55,7 +54,8 @@ const parseLine = function(line, state, donePage) {
   //not skipping, and waiting for <text> to start..
   if (line.includes('<text xml:space="preserve">')) {
     state.inside = true
-    return state.body = line.replace(/.*<text xml:space="preserve">/, '')
+    state.script = line.replace(/.*<text xml:space="preserve">/, '')
+    return state
   }
   return state
 }
