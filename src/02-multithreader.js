@@ -53,7 +53,7 @@ class Worker extends EventEmitter {
     }
 
     cpus.forEach((val, key) => {
-      workerNodes.call.xmlSplit(options, chunkSize, key).then(() => {
+      workerNodes.call.getPages(options, chunkSize, key).then(() => {
         workerCount += 1
         if (workerCount === cpuCount) {
           workerNodes.workersQueue.storage.forEach((worker) => {

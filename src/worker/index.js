@@ -1,19 +1,17 @@
 const LineByLineReader = require('line-by-line')
 const init = require('../01-init-db');
-const getLogger = require('./_logger')
+const logger = require('./_logger')
 const parseLine = require('./01-parseLine')
 const parseWiki = require('./02-parseWiki');
 
-const xmlSplit = async (options, chunkSize, workerNr) => {
+const getPages = async (options, chunkSize, workerNr) => {
   var startByte,
     insertToDb,
     state,
     lr,
     pageCount,
-    logger,
     pages;
 
-  logger = getLogger()
   if (workerNr === 0) {
     startByte = 0
   } else {
@@ -96,5 +94,5 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
 };
 
 module.exports = {
-  xmlSplit
+  getPages
 }

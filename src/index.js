@@ -26,7 +26,7 @@ const main = async (options) => {
       writing++
       res = await writeDb(msg.pages, options)
       writing--
-      console.log("worker " + msg.pid + ":" + res + ` batch took ${Math.round((msg.timeSpent.total) / 1000)} secs. --doArticle()-- took ${Math.round(msg.timeSpent.doArticle / 1000)} secs.`)
+    // console.log("worker " + msg.pid + ":" + res + ` batch took ${Math.round((msg.timeSpent.total) / 1000)} secs. --doArticle()-- took ${Math.round(msg.timeSpent.doArticle / 1000)} secs.`)
     }
   })
 
@@ -44,8 +44,8 @@ const main = async (options) => {
   // await init(options)
   setInterval(async () => {
     count = await options.db.collection(config.collection).count()
-    console.log(`pages: ${count}`)
-  }, 5000)
+    console.log(` - - pages: ${count}`)
+  }, 10000)
 
 }
 
