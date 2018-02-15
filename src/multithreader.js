@@ -1,4 +1,8 @@
-var WorkerNodes, cpuCount, fs, start, workerLog, workerLogs, workerNodes;
+var WorkerNodes,
+  cpuCount,
+  fs,
+  workerLogs,
+  workerNodes;
 const pretty = require('prettysize');
 WorkerNodes = require('worker-nodes');
 fs = require("fs");
@@ -7,7 +11,7 @@ cpus = require('os').cpus()
 cpuCount = cpus.length;
 
 workerNodes = new WorkerNodes(__dirname + '/worker.js', {
-  minWorkers: cpuCount-1,
+  minWorkers: cpuCount - 1,
   autoStart: true,
   maxTasksPerWorker: 1
 });
@@ -17,19 +21,21 @@ workerLogs = {};
 workerLog = function(msg) {
   var name;
   if (msg) {
-    if (workerLogs[name = msg.pid] == null) {
+    if (workerLogs[name = msg.pid] === undefined) {
       workerLogs[name] = {};
     }
     return workerLogs[msg.pid] = msg;
   }
+  return null
 };
 
 class Worker extends EventEmitter {
-  constructor(){
+  constructor() {
     super()
   }
-  parseXML (options) {
-    var chunkSize, size;
+  parseXML(options) {
+    var chunkSize,
+      size;
     size = fs.statSync(options.file)["size"];
     // size = 633279000
     chunkSize = Math.floor(size / cpuCount);
@@ -40,16 +46,16 @@ class Worker extends EventEmitter {
 
     //await workerNodes.ready();
     var workerCount = 0
-    cpus.forEach((val,key) => {
+    cpus.forEach((val, key) => {
       workerNodes.call.xmlSplit(options, chunkSize, key).then((msg) => {
-        
+
         workerCount++
 
         if (workerCount === cpuCount) {
-          workerNodes.workersQueue.storage.forEach((worker)=>{
-            worker.process.child.on("message", async (msg)=>{
-              this.emit("msg",msg);
-              if(msg.type === "workerDone"){
+          workerNodes.workersQueue.storage.forEach((worker) => {
+            worker.process.child.on("message", async (msg2) => {
+              this.emit("msg", msg2);
+              if (msg.type === "workerDone") {
                 workerCount--
                 //console.log(workerCount)
                 if (workerCount === 0) {
@@ -60,10 +66,12 @@ class Worker extends EventEmitter {
               }
             })
           })
-        };
+        }
+        ;
       });
     });
-  };
+  }
+  ;
 
 }
 
@@ -80,4 +88,6 @@ process.on('SIGINT', async function() {
 
 worker = new Worker()
 
-module.exports = {worker:worker}
+module.exports = {
+  worker: worker
+}

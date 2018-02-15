@@ -4,10 +4,7 @@ const XmlStream = require('xml-stream');
 var str = require('string-to-stream')
 
 // get wikiscript from the xml, parse it, and send it to mongo
-
-
-  
-const doArticle = function(pageStr, options,callback) {
+const doArticle = function(pageStr, options, callback) {
 
   let xml = new XmlStream(str(pageStr));
 
@@ -15,7 +12,7 @@ const doArticle = function(pageStr, options,callback) {
   xml.on('endElement: page', async (page) => {
     // ignore 'talk pages', etc.
     if (page.ns === '0') {
-      if (options.verbose === true){
+      if (options.verbose === true) {
         console.log(page.title);
       }
       let script = page.revision.text['$text'] || '';
@@ -32,6 +29,6 @@ const doArticle = function(pageStr, options,callback) {
     }
     return null
   });
-  
+
 }
 module.exports = doArticle

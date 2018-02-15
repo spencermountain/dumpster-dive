@@ -1,10 +1,9 @@
 
 //
-checkWriteSuccess = (preCount,postCount,arr) => {
-  if (preCount+arr.length === postCount){
+checkWriteSuccess = (preCount, postCount, arr) => {
+  if (preCount + arr.length === postCount) {
     console.log(`all parsed documents are inserted succesfully. total docs: ${postCount}`)
-  }
-  else {
+  } else {
     // feature sugg.:
     // let's check the difference betw arr & result obj.
     // make a note of the ones that couldn't be inserted eg:
@@ -18,23 +17,25 @@ checkWriteSuccess = (preCount,postCount,arr) => {
 }
 
 const writeDb = async (arr, options, coll) => {
-  return new Promise( async (resolve,reject)=>{
+  return new Promise(async (resolve) => {
     //let preCount = await options.collection.count()
     //arrr = [{arr:arr}]
-    options.db.collection(coll).insertMany( arr, { ordered: false }, async (err, result) => {
-        if (err) {
-            // collect insert errors...
-            // tbd. skip duplicate key errors
-            //    do not insert if err.writeErrors[x].code = 11000
-            // options.errCollection.insertMany(err.writeErrors,{ordered:false},()=>{})
-          }
+    options.db.collection(coll).insertMany(arr, {
+      ordered: false
+    }, async (err) => {
+      if (err) {
+        // collect insert errors...
+        // tbd. skip duplicate key errors
+        //    do not insert if err.writeErrors[x].code = 11000
+        // options.errCollection.insertMany(err.writeErrors,{ordered:false},()=>{})
+      }
 
-        let count = await options.collection.count()
-        // checkWriteSuccess(preCount,postCount,arr)
+      let count = await options.collection.count()
+      // checkWriteSuccess(preCount,postCount,arr)
 
-        resolve(`${arr.length} docs inserted. total:${count}`)
-      })
+      resolve(`${arr.length} docs inserted. total:${count}`)
     })
-  }
+  })
+}
 
 module.exports = writeDb

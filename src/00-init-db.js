@@ -7,7 +7,7 @@ const init = async ( options = {
     verbose: true
   } ) => {
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve) => {
     //this is required
     if (!fs.existsSync(options.file)) {
       console.log('please supply a filename for the wikipedia article dump in xml format');
