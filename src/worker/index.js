@@ -1,6 +1,6 @@
 const LineByLineReader = require('line-by-line')
 const init = require('../01-init-db');
-const logger = require('./_logger')
+const getLogger = require('./_logger')
 const parseLine = require('./01-parseLine')
 const parseWiki = require('./02-parseWiki');
 
@@ -10,7 +10,10 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     state,
     lr,
     pageCount,
+    logger,
     pages;
+
+  logger = getLogger()
   if (workerNr === 0) {
     startByte = 0
   } else {
@@ -33,7 +36,7 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
   workerBegin = Date.now()
   jobBegin = Date.now()
   doArticleTimeCounter = 0
-  insertToDb = function(last) {
+  insertToDb = function(isLast) {
     lr.pause();
     process.send({
       type: "insertToDb",
@@ -52,7 +55,8 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     workerBegin = Date.now()
     logger.info(`batch complete: worker pid:${process.pid} inserted ${pageCount} pages in ${((Date.now() - workerBegin) / 1000)} secs. doArticle took ${doArticleTimeCounter / 1000} secs.`);
     lr.resume();
-    if (last) {
+    if (isLast === true) {
+      logger.info(`worker pid:${process.pid} is done.`);
       process.send({
         type: "workerDone",
         pid: process.pid
@@ -86,7 +90,6 @@ const xmlSplit = async (options, chunkSize, workerNr) => {
     // All lines are read, file is closed now.
     // insert remaining pages.
     insertToDb(true);
-    logger.info(`worker pid:${process.pid} is done. inserted ${pageCount} pages in ${((Date.now() - workerBegin) / 1000)} secs. doArticle took ${doArticleTimeCounter / 1000} secs.`);
   // process.exit()
   });
   return (process.pid)

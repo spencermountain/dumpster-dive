@@ -40,23 +40,24 @@ class Worker extends EventEmitter {
 
     //await workerNodes.ready();
     var workerCount = 0
+    const onMsg = async (msg) => {
+      this.emit("msg", msg);
+      if (msg.type === "workerDone") {
+        workerCount -= 1
+        console.log(workerCount + ' workers still running..')
+        if (workerCount === 0) {
+          await workerNodes.terminate()
+          this.emit("allWorkersFinished");
+        }
+      }
+    }
+
     cpus.forEach((val, key) => {
-      workerNodes.call.xmlSplit(options, chunkSize, key).then((msg) => {
-
-        workerCount++
-
+      workerNodes.call.xmlSplit(options, chunkSize, key).then(() => {
+        workerCount += 1
         if (workerCount === cpuCount) {
           workerNodes.workersQueue.storage.forEach((worker) => {
-            worker.process.child.on("message", async (msg2) => {
-              this.emit("msg", msg2);
-              if (msg.type === "workerDone") {
-                workerCount -= 1
-                if (workerCount === 0) {
-                  await workerNodes.terminate()
-                  this.emit("allWorkersFinished");
-                }
-              }
-            })
+            worker.process.child.on("message", onMsg)
           })
         }
       })
