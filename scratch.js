@@ -7,5 +7,5 @@ w2m({
   file: path,
   db: dbName,
   batch_size: 1000,
-  plaintext: false
+  plaintext: true
 })

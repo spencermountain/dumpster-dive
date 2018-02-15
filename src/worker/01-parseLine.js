@@ -14,7 +14,7 @@ const parseLine = function(line, state, donePage) {
   if (state.inside === true) {
     //finish it!
     if (line.includes("</text>")) {
-      state.script = line.replace(/<\/text>.*/, '')
+      state.script += line.replace(/<\/text>.*/, '')
       donePage(state)
       return startPage()
     }
