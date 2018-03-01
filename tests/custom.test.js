@@ -1,17 +1,17 @@
 let test = require('tape')
 let db = require('./db')
-let wp2mongo = require('../')
+let dumpster = require('../')
 /*
 //to update the bz2,
 rm ./tests/tinywiki-latest-pages-articles.xml.bz2 && bzip2 -z ./tests/tinywiki-latest-pages-articles.xml
 */
 test('custom-made-tinywiki', function(t) {
   let obj = {
-    file: './tests/tinywiki-latest-pages-articles.xml.bz2',
+    file: './tests/tinywiki-latest-pages-articles.xml',
     db: 'tempwiki',
   }
   db.drop(obj.db, 'wikipedia', () => {
-    wp2mongo(obj, () => {
+    dumpster(obj, () => {
       db.firstTen(obj.db, docs => {
         t.equal(docs.length, 7, 'seven records')
 
@@ -37,13 +37,13 @@ test('custom-made-tinywiki', function(t) {
 
 // test('no-redirects', function(t) {
 //   let obj = {
-//     file: './tests/tinywiki-latest-pages-articles.xml.bz2',
+//     file: './tests/tinywiki-latest-pages-articles.xml',
 //     db: 'tempwikiskip',
 //     skip_redirects: true,
 //     skip_disambig: true,
 //   }
 //   db.drop(obj.db, () => {
-//     wp2mongo(obj, () => {
+//     dumpster(obj, () => {
 //       db.firstTen(obj.db, docs => {
 //         t.equal(docs.length, 5, 'five records')
 //

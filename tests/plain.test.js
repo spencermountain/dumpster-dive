@@ -1,6 +1,6 @@
 let test = require('tape')
 let db = require('./db')
-let wp2mongo = require('../')
+let dumpster = require('../')
 
 test('plaintext', function(t) {
   let obj = {
@@ -9,7 +9,7 @@ test('plaintext', function(t) {
     plaintext: true
   }
   db.drop(obj.db, 'wikipedia', () => {
-    wp2mongo(obj, () => {
+    dumpster(obj, () => {
       db.firstTen(obj.db, docs => {
         t.equal(docs.length, 7, '7 records')
         t.equal(docs[0].plaintext, 'hello this is wikitext\n\n', 'got plaintext')

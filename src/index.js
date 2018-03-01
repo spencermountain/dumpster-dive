@@ -6,9 +6,7 @@ const mt = require("./02-multithreader")
 const writeDb = require('./03-write-db');
 const config = require('../config');
 
-process.on('unhandledRejection', up => {
-  console.log(up)
-})
+process.on('unhandledRejection', console.log)
 
 //open up a mongo db, and start xml-streaming..
 const main = async (options) => {

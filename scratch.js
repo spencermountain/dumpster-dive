@@ -1,4 +1,4 @@
-const w2m = require('./src')
+const dumpster = require('./src')
 const drop = require('./tests/db').drop
 const config = require('./config')
 
@@ -10,7 +10,7 @@ const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1]
 //delete all pages
 drop(dbName, config.collection, () => {
   console.log('dropped existing pages from ' + dbName + ' - ' + config.collection + '\n\n')
-  w2m({
+  dumpster({
     file: path,
     db: dbName,
     batch_size: 1000,

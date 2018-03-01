@@ -42,7 +42,7 @@ Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/man
 ```bash
 # start mongo
 mongod --config /mypath/to/mongod.conf
-# install wp2mongo
+# install script
 npm install -g dumpster-dive
 ```
 that gives you the global command `dumpster`.
