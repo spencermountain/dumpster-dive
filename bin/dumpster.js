@@ -11,6 +11,10 @@ let parseArgs = function() {
     .option('--skip_redirects', 'if true, skips-over pages that are redirects')
     .option('--skip_disambig', 'if true, skips-over disambiguation pages')
     .option('--verbose', 'print each article title to the console')
+    .option('--citations', 'whether to parse references/citations [true]')
+    .option('--infoboxes', 'whether to parse infoboxes [true]')
+    .option('--images', 'whether to parse images [true]')
+    .option('--categories', 'whether to parse categories [true]')
     .parse(process.argv)
 
   //grab the wiki file
@@ -34,6 +38,10 @@ let parseArgs = function() {
     skip_redirects: true,
     skip_first: 0,
     verbose: false,
+    citations: true,
+    infoboxes: true,
+    images: true,
+    categories: true,
   }, program)
 
   return {

@@ -113,6 +113,16 @@ let obj = {
 }
 dumpster(obj, () => console.log('done!') )
 ```
+#### reducing file-size
+you can tell wtf_wikipedia what you want it to parse, and which data you don't need:
+```
+{
+	infoboxes: true, //the key-value info
+	citations: true, //include references and citations
+	images: true,		 //images thumbnails
+	categories: true //page's categories
+}
+```
 
 ## how it works:
 this library uses:
