@@ -1,6 +1,6 @@
 {
   "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
-  "name": "wikipedia-to-mongodb",
+  "name": "dumpster-dive",
   "description": "get a wikipedia dump parsed into mongodb",
   "version": "2.4.0",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
   },
   "bin": {
-    "wp2mongo": "./bin/wp2mongo.js"
+    "dumpster": "./bin/dumpster.js"
   },
   "engines": {
     "node": ">4.8.6"

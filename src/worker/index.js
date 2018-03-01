@@ -34,6 +34,7 @@ const getPages = async (options, chunkSize, workerNr) => {
   workerBegin = Date.now()
   jobBegin = Date.now()
   doArticleTimeCounter = 0
+
   insertToDb = function(isLast) {
     lr.pause();
     process.send({
@@ -88,7 +89,6 @@ const getPages = async (options, chunkSize, workerNr) => {
     // All lines are read, file is closed now.
     // insert remaining pages.
     insertToDb(true);
-  // process.exit()
   });
   return (process.pid)
 };

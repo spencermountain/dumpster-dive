@@ -11,7 +11,7 @@ let workerNodes = new WorkerNodes(__dirname + '/worker/index.js', {
   maxTasksPerWorker: 1
 });
 
-workerLogs = {};
+let workerLogs = {};
 
 workerLog = function(msg) {
   var name;

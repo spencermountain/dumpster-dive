@@ -8,7 +8,8 @@ const startPage = function() {
     skip: false
   }
 }
-//
+
+//brittle-but-fast interpreting of the xml file
 const parseLine = function(line, state, donePage) {
   //we're currently grabbing wikitext..
   if (state.inside === true) {

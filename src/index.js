@@ -14,31 +14,25 @@ process.on('unhandledRejection', up => {
 const main = async (options) => {
 
   params = Object.assign({}, options);
-
   await init(options)
-
   mt.worker.parseXML(params)
 
   writing = 0
   mt.worker.on("msg", async (msg) => {
     if (msg.type === "insertToDb") {
-      // console.log("-->",msg.length,msg.pages.length)
       writing++
       res = await writeDb(msg.pages, options)
       writing--
-    // console.log("worker " + msg.pid + ":" + res + ` batch took ${Math.round((msg.timeSpent.total) / 1000)} secs. --doArticle()-- took ${Math.round(msg.timeSpent.doArticle / 1000)} secs.`)
     }
   })
 
   mt.worker.on("allWorkersFinished", () => {
-
     setInterval(() => {
       if (writing === 0) {
         console.log("all done, exiting...")
         process.exit()
       }
     }, 500)
-
   })
 
   // await init(options)

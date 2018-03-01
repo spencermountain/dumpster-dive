@@ -55,6 +55,7 @@ const encodeData = function(data) {
   }
   return data;
 };
+
 module.exports = {
   encodeData: encodeData,
   encodeStr: encodeStr

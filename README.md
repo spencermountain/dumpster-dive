@@ -6,16 +6,16 @@ It's a javascript one-liner that puts a highly-queryable wikipedia on your lapto
 It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into *almost-nice* json.
 
 ```bash
-npm install -g wikipedia-to-mongodb
+npm install -g dumpster-dive
 ```
 ### ⚡ From the Command-Line:
 ```bash
-wp2mongo /path/to/my-wikipedia-article-dump.xml.bz2
+dumpster /path/to/my-wikipedia-article-dump.xml
 ```
 ### 😎 From a nodejs script
 ```js
-var wp2mongo = require('wikipedia-to-mongodb')
-wp2mongo({file:'./enwiki-latest-pages-articles.xml.bz2', db: 'enwiki'}, callback)
+var dumpster = require('dumpster-dive')
+dumpster({file:'./enwiki-latest-pages-articles.xml', db: 'enwiki'}, callback)
 ```
 
 then check out the articles in mongo:
@@ -34,7 +34,7 @@ db.wikipedia.count({type:"redirect"})
 
 ### 1) 💪 you can do this.
 you can do this.
-a few Gb. you can do this.
+just a few Gb. you can do this.
 
 ### 2) get ready
 Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/)
@@ -43,9 +43,9 @@ Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/man
 # start mongo
 mongod --config /mypath/to/mongod.conf
 # install wp2mongo
-npm install -g wikipedia-to-mongodb
+npm install -g dumpster-dive
 ```
-that gives you the global command `wp2mongo`.
+that gives you the global command `dumpster`.
 
 ### 3) download a wikipedia
 The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
@@ -55,15 +55,18 @@ wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.
 ```
 the english/german ones are bigger. Use whichever xml dump you'd like. The [download page](https://dumps.wikimedia.org) is weird, but you'll want the most-common dump format, without historical diffs, or images, which is `${LANG}wiki-latest-pages-articles.xml.bz2 `
 
-### 4) get it going
+### 4) unzip it
+i know, this sucks. but it makes the parser so much faster. On a macbook, unzipping en-wikipedia takes about an hour.
+
+### 5) start it off
 ```bash
 #load it into mongo (10-15 minutes)
-wp2mongo ./afwiki-latest-pages-articles.xml.bz2
+dumpster ./afwiki-latest-pages-articles.xml
 ```
-### 5) take a bath
+### 6) take a bath
 just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there, it feels great. You deserve a break once and a while. The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
 
-### 6) check-out your data
+### 7) check-out your data
 to view your data in the mongo console,
 ````javascript
 $ mongo
@@ -87,7 +90,7 @@ the download will take an afternoon, and the loading/parsing a couple hours. The
 ### Options
 #### human-readable plaintext **--plaintext**
 ```js
-wp2mongo({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true}, console.log)
+dumpster({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true}, console.log)
 /*
 [{
   _id:'Toronto',
@@ -108,18 +111,14 @@ let obj = {
 	skip_first: 1000, // ignore the first 1k pages
 	verbose: true, // print each article title
 }
-wp2mongo(obj, () => console.log('done!') )
+dumpster(obj, () => console.log('done!') )
 ```
 
 ## how it works:
 this library uses:
-* [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompress the gnarly bz2 file
-
-* [xml-stream](https://github.com/assistunion/xml-stream) to stream-parse its xml format
+* [line-by-line](https://www.npmjs.com/package/line-by-line) to stream the gnarly xml file
 
 * [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article wikiscript contents into JSON.
-
-* [redis](http://redis.io/) to (optionally) put wikiscript parsing on separate threads :metal:
 
 ## Addendum:
 ### \_ids
