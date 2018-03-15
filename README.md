@@ -67,7 +67,7 @@ just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in ther
 to view your data in the mongo console,
 ````javascript
 $ mongo
-use af_wikipedia
+use afwiki
 
 //shows a random page
 db.wikipedia.find().skip(200).limit(2)
