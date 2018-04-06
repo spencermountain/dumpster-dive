@@ -4,7 +4,7 @@ const writeDb = async (arr, options) => {
   return new Promise(async (resolve) => {
     options.db.collection(config.collection).insertMany(arr, {
       ordered: false
-    }, async (err) => {
+    }, async () => {
       // if (err) {
       // collect insert errors...
       // tbd. skip duplicate key errors
@@ -13,7 +13,6 @@ const writeDb = async (arr, options) => {
       // }
       let count = await options.collection.count()
       // checkWriteSuccess(preCount,postCount,arr)
-
       resolve(`${arr.length} docs inserted. total:${count}`)
     })
   })

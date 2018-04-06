@@ -1,6 +1,7 @@
 const pretty = require('prettysize');
 const WorkerNodes = require('worker-nodes');
 const fs = require("fs");
+const chalk = require('chalk')
 const EventEmitter = require('events');
 const cpus = require('os').cpus()
 const cpuCount = cpus.length;
@@ -11,18 +12,17 @@ let workerNodes = new WorkerNodes(__dirname + '/worker/index.js', {
   maxTasksPerWorker: 1
 });
 
-let workerLogs = {};
-
-workerLog = function(msg) {
-  var name;
-  if (msg) {
-    if (workerLogs[name = msg.pid] === undefined) {
-      workerLogs[name] = {};
-    }
-    return workerLogs[msg.pid] = msg;
-  }
-  return null
-};
+// let workerLogs = {};
+// workerLog = function(msg) {
+//   var name;
+//   if (msg) {
+//     if (workerLogs[name = msg.pid] === undefined) {
+//       workerLogs[name] = {};
+//     }
+//     return workerLogs[msg.pid] = msg;
+//   }
+//   return null
+// };
 
 class Worker extends EventEmitter {
   constructor() {
@@ -34,11 +34,11 @@ class Worker extends EventEmitter {
     size = fs.statSync(options.file)["size"];
     // size = 633279000
     chunkSize = Math.floor(size / cpuCount);
-    console.log(`${cpuCount} cpu cores detected. file size: ${pretty(size)} file will be divided into: ${cpuCount} each process will be given: ${pretty(chunkSize)}`);
-    console.log(`launching ${cpuCount} processes. do ctrl-c to kill all.`);
-    console.log("do tail -f /tmp/worker.logs on a separate terminal window for logs.");
+    console.log(chalk.blue(cpuCount) + ` cpu cores detected.')
+    console.log('file size: ${chalk.green(pretty(size))}`)
+    console.log(` - each process will be given: ${pretty(chunkSize)}`);
+    console.log(chalk.grey("  (view logs with `tail -f /tmp/worker.logs`)"));
 
-    //await workerNodes.ready();
     var workerCount = 0
     const onMsg = async (msg) => {
       this.emit("msg", msg);

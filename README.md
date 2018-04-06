@@ -56,7 +56,7 @@ wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.
 the english/german ones are bigger. Use whichever xml dump you'd like. The [download page](https://dumps.wikimedia.org) is weird, but you'll want the most-common dump format, without historical diffs, or images, which is `${LANG}wiki-latest-pages-articles.xml.bz2 `
 
 ### 4) unzip it
-i know, this sucks. but it makes the parser so much faster. On a macbook, unzipping en-wikipedia takes about an hour.
+i know, this sucks. but it makes the parser so much faster. On a macbook, unzipping en-wikipedia takes about an hour. Eat some lunch.
 
 ### 5) start it off
 ```bash
@@ -70,7 +70,7 @@ just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in ther
 to view your data in the mongo console,
 ````javascript
 $ mongo
-use af_wikipedia
+use afwiki
 
 //shows a random page
 db.wikipedia.find().skip(200).limit(2)

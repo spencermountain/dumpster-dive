@@ -19,6 +19,7 @@
     "cleanup": "rm /tmp/worker.logs && touch /tmp/worker.logs"
   },
   "dependencies": {
+    "chalk": "^2.3.2",
     "commander": "^2.12.0",
     "line-by-line": "^0.1.6",
     "log4js": "^2.5.3",

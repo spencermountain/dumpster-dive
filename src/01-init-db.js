@@ -27,15 +27,9 @@ const init = async ( options = {
     //   options.skip_first = await options.collection.count()
     //   console.log('\n\n\n -- auto skipping first ' + options.skip_first + ' articles...')
     // }
-    // we can make this smarter in the future
-    // by giving batch an ID and collecting errors of
-    // that batch to that ID'd collection
-    // for now each run is one batch.
+    // we can make this smarter in the future..
     // options.errCollection = await options.db.createCollection('errors',{capped:true, max: 1000, size: 5242880 });
     // options.queueCollection = await options.db.createCollection('queue');
-
-    // await options.errCollection.drop()
-    // await options.queueCollection.drop()
     resolve(options)
   })
 }
