@@ -34,8 +34,8 @@ class Worker extends EventEmitter {
     size = fs.statSync(options.file)["size"];
     // size = 633279000
     chunkSize = Math.floor(size / cpuCount);
-    console.log(chalk.blue(cpuCount) + ` cpu cores detected.')
-    console.log('file size: ${chalk.green(pretty(size))}`)
+    console.log(chalk.blue(cpuCount) + ` cpu cores detected.`)
+    console.log(`file size: ${chalk.green(pretty(size))}`)
     console.log(` - each process will be given: ${pretty(chunkSize)}`);
     console.log(chalk.grey("  (view logs with `tail -f /tmp/worker.logs`)"));
 

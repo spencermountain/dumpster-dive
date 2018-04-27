@@ -1,9 +1,9 @@
 # A whole Wikipedia dump, in mongodb.
-put your hefty [wikipedia dump](https://dumps.wikimedia.org) into mongo, with fully-parsed wikiscript - without thinking, without loading it into memory, grepping, unzipping, or other crazy command-line nonsense.
+put your hefty [wikipedia dump](https://dumps.wikimedia.org) into mongo, with fully-parsed wikiscript - without thinking, without loading it into memory, or other crazy nonsense.
 
 It's a javascript one-liner that puts a highly-queryable wikipedia on your laptop in a nice afternoon.
 
-It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into *almost-nice* json.
+It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into whatever json you'd like.
 
 ```bash
 npm install -g dumpster-dive
@@ -12,7 +12,7 @@ npm install -g dumpster-dive
 ```bash
 dumpster /path/to/my-wikipedia-article-dump.xml
 ```
-### 😎 From a nodejs script
+### 😎 From a nodejs app
 ```js
 var dumpster = require('dumpster-dive')
 dumpster({file:'./enwiki-latest-pages-articles.xml', db: 'enwiki'}, callback)

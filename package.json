@@ -19,19 +19,19 @@
     "cleanup": "rm /tmp/worker.logs && touch /tmp/worker.logs"
   },
   "dependencies": {
-    "chalk": "^2.3.2",
-    "commander": "^2.12.0",
-    "line-by-line": "^0.1.6",
-    "log4js": "^2.5.3",
-    "mongodb": "^2.2.33",
-    "prettysize": "^1.1.0",
-    "worker-nodes": "^1.6.0",
-    "wtf_wikipedia": "^2.4.2"
+    "chalk": "2.4.1",
+    "commander": "2.15.1",
+    "line-by-line": "0.1.6",
+    "log4js": "2.5.3",
+    "mongodb": "2.2.33",
+    "prettysize": "1.1.0",
+    "worker-nodes": "1.6.0",
+    "wtf_wikipedia": "^3.1.0"
   },
   "devDependencies": {
-    "shelljs": "^0.7.8",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.8.0"
+    "shelljs": "^0.8.1",
+    "tap-spec": "4.1.1",
+    "tape": "4.8.0"
   },
   "license": "MIT"
 }

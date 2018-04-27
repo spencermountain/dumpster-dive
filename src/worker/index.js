@@ -51,8 +51,8 @@ const getPages = async (options, chunkSize, workerNr) => {
     jobBegin = Date.now()
     doArticleTimeCounter = 0
     page = {}
+    logger.info(`batch complete: worker pid:${process.pid} has inserted ${pageCount} pages; latest batch in ${((Date.now() - workerBegin) / 1000)} secs.`);
     workerBegin = Date.now()
-    logger.info(`batch complete: worker pid:${process.pid} inserted ${pageCount} pages in ${((Date.now() - workerBegin) / 1000)} secs. doArticle took ${doArticleTimeCounter / 1000} secs.`);
     lr.resume();
     if (isLast === true) {
       logger.info(`worker pid:${process.pid} is done.`);

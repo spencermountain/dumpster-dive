@@ -14,11 +14,11 @@ const encodeData = function(data) {
   //encode keys in infoboxes
   if (data.infoboxes && data.infoboxes.length > 0) {
     data.infoboxes.forEach(info => {
-      let keys = Object.keys(info.data);
+      let keys = Object.keys(info);
       keys.forEach(k => {
         if (k !== encodeStr(k)) {
-          info.data[encodeStr(k)] = info.data[k];
-          delete info.data[k];
+          info[encodeStr(k)] = info[k];
+          delete info[k];
         }
       });
     });
