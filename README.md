@@ -1,9 +1,34 @@
-# A whole Wikipedia dump, in mongodb.
-put your hefty [wikipedia dump](https://dumps.wikimedia.org) into mongo, with fully-parsed wikiscript - without thinking, without loading it into memory, or other crazy nonsense.
+<div align="center">
+  <a href="https://www.codacy.com/app/spencerkelly86/dumpster-dive">
+    <img src="https://api.codacy.com/project/badge/grade/6fad3c588d3d4c97ab8a9abf9f2a5a01" />
+  </a>
+  <a href="https://npmjs.org/package/dumpster-dive">
+    <img src="https://img.shields.io/npm/v/dumpster-dive.svg?style=flat-square" />
+  </a>
+  <div>wikipedia dump parser</div>
+  <sub>
+    by
+    <a href="http://spencermounta.in/">Spencer Kelly</a>, <a href="https://github.com/devrim">Devrim Yasar</a>,
+		 and
+    <a href="https://github.com/spencermountain/wtf_wikipedia/graphs/contributors">
+      other contributors
+    </a>
+  </sub>
+</div>
+<p></p>
+
+<div align="center">
+  <b>dumpster-dive</b> gets wikipedia's [xml dump](https://dumps.wikimedia.org) into mongo,
+  <div>so you can mess-around with it</div>
+
+  <h2 align="center">💂 Yup</h2>
+  <div><sup>really</sup></div>
+  do it on your laptop
+</div>
 
 It's a javascript one-liner that puts a highly-queryable wikipedia on your laptop in a nice afternoon.
 
-It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into whatever json you'd like.
+It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into whatever json format you'd like.
 
 ```bash
 npm install -g dumpster-dive
