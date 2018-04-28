@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 let program = require('commander')
-let main = require('../src/index')
+let dumpster = require('../src/index')
 
 let parseArgs = function() {
   program
@@ -56,4 +56,4 @@ let parseArgs = function() {
   }
 }
 let obj = parseArgs()
-main(obj)
+dumpster(obj)

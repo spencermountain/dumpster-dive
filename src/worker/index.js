@@ -1,4 +1,5 @@
 const chalk = require('chalk')
+const fns = require('../../lib/fns')
 const LineByLineReader = require('line-by-line')
 const init = require('../01-init-db');
 const parseLine = require('./01-parseLine')
@@ -52,11 +53,10 @@ const getPages = async (options, chunkSize, workerNr) => {
     doArticleTimeCounter = 0
     page = {}
     let seconds = ((Date.now() - workerBegin) / 1000).toFixed(1)
-    console.log(chalk.yellow(`   #${process.pid}`) + chalk.grey(`    - wrote ${pageCount} pages  (${seconds}s`));
+    console.log(chalk.grey(`    - added ${fns.niceNumber(pageCount)} pages  - ${seconds}s   `) + chalk.yellow(`(by #${process.pid})`));
     workerBegin = Date.now()
     lr.resume();
     if (isLast === true) {
-      console.log(`worker pid:${process.pid} is done.`);
       process.send({
         type: "workerDone",
         pid: process.pid
