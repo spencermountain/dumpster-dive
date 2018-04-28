@@ -1,8 +1,8 @@
 <div align="center">
-	<h2>dumpster-dive</h2>
-  <!--<a href="https://www.codacy.com/app/spencerkelly86/dumpster-dive">
+	<h3>dumpster-dive</h3>
+  <a href="https://www.codacy.com/app/spencerkelly86/dumpster-dive">
     <img src="https://api.codacy.com/project/badge/grade/6fad3c588d3d4c97ab8a9abf9f2a5a01" />
-  </a>-->
+  </a>
   <a href="https://npmjs.org/package/dumpster-dive">
     <img src="https://img.shields.io/npm/v/dumpster-dive.svg?style=flat-square" />
   </a>
@@ -27,9 +27,9 @@
 </div>
 
 ![image](https://user-images.githubusercontent.com/399657/39391259-b57ca9e0-4a6e-11e8-8b33-2064e5fc187e.png)
-It's a quick **nodejs** one-liner that puts a **highly-queryable** wikipedia on your laptop in a nice afternoon.
+dumpster-dive is a quick **nodejs** one-liner that puts a **highly-queryable** wikipedia on your laptop in a nice afternoon.
 
-It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into whatever json format you'd like.
+It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to parse many pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn ***wikiscript*** into whatever json format you'd like.
 
 ```bash
 npm install -g dumpster-dive
@@ -59,11 +59,11 @@ db.wikipedia.count()
 
 # Steps:
 
-### 1) 💪 you can do this.
+### 1️⃣ 💪 you can do this.
 you can do this.
 just a few Gb. you can do this.
 
-### 2) get ready
+### 2️⃣ get ready
 Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/)
 
 ```bash
@@ -74,7 +74,7 @@ npm install -g dumpster-dive
 # (that gives you the global command `dumpster`)
 ```
 
-### 3) download a wikipedia
+### 3️⃣ download a wikipedia
 The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 5 mins to load into mongo on a macbook:
 ```bash
 # dowload an xml dump (38mb, couple minutes)
@@ -82,23 +82,23 @@ wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.
 ```
 the english/german ones are bigger. Use whichever xml dump you'd like. The [download page](https://dumps.wikimedia.org) is weird, but you'll want the most-common dump format, without historical diffs, or images, which is `${LANG}wiki-latest-pages-articles.xml.bz2 `
 
-### 4) unzip it
+### 4️⃣ unzip it
 i know, this sucks. but it makes the parser so much faster. On a macbook, unzipping en-wikipedia takes an hour or so. Eat some lunch.
 
-### 5) OK, start it off
+### 5️⃣ OK, start it off
 ```bash
 #load it into mongo (10-15 minutes)
 dumpster ./afwiki-latest-pages-articles.xml
 ```
-### 6) take a bath
+### 6️⃣ take a bath
 just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there, it feels great.
 
 The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
 
 The console will update you every couple seconds to let you know where it's at.
 
-### 7) check-out your data
-to view your data in the mongo console,
+### 7️⃣ done.
+go check-out the data! to view your data in the mongo console:
 ````javascript
 $ mongo
 use afwiki //your db name
@@ -114,7 +114,7 @@ db.wikipedia.findOne({title:"Toronto"}).categories
 the english wikipedia will work under the same process, but
 the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 13 GB (for [enwiki-20170901-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20170901/enwiki-20170901-pages-articles.xml.bz2)), and becomes a pretty legit mongo collection uncompressed. It's something like 51GB, but mongo can do it 💪.
 
-### Options
+### Options:
 dumpster follows all the conventions of [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia), and you can pass-in any fields for it to include in it's json.
 * **human-readable plaintext** ***--plaintext***
 ```js
@@ -140,7 +140,7 @@ let obj = {
 dumpster(obj, () => console.log('done!') )
 ```
 
-#### reducing file-size
+* **reducing file-size:**
 you can tell wtf_wikipedia what you want it to parse, and which data you don't need:
 ```bash
 dumpster ./my-wiki-dump.xml --infoboxes=false --citations=false --categories=false --links=false
