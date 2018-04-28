@@ -24,6 +24,7 @@
     "line-by-line": "0.1.6",
     "log4js": "2.5.3",
     "mongodb": "2.2.33",
+    "ora": "^2.0.0",
     "prettysize": "1.1.0",
     "worker-nodes": "1.6.0",
     "wtf_wikipedia": "^3.1.0"

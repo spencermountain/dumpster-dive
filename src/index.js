@@ -4,14 +4,16 @@
 const init = require('./01-init-db');
 const mt = require("./02-multithreader")
 const writeDb = require('./03-write-db');
-const config = require('../config');
+const oneSec = require('../lib/fns').oneSec
+const stat = require('../lib/stat').hot
 
 process.on('unhandledRejection', console.log)
 
 //open up a mongo db, and start xml-streaming..
-const main = async (options) => {
-
+const main = async (options, done) => {
   params = Object.assign({}, options);
+  done = done || function() {}
+
   await init(options)
   mt.worker.parseXML(params)
 
@@ -25,20 +27,16 @@ const main = async (options) => {
   })
 
   mt.worker.on("allWorkersFinished", () => {
-    setInterval(() => {
-      if (writing === 0) {
-        console.log("all done, exiting...")
-        process.exit()
-      }
-    }, 500)
+    oneSec(() => {
+      done()
+      stat(options.db, () => {
+        oneSec(() => {
+          console.log('\n\n      👍  closing down.')
+          process.exit()
+        })
+      })
+    })
   })
-
-  // await init(options)
-  setInterval(async () => {
-    count = await options.db.collection(config.collection).count()
-    console.log(` - - pages: ${count}`)
-  }, 10000)
-
 }
 
 module.exports = main;

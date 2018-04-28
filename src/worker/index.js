@@ -1,6 +1,6 @@
+const chalk = require('chalk')
 const LineByLineReader = require('line-by-line')
 const init = require('../01-init-db');
-const logger = require('./_logger')
 const parseLine = require('./01-parseLine')
 const parseWiki = require('./02-parseWiki');
 
@@ -20,7 +20,7 @@ const getPages = async (options, chunkSize, workerNr) => {
   }
   // end 2 megabytes later so we don't lose pages cut by chunks
   endByte = startByte + chunkSize + 3000000
-  logger.info(`worker pid:${process.pid} is now alive. startByte: ${startByte} endByte: ${endByte}`)
+  // logger.info(`worker pid:${process.pid} is now alive. startByte: ${startByte} endByte: ${endByte}`)
   await init(options)
 
   lr = new LineByLineReader(options.file, {
@@ -51,11 +51,12 @@ const getPages = async (options, chunkSize, workerNr) => {
     jobBegin = Date.now()
     doArticleTimeCounter = 0
     page = {}
-    logger.info(`batch complete: worker pid:${process.pid} has inserted ${pageCount} pages; latest batch in ${((Date.now() - workerBegin) / 1000)} secs.`);
+    let seconds = ((Date.now() - workerBegin) / 1000).toFixed(1)
+    console.log(chalk.yellow(`   #${process.pid}`) + chalk.grey(`    - wrote ${pageCount} pages  (${seconds}s`));
     workerBegin = Date.now()
     lr.resume();
     if (isLast === true) {
-      logger.info(`worker pid:${process.pid} is done.`);
+      console.log(`worker pid:${process.pid} is done.`);
       process.send({
         type: "workerDone",
         pid: process.pid
@@ -76,9 +77,10 @@ const getPages = async (options, chunkSize, workerNr) => {
     }
   }
 
-  lr.on('error', () => {
+  lr.on('error', (e) => {
     // 'err' contains error object
-    logger.error("linereader error");
+    console.error(chalk.red("linereader error"));
+    console.log(e)
   });
 
   lr.on('line', (line) => {

@@ -5,6 +5,11 @@ const chalk = require('chalk')
 const EventEmitter = require('events');
 const cpus = require('os').cpus()
 const cpuCount = cpus.length;
+const stat = require('../lib/stat')
+const ora = require('ora');
+const spinner = ora('Getting ready').start();
+const margin = '            '
+
 
 let workerNodes = new WorkerNodes(__dirname + '/worker/index.js', {
   minWorkers: cpuCount - 1,
@@ -12,39 +17,34 @@ let workerNodes = new WorkerNodes(__dirname + '/worker/index.js', {
   maxTasksPerWorker: 1
 });
 
-// let workerLogs = {};
-// workerLog = function(msg) {
-//   var name;
-//   if (msg) {
-//     if (workerLogs[name = msg.pid] === undefined) {
-//       workerLogs[name] = {};
-//     }
-//     return workerLogs[msg.pid] = msg;
-//   }
-//   return null
-// };
-
 class Worker extends EventEmitter {
   constructor() {
     super()
   }
   parseXML(options) {
+    spinner.stop()
     var chunkSize,
       size;
     size = fs.statSync(options.file)["size"];
     // size = 633279000
     chunkSize = Math.floor(size / cpuCount);
-    console.log(chalk.blue(cpuCount) + ` cpu cores detected.`)
-    console.log(`file size: ${chalk.green(pretty(size))}`)
-    console.log(` - each process will be given: ${pretty(chunkSize)}`);
-    console.log(chalk.grey("  (view logs with `tail -f /tmp/worker.logs`)"));
+    console.log('\n\n\n' + margin + ' ----------')
+    console.log(margin + `   oh hi 👋
+`)
+    console.log(margin + `total file size: ${chalk.green(pretty(size))}`)
+    console.log(margin + chalk.blue(cpuCount + ' cpu cores') + ` detected.`)
+    console.log(margin + chalk.grey('-') + ` each process will be given: ${chalk.magenta(pretty(chunkSize))} ` + chalk.grey('-'));
+    console.log('\n')
 
     var workerCount = 0
     const onMsg = async (msg) => {
       this.emit("msg", msg);
       if (msg.type === "workerDone") {
+        console.log('\n')
+        console.log('    💪  - a worker has finished')
         workerCount -= 1
-        console.log(workerCount + ' workers still running..')
+        console.log(chalk.grey('      (' + workerCount + ' workers still running)'))
+        console.log('\n')
         if (workerCount === 0) {
           await workerNodes.terminate()
           this.emit("allWorkersFinished");
@@ -62,6 +62,8 @@ class Worker extends EventEmitter {
         }
       })
     })
+    //start the logger:
+    stat.hound(options.db)
   }
 }
 
