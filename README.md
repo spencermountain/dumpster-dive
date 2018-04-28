@@ -1,79 +1,113 @@
-# A whole Wikipedia dump, in mongodb.
-put your hefty [wikipedia dump](https://dumps.wikimedia.org) into mongo, with fully-parsed wikiscript - without thinking, without loading it into memory, grepping, unzipping, or other crazy command-line nonsense.
+<div align="center">
+	<h3>dumpster-dive</h3>
+	<a href="https://npmjs.org/package/dumpster-dive">
+		<img src="https://img.shields.io/npm/v/dumpster-dive.svg?style=flat-square" />
+	</a>
+  <a href="https://www.codacy.com/app/spencerkelly86/dumpster-dive">
+    <img src="https://api.codacy.com/project/badge/grade/6fad3c588d3d4c97ab8a9abf9f2a5a01" />
+  </a>
+	<div>wikipedia dump parser</div>
+  <sub>
+    by
+    <a href="http://spencermounta.in/">Spencer Kelly</a>, <a href="https://github.com/devrim">Devrim Yasar</a>,
+		 and
+    <a href="https://github.com/spencermountain/wtf_wikipedia/graphs/contributors">
+      others
+    </a>
+  </sub>
+</div>
+<p></p>
 
-It's a javascript one-liner that puts a highly-queryable wikipedia on your laptop in a nice afternoon.
+<div align="center">
+  gets a wikipedia <a href="https://dumps.wikimedia.org">xml dump</a> into mongo,
+  <div>so you can mess-around.</div>
 
-It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into *almost-nice* json.
+  <h2 align="center">💂 Yup 💂</h2>
+  <div><sup>do it on your laptop.</sup></div>
+</div>
+
+![image](https://user-images.githubusercontent.com/399657/39391259-b57ca9e0-4a6e-11e8-8b33-2064e5fc187e.png)
+`dumpster-dive` is a **nodejs** script that puts a **highly-queryable** wikipedia on your computer in a nice afternoon.
+
+It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn ***wikiscript*** into whatever json.
+
+<div align="center">
+ -- <b>en-wikipedia</b> takes about 7-hours, end-to-end --
+</div>
 
 ```bash
-npm install -g wikipedia-to-mongodb
+npm install -g dumpster-dive
 ```
-### ⚡ From the Command-Line:
-```bash
-wp2mongo /path/to/my-wikipedia-article-dump.xml.bz2
-```
-### 😎 From a nodejs script
+### 😎 API
 ```js
-var wp2mongo = require('wikipedia-to-mongodb')
-wp2mongo({file:'./enwiki-latest-pages-articles.xml.bz2', db: 'enwiki'}, callback)
+var dumpster = require('dumpster-dive')
+dumpster({ file:'./enwiki-latest-pages-articles.xml', db:'enwiki'}, callback)
 ```
 
-then check out the articles in mongo:
+### Command-Line:
+```bash
+dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --html=true
+```
+
+*then check out the articles in mongo:*
 ````bash
 $ mongo        #enter the mongo shell
 use enwiki     #grab the database
-
 db.wikipedia.find({title:"Toronto"})[0].categories
 #[ "Former colonial capitals in Canada",
 #  "Populated places established in 1793" ...]
-db.wikipedia.count({type:"redirect"})
-# 124,999...
+db.wikipedia.count()
+# 4,926,056...
 ````
 
 # Steps:
 
-### 1) 💪 you can do this.
+### 1️⃣ you can do this.
 you can do this.
-a few Gb. you can do this.
+just a few Gb. you can do this.
 
-### 2) get ready
-Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/), and optionally [redis](http://redis.io/)
+### 2️⃣ get ready
+Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/)
 
 ```bash
 # start mongo
 mongod --config /mypath/to/mongod.conf
-# install wp2mongo
-npm install -g wikipedia-to-mongodb
+# install this script
+npm install -g dumpster-dive
+# (that gives you the global command `dumpster`)
 ```
-that gives you the global command `wp2mongo`.
 
-### 3) download a wikipedia
-The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
+### 3️⃣ download a wikipedia
+The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 5 mins to load into mongo on a macbook:
 ```bash
 # dowload an xml dump (38mb, couple minutes)
 wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
 ```
 the english/german ones are bigger. Use whichever xml dump you'd like. The [download page](https://dumps.wikimedia.org) is weird, but you'll want the most-common dump format, without historical diffs, or images, which is `${LANG}wiki-latest-pages-articles.xml.bz2 `
 
-### 4) get it going
+### 4️⃣ unzip it
+i know, this sucks. but it makes the parser so much faster. On a macbook, unzipping en-wikipedia takes an hour or so. Eat some lunch.
+
+### 5️⃣ OK, start it off
 ```bash
 #load it into mongo (10-15 minutes)
-wp2mongo ./afwiki-latest-pages-articles.xml.bz2
+dumpster ./afwiki-latest-pages-articles.xml
 ```
-### 5) take a bath
-just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there, it feels great. You deserve a break once and a while. The en-wiki dump should take a few hours. Should be done before dinner.
+### 6️⃣ take a bath
+just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there, it feels great.
 
-### 6) check-out your data
-to view your data in the mongo console,
+The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
+
+The console will update you every couple seconds to let you know where it's at.
+
+### 7️⃣ done!
+go check-out the data! to view your data in the mongo console:
 ````javascript
 $ mongo
-use afwiki
+use afwiki //your db name
 
-//shows a random page
+//show a random page
 db.wikipedia.find().skip(200).limit(2)
-
-//count the redirects (~5,000 in afrikaans)
-db.wikipedia.count({type:"redirect"})
 
 //find a specific page
 db.wikipedia.findOne({title:"Toronto"}).categories
@@ -81,13 +115,13 @@ db.wikipedia.findOne({title:"Toronto"}).categories
 
 ### Same for the English wikipedia:
 the english wikipedia will work under the same process, but
-the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 13 GB (for [enwiki-20170901-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20170901/enwiki-20170901-pages-articles.xml.bz2)), and becomes a pretty legit mongo collection uncompressed. It's something like 51GB, but mongo can do it... You can do it!
+the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 13 GB (for [enwiki-20170901-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20170901/enwiki-20170901-pages-articles.xml.bz2)), and becomes a pretty legit mongo collection uncompressed. It's something like 51GB, but mongo can do it 💪.
 
-
-### Options
-#### human-readable plaintext **--plaintext**
+### Options:
+dumpster follows all the conventions of [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia), and you can pass-in any fields for it to include in it's json.
+* **human-readable plaintext** ***--plaintext***
 ```js
-wp2mongo({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true}, console.log)
+dumpster({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true, categories:false})
 /*
 [{
   _id:'Toronto',
@@ -96,50 +130,29 @@ wp2mongo({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true}, console.log)
 }]
 */
 ```
-#### go faster with Redis **--worker**
-there is yet much faster way (even x10) to import all pages into mongodb but a little more complex. it requires redis installed on your computer and running worker in separate process.
 
-It also gives you a cool dashboard, to watch the progress.
-````bash
-# install redis
-sudo apt-get install # (or `brew install redis` on a mac)
-
-# clone the repo
-git clone git@github.com:spencermountain/wikipedia-to-mongodb.git && cd wikipedia-to-mongodb
-
-#load pages into job queue
-bin/wp2mongo.js ./afwiki-latest-pages-articles.xml.bz2 --worker
-
-# start processing jobs (parsing articles and saving to mongodb) on all CPU's
-node src/worker.js
-
-# you can preview processing jobs in kue dashboard (localhost:3000)
-node node_modules/kue/bin/kue-dashboard -p 3000
-````
-
-#### skip unnecessary pages **--skip_disambig**, **--skip_redirects**
-this can make it go faster too, by skipping entries in the dump that aren't full-on articles.
+* **disambiguation pages /  redirects** ***--skip_disambig***, ***--skip_redirects***
+by default, dumpster skips entries in the dump that aren't full-on articles, you can
 ```js
 let obj = {
 	file: './path/enwiki-latest-pages-articles.xml.bz2',
 	db: 'enwiki',
-	skip_redirects: true,
-	skip_disambig: true,
-	skip_first: 1000, // ignore the first 1k pages
-	verbose: true, // print each article title
+	skip_redirects: false,
+	skip_disambig: false
 }
-wp2mongo(obj, () => console.log('done!') )
+dumpster(obj, () => console.log('done!') )
+```
+
+* **reducing file-size:**
+you can tell wtf_wikipedia what you want it to parse, and which data you don't need:
+```bash
+dumpster ./my-wiki-dump.xml --infoboxes=false --citations=false --categories=false --links=false
 ```
 
 ## how it works:
 this library uses:
-* [unbzip2-stream](https://github.com/regular/unbzip2-stream) to stream-uncompress the gnarly bz2 file
-
-* [xml-stream](https://github.com/assistunion/xml-stream) to stream-parse its xml format
-
+* [line-by-line](https://www.npmjs.com/package/line-by-line) to stream the gnarly xml file
 * [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article wikiscript contents into JSON.
-
-* [redis](http://redis.io/) to (optionally) put wikiscript parsing on separate threads :metal:
 
 ## Addendum:
 ### \_ids
@@ -157,4 +170,6 @@ $  -->  \u0024
 This library should also work on other wikis with standard xml dumps from [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki). I haven't tested them, but the wtf_wikipedia supports all sorts of non-standard wiktionary/wikivoyage templates, and if you can get a bz-compressed xml dump from your wiki, this should work fine. Open an issue if you find something weird.
 
 ### PRs welcome!
+This is an important project, come [help us out](./contributing.md).
+
 MIT

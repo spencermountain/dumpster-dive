@@ -1,20 +1,23 @@
 let test = require('tape')
-var exec = require('shelljs').exec
-const MongoClient = require('mongodb').MongoClient
 let db = require('./db')
-let wp2mongo = require('../')
+let dumpster = require('../')
 
 test('plaintext', function(t) {
+  let dbName = 'plainwiki'
   let obj = {
-    file: './tests/tinywiki-latest-pages-articles.xml.bz2',
-    db: 'plainwiki',
-    plaintext: true
+    file: './tests/tinywiki-latest-pages-articles.xml',
+    db: dbName,
+    plaintext: true,
+    html: true,
+    markdown: true,
   }
-  db.drop(obj.db, () => {
-    wp2mongo(obj, () => {
-      db.firstTen(obj.db, docs => {
+  db.drop(dbName, 'wikipedia', () => {
+    dumpster(obj, () => {
+      db.firstTen(dbName, docs => {
         t.equal(docs.length, 7, '7 records')
-        t.equal(docs[0].plaintext, 'hello this is wikitext\n\n', 'got plaintext')
+        t.equal(docs[0].plaintext, 'hello this is wikitext\n\nand some arbitrary text\n\n', 'got plaintext')
+        t.notEqual(docs[0].markdown.indexOf('\n## The header\n'), -1, 'got markdown')
+        t.notEqual(docs[0].html.indexOf('<span class="sentence">hello this is wikitext</span>'), -1, 'got html')
         t.end()
       })
     })

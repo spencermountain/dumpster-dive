@@ -1,5 +1,4 @@
 const MongoClient = require('mongodb').MongoClient
-const assert = require('assert')
 
 const open = function(dbName, callback) {
   let url = 'mongodb://localhost:27017/' + dbName
@@ -16,9 +15,9 @@ const open = function(dbName, callback) {
 const count = function(dbName, cb) {
   open(dbName, function(db) {
     let col = db.collection('wikipedia')
-    col.count().then(count => {
+    col.count().then(len => {
       db.close()
-      cb(count)
+      cb(len)
     })
   })
 }
@@ -39,9 +38,9 @@ const firstTen = function(dbName, cb) {
 }
 
 //delete all pages
-const drop = function(dbName, cb) {
+const drop = function(dbName, colName, cb) {
   open(dbName, function(db) {
-    let col = db.collection('wikipedia')
+    let col = db.collection(colName)
     col.deleteMany({})
     setTimeout(function() {
       db.close()
@@ -57,4 +56,4 @@ module.exports = {
 }
 // firstTwo('tempwiki', console.log)
 // open('tempwiki', console.log)
-drop('smallwiki', console.log)
+// drop('smallwiki', 'wikipedia',console.log)

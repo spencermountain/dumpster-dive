@@ -1,35 +1,37 @@
 {
   "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
-  "name": "wikipedia-to-mongodb",
+  "name": "dumpster-dive",
   "description": "get a wikipedia dump parsed into mongodb",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
   },
   "bin": {
-    "wp2mongo": "./bin/wp2mongo.js"
+    "dumpster": "./bin/dumpster.js"
+  },
+  "engines": {
+    "node": ">4.8.6"
   },
   "main": "./src/index.js",
-  "engines": [
-    "node = 0.10.33"
-  ],
   "scripts": {
-    "test": "\"node_modules/.bin/tape\" \"./tests/*.test.js\" | \"node_modules/.bin/tap-spec\" --color"
+    "test": "\"node_modules/.bin/tape\" \"./tests/*.test.js\" | \"node_modules/.bin/tap-spec\" --color",
+    "cleanup": "rm /tmp/worker.logs && touch /tmp/worker.logs"
   },
   "dependencies": {
-    "cluster": "^0.7.7",
-    "commander": "^2.12.0",
-    "kue": "^0.11.1",
-    "mongodb": "^2.2.33",
-    "unbzip2-stream": "^1.0.9",
-    "wtf_wikipedia": "^2.4.2",
-    "xml-stream": "^0.4.5"
+    "chalk": "2.4.1",
+    "line-by-line": "0.1.6",
+    "mongodb": "2.2.33",
+    "ora": "^2.0.0",
+    "prettysize": "1.1.0",
+    "worker-nodes": "1.6.0",
+    "wtf_wikipedia": "^3.1.0",
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "shelljs": "^0.7.8",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.8.0"
+    "shelljs": "^0.8.1",
+    "tap-spec": "4.1.1",
+    "tape": "4.8.0"
   },
   "license": "MIT"
 }

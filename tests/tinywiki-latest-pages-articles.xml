@@ -1,0 +1,427 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="ltg">
+  <siteinfo>
+    <sitename>Vikipedeja</sitename>
+    <dbname>tmp-wp</dbname>
+    <base>https://ltg.wikipedia.org/wiki/Suoku_puslopa</base>
+    <generator>MediaWiki 1.30.0-wmf.16</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Medeja</namespace>
+      <namespace key="-1" case="first-letter">Seviškuo</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Sprīža</namespace>
+      <namespace key="2" case="first-letter">Lītuotuojs</namespace>
+      <namespace key="3" case="first-letter">Sprīža ap lītuotuoju</namespace>
+      <namespace key="4" case="first-letter">Vikipedeja</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Hello</title>
+    <ns>0</ns>
+    <id>1</id>
+    <revision>
+      <id>29433</id>
+      <parentid>29425</parentid>
+      <timestamp>2013-03-22T09:37:03Z</timestamp>
+      <contributor>
+        <username>DJ EV</username>
+        <id>1631</id>
+      </contributor>
+      <comment>comment</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">
+hello this is wikitext
+== The header ==
+and some arbitrary text
+=== $Table.isfun ===
+{| class="wikitable"
+! Nr. p. k.
+! Mīsta pasauka
+|-
+| 1
+| [[Daugpiļs]]
+|-
+| 2
+| [[Jākubmīsts]]
+|-
+| 3
+| [[Rēzne]]
+|}
+			</text>
+      <sha1>disnkv72gqngow52boaebr7ctrxhsri</sha1>
+    </revision>
+  </page>
+  <page>
+    <title>Toronto</title>
+    <ns>0</ns>
+    <id>18</id>
+    <revision>
+      <id>29108</id>
+      <parentid>28109</parentid>
+      <timestamp>2013-03-11T10:40:33Z</timestamp>
+      <contributor>
+        <username>Legobot</username>
+        <id>1544</id>
+      </contributor>
+      <minor />
+      <comment>comment</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">
+{{Infobox settlement
+|name = Toronto
+|official_name = City of Toronto
+|settlement_type = [[List of cities in Ontario|City]] ([[List of municipalities in Ontario#Single-tier municipalities|single-tier]])
+|nickname = [[Name of Toronto|T.O., T-Dot, Hogtown, The Queen City, Toronto the Good, The City Within a Park]]<!-- Do not add Centre of the Universe, since there are no valid citations for that term, and it is originally a popular nickname for NYC not Toronto --><!-- Do not add El Toro, since it is just a marketing ploy by Eye Weekly (later re-branded as the Grid) --><!-- Do not add York, Upper Canada, since it is a historical name, not a nickname --><!-- Do not add The 6, since it is a promotional name used by Drake and his fans -->
+|motto = Diversity Our Strength
+|image_skyline = Montage of Toronto 7.jpg <!-- Please do not change the infobox image without starting a discussion on the talk page and reaching consensus -->
+|subdivision.type2 = [[Amalgamation of Toronto|Districts]]
+|$subdivision_name2 = [[East York]], [[Etobicoke]], [[North York]], [[Old Toronto]], [[Scarborough, Ontario|Scarborough]], [[York, Ontario|York]]
+|government_type = [[Mayor-council government|Mayor-council]]
+|leader_title = [[Mayor of Toronto|Mayor]]
+|leader_name = [[Rob Ford]] <!--Don't change to John Tory until December 1, 2014-->
+|leader_title1 = Deputy Mayor
+|leader_name1 = [[Norm Kelly]]
+}}
+'''Toronto''' ({{IPAc-en|t|ɵ|ˈ|r|ɒ|n|t|oʊ}}, {{IPAc-en|local|ˈ|t|r|ɒ|n|oʊ}}) is the [[List of the 100 largest municipalities in Canada by population|most populous city]] in [[Canada]] and the [[Provinces and territories of Canada|provincial]] [[capital city|capital]] of [[Ontario]]. It is located in [[Southern Ontario]] on the northwestern shore of [[Lake Ontario]]. The [[history of Toronto]] began in the late 18th century when the [[The Crown|British Crown]] [[Toronto Purchase|purchased]] its land from the [[Mississaugas of the New Credit First Nation|Mississaugas of the New Credit]].
+===Before 1800===
+When Europeans first arrived at the site of present-day Toronto, the vicinity was inhabited by the [[Iroquois people]].
+===1800–1945===
+[[File:Toronto 1894large.jpg|left|thumb|Map of Toronto, 1894]]
+In 1813, as part of the [[War of 1812]], the [[Battle of York]] ended in the town's capture and plunder by US forces.
+
+{{DEFAULTSORT:Toronto}}
+[[Category:Toronto| ]]
+[[Category:1834 establishments in Canada]]
+[[Category:Former colonial capitals in Canada]]
+      </text>
+      <sha1>7a6pkfvaak7kt94e7m869g9yfy6l6c1</sha1>
+    </revision>
+  </page>
+
+ <page>
+    <title>Duplicate title</title>
+    <ns>0</ns>
+    <id>1</id>
+    <revision>
+      <id>29433</id>
+      <parentid>29425</parentid>
+      <timestamp>2013-03-22T09:37:03Z</timestamp>
+      <contributor>
+        <username>DJ EV</username>
+        <id>1631</id>
+      </contributor>
+      <comment>comment</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">
+this duplicate should be removed
+			</text>
+      <sha1>disnkv72gqngow52boaebr7ctrxhsri</sha1>
+    </revision>
+  </page>
+ <page>
+    <title>Duplicate title</title>
+    <ns>0</ns>
+    <id>1</id>
+    <revision>
+      <id>29433</id>
+      <parentid>29425</parentid>
+      <timestamp>2013-03-22T09:37:03Z</timestamp>
+      <contributor>
+        <username>DJ EV</username>
+        <id>1631</id>
+      </contributor>
+      <comment>comment</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">
+this duplicate should stay
+			</text>
+      <sha1>disnkv72gqngow52boaebr7ctrxhsri</sha1>
+    </revision>
+  </page>
+ <page>
+    <title>Big Page</title>
+    <ns>0</ns>
+    <id>1</id>
+    <revision>
+      <id>29433</id>
+      <parentid>29425</parentid>
+      <timestamp>2013-03-22T09:37:03Z</timestamp>
+      <contributor>
+        <username>DJ EV</username>
+        <id>1631</id>
+      </contributor>
+      <comment>comment</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">
+{{Infobox venue
+| name = Royal Cinema
+| nickname            =
+| former names        = The Pylon, The Golden Princess
+| logo_image          =
+| logo_caption        =
+| image               = Royal_Cinema.JPG
+| image_size          = 250px
+| caption             = The Royal Cinema in 2009
+| iso_region          =
+| address             = 608 [[College Street (Toronto)|College Street]]
+| location            = [[Toronto]], [[Ontario]]
+| coordinates         =
+| type                =
+| genre               =
+| broke_ground        =
+| built               =
+| opened              = 1939
+| renovated           =
+| expanded            =
+| cost                =
+| architect           = Benjamin Swartz
+| website             = {{URL|theroyal.to}}
+| publictransit       =
+| capacity            = 390&lt;ref name="hi"/&gt;
+}}
+The '''Royal Cinema'''  is an [[Art Moderne]] event venue and [[movie theater|cinema]] in [[Toronto]], [[Canada]]. It was built in 1939 and owned by Miss Ray Levinsky.&lt;ref&gt;{{cite web|title=About - theroyal.to|url=http://www.theroyal.to/about/}}&lt;/ref&gt;
+
+When it was built in 1939, it was called '''The Pylon''', with an accompanying large sign at the front of the theatre. It included a roller-skating rink at the rear of the theatre, and a dance hall on the second floor.&lt;ref&gt;{{cite web|title=Toronto’s old movie theatres—the Royal Theatre (the Pylon)|url=http://tayloronhistory.com/2013/12/30/torontos-old-movie-theatresthe-royal-theatre-the-pylon/}}&lt;/ref&gt;
+
+In the 1950's the theatre was purchased by Rocco Mastrangelo. In the 1990s, the theatre was renamed 'the Golden Princess'.&lt;ref name="taylor"/&gt;
+
+Since early 2007, '''Theatre D''' has owned and operated The Royal.&lt;ref&gt;{{cite web|title=Toronto repertory theatre reopens with HD projection|url=http://www.cbc.ca/news/arts/toronto-repertory-theatre-reopens-with-hd-projection-1.592674}}&lt;/ref&gt;
+During the daytime it operates as a film and television post-production studio. It hosts film festivals including the European Union Film Festival and Japanese Movie Week.&lt;ref&gt;{{cite web|title=The Best Place to Watch a Film in Toronto|url=http://www.blogto.com/toronto/the_best_place_to_watch_a_film_in_toronto/}}&lt;/ref&gt;
+
+The Royal was featured in the 2013 film [[The F Word (2013 film)|The F Word]].
+
+==See Also==
+* [[List of cinemas in Toronto]]
+
+==References==
+{{reflist}}
+
+{{Theatres in Toronto}}
+
+[[Category:National Historic Sites in Ontario]]
+[[Category:Cinemas and movie theatres in Toronto]]
+[[Category:Streamline Moderne architecture in Canada]]
+[[Category:Theatres completed in 1939]]
+
+			</text>
+      <sha1>disnkv72gqngow52boaebr7ctrxhsri</sha1>
+    </revision>
+  </page>
+
+ <page>
+    <title>Redirect page</title>
+    <ns>0</ns>
+    <id>1</id>
+    <revision>
+      <id>295433</id>
+      <parentid>29425</parentid>
+      <timestamp>2013-03-22T09:37:03Z</timestamp>
+      <contributor>
+        <username>DJ EV</username>
+        <id>1631</id>
+      </contributor>
+      <comment>comment</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">#REDIRECT [[The Beatles]]
+			</text>
+      <sha1>disnkv72gqngow52boaebr7ctrxhsri</sha1>
+    </revision>
+  </page>
+
+
+ <page>
+    <title>Disambiguation page</title>
+    <ns>0</ns>
+    <id>1</id>
+    <revision>
+      <id>2952433</id>
+      <parentid>29425</parentid>
+      <timestamp>2013-03-22T09:37:03Z</timestamp>
+      <contributor>
+        <username>DJ EV</username>
+        <id>1631</id>
+      </contributor>
+      <comment>comment</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">
+'''Belleville''' (French, literally "beautiful town") may refer to:
+
+==Places in North America==
+;Canada
+*[[Belleville, New Brunswick]]
+*[[Belleville, Nova Scotia]]
+*[[Belleville, Ontario]]
+
+==See also==
+*[[Bella Villa, Missouri]]
+*[[Bellville (disambiguation)]]
+*[[Belville (disambiguation)]]
+
+{{disambiguation|geo}}
+[[Category:Place name disambiguation pages]]
+			</text>
+      <sha1>disnkv72gqngow52boaebr7ctrxhsri</sha1>
+    </revision>
+  </page>
+
+
+ <page>
+    <title>Big page</title>
+    <ns>0</ns>
+    <id>1</id>
+    <revision>
+      <id>29523433</id>
+      <parentid>29425</parentid>
+      <timestamp>2013-03-22T09:37:03Z</timestamp>
+      <contributor>
+        <username>DJ EV</username>
+        <id>1631</id>
+      </contributor>
+      <comment>comment</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">
+{{For|the hamlet in Canada|Bodmin, Saskatchewan}}
+{{Use British English|date=August 2015}}
+{{Use dmy dates|date=March 2015}}
+{{Infobox UK place
+|static_image_name    = Bodmin Public Rooms - geograph.org.uk - 1064189.jpg
+|static_image_caption = Bodmin Public Rooms
+|country              = England
+|map_type             = Cornwall
+|coordinates          = {{coord|50.466|-4.718|display=inline,title}}
+|official_name        = Bodmin
+|cornish_name         = Bosvenegh
+|population           = 14,736
+|population_ref       = ([[United Kingdom Census 2011|Civil Ward, 2011]])
+|civil_parish         = Bodmin
+|unitary_england      = [[Cornwall Council|Cornwall]]
+|lieutenancy_england  = [[Cornwall]]
+|region               = South West England
+|constituency_westminster = [[North Cornwall (UK Parliament constituency)|North Cornwall]]
+|post_town            = BODMIN
+|postcode_district    = PL31
+|postcode_area        = PL
+|dial_code            = 01208
+|os_grid_reference    = SX071665
+}}
+
+'''Bodmin''' ({{lang-kw|Bosvena}}&lt;ref&gt;{{cite web|url=http://www.magakernow.org.uk/pdf/placename_masterlist.pdf|title=List of Place-names agreed by the MAGA Signage Panel|accessdate=11 January 2015|publisher=Cornish Language Partnership|date=May 2014|deadurl=yes|archiveurl=https://web.archive.org/web/20140729194902/http://www.magakernow.org.uk/pdf/placename_masterlist.pdf|archivedate=29 July 2014|df=dmy-all}}&lt;/ref&gt;) is a [[civil parishes in England|civil parish]] and historic town in [[Cornwall]], England, United Kingdom. It is situated south-west of [[Bodmin Moor]].
+
+The extent of the civil parish corresponds fairly closely to that of the town so is mostly urban in character. It is bordered to the east by [[Cardinham]] parish, to the southeast by [[Lanhydrock]] parish, to the southwest and west by [[Lanivet]] parish, and to the north by [[Helland]] parish.&lt;ref&gt;{{cite web|url=http://mapping.cornwall.gov.uk/website/ccmap/|title=Cornwall Council online mapping|publisher=Mapping.cornwall.gov.uk|accessdate=May 2010|archiveurl=https://web.archive.org/web/20130927050041/http://mapping.cornwall.gov.uk/website/ccmap/ |archivedate=27 September 2013}}&lt;/ref&gt;
+
+Bodmin had a population of 14,736 as of the 2011 Census.&lt;ref&gt;{{cite web|url=http://www.cornwall.gov.uk/council-and-democracy/data-and-research/data-by-topic/population/town-populations|title=Bodmin Population 2011|accessdate=5 February 2015|deadurl=yes|archiveurl=https://web.archive.org/web/20150205171836/http://www.cornwall.gov.uk/council-and-democracy/data-and-research/data-by-topic/population/town-populations|archivedate=5 February 2015|df=dmy-all}}&lt;/ref&gt;  It was formerly the [[county town]] of Cornwall until the Crown Courts moved to [[Truro]] which is also the administrative centre (before 1835 the county town was [[Launceston, Cornwall|Launceston]]). Bodmin was in the administrative [[North Cornwall]] District until local government reorganisation in 2009 abolished the District (''see also [[Politics of Cornwall|Cornwall Council]]''). The town is part of the [[North Cornwall (UK Parliament constituency)|North Cornwall]] parliamentary constituency, which is represented by [[Scott Mann (politician)|Scott Mann]] MP.
+
+Bodmin Town Council is made up of sixteen councillors who are elected to serve a term of four years. Each year, the Council elects one of its number as Mayor to serve as the town's civic leader and to chair council meetings.&lt;ref&gt;{{cite web|url=http://www.bodmin.gov.uk|title=Bodmin Council website|publisher=Bodmin.gov.uk|accessdate=May 2010|archiveurl=https://web.archive.org/web/20131022161430/http://www.bodmin.gov.uk/ |archivedate=22 October 2013}}&lt;/ref&gt;
+.
+
+==Situation and origin of the name==
+Bodmin lies in the east of Cornwall, south-west of [[Bodmin Moor]]. It has been suggested that the town's name comes from an archaic word in the [[Cornish language]] "bod" (meaning a dwelling; the later word is "bos") and a contraction of "menegh" (monks). The "monks' dwelling" may refer to an early monastic settlement instituted by St. Guron, which [[Saint Petroc|St. Petroc]] took as his site. Guron is said to have departed to [[St Goran]] on the arrival of Petroc.
+
+The hamlets of Cooksland, [[Dunmere, Cornwall|Dunmere]] and [[Turfdown]] are in the parish.&lt;ref&gt;{{cite web|url=http://www.explorebritain.info/browse/cornwall/ |title=Cornwall; Explore Britain|publisher=Explorebritian.info|accessdate=17 September 2012|archiveurl=https://web.archive.org/web/20130602231052/http://www.explorebritain.info/browse/cornwall/ |archivedate=2 June 2013}}&lt;/ref&gt;
+
+==History==
+[[Saint Petroc|St. Petroc]] founded a monastery in Bodmin in the 6th century&lt;ref&gt;[[Doble, G. H.]] (1965) ''The Saints of Cornwall: part 4''. Truro: Dean and Chapter; pp. 132–166&lt;/ref&gt; and gave the town its alternative name of ''Petrockstow''. The monastery was deprived of some of its lands at the [[Norman conquest of England|Norman conquest]] but at the time of [[Domesday Book|Domesday]] still held eighteen manors, including Bodmin, Padstow and Rialton.&lt;ref&gt;Thorn, C. et al. (eds.) (1979) ''Cornwall''. Chichester: Phillimore; entries 4,3-4.22&lt;/ref&gt; Bodmin is one of the oldest towns in Cornwall, and the only large Cornish settlement recorded in the Domesday Book in 1086.&lt;ref&gt;{{cite web|url=http://opendomesday.org/place/SX0767/bodmin/|title=Bodmin - Domesday Book|first=Anna|last=Powell-Smith|publisher=|accessdate=12 October 2016}}&lt;/ref&gt; In the 15th century the Norman church of St Petroc was largely rebuilt and stands as one of the largest churches in Cornwall (the largest after the cathedral at Truro). Also built at that time was an abbey of canons regular, now mostly ruined. For most of Bodmin's history, the [[tin]] industry was a mainstay of the economy.
+
+The name of the town probably derives from the Cornish "Bod-meneghy", meaning "dwelling of or by the sanctuary of monks".&lt;ref&gt;{{cite web
+|url=http://www.bodmin.gov.uk/Tourist_Information/Heritage/History.html
+|title=History of Bodmin
+|publisher=www.bodmin.gov.uk
+|accessdate=19 March 2013
+|archiveurl=https://web.archive.org/web/20130818040647/http://bodmin.gov.uk/Tourist_Information/Heritage/History.html
+|archivedate=18 August 2013
+}}&lt;/ref&gt; Variant spellings recorded include ''Botmenei'' in 1100, ''Bodmen'' in 1253, ''Bodman'' in 1377 and ''Bodmyn'' in 1522.&lt;ref name="sdf"/&gt; The ''Bodman'' spelling also appears in sources and maps from the 16th and 17th centuries,{{citation needed|date=March 2013}} most notably in the celebrated map of Cornwall produced by [[John Speed]] but actually engraved by the Dutch cartographer [[Jodocus Hondius]] the Elder (1563–1612) in [[Amsterdam]] in 1610 (published in London by Sudbury and Humble in 1626). It is unclear whether the Bodman spelling signifies any historical or monastic connection with the equally ancient settlement of Bodman at the western end of the [[Lake Constance|Bodensee]] in the German province of [[Baden]].{{citation needed|date=March 2013}}
+
+An inscription on a stone built into the wall of a summer house in Lancarffe furnishes proof of a settlement in Bodmin in the early [[Middle Ages]]. It is a memorial to one "Duno[.]atus son of Me[.]cagnus" and has been dated from the 6th to 8th centuries.&lt;ref&gt;Discussion, photo and bibliography in Okasha, Elisabeth (1993). ''Corpus of Early Christian Inscribed Stones of South-west Britain''. Leicester: University Press, pp. 126-128&lt;/ref&gt;
+
+==Education==
+There are no [[independent schools]] in the area.
+
+===Primary schools===
+[[Saint Petroc|St Petroc]]'s [[Voluntary Aided]] [[Church of England]] [[Primary School]], Athelstan Park, Bodmin, was given this title in September 1990 after the [[wiktionary:amalgamation|amalgamation]] of St. Petroc's [[Infant School]] and St. Petroc's Junior School. St. Petroc's is a large school with some 440 pupils between the ages of four and 11. Eight of its fourteen governors are nominated by the [[Diocese of Truro]] or the [[Parochial church council|Parochial Church Council]] of St. Petroc's, Bodmin.
+
+There are a further three [[primary school]]s within Bodmin; Berrycoombe School in the northwest corner of the town, and [[Saint Mary|St. Mary]]'s [[Catholic school|Catholic Primary School]] and Beacon ACE Academy both situated west of the town centre. Beacon ACE Academy is part of the Atlantic Centre of Excellence Multi Academy Trust.&lt;ref&gt;[http://www.the-beacon-bod.cornwall.sch.uk/ Beacon ACE Academy]&lt;/ref&gt;
+
+===Bodmin College===
+[[Bodmin College]] is a large [[Comprehensive school|state comprehensive]] school for ages 11–18 on the outskirts of the town and on the edge of [[Bodmin Moor]]. Its [[headmaster]] is Mr Brett Elliott. The college is home to the nationally acclaimed "Bodmin College Jazz Orchestra", founded and run by the previous Director of Music, Adrian Evans, until 2007 and more recently, by the current Director, Ben Vincent. In 1997, Systems and Control students at Bodmin College constructed [[Roadblock (robot)|Roadblock]], a [[robot]] which entered and won the first series of [[Robot Wars (TV series)|Robot Wars]] and was succeeded by "[[List of Robot Wars robots#The First Wars|The Beast of Bodmin]]" (presumably named after the [[The Beast of Bodmin|phantom cat]] purported to roam [[Bodmin Moor]]). The school also has one of the largest sixth forms in the county.
+
+===Callywith College===
+[[Callywith College]] is a [[Further Education]] college in Bodmin, [[Cornwall]], due to open in September 2017, with applications being accepted from September 2016.&lt;ref&gt;{{cite web|url=http://www.westbriton.co.uk/truro-penwith-college-s-planned-new-bodmin-campus/story-27846919-detail/story.html|title=Truro and Penwith College's planned new Bodmin campus to be named Callywith College|date=23 September 2015|publisher=}}&lt;/ref&gt;&lt;ref&gt;{{cite web|url=http://www.westernmorningnews.co.uk/controversial-college-cornwall-bodmin-gets-ahead/story-28386123-detail/story.html|title=Controversial college for Cornwall in Bodmin gets go-ahead|date=17 December 2015|publisher=}}&lt;/ref&gt; A new-build college on a site close to the Bodmin Asda supermarket, it will eventually cater for 1,280 students, with 197 staff employed. A total of 660 places will be available in its first year.&lt;ref&gt;{{cite web|url=http://www.westbriton.co.uk/the-first-students-have-applied-to-enrol-at-new-truro-college-campus-in-bodmin-which-opens-next-year/story-29732479-detail/story.html|title=Teenagers keen to join Callywith College in Bodmin|date=20 September 2016|publisher=|accessdate=12 October 2016}}&lt;/ref&gt; It is being created with the assistance of the [[Ofsted]] Outstanding [[Truro and Penwith College]] to serve students aged 16–19 from Bodmin, North Cornwall and East Cornwall. It received the go-ahead in February 2016, funded as a [[Free school (England)|Free School]].&lt;ref&gt;{{cite web|url=https://www.gov.uk/government/news/games-workshop-founder-and-entrepreneur-to-open-2-free-schools|title=Games Workshop founder and entrepreneur to open 2 free schools - Press releases - GOV.UK|publisher=}}&lt;/ref&gt;&lt;ref&gt;{{Cite news|url=http://www.cornwalllive.com/college-awards-pound-25m-contract/story-28561730-detail/story.html|title=New college set for 2017 launch date|date=2016-02-03|newspaper=Cornwall Live|access-date=2017-02-12|language=en}}&lt;/ref&gt; Its aim is to "provide the outstanding Truro and Penwith College experience for up to 1280 young people in Bodmin and North and East Cornwall." &lt;ref&gt;{{Cite news|url=http://www.callywith.ac.uk/latest-news/press-release-21-september-2015-1/|title=New post-16 College planned to be built on land at Bodmin|newspaper=Callywith|access-date=2017-02-12}}&lt;/ref&gt;
+
+===Army School of Education===
+Aspirant National Service Sergeant Instructors of the [[Royal Army Education Corps]] underwent training at the Army School of Education, situated at the end of the [[Second World War]] at [[Buchanan Castle]], [[Drymen]] in Scotland,&lt;ref&gt;"Illiterate Recruits" in ''The Times'' (London) (23 August 1947).&lt;/ref&gt; and later, from 1948, at the Walker Lines, Bodmin,&lt;ref&gt;Colin Day, ''National Service with the RAEC in Cornwall Part 1'', at www.colindaylinks.com/dayspast/raec49.html (accessed 7 December 2010).&lt;/ref&gt; until it moved to Wilton Park, Beaconsfield.
+
+==Media==
+;Newspapers
+The ''[[Cornish Guardian]]'' is a weekly newspaper published every Wednesday in seven separate editions, including the Bodmin edition.
+
+;Radio
+Bodmin is the home of [[NCB Radio]], an Internet radio station which aims to bring a dedicated station to North Cornwall.
+
+==Notable people==
+See also [[:Category:People from Bodmin]]
+* [[John Arnold (watchmaker)|John Arnold (1736–1799)]], watchmaker, of London
+* [[John Thomas Blight]], artist
+* Nicholas Boyer, the mayor of Bodmin, hanged for rebellion, 1549&lt;ref&gt;Rowse, A. L. (1941) ''Tudor Cornwall''. London: Jonathan Cape; p. 285&lt;/ref&gt;
+* [[Chula Chakrabongse]], philanthropist, Prince of Siam
+* [[James Henry Finn]], soldier who was awarded the [[Victoria Cross]]
+* [[Thomas Flamank]], lawyer, co-leader of the Cornish Rebellion, 1497
+* [[John Gale (journalist)|John Gale]], Australian journalist
+* [[William Hamley]], founder of [[Hamleys]] toyshop
+* [[Alice Hext]], garden developer
+* [[William Robert Hicks]], superintendent of the Asylum
+* [[Al Hodge (rock musician)|Al Hodge]] former guitarist with the Cornish band [[The Onyx]]
+* [[H. C. McNeile|Herman Cyril McNeile, "Sapper"]], novelist
+* [[Saint Petroc]]
+* [[Sir Arthur Quiller-Couch]], poet, novelist and critic
+* [[Dan Rogerson]], MP
+* Rory Simmons, musician&lt;ref&gt;{{cite web|url=https://www.theguardian.com/music/2011/feb/10/fringe-magnetic-live-review|title=Fringe Magnetic – review|first=John|last=Fordham|date=10 February 2011|publisher=|accessdate=12 October 2016|via=The Guardian}}&lt;/ref&gt;
+* [[Henry Southwell (bishop)|Henry Southwell]], vicar of Bodmin, afterwards Bishop of Lewes
+* [[Thomas Vivian]] or Vyvyan, Prior of Bodmin, titular Bishop of Megara&lt;ref&gt;Brown, H. Miles (1964) ''The Church in Cornwall''. Truro: Oscar Blackford; p. 40&lt;/ref&gt;
+
+==Town twinning==
+Bodmin is [[Twin towns and sister cities|twinned]] with [[Bederkesa]] in Germany; [[Grass Valley, California|Grass Valley]], in [[California]], United States; and [[Le Relecq-Kerhuon]] (Ar Releg-Kerhuon in [[Brittany]]), France.&lt;ref&gt;{{Cite web|url=http://thecornishlife.co.uk/twinned-towns-3-cornish-towns-surprising-sister-cities/|title=Twinned Towns: 3 Cornish Towns with Surprising Sister Cities|last=|first=|date=|website=The Cornish Life|access-date=2016-03-30}}&lt;/ref&gt;
+
+==Official heraldry==
+W. H. Pascoe’s 1979 ''A Cornish Armory'' gives the arms of the priory and the monastery and the seal of the borough.
+* Seal – a king enthroned; legend: Sigill comune burgensium bodmine
+* Priory – Azure three salmon naiant in pale Argent
+* Monastery – Or on a chevron Azure between three lion's heads Purpure three annulets Or
+
+==Official events==
+On Halgaver Moor (Goats' Moor) near Bodmin there was once an annual carnival in July which was on one occasion attended by King Charles II.&lt;ref&gt;''Brewer's Dictionary of Phrase and Fable''&lt;/ref&gt; Halgaver is in the parish of [[Lanhydrock]].&lt;ref&gt;Ordnance Survey ''One-inch Map of Great Britain; Bodmin and Launceston, sheet 186''. 1961&lt;/ref&gt;
+
+[[Bodmin Riding]], a horseback procession through the town, is a traditional annual ceremony.
+
+==See also==
+* [[List of topics related to Cornwall]]
+* [[Bodmin (UK Parliament constituency)|List of Bodmin MPs]]
+* [[Bodmin NHS Treatment Centre (Bodmin Hospital)]]
+* [[Bodmin manumissions]]
+* [[Beast of Bodmin]]
+
+==References==
+{{Reflist|30em}}
+
+
+{{Cornwall|state=collapsed}}
+{{North Cornwall CP navigation box}}
+
+[[Category:Bodmin| ]]
+[[Category:Towns in Cornwall]]
+[[Category:Cornish capitals]]
+[[Category:Civil parishes in Cornwall]]
+[[Category:Cornish Killas]]
+[[Category:Manors in Cornwall]]
+			</text>
+      <sha1>disnkv72gqngow52boaebr7ctrxhsri</sha1>
+    </revision>
+  </page>
+</mediawiki>
