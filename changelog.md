@@ -13,4 +13,6 @@
 
 ## v3
 * MASSIVE SPEEDUP! full re-write by @devrim 🙏 to fix #59
-* use wtf_wikipedia v3 (big re-factor too!)
+* rename from `wikipedia-to-mongo` to `dumpster-dive`
+* use wtf_wikipedia v3 (a big re-factor too!)
+* use `line-by-line`, and `worker-nodes` to run parsing in parallel

@@ -1,7 +1,7 @@
 <div align="center">
-  <a href="https://www.codacy.com/app/spencerkelly86/dumpster-dive">
+  <!--<a href="https://www.codacy.com/app/spencerkelly86/dumpster-dive">
     <img src="https://api.codacy.com/project/badge/grade/6fad3c588d3d4c97ab8a9abf9f2a5a01" />
-  </a>
+  </a>-->
   <a href="https://npmjs.org/package/dumpster-dive">
     <img src="https://img.shields.io/npm/v/dumpster-dive.svg?style=flat-square" />
   </a>
@@ -11,36 +11,37 @@
     <a href="http://spencermounta.in/">Spencer Kelly</a>, <a href="https://github.com/devrim">Devrim Yasar</a>,
 		 and
     <a href="https://github.com/spencermountain/wtf_wikipedia/graphs/contributors">
-      other contributors
+      others
     </a>
   </sub>
 </div>
 <p></p>
 
 <div align="center">
-  <b>dumpster-dive</b> gets wikipedia's [xml dump](https://dumps.wikimedia.org) into mongo,
+  <b>dumpster-dive</b> gets wikipedia's <a href="https://dumps.wikimedia.org">xml dump</a> into mongo,
   <div>so you can mess-around with it</div>
 
   <h2 align="center">💂 Yup</h2>
-  <div><sup>really</sup></div>
-  do it on your laptop
+  <div><sup>do it on your laptop</sup></div>
+  for real
 </div>
 
-It's a javascript one-liner that puts a highly-queryable wikipedia on your laptop in a nice afternoon.
+It's a quick **nodejs** one-liner that puts a **highly-queryable** wikipedia on your laptop in a nice afternoon.
 
 It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into whatever json format you'd like.
 
 ```bash
 npm install -g dumpster-dive
 ```
-### ⚡ From the Command-Line:
-```bash
-dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --html=true
-```
-### 😎 From a nodejs app
+### 😎 API
 ```js
 var dumpster = require('dumpster-dive')
-dumpster({file:'./enwiki-latest-pages-articles.xml', db: 'enwiki'}, callback)
+dumpster({ file:'./enwiki-latest-pages-articles.xml', db:'enwiki'}, callback)
+```
+
+### Command-Line:
+```bash
+dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --html=true
 ```
 
 then check out the articles in mongo:
