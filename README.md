@@ -31,7 +31,9 @@
 
 It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn ***wikiscript*** into whatever json.
 
- -- **en-wikipedia** takes about 7-hours, end-to-end --
+<div align="center">
+ -- <b>en-wikipedia</b> takes about 7-hours, end-to-end --
+</div>
 
 ```bash
 npm install -g dumpster-dive
