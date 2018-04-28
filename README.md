@@ -62,7 +62,7 @@ db.wikipedia.count()
 
 # Steps:
 
-### 1️⃣ 💪 you can do this.
+### 1️⃣ you can do this.
 you can do this.
 just a few Gb. you can do this.
 
@@ -100,7 +100,7 @@ The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
 
 The console will update you every couple seconds to let you know where it's at.
 
-### 7️⃣ done.
+### 7️⃣ done!
 go check-out the data! to view your data in the mongo console:
 ````javascript
 $ mongo
