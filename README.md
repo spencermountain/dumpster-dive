@@ -1,12 +1,12 @@
 <div align="center">
 	<h3>dumpster-dive</h3>
-	<div>wikipedia dump parser</div>
 	<a href="https://npmjs.org/package/dumpster-dive">
 		<img src="https://img.shields.io/npm/v/dumpster-dive.svg?style=flat-square" />
 	</a>
   <a href="https://www.codacy.com/app/spencerkelly86/dumpster-dive">
     <img src="https://api.codacy.com/project/badge/grade/6fad3c588d3d4c97ab8a9abf9f2a5a01" />
   </a>
+	<div>wikipedia dump parser</div>
   <sub>
     by
     <a href="http://spencermounta.in/">Spencer Kelly</a>, <a href="https://github.com/devrim">Devrim Yasar</a>,
@@ -27,7 +27,7 @@
 </div>
 
 ![image](https://user-images.githubusercontent.com/399657/39391259-b57ca9e0-4a6e-11e8-8b33-2064e5fc187e.png)
-dumpster-dive is a **nodejs** script that puts a **highly-queryable** wikipedia on your laptop in a nice afternoon.
+`dumpster-dive` is a **nodejs** script that puts a **highly-queryable** wikipedia on your laptop in a nice afternoon.
 
 It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn the ***wikiscript*** into whatever json format you'd like.
 
