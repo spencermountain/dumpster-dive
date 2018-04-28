@@ -10,7 +10,7 @@ npm install -g dumpster-dive
 ```
 ### ⚡ From the Command-Line:
 ```bash
-dumpster /path/to/my-wikipedia-article-dump.xml
+dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --html=true
 ```
 ### 😎 From a nodejs app
 ```js

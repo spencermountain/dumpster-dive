@@ -7,7 +7,7 @@ const cpus = require('os').cpus()
 const cpuCount = cpus.length;
 const stat = require('../lib/stat')
 const ora = require('ora');
-const spinner = ora('Getting ready').start();
+const spinner = ora('Opening file..').start();
 const margin = '            '
 
 
@@ -29,11 +29,12 @@ class Worker extends EventEmitter {
     // size = 633279000
     chunkSize = Math.floor(size / cpuCount);
     console.log('\n\n\n' + margin + ' ----------')
-    console.log(margin + `   oh hi 👋
+    console.log(margin + `  oh hi 👋
 `)
     console.log(margin + `total file size: ${chalk.green(pretty(size))}`)
     console.log(margin + chalk.blue(cpuCount + ' cpu cores') + ` detected.`)
     console.log(margin + chalk.grey('-') + ` each process will be given: ${chalk.magenta(pretty(chunkSize))} ` + chalk.grey('-'));
+    console.log(margin + ' ----------')
     console.log('\n')
 
     var workerCount = 0
@@ -44,7 +45,6 @@ class Worker extends EventEmitter {
         console.log('    💪  - a worker has finished')
         workerCount -= 1
         console.log(chalk.grey('      (' + workerCount + ' workers still running)'))
-        console.log('\n')
         if (workerCount === 0) {
           await workerNodes.terminate()
           this.emit("allWorkersFinished");

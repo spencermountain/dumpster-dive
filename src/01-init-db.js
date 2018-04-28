@@ -3,20 +3,20 @@ const fs = require("fs")
 const config = require("../config")
 
 //start it up running
-const init = async ( options = {
-    skip_first: 0,
-    verbose: true
-  } ) => {
+const init = async ( options = {} ) => {
+
+  //guess an appropriate dbName
+  if (!options.db) {
+    options.db = options.file.match(/\/([a-z-]+)-latest-pages/)[1] || 'wikipedia'
+  }
+  // console.log(options)
 
   return new Promise(async (resolve) => {
     //this is required
     if (!fs.existsSync(options.file)) {
-      console.log('please supply a filename for the wikipedia article dump in xml format');
+      console.log(chalk.red('--can\'t find file:  "' + chalk.blue(options.file) + '" ---'));
+      console.log(chalk.grey('please supply a filename for the wikipedia article dump in xml format'));
       process.exit(1);
-    }
-    //log a handy msg about skipping..
-    if (options.skip_first > 0) {
-      console.log('\n\n\n -- skipping first ' + options.skip_first + ' articles...')
     }
     // Connect to mongo
     let url = 'mongodb://localhost:27017/' + options.db;

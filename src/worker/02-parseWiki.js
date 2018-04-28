@@ -2,15 +2,6 @@ const wtf = require('wtf_wikipedia');
 const chalk = require('chalk');
 const encode = require('./_encode');
 
-//get readable text from the wiki markup
-const plaintext = function(page) {
-  return {
-    title: page.title,
-    _id: encode.encodeStr(page.title || ''),
-    plaintext: wtf.plaintext(page.script)
-  };
-}
-
 //get parsed json from the wiki markup
 const parseData = function(page, options) {
   try {
@@ -38,13 +29,4 @@ const parseData = function(page, options) {
   }
 };
 
-//
-const transform = function(page, options) {
-  //if we're just storing article text
-  if (options.plaintext) {
-    return plaintext(page, options);
-  }
-  //if we're storing full json
-  return parseData(page, options);
-}
-module.exports = transform
+module.exports = parseData

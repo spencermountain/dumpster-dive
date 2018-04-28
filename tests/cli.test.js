@@ -8,7 +8,7 @@ test('test-real-smallwiki', function(t) {
     exec('./bin/dumpster.js ./tests/smallwiki-latest-pages-articles.xml')
     db.count('smallwiki', count => {
       t.equal(count, 1050, 'count-is-correct')
-      db.drop('smallwiki', () => {
+      db.drop('smallwiki', 'wikipedia', () => {
         t.end()
       })
     })

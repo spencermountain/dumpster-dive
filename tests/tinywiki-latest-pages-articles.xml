@@ -32,6 +32,8 @@
       <format>text/x-wiki</format>
       <text xml:space="preserve">
 hello this is wikitext
+== The header ==
+and some arbitrary text
 === $Table.isfun ===
 {| class="wikitable"
 ! Nr. p. k.
