@@ -26,7 +26,7 @@ use enwiki     #grab the database
 db.wikipedia.find({title:"Toronto"})[0].categories
 #[ "Former colonial capitals in Canada",
 #  "Populated places established in 1793" ...]
-db.wikipedia.count({type:"redirect"})
+db.wikipedia.count()
 # 124,999...
 ````
 
@@ -42,13 +42,13 @@ Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/man
 ```bash
 # start mongo
 mongod --config /mypath/to/mongod.conf
-# install script
+# install this script
 npm install -g dumpster-dive
+# (that gives you the global command `dumpster`)
 ```
-that gives you the global command `dumpster`.
 
 ### 3) download a wikipedia
-The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 10 mins to load into mongo on a macbook:
+The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 5 mins to load into mongo on a macbook:
 ```bash
 # dowload an xml dump (38mb, couple minutes)
 wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
@@ -56,27 +56,28 @@ wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.
 the english/german ones are bigger. Use whichever xml dump you'd like. The [download page](https://dumps.wikimedia.org) is weird, but you'll want the most-common dump format, without historical diffs, or images, which is `${LANG}wiki-latest-pages-articles.xml.bz2 `
 
 ### 4) unzip it
-i know, this sucks. but it makes the parser so much faster. On a macbook, unzipping en-wikipedia takes about an hour. Eat some lunch.
+i know, this sucks. but it makes the parser so much faster. On a macbook, unzipping en-wikipedia takes an hour or so. Eat some lunch.
 
-### 5) start it off
+### 5) OK, start it off
 ```bash
 #load it into mongo (10-15 minutes)
 dumpster ./afwiki-latest-pages-articles.xml
 ```
 ### 6) take a bath
-just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there, it feels great. You deserve a break once and a while. The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
+just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there, it feels great.
+
+The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
+
+The console will update you every couple seconds to let you know where it's at.
 
 ### 7) check-out your data
 to view your data in the mongo console,
 ````javascript
 $ mongo
-use afwiki
+use afwiki //your db name
 
-//shows a random page
+//show a random page
 db.wikipedia.find().skip(200).limit(2)
-
-//count the redirects (~5,000 in afrikaans)
-db.wikipedia.count({type:"redirect"})
 
 //find a specific page
 db.wikipedia.findOne({title:"Toronto"}).categories
@@ -84,13 +85,13 @@ db.wikipedia.findOne({title:"Toronto"}).categories
 
 ### Same for the English wikipedia:
 the english wikipedia will work under the same process, but
-the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 13 GB (for [enwiki-20170901-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20170901/enwiki-20170901-pages-articles.xml.bz2)), and becomes a pretty legit mongo collection uncompressed. It's something like 51GB, but mongo can do it... You can do it!
-
+the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 13 GB (for [enwiki-20170901-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20170901/enwiki-20170901-pages-articles.xml.bz2)), and becomes a pretty legit mongo collection uncompressed. It's something like 51GB, but mongo can do it 💪.
 
 ### Options
-#### human-readable plaintext **--plaintext**
+dumpster follows all the conventions of [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia), and you can pass-in any fields for it to include in it's json.
+* **human-readable plaintext** ***--plaintext***
 ```js
-dumpster({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true}, console.log)
+dumpster({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true, categories:false})
 /*
 [{
   _id:'Toronto',
@@ -100,34 +101,27 @@ dumpster({file:'./myfile.xml.bz2', db: 'enwiki', plaintext:true}, console.log)
 */
 ```
 
-#### skip unnecessary pages **--skip_disambig**, **--skip_redirects**
-this can make it go faster too, by skipping entries in the dump that aren't full-on articles.
+* **disambiguation pages /  redirects** ***--skip_disambig***, ***--skip_redirects***
+by default, dumpster skips entries in the dump that aren't full-on articles, you can
 ```js
 let obj = {
 	file: './path/enwiki-latest-pages-articles.xml.bz2',
 	db: 'enwiki',
-	skip_redirects: true,
-	skip_disambig: true,
-	skip_first: 1000, // ignore the first 1k pages
-	verbose: true, // print each article title
+	skip_redirects: false,
+	skip_disambig: false
 }
 dumpster(obj, () => console.log('done!') )
 ```
+
 #### reducing file-size
 you can tell wtf_wikipedia what you want it to parse, and which data you don't need:
-```
-{
-	infoboxes: true, //the key-value info
-	citations: true, //include references and citations
-	images: true,		 //images thumbnails
-	categories: true //page's categories
-}
+```bash
+dumpster ./my-wiki-dump.xml --infoboxes=false --citations=false --categories=false --links=false
 ```
 
 ## how it works:
 this library uses:
 * [line-by-line](https://www.npmjs.com/package/line-by-line) to stream the gnarly xml file
-
 * [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article wikiscript contents into JSON.
 
 ## Addendum:
@@ -146,4 +140,6 @@ $  -->  \u0024
 This library should also work on other wikis with standard xml dumps from [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki). I haven't tested them, but the wtf_wikipedia supports all sorts of non-standard wiktionary/wikivoyage templates, and if you can get a bz-compressed xml dump from your wiki, this should work fine. Open an issue if you find something weird.
 
 ### PRs welcome!
+This is an important project, come [help us out](./contributing.md).
+
 MIT

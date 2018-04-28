@@ -68,12 +68,13 @@ class Worker extends EventEmitter {
 }
 
 process.on('unhandledRejection', function(up) {
+  console.log(chalk.red('--error--'))
   return console.log(up);
 });
 
 
 process.on('SIGINT', async function() {
-  console.log("Cleaning up child processes...");
+  console.log(chalk.blue("\none sec, cleaning-up the workers..."));
   await workerNodes.terminate();
   return process.exit();
 });

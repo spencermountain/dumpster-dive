@@ -20,7 +20,7 @@ const parseLine = function(line, state, donePage) {
       return startPage()
     }
     //keep going!
-    state.script += line
+    state.script += '\n' + line
     return state
   }
   //we're waiting for the page to end..

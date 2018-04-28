@@ -1,7 +1,6 @@
 const MongoClient = require('mongodb').MongoClient
 
 const open = function(dbName, callback) {
-  console.log(dbName)
   let url = 'mongodb://localhost:27017/' + dbName
   MongoClient.connect(url, function(err, db) {
     if (err) {

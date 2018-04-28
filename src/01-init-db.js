@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const fs = require("fs")
+const chalk = require("chalk")
 const config = require("../config")
 
 //start it up running

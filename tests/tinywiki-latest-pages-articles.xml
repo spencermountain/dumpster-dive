@@ -68,7 +68,7 @@ and some arbitrary text
       <comment>comment</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text xml:space="preserve">Laika skaiteišonys zeimeibā 18 godusymts irā laika periods, kurs suocēs 1701 godā i tuoļuojuos da 1800 gods (īskaitūt) pa Gregora kalenderam.
+      <text xml:space="preserve">
 {{Infobox settlement
 |name = Toronto
 |official_name = City of Toronto
