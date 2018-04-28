@@ -1,4 +1,5 @@
 <div align="center">
+	<h2>dumpster-dive</h2>
   <!--<a href="https://www.codacy.com/app/spencerkelly86/dumpster-dive">
     <img src="https://api.codacy.com/project/badge/grade/6fad3c588d3d4c97ab8a9abf9f2a5a01" />
   </a>-->
@@ -18,14 +19,14 @@
 <p></p>
 
 <div align="center">
-  <b>dumpster-dive</b> gets wikipedia's <a href="https://dumps.wikimedia.org">xml dump</a> into mongo,
+  gets a wikipedia <a href="https://dumps.wikimedia.org">xml dump</a> into mongo,
   <div>so you can mess-around with it</div>
 
   <h2 align="center">💂 Yup</h2>
   <div><sup>do it on your laptop</sup></div>
-  for real
 </div>
 
+![image](https://user-images.githubusercontent.com/399657/39391259-b57ca9e0-4a6e-11e8-8b33-2064e5fc187e.png)
 It's a quick **nodejs** one-liner that puts a **highly-queryable** wikipedia on your laptop in a nice afternoon.
 
 It uses [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to parse wikiscript into whatever json format you'd like.
