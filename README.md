@@ -20,18 +20,18 @@
 
 <div align="center">
   gets a wikipedia <a href="https://dumps.wikimedia.org">xml dump</a> into mongo,
-  <div>so you can mess-around with it</div>
+  <div>so you can mess-around.</div>
 
   <h2 align="center">💂 Yup 💂</h2>
   <div><sup>do it on your laptop.</sup></div>
 </div>
 
 ![image](https://user-images.githubusercontent.com/399657/39391259-b57ca9e0-4a6e-11e8-8b33-2064e5fc187e.png)
-`dumpster-dive` is a **nodejs** script that puts a **highly-queryable** wikipedia on your laptop in a nice afternoon.
+`dumpster-dive` is a **nodejs** script that puts a **highly-queryable** wikipedia on your computer in a nice afternoon.
 
-It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn the ***wikiscript*** into whatever json format you'd like.
+It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn ***wikiscript*** into whatever json.
 
-**en-wikipedia** takes about 7-hours, end-to-end.
+ -- **en-wikipedia** takes about 7-hours, end-to-end --
 
 ```bash
 npm install -g dumpster-dive
@@ -47,16 +47,15 @@ dumpster({ file:'./enwiki-latest-pages-articles.xml', db:'enwiki'}, callback)
 dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --html=true
 ```
 
-then check out the articles in mongo:
+*then check out the articles in mongo:*
 ````bash
 $ mongo        #enter the mongo shell
 use enwiki     #grab the database
-
 db.wikipedia.find({title:"Toronto"})[0].categories
 #[ "Former colonial capitals in Canada",
 #  "Populated places established in 1793" ...]
 db.wikipedia.count()
-# 124,999...
+# 4,926,056...
 ````
 
 # Steps:
