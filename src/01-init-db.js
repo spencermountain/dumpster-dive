@@ -15,8 +15,13 @@ const init = async ( options = {} ) => {
   return new Promise(async (resolve) => {
     //this is required
     if (!fs.existsSync(options.file)) {
-      console.log(chalk.red('--can\'t find file:  "' + chalk.blue(options.file) + '" ---'));
-      console.log(chalk.grey('please supply a filename for the wikipedia article dump in xml format'));
+      console.log(chalk.red('\n  --can\'t find file:  "' + chalk.blue(options.file) + '" ---'));
+      console.log(chalk.grey('     please supply a filename for the wikipedia article dump in xml format'));
+      process.exit(1);
+    }
+    if (/\.bz2$/.test(options.file)) {
+      console.log(chalk.red('\n    --- hello, please unzip this file first  ---'));
+      console.log(chalk.grey('     ($ bzip2 -d ' + options.file + ' )'))
       process.exit(1);
     }
     // Connect to mongo

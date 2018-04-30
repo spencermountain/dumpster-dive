@@ -2,16 +2,17 @@
   "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
   "name": "dumpster-dive",
   "description": "get a wikipedia dump parsed into mongodb",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
   },
   "bin": {
-    "dumpster": "./bin/dumpster.js"
+    "dumpster": "./bin/dumpster.js",
+    "dumpster-report": "./bin/report.js"
   },
   "engines": {
-    "node": ">4.8.6"
+    "node": ">=6.0.0"
   },
   "main": "./src/index.js",
   "scripts": {
@@ -22,16 +23,16 @@
     "chalk": "2.4.1",
     "line-by-line": "0.1.6",
     "mongodb": "2.2.33",
-    "ora": "^2.0.0",
+    "ora": "2.1.0",
     "prettysize": "1.1.0",
     "worker-nodes": "1.6.0",
-    "wtf_wikipedia": "^3.1.0",
-    "yargs": "^11.0.0"
+    "wtf_wikipedia": "^3.1.1",
+    "yargs": "11.1.0"
   },
   "devDependencies": {
     "shelljs": "^0.8.1",
     "tap-spec": "4.1.1",
-    "tape": "4.8.0"
+    "tape": "4.9.0"
   },
   "license": "MIT"
 }

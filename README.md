@@ -67,26 +67,31 @@ you can do this.
 just a few Gb. you can do this.
 
 ### 2️⃣ get ready
-Install [nodejs](https://nodejs.org/en/), [mongodb](https://docs.mongodb.com/manual/installation/)
+Install [nodejs](https://nodejs.org/en/) (at least `v6`), [mongodb](https://docs.mongodb.com/manual/installation/) (at least `v3`)
 
 ```bash
-# start mongo
-mongod --config /mypath/to/mongod.conf
 # install this script
-npm install -g dumpster-dive
-# (that gives you the global command `dumpster`)
+npm install -g dumpster-dive # (that gives you the global command `dumpster`)
+# start mongo up
+mongod --config /mypath/to/mongod.conf
 ```
 
 ### 3️⃣ download a wikipedia
-The Afrikaans wikipedia (around 47,000 artikels) only takes a few minutes to download, and 5 mins to load into mongo on a macbook:
+The Afrikaans wikipedia (around 47,000 articles) only takes a few minutes to download, and 5 mins to load into mongo on a macbook:
 ```bash
 # dowload an xml dump (38mb, couple minutes)
 wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
 ```
-the english/german ones are bigger. Use whichever xml dump you'd like. The [download page](https://dumps.wikimedia.org) is weird, but you'll want the most-common dump format, without historical diffs, or images, which is `${LANG}wiki-latest-pages-articles.xml.bz2 `
+the english dump is 16Gb. The [download page](https://dumps.wikimedia.org) is confusing, but you'll want this file: `${LANG}wiki-latest-pages-articles.xml.bz2 `
 
 ### 4️⃣ unzip it
-i know, this sucks. but it makes the parser so much faster. On a macbook, unzipping en-wikipedia takes an hour or so. Eat some lunch.
+i know, this sucks. but it makes the parser so much faster.
+```
+bzip2 -d ~/path/afwiki-latest-pages-articles.xml.bz2
+```
+On a macbook, unzipping en-wikipedia takes an hour or so. This is the most-boring part. Eat some lunch.
+
+The english wikipedia is around 60Gb.
 
 ### 5️⃣ OK, start it off
 ```bash
@@ -112,6 +117,7 @@ db.wikipedia.find().skip(200).limit(2)
 //find a specific page
 db.wikipedia.findOne({title:"Toronto"}).categories
 ````
+alternatively, you can run `dumpster-report afwiki` to see a quick spot-check of the records it has created across the database.
 
 ### Same for the English wikipedia:
 the english wikipedia will work under the same process, but

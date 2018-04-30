@@ -33,7 +33,7 @@ class Worker extends EventEmitter {
 `)
     console.log(margin + `total file size: ${chalk.green(pretty(size))}`)
     console.log(margin + chalk.blue(cpuCount + ' cpu cores') + ` detected.`)
-    console.log(margin + chalk.grey('-') + ` each process will be given: ${chalk.magenta(pretty(chunkSize))} ` + chalk.grey('-'));
+    console.log(margin + chalk.grey('-') + ` each worker will be given: ${chalk.magenta(pretty(chunkSize))} ` + chalk.grey('-'));
     console.log(margin + ' ----------')
     console.log('\n')
 
