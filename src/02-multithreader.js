@@ -42,9 +42,9 @@ class Worker extends EventEmitter {
       this.emit("msg", msg);
       if (msg.type === "workerDone") {
         console.log('\n')
-        console.log('    💪  - a worker has finished')
+        console.log('    💪  a worker has finished 💪 ')
         workerCount -= 1
-        console.log(chalk.grey('      (' + workerCount + ' workers still running)'))
+        console.log(chalk.grey('      - ' + workerCount + ' workers still running -\n'))
         if (workerCount === 0) {
           await workerNodes.terminate()
           this.emit("allWorkersFinished");

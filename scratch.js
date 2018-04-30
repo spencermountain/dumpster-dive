@@ -4,20 +4,17 @@ const config = require('./config')
 
 // const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml'
 // const path = '/Users/spencer/data/wikipedia/eswiki-latest-pages-articles.xml'
-const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml'
-// const path = './tests/smallwiki-latest-pages-articles.xml'
+// const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml'
+const path = './tests/smallwiki-latest-pages-articles.xml'
 // const path = './tests/tinywiki-latest-pages-articles.xml'
 const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1]
 
 //delete all pages
-drop(dbName, config.collection, () => {
-  dumpster({
-    file: path,
-    db: dbName,
-    batch_size: 1000,
-    plaintext: true
-  }, () => {
-    console.log('callback!')
-  // firstTen(dbName, console.log)
-  })
+// drop(dbName, config.collection, () => {
+dumpster({
+  file: path,
+  db: dbName,
+  batch_size: 1000,
+  plaintext: true
 })
+// })
