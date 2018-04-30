@@ -6,7 +6,8 @@ const chalk = require('chalk')
 const mt = require("./02-multithreader")
 const writeDb = require('./03-write-db');
 const oneSec = require('../lib/fns').oneSec
-const niceNumber = require('../lib/fns').niceNumber
+const fns = require('../lib/fns')
+const start = Date.now()
 
 process.on('unhandledRejection', console.log)
 
@@ -33,7 +34,9 @@ const main = async (options, done) => {
       oneSec(() => {
         console.log('\n\n      👍  closing down.\n')
         options.collection.count().then((count) => {
-          console.log('     -- final count is ' + chalk.magenta(niceNumber(count)) + ' pages --')
+          let duration = fns.timeSince(start)
+          console.log('     -- final count is ' + chalk.magenta(fns.niceNumber(count)) + ' pages --')
+          console.log('       ' + chalk.yellow(`took ${duration}`))
           console.log('              🎉')
           console.log('\n\n')
           process.exit()
