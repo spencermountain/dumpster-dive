@@ -33,7 +33,7 @@ class Worker extends EventEmitter {
 `)
     console.log(margin + `total file size: ${chalk.green(pretty(size))}`)
     console.log(margin + chalk.blue(cpuCount + ' cpu cores') + ` detected.`)
-    console.log(margin + chalk.grey('-') + ` each process will be given: ${chalk.magenta(pretty(chunkSize))} ` + chalk.grey('-'));
+    console.log(margin + chalk.grey('-') + ` each worker will be given: ${chalk.magenta(pretty(chunkSize))} ` + chalk.grey('-'));
     console.log(margin + ' ----------')
     console.log('\n')
 
@@ -42,9 +42,9 @@ class Worker extends EventEmitter {
       this.emit("msg", msg);
       if (msg.type === "workerDone") {
         console.log('\n')
-        console.log('    💪  - a worker has finished')
+        console.log('    💪  a worker has finished 💪 ')
         workerCount -= 1
-        console.log(chalk.grey('      (' + workerCount + ' workers still running)'))
+        console.log(chalk.grey('      - ' + workerCount + ' workers still running -\n'))
         if (workerCount === 0) {
           await workerNodes.terminate()
           this.emit("allWorkersFinished");

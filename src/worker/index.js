@@ -53,7 +53,7 @@ const getPages = async (options, chunkSize, workerNr) => {
     doArticleTimeCounter = 0
     page = {}
     let seconds = ((Date.now() - workerBegin) / 1000).toFixed(1)
-    console.log(chalk.grey(`    - added ${fns.niceNumber(pageCount)} pages  - ${seconds}s   `) + chalk.yellow(`(by #${process.pid})`));
+    console.log(chalk.grey(`    - wrote ${fns.niceNumber(pageCount)} pages  - ${seconds}s   `) + chalk.yellow(`(worker #${process.pid})`));
     workerBegin = Date.now()
     lr.resume();
     if (isLast === true) {

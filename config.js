@@ -4,5 +4,5 @@ module.exports = {
   //the default name of the collection to write to
   "collection": "wikipedia",
   //update interval
-  "logInterval": 1000,
+  "logInterval": 4000,
 }
