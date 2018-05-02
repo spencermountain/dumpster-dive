@@ -26,7 +26,9 @@ const init = async ( options = {} ) => {
     }
     // Connect to mongo
     let url = 'mongodb://localhost:27017/' + options.db;
-    options.db = await MongoClient.connect(url)
+    options.dbName = options.db //over-use of db param;(
+    options.client = await MongoClient.connect(url)
+    options.db = options.client.db(options.dbName);
     options.collection = options.db.collection(config.collection);
 
     // if (options.auto_skip) {

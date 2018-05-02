@@ -39,6 +39,7 @@ const main = async (options, done) => {
           console.log('       ' + chalk.yellow(`took ${duration}`))
           console.log('              🎉')
           console.log('\n\n')
+          options.client.close()
           process.exit()
         })
       })

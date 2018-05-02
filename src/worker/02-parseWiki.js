@@ -2,9 +2,19 @@ const wtf = require('wtf_wikipedia');
 const chalk = require('chalk');
 const encode = require('./_encode');
 
+//doesn't support fancy things like &copy; to ©, etc
+const escapeXML = function(str) {
+  return str.replace(/&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&gt;/g, '>')
+    .replace(/&lt;/g, '<')
+    .replace(/&amp;/g, '&');
+}
+
 //get parsed json from the wiki markup
 const parseData = function(page, options) {
   try {
+    page.script = escapeXML(page.script || '')
     let doc = wtf(page.script);
     //dont insert this if it's a redirect
     if (options.skip_redirects === true && doc.isRedirect()) {
