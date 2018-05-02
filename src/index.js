@@ -1,30 +1,34 @@
 //stream a big wikipedia xml.bz2 file into mongodb
 // usage:
 //   node index.js afwiki-latest-pages-articles.xml.bz2
-const init = require('./01-init-db');
+const initDB = require('./01-init-db');
 const chalk = require('chalk')
-const mt = require("./02-multithreader")
+const mt = require("./02-make-workers")
 const writeDb = require('./03-write-db');
-const oneSec = require('../lib/fns').oneSec
+// const stat = require('../lib/stat')
 const fns = require('../lib/fns')
+const oneSec = fns.oneSec
 const start = Date.now()
 
 process.on('unhandledRejection', console.log)
 
 //open up a mongo db, and start xml-streaming..
 const main = async (options, done) => {
-  params = Object.assign({}, options);
+  let params = Object.assign({}, options);
   done = done || function() {}
 
-  await init(options)
+  await initDB(options)
   mt.worker.parseXML(params)
 
-  writing = 0
+  //start the logger:
+  // stat.hound(options.db)
+
+  // let writing = 0
   mt.worker.on("msg", async (msg) => {
     if (msg.type === "insertToDb") {
-      writing++
-      res = await writeDb(msg.pages, options)
-      writing--
+      // writing += 1
+      await writeDb(msg.pages, options)
+    // writing -= 1
     }
   })
 

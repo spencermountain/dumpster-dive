@@ -12,7 +12,6 @@ const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1]
 
 //delete all pages
 drop(dbName, config.collection, () => {
-  console.log('dropped')
   dumpster({
     file: path,
     db: dbName,

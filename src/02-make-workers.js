@@ -5,8 +5,8 @@ const chalk = require('chalk')
 const EventEmitter = require('events');
 const cpus = require('os').cpus()
 const cpuCount = cpus.length;
-const stat = require('../lib/stat')
 const ora = require('ora');
+const stat = require('../lib/stat')
 const spinner = ora('Opening file..').start();
 const margin = '            '
 
@@ -23,11 +23,8 @@ class Worker extends EventEmitter {
   }
   parseXML(options) {
     spinner.stop()
-    var chunkSize,
-      size;
-    size = fs.statSync(options.file)["size"];
-    // size = 633279000
-    chunkSize = Math.floor(size / cpuCount);
+    let size = fs.statSync(options.file)["size"];
+    let chunkSize = Math.floor(size / cpuCount);
     console.log('\n\n\n' + margin + ' ----------')
     console.log(margin + `  oh hi 👋
 `)
@@ -62,7 +59,6 @@ class Worker extends EventEmitter {
         }
       })
     })
-    //start the logger:
     stat.hound(options.db)
   }
 }
@@ -79,8 +75,7 @@ process.on('SIGINT', async function() {
   return process.exit();
 });
 
-worker = new Worker()
-
+let worker = new Worker()
 module.exports = {
   worker: worker
 }

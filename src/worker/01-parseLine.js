@@ -1,4 +1,5 @@
 require('./_polyfill');
+// const chalk = require('chalk')
 
 const startPage = function() {
   return {
@@ -42,6 +43,7 @@ const parseLine = function(line, state, donePage) {
   //skip redirects too..
   if (line.includes('<redirect title="')) {
     state.skip = true;
+    // console.log(chalk.green(' skipping redirect: ' + state.title))
     return state
   }
   //grab this title, sorta it's handy
