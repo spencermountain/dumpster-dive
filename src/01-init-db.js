@@ -3,7 +3,7 @@ const fs = require("fs")
 const chalk = require("chalk")
 const config = require("../config")
 
-//start it up running
+//setup a connection to mongo, for each worker.
 const init = async ( options = {} ) => {
 
   //guess an appropriate dbName

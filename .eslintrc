@@ -43,6 +43,8 @@
     "require": true,
     "console": true,
     "module": true,
+    "setInterval": true,
+    "setTimeout": true,
     "__dirname": true,
     "__pathname": true,
   }

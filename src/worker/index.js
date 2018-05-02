@@ -5,38 +5,34 @@ const init = require('../01-init-db');
 const parseLine = require('./01-parseLine')
 const parseWiki = require('./02-parseWiki');
 
-const getPages = async (options, chunkSize, workerNr) => {
-  var startByte,
-    insertToDb,
-    state,
-    lr,
-    pageCount,
-    pages;
-
-  if (workerNr === 0) {
-    startByte = 0
-  } else {
+const doSection = async (options, chunkSize, workerNum) => {
+  let startByte = 0
+  let lineCount = 0
+  if (workerNum !== 0) {
     // start a megabyte earlier
-    startByte = (workerNr * chunkSize) - 1000000
+    startByte = (workerNum * chunkSize) //- 1000000
   }
   // end 2 megabytes later so we don't lose pages cut by chunks
-  let endByte = startByte + chunkSize + 3000000
+  let endByte = startByte + chunkSize //+ 3000000
   // logger.info(`worker pid:${process.pid} is now alive. startByte: ${startByte} endByte: ${endByte}`)
   await init(options)
 
-  lr = new LineByLineReader(options.file, {
+  console.log('worker #' + workerNum + ' : ' + startByte + '→' + endByte)
+
+  let lr = new LineByLineReader(options.file, {
     start: startByte,
     end: endByte
   });
 
-  state = {};
-  pageCount = 0;
-  pages = [];
+  let state = {};
+  let pageCount = 0;
+  let pages = [];
   let workerBegin = Date.now()
   let doArticleTimeCounter = 0
 
-  insertToDb = function(isLast) {
+  const insertToDb = function(isLast) {
     lr.pause();
+    console.log('   --- on line ' + lineCount)
     process.send({
       type: "insertToDb",
       pages: pages,
@@ -50,7 +46,7 @@ const getPages = async (options, chunkSize, workerNr) => {
     pages = [];
     doArticleTimeCounter = 0
     let seconds = ((Date.now() - workerBegin) / 1000).toFixed(1)
-    console.log(chalk.grey(`    - wrote ${fns.niceNumber(pageCount)} pages  - ${seconds}s   `) + chalk.yellow(`(worker #${process.pid})`));
+    console.log(chalk.grey(`    - wrote ${fns.niceNumber(pageCount)} pages  - ${seconds}s   `) + chalk.yellow(`worker #${workerNum}`));
     workerBegin = Date.now()
     lr.resume();
     if (isLast === true) {
@@ -84,6 +80,7 @@ const getPages = async (options, chunkSize, workerNr) => {
 
   lr.on('line', (line) => {
     state = parseLine(line, state, donePage)
+    lineCount += 1
   });
 
   lr.on('end', function() {
@@ -95,5 +92,5 @@ const getPages = async (options, chunkSize, workerNr) => {
 };
 
 module.exports = {
-  getPages
+  doSection: doSection
 }

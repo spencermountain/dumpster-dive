@@ -7,6 +7,7 @@ const mt = require("./02-make-workers")
 const writeDb = require('./03-write-db');
 // const stat = require('../lib/stat')
 const fns = require('../lib/fns')
+const stat = require('../lib/stat')
 const oneSec = fns.oneSec
 const start = Date.now()
 
@@ -18,10 +19,10 @@ const main = async (options, done) => {
   done = done || function() {}
 
   await initDB(options)
-  mt.worker.parseXML(params)
+  mt.workers.start(params)
 
   //start the logger:
-  // stat.hound(options.db)
+  stat.hound(options.db)
 
   // let writing = 0
   mt.worker.on("msg", async (msg) => {
