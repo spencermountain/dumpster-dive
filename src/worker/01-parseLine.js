@@ -1,4 +1,5 @@
 require('./_polyfill');
+// const chalk = require('chalk')
 
 const startPage = function() {
   return {
@@ -32,7 +33,7 @@ const parseLine = function(line, state, donePage) {
     //keep ignoring..
     return state
   }
-  //maybe we can skip it?
+  //can we skip it, based on namespace?
   if (line.includes("<ns>")) {
     if (line.includes("<ns>0</ns>") === false) {
       state.skip = true;
@@ -42,6 +43,7 @@ const parseLine = function(line, state, donePage) {
   //skip redirects too..
   if (line.includes('<redirect title="')) {
     state.skip = true;
+    // console.log(chalk.green(' skipping redirect: ' + state.title))
     return state
   }
   //grab this title, sorta it's handy

@@ -5,11 +5,9 @@ const chalk = require('chalk')
 const EventEmitter = require('events');
 const cpus = require('os').cpus()
 const cpuCount = cpus.length;
-const stat = require('../lib/stat')
 const ora = require('ora');
 const spinner = ora('Opening file..').start();
 const margin = '            '
-
 
 let workerNodes = new WorkerNodes(__dirname + '/worker/index.js', {
   minWorkers: cpuCount - 1,
@@ -17,17 +15,15 @@ let workerNodes = new WorkerNodes(__dirname + '/worker/index.js', {
   maxTasksPerWorker: 1
 });
 
-class Worker extends EventEmitter {
+class Workers extends EventEmitter {
   constructor() {
     super()
   }
-  parseXML(options) {
+  startFile(options) {
     spinner.stop()
-    var chunkSize,
-      size;
-    size = fs.statSync(options.file)["size"];
-    // size = 633279000
-    chunkSize = Math.floor(size / cpuCount);
+    let size = fs.statSync(options.file)["size"];
+    console.log('filesize: ' + size)
+    let chunkSize = Math.floor(size / cpuCount);
     console.log('\n\n\n' + margin + ' ----------')
     console.log(margin + `  oh hi 👋
 `)
@@ -53,7 +49,7 @@ class Worker extends EventEmitter {
     }
 
     cpus.forEach((val, key) => {
-      workerNodes.call.getPages(options, chunkSize, key).then(() => {
+      workerNodes.call.doSection(options, chunkSize, key).then(() => {
         workerCount += 1
         if (workerCount === cpuCount) {
           workerNodes.workersQueue.storage.forEach((worker) => {
@@ -62,13 +58,11 @@ class Worker extends EventEmitter {
         }
       })
     })
-    //start the logger:
-    stat.hound(options.db)
   }
 }
 
 process.on('unhandledRejection', function(up) {
-  console.log(chalk.red('--error--'))
+  console.log(chalk.red('--uncaught process error--'))
   return console.log(up);
 });
 
@@ -79,8 +73,5 @@ process.on('SIGINT', async function() {
   return process.exit();
 });
 
-worker = new Worker()
-
-module.exports = {
-  worker: worker
-}
+let workers = new Workers()
+module.exports = workers

@@ -5,55 +5,43 @@ const init = require('../01-init-db');
 const parseLine = require('./01-parseLine')
 const parseWiki = require('./02-parseWiki');
 
-const getPages = async (options, chunkSize, workerNr) => {
-  var startByte,
-    insertToDb,
-    state,
-    lr,
-    pageCount,
-    pages;
-
-  if (workerNr === 0) {
-    startByte = 0
-  } else {
-    // start a megabyte earlier
-    startByte = (workerNr * chunkSize) - 1000000
+const doSection = async (options, chunkSize, workerNum) => {
+  let startByte = 0
+  if (workerNum !== 0) {
+    startByte = (workerNum * chunkSize) //- 1000000 // start a megabyte earlier
   }
-  // end 2 megabytes later so we don't lose pages cut by chunks
-  endByte = startByte + chunkSize + 3000000
-  // logger.info(`worker pid:${process.pid} is now alive. startByte: ${startByte} endByte: ${endByte}`)
-  await init(options)
+  let endByte = startByte + chunkSize //+ 3000000 // end 2 megabytes later so we don't lose pages cut by chunks
 
-  lr = new LineByLineReader(options.file, {
+  await init(options)
+  // console.log('worker #' + workerNum + ' : ' + startByte + '→' + endByte)
+
+  let lr = new LineByLineReader(options.file, {
     start: startByte,
     end: endByte
   });
 
-  state = {};
-  pageCount = 0;
-  pages = [];
-  workerBegin = Date.now()
-  jobBegin = Date.now()
-  doArticleTimeCounter = 0
+  let state = {};
+  let pageCount = 0;
+  let pages = [];
+  let workerBegin = Date.now()
 
-  insertToDb = function(isLast) {
+  const insertToDb = function(isLast) {
     lr.pause();
     process.send({
       type: "insertToDb",
       pages: pages,
       length: pages.length,
-      pid: process.pid,
-      timeSpent: {
-        total: Date.now() - workerBegin,
-        doArticle: doArticleTimeCounter
-      }
+      pid: process.pid
     })
     pages = [];
-    jobBegin = Date.now()
-    doArticleTimeCounter = 0
-    page = {}
+
+    //log some nice kinda output
     let seconds = ((Date.now() - workerBegin) / 1000).toFixed(1)
-    console.log(chalk.grey(`    - wrote ${fns.niceNumber(pageCount)} pages  - ${seconds}s   `) + chalk.yellow(`(worker #${process.pid})`));
+    let str = chalk.yellow(`worker #${workerNum}  - `)
+    str += chalk.grey(` +${fns.niceNumber(options.batch_size)} pages  - (${seconds}s)  - `)
+    str += chalk.magenta(` at ${fns.niceNumber(pageCount)}`)
+    console.log(str);
+
     workerBegin = Date.now()
     lr.resume();
     if (isLast === true) {
@@ -70,6 +58,8 @@ const getPages = async (options, chunkSize, workerNr) => {
     pageObj = parseWiki(pageObj, options)
     if (pageObj !== null) {
       pages.push(pageObj);
+    } else {
+      console.log(chalk.green('   -skipping page: "' + pageObj.title + '"'))
     }
     // doArticleTimeCounter += Date.now() - doArticleTime
     if (pageCount % options.batch_size === 0) {
@@ -96,5 +86,5 @@ const getPages = async (options, chunkSize, workerNr) => {
 };
 
 module.exports = {
-  getPages
+  doSection: doSection
 }
