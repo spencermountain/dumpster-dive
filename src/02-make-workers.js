@@ -19,7 +19,7 @@ class Workers extends EventEmitter {
   constructor() {
     super()
   }
-  start(options) {
+  startFile(options) {
     spinner.stop()
     let size = fs.statSync(options.file)["size"];
     console.log('filesize: ' + size)
@@ -74,6 +74,4 @@ process.on('SIGINT', async function() {
 });
 
 let workers = new Workers()
-module.exports = {
-  worker: workers
-}
+module.exports = workers

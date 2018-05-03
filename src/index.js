@@ -3,7 +3,7 @@
 //   node index.js afwiki-latest-pages-articles.xml.bz2
 const initDB = require('./01-init-db');
 const chalk = require('chalk')
-const mt = require("./02-make-workers")
+const workers = require("./02-make-workers")
 const writeDb = require('./03-write-db');
 // const stat = require('../lib/stat')
 const fns = require('../lib/fns')
@@ -19,13 +19,13 @@ const main = async (options, done) => {
   done = done || function() {}
 
   await initDB(options)
-  mt.workers.start(params)
+  workers.startFile(params)
 
   //start the logger:
   stat.hound(options.db)
 
   // let writing = 0
-  mt.worker.on("msg", async (msg) => {
+  workers.on("msg", async (msg) => {
     if (msg.type === "insertToDb") {
       // writing += 1
       await writeDb(msg.pages, options)
@@ -33,7 +33,7 @@ const main = async (options, done) => {
     }
   })
 
-  mt.worker.on("allWorkersFinished", () => {
+  workers.on("allWorkersFinished", () => {
     oneSec(() => {
       done()
       oneSec(() => {

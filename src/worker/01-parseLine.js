@@ -33,7 +33,7 @@ const parseLine = function(line, state, donePage) {
     //keep ignoring..
     return state
   }
-  //maybe we can skip it?
+  //can we skip it, based on namespace?
   if (line.includes("<ns>")) {
     if (line.includes("<ns>0</ns>") === false) {
       state.skip = true;
