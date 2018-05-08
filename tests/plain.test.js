@@ -15,9 +15,10 @@ test('plaintext', function(t) {
     dumpster(obj, () => {
       db.firstTen(dbName, docs => {
         t.equal(docs.length, 7, '7 records')
-        t.equal(docs[0].plaintext, 'hello this is wikitext\n\nand some arbitrary text\n\n', 'got plaintext')
-        t.notEqual(docs[0].markdown.indexOf('\n## The header\n'), -1, 'got markdown')
-        t.notEqual(docs[0].html.indexOf('<span class="sentence">hello this is wikitext</span>'), -1, 'got html')
+        let doc = docs.find(d => d._id === "Hello")
+        t.equal(doc.plaintext, 'hello this is wikitext\n\nand some arbitrary text\n\n', 'got plaintext')
+        t.notEqual(doc.markdown.indexOf('\n## The header\n'), -1, 'got markdown')
+        t.notEqual(doc.html.indexOf('<span class="sentence">hello this is wikitext</span>'), -1, 'got html')
         t.end()
       })
     })

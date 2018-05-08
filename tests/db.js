@@ -43,6 +43,7 @@ const drop = function(dbName, colName, cb) {
   open(dbName, function(db, client) {
     db.collection('wikipedia')
     let col = db.collection(colName)
+    // console.log('dropping ' + colName)
     col.deleteMany({})
     setTimeout(function() {
       client.close()

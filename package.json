@@ -2,7 +2,7 @@
   "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
   "name": "dumpster-dive",
   "description": "get a wikipedia dump parsed into mongodb",
-  "version": "3.0.2",
+  "version": "3.0.4",
   "repository": {
     "type": "git",
     "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"

@@ -43,8 +43,12 @@
     "require": true,
     "console": true,
     "module": true,
+    "exports": true,
     "setInterval": true,
     "setTimeout": true,
+    "global": true,
+    "clearInterval": true,
+    "clearTimeout": true,
     "__dirname": true,
     "__pathname": true,
   }
