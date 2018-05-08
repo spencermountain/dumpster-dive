@@ -1,15 +1,14 @@
 const dumpster = require('./src')
 const drop = require('./src/lib/drop-db')
 
-// const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml'
+const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml'
 // const path = '/Users/spencer/data/wikipedia/eswiki-latest-pages-articles.xml'
 // const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml'
 // const path = './tests/smallwiki-latest-pages-articles.xml'
 // const path = './tests/tinywiki-latest-pages-articles.xml'
-// const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1]
-let dbName = 'plainwiki'
+const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1]
 let options = {
-  file: './tests/tinywiki-latest-pages-articles.xml',
+  file: path,
   db: dbName,
   plaintext: true,
   html: true,
