@@ -1,26 +1,27 @@
 //stream a big wikipedia xml.bz2 file into mongodb
 //  because why not.
 const chalk = require('chalk')
-const WorkerPool = require("./Worker-pool")
+const prelim = require('./01-prelim-stuff')
+const WorkerPool = require("./02-Worker-pool")
+const logger = require("./03-logger")
 const fns = require('../lib/fns')
-const stat = require('../lib/stat')
-const prelim = require('./01-prelim')
 const oneSec = fns.oneSec
 const start = Date.now()
+const noop = function() {}
 
 //open up a mongo db, and start xml-streaming..
 const main = (options, done) => {
-  options = Object.assign({}, options);
-  done = done || function() {}
+  done = done || noop
 
   //make sure the file exists, and things
   options = prelim(options)
 
+  //init workers
   let workers = new WorkerPool()
-  workers.startFile(options)
+  workers.start(options)
 
   //start the logger:
-  stat.hound(options.db)
+  logger.hound(options, workers)
 
   workers.on("allWorkersFinished", () => {
     oneSec(() => {
