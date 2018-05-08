@@ -4,15 +4,16 @@ const drop = require('./src/lib/drop-db')
 // const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml'
 // const path = '/Users/spencer/data/wikipedia/eswiki-latest-pages-articles.xml'
 // const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml'
-const path = './tests/smallwiki-latest-pages-articles.xml'
+// const path = './tests/smallwiki-latest-pages-articles.xml'
 // const path = './tests/tinywiki-latest-pages-articles.xml'
-const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1]
+// const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1]
+let dbName = 'plainwiki'
 let options = {
-  file: path,
+  file: './tests/tinywiki-latest-pages-articles.xml',
   db: dbName,
-  batch_size: 1000,
-  plaintext: false,
-  citations: false
+  plaintext: true,
+  html: true,
+  markdown: true,
 }
 //delete all pages
 drop(options).then(() => {

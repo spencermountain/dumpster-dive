@@ -6,12 +6,20 @@ const mongoConfig = {
 
 const writeDb = (options, pages) => {
   return new Promise(async (resolve) => {
+
     let obj = await openDB(options)
+
     obj.col.insertMany(pages, mongoConfig, (err) => {
       if (err) {
         console.log('   ' + chalk.red(err.message))
-        if (err.writeErrors) {
-          console.log('   ' + chalk.red(err.writeErrors[0].errmsg))
+        if (err.writeErrors && err.writeErrors[0]) {
+          let e = err.writeErrors[0]
+          //suppress duplicate key errors
+          if (e && e.code === 11000) {
+            console.log(chalk.red(`    - already have "${err.writeErrors[0]._id}"`))
+          } else {
+            console.log('   ' + chalk.red(e.errmsg))
+          }
         }
       }
       obj.client.close()

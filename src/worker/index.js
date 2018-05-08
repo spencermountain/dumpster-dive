@@ -25,7 +25,9 @@ const doSection = async (options, chunkSize, workerNum) => {
 
   const insertToDb = async function(isLast) {
     lr.pause();
-    await writeDb(options, pages)
+    if (pages.length > 0) {
+      await writeDb(options, pages)
+    }
     pages = [];
 
     //log some nice kinda output
@@ -52,7 +54,7 @@ const doSection = async (options, chunkSize, workerNum) => {
     if (pageObj !== null) {
       pages.push(pageObj);
     } else {
-      console.log(chalk.green('   -skipping page: "' + pageObj.title + '"'))
+      console.log(chalk.green('   -skipping page: ""'))
     }
     // doArticleTimeCounter += Date.now() - doArticleTime
     if (pageCount % options.batch_size === 0) {

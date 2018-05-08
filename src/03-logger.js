@@ -42,7 +42,7 @@ class Logger {
   async stat() {
     let obj = await openDB(this.options)
     this.count(obj, (count) => {
-      if (count === 0) {
+      if (!count) {
         obj.client.close()
         return
       }

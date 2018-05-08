@@ -1,5 +1,6 @@
 const chalk = require('chalk')
 const fs = require("fs")
+const config = require("../config")
 const cpuCount = require('os').cpus().length
 
 const guardFile = function(options) {
@@ -29,7 +30,7 @@ const prepare = function(options) {
   //few defaults
   options.dbName = options.db
   options.workers = options.workers || cpuCount
-
+  options.batch_size = options.batch_size || config.batch_size
   //some top-level logging
   process.on('unhandledRejection', function(up) {
     console.log(chalk.red('--uncaught top-process error--'))
