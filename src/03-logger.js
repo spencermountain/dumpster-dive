@@ -1,6 +1,6 @@
 const chalk = require('chalk')
-const openDB = require('../lib/open-db')
-const fns = require("../fns")
+const openDB = require('./lib/open-db')
+const fns = require("./lib/fns")
 const config = require("../config")
 
 //logger for current status of import
@@ -11,13 +11,15 @@ class Logger {
     this.interval = null
   }
   start() {
-    this.interval = setInterval(this.stat, this.wait)
+    this.interval = setInterval(() => {
+      this.stat()
+    }, this.wait)
   }
   stop() {
     clearInterval(this.interval)
   }
   open(cb) {
-    openDB(this.options, cb)
+    openDB(this.options.db, cb)
   }
   //# of records entered in db
   count(obj, cb) {
@@ -36,18 +38,20 @@ class Logger {
       }
     })
   }
-  stat() {
-    this.open((obj) => {
-      this.count(obj, (count) => {
-        if (count > 0) {
-          this.lastPage(obj.col, count, (doc) => {
-            count = fns.niceNumber(count)
-            if (doc) {
-              console.log(chalk.grey(' last page: ') + chalk.green('#' + count) + chalk.blue('  - "' + doc.title + '"     '))
-            }
-            obj.client.close()
-          })
+  //log some output
+  async stat() {
+    let obj = await openDB(this.options)
+    this.count(obj, (count) => {
+      if (count === 0) {
+        obj.client.close()
+        return
+      }
+      this.lastPage(obj, count, (doc) => {
+        count = fns.niceNumber(count)
+        if (doc) {
+          console.log(chalk.grey(' last page: ') + chalk.green('#' + count) + chalk.blue('  - "' + doc.title + '"     '))
         }
+        obj.client.close()
       })
     })
   }

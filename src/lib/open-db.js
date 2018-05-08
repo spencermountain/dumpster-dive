@@ -1,16 +1,22 @@
-const config = require("../config")
 const MongoClient = require('mongodb').MongoClient
+const config = require("../../config")
 
-const openDb = async function(dbName) {
+//create a database connection to mongo
+const openDb = async function(options) {
+  if (!options.db) {
+    console.warn('\n--missing db name--')
+  }
+  let url = 'mongodb://localhost:27017/' + options.db
+
   return new Promise((resolve, reject) => {
-    let url = 'mongodb://localhost:27017/' + dbName
     MongoClient.connect(url, function(err, client) {
       if (err) {
         console.log(err)
         reject(err)
       }
-      const db = client.db(dbName);
+      const db = client.db(options.db);
       const collection = db.collection(config.collection)
+      //we use all of these.
       let obj = {
         db: db,
         col: collection,

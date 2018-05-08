@@ -1,14 +1,13 @@
-const config = require("../config")
 const chalk = require('chalk')
 const openDB = require('../lib/open-db')
 const mongoConfig = {
   ordered: false
 }
 
-const writeDb = (arr, options) => {
+const writeDb = (options, pages) => {
   return new Promise(async (resolve) => {
     let obj = await openDB(options)
-    obj.db.collection(config.collection).insertMany(arr, mongoConfig, (err) => {
+    obj.col.insertMany(pages, mongoConfig, (err) => {
       if (err) {
         console.log('   ' + chalk.red(err.message))
         if (err.writeErrors) {
@@ -16,7 +15,7 @@ const writeDb = (arr, options) => {
         }
       }
       obj.client.close()
-      //keep going .. 🙉 
+      //keep going .. 🙉
       resolve()
     })
   })
