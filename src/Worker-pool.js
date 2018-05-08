@@ -9,17 +9,19 @@ const ora = require('ora');
 const spinner = ora('Opening file..').start();
 const margin = '            '
 
-let workerNodes = new WorkerNodes(__dirname + '/worker/index.js', {
-  minWorkers: cpuCount - 1,
-  autoStart: true,
-  maxTasksPerWorker: 1
-});
 
-class Workers extends EventEmitter {
-  constructor() {
+class WorkerPool extends EventEmitter {
+  constructor(num) {
     super()
+    this.count = num || cpuCount - 1
+    this.workerNodes = new WorkerNodes(__dirname + '/worker/index.js', {
+      minWorkers: num,
+      autoStart: true,
+      maxTasksPerWorker: 1
+    });
   }
   startFile(options) {
+    let self = this
     spinner.stop()
     let size = fs.statSync(options.file)["size"];
     console.log('filesize: ' + size)
@@ -42,36 +44,27 @@ class Workers extends EventEmitter {
         workerCount -= 1
         console.log(chalk.grey('      - ' + workerCount + ' workers still running -\n'))
         if (workerCount === 0) {
-          await workerNodes.terminate()
+          await self.workerNodes.terminate()
           this.emit("allWorkersFinished");
         }
       }
     }
 
     cpus.forEach((val, key) => {
-      workerNodes.call.doSection(options, chunkSize, key).then(() => {
+      self.workerNodes.call.doSection(options, chunkSize, key).then(() => {
         workerCount += 1
         if (workerCount === cpuCount) {
-          workerNodes.workersQueue.storage.forEach((worker) => {
+          self.workerNodes.workersQueue.storage.forEach((worker) => {
             worker.process.child.on("message", onMsg)
           })
         }
       })
     })
   }
+  cleanup() {
+    console.log(chalk.blue("\none sec, cleaning-up the workers..."));
+    this.workerNodes.terminate();
+  }
 }
 
-process.on('unhandledRejection', function(up) {
-  console.log(chalk.red('--uncaught process error--'))
-  return console.log(up);
-});
-
-
-process.on('SIGINT', async function() {
-  console.log(chalk.blue("\none sec, cleaning-up the workers..."));
-  await workerNodes.terminate();
-  return process.exit();
-});
-
-let workers = new Workers()
-module.exports = workers
+module.exports = WorkerPool

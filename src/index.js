@@ -1,37 +1,26 @@
 //stream a big wikipedia xml.bz2 file into mongodb
-// usage:
-//   node index.js afwiki-latest-pages-articles.xml.bz2
-const initDB = require('./01-init-db');
+//  because why not.
 const chalk = require('chalk')
-const workers = require("./02-make-workers")
-const writeDb = require('./03-write-db');
-// const stat = require('../lib/stat')
+const WorkerPool = require("./Worker-pool")
 const fns = require('../lib/fns')
 const stat = require('../lib/stat')
+const prelim = require('./01-prelim')
 const oneSec = fns.oneSec
 const start = Date.now()
 
-process.on('unhandledRejection', console.log)
-
 //open up a mongo db, and start xml-streaming..
-const main = async (options, done) => {
-  let params = Object.assign({}, options);
+const main = (options, done) => {
+  options = Object.assign({}, options);
   done = done || function() {}
 
-  await initDB(options)
-  workers.startFile(params)
+  //make sure the file exists, and things
+  options = prelim(options)
+
+  let workers = new WorkerPool()
+  workers.startFile(options)
 
   //start the logger:
   stat.hound(options.db)
-
-  // let writing = 0
-  workers.on("msg", async (msg) => {
-    if (msg.type === "insertToDb") {
-      // writing += 1
-      await writeDb(msg.pages, options)
-    // writing -= 1
-    }
-  })
 
   workers.on("allWorkersFinished", () => {
     oneSec(() => {
@@ -50,6 +39,15 @@ const main = async (options, done) => {
       })
     })
   })
+
+  //handle ctrl-c gracefully
+  process.on('SIGINT', async function() {
+    workers.terminate();
+    oneSec(() => {
+      process.exit();
+    })
+  });
+
 }
 
 module.exports = main;

@@ -4,6 +4,7 @@ const LineByLineReader = require('line-by-line')
 const init = require('../01-init-db');
 const parseLine = require('./01-parseLine')
 const parseWiki = require('./02-parseWiki');
+const writeDb = require('./03-write-db');
 
 const doSection = async (options, chunkSize, workerNum) => {
   let startByte = 0
@@ -25,15 +26,18 @@ const doSection = async (options, chunkSize, workerNum) => {
   let pages = [];
   let workerBegin = Date.now()
 
-  const insertToDb = function(isLast) {
+  const insertToDb = async function(isLast) {
     lr.pause();
-    process.send({
-      type: "insertToDb",
-      pages: pages,
-      length: pages.length,
-      pid: process.pid
-    })
+    console.log('writing ' + pages.length + ' pages')
+    await writeDb(pages)
+    // process.send({
+    //   type: "insertToDb",
+    //   pages: pages,
+    //   length: pages.length,
+    //   pid: process.pid
+    // })
     pages = [];
+    console.log('--wrote pages')
 
     //log some nice kinda output
     let seconds = ((Date.now() - workerBegin) / 1000).toFixed(1)
