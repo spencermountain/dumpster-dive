@@ -11,7 +11,14 @@ exports.niceNumber = (x) => {
 
 //logger of rough-time since an epoch
 exports.timeSince = function(start) {
-  let seconds = (Date.now() - start) / 1000
+  let ms = (Date.now() - start)
+  if (ms < 1000) {
+    return ms + 'ms'
+  }
+  let seconds = ms / 1000
+  if (seconds < 60) {
+    return parseInt(seconds, 10) + 's'
+  }
   let minutes = seconds / 60
   let duration = minutes.toFixed(1) + ' minutes'
   if (minutes > 120) {

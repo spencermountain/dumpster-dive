@@ -21,21 +21,21 @@ const doSection = async (options, chunkSize, workerNum) => {
   let state = {};
   let pageCount = 0;
   let pages = [];
-  let workerBegin = Date.now()
+  // let workerBegin = Date.now()
 
   const insertToDb = async function(isLast) {
     lr.pause();
     if (pages.length > 0) {
-      await writeDb(options, pages)
+      await writeDb(options, pages, workerNum)
     }
     pages = [];
 
     //log some nice kinda output
-    let seconds = ((Date.now() - workerBegin) / 1000).toFixed(1)
-    let output = chalk.yellow(`worker #${workerNum}  - `)
-    output += chalk.grey(` +${fns.niceNumber(options.batch_size)} pages  - (${seconds}s)  - `)
-    output += chalk.magenta(` at ${fns.niceNumber(pageCount)}`)
-    console.log('    ' + output);
+    // let seconds = ((Date.now() - workerBegin) / 1000).toFixed(1)
+    // let output = chalk.yellow(`worker #${workerNum}  - `)
+    // output += chalk.grey(` +${fns.niceNumber(options.batch_size)} pages  - (${seconds}s)  - `)
+    // output += chalk.magenta(` at ${fns.niceNumber(pageCount)}`)
+    // console.log('    ' + output);
 
     workerBegin = Date.now()
     lr.resume();
@@ -63,7 +63,6 @@ const doSection = async (options, chunkSize, workerNum) => {
   }
 
   lr.on('error', (e) => {
-    // 'err' contains error object
     console.error(chalk.red("linereader error"));
     console.log(e)
   });
@@ -72,12 +71,11 @@ const doSection = async (options, chunkSize, workerNum) => {
     state = parseLine(line, state, donePage)
   });
 
+  // All lines are read, file is closed now.
   lr.on('end', function() {
-    // All lines are read, file is closed now.
-    // insert remaining pages.
-    insertToDb(true);
+    insertToDb(true); // (insert the remaining pages)
   });
-  return (process.pid)
+  return process.pid
 };
 
 module.exports = {

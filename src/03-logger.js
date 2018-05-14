@@ -3,7 +3,7 @@ const openDB = require('./lib/open-db')
 const fns = require("./lib/fns")
 const config = require("../config")
 
-//logger for current status of import
+//a periodic status-logger for the import
 class Logger {
   constructor(options) {
     this.options = options
@@ -36,17 +36,19 @@ class Logger {
   }
   //log some output
   async stat() {
-    console.time('stat')
+    // console.time('stat')
     let obj = await openDB(this.options)
     let count = await this.count(obj)
     let page = await this.lastPage(obj)
     if (page && page[0]) {
       page = page[0]
       count = fns.niceNumber(count)
-      console.log(chalk.grey(' last page: ') + chalk.green('#' + count) + chalk.blue('  - "' + page.title + '"     '))
+      console.log('')
+      console.log(chalk.grey('     current: ') + chalk.green(count) + ' pages' + chalk.blue('  - "' + page.title + '"     '))
+      console.log('')
     }
     await obj.client.close()
-    console.timeEnd('stat')
+    // console.timeEnd('stat')
     //fire the next one!
     if (!this.please_stop) {
       this.triggerNext()
