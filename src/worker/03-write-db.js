@@ -9,7 +9,7 @@ const writeDb = (options, pages) => {
 
     let obj = await openDB(options)
 
-    obj.col.insertMany(pages, mongoConfig, (err) => {
+    return obj.col.insertMany(pages, mongoConfig, (err) => {
       if (err) {
         console.log('   ' + chalk.red(err.message))
         if (err.writeErrors && err.writeErrors[0]) {
