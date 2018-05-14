@@ -8,7 +8,7 @@ class Logger {
   constructor(options) {
     this.options = options
     this.wait = config.logInterval
-    this.stop = false
+    this.please_stop = false
   }
   open(cb) {
     openDB(this.options.db, cb)
@@ -22,7 +22,7 @@ class Logger {
     this.triggerNext()
   }
   stop() {
-    this.stop = true
+    this.please_stop = true
   }
   //# of records entered in db
   count(obj) {
@@ -36,6 +36,7 @@ class Logger {
   }
   //log some output
   async stat() {
+    console.time('stat')
     let obj = await openDB(this.options)
     let count = await this.count(obj)
     let page = await this.lastPage(obj)
@@ -44,12 +45,12 @@ class Logger {
       count = fns.niceNumber(count)
       console.log(chalk.grey(' last page: ') + chalk.green('#' + count) + chalk.blue('  - "' + page.title + '"     '))
     }
-    obj.client.close()
+    await obj.client.close()
+    console.timeEnd('stat')
     //fire the next one!
-    if (!this.stop) {
+    if (!this.please_stop) {
       this.triggerNext()
     }
-
   }
 }
 

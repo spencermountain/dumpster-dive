@@ -15,6 +15,7 @@ let options = {
 // html: false,
 // markdown: false,
 }
+
 //delete all pages
 drop(options).then(() => {
   dumpster(options)
