@@ -53,11 +53,11 @@ dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --html=true
 ````bash
 $ mongo        #enter the mongo shell
 use enwiki     #grab the database
-db.wikipedia.find({title:"Toronto"})[0].categories
+db.pages.count()
+# 4,926,056...
+db.pages.find({title:"Toronto"})[0].categories
 #[ "Former colonial capitals in Canada",
 #  "Populated places established in 1793" ...]
-db.wikipedia.count()
-# 4,926,056...
 ````
 
 # Steps:
@@ -112,10 +112,10 @@ $ mongo
 use afwiki //your db name
 
 //show a random page
-db.wikipedia.find().skip(200).limit(2)
+db.pages.find().skip(200).limit(2)
 
 //find a specific page
-db.wikipedia.findOne({title:"Toronto"}).categories
+db.pages.findOne({title:"Toronto"}).categories
 ````
 alternatively, you can run `dumpster-report afwiki` to see a quick spot-check of the records it has created across the database.
 
@@ -153,6 +153,22 @@ dumpster(obj, () => console.log('done!') )
 you can tell wtf_wikipedia what you want it to parse, and which data you don't need:
 ```bash
 dumpster ./my-wiki-dump.xml --infoboxes=false --citations=false --categories=false --links=false
+```
+* **custom json formatting**
+you can grab whatever data you want, by passing-in a `custom` function. It takes a [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) `Doc` object, and you can return your cool data:
+```js
+let obj={
+	file: path,
+  db: dbName,
+	custom: function(doc) {
+		return {
+			_id: doc.title(),   //for duplicate-detection
+			title: doc.title(), //for the logger..
+			categories: doc.categories() //whatever you want!
+		}
+	}
+}
+dumpster(obj, () => console.log('custom wikipedia!') )
 ```
 
 ## how it works:

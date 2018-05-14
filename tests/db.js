@@ -15,7 +15,7 @@ const open = function(dbName, callback) {
 //count all pages
 const count = function(dbName, cb) {
   open(dbName, function(db, client) {
-    let col = db.collection('wikipedia')
+    let col = db.collection('pages')
     col.count().then(len => {
       client.close()
       cb(len)
@@ -26,7 +26,7 @@ const count = function(dbName, cb) {
 //grab a couple
 const firstTen = function(dbName, cb) {
   open(dbName, function(db, client) {
-    let col = db.collection('wikipedia')
+    let col = db.collection('pages')
     col.find({}).toArray(function(err, docs) {
       if (err) {
         console.log(err)
@@ -41,7 +41,7 @@ const firstTen = function(dbName, cb) {
 //delete all pages
 const drop = function(dbName, colName, cb) {
   open(dbName, function(db, client) {
-    db.collection('wikipedia')
+    db.collection('pages')
     let col = db.collection(colName)
     // console.log('dropping ' + colName)
     col.deleteMany({})
@@ -59,4 +59,4 @@ module.exports = {
 }
 // firstTwo('tempwiki', console.log)
 // open('tempwiki', console.log)
-// drop('smallwiki', 'wikipedia',console.log)
+// drop('smallwiki', 'pages',console.log)

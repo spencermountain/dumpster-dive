@@ -24,9 +24,9 @@ class WorkerPool extends EventEmitter {
     console.log('\n\n\n' + margin + ' ----------')
     console.log(margin + `  oh hi 👋`)
     console.log('\n')
-    console.log(margin + `total file size: ${chalk.green(pretty(this.fileSize))}`)
-    console.log(margin + 'creating      ' + chalk.blue(this.workerCount + ' workers') + ``)
-    console.log(margin + `workers each given: ${chalk.magenta(pretty(this.chunkSize))} ` + chalk.grey('-'));
+    console.log(margin + `file size: ${chalk.green(pretty(this.fileSize))}`)
+    console.log(margin + 'creating  ' + chalk.blue(this.workerCount + ' workers') + ``)
+    console.log(margin + `each worker:  ${chalk.magenta(pretty(this.chunkSize))}`);
     console.log(margin + ' ----------')
     console.log('\n')
   }

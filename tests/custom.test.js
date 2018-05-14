@@ -9,7 +9,7 @@ test('custom-made-tinywiki', function(t) {
     db: dbName,
     images: true
   }
-  db.drop(dbName, 'wikipedia', () => {
+  db.drop(dbName, 'pages', () => {
     dumpster(obj, () => {
       db.firstTen(dbName, docs => {
         t.equal(docs.length, 7, 'seven records')
