@@ -4,9 +4,6 @@ const encode = require('./_encode');
 
 //doesn't support fancy things like &copy; to ©, etc
 const escapeXML = function(str) {
-  if (typeof str !== 'string') {
-    str = ''
-  }
   return str.replace(/&apos;/g, "'")
     .replace(/&quot;/g, '"')
     .replace(/&gt;/g, '>')

@@ -32,8 +32,6 @@ class WorkerPool extends EventEmitter {
   }
 
   isDone() {
-    console.log('\n')
-    console.log('    💪  a worker has finished 💪 ')
     this.running -= 1
     console.log(chalk.grey('      - ' + this.running + ' workers still running -\n'))
     if (this.running === 0) {
@@ -61,7 +59,7 @@ class WorkerPool extends EventEmitter {
     this.printHello()
     //convoluted loop to wire-up each worker
     for(let i = 0; i < self.workerCount; i += 1) {
-      self.workerNodes.call.doSection(options, this.chunkSize, i).then(() => {
+      self.workerNodes.call.doSection(options, this.workerCount, i).then(() => {
         self.running += 1
         //once all workers have been started..
         if (self.running === self.workerCount) {

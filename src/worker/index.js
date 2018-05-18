@@ -1,46 +1,34 @@
-const sundayDriver = require('sunday-driver')
+// const sundayDriver = require('sunday-driver')
+const sundayDriver = require('/Users/spencer/mountain/sunday-driver/src/index.js')
 const parsePage = require('./01-parsePage')
 const parseWiki = require('./02-parseWiki');
 const writeDb = require('./03-write-db');
 
-const doSection = async (options, chunkSize, workerNum) => {
+const doSection = async (options, workerCount, workerNum) => {
   let pages = []
-  let startByte = 0;
-  if (workerNum !== 0) {
-    startByte = (workerNum * chunkSize) //- 1000000 // start a megabyte earlier
-  }
-  let endByte = startByte + chunkSize //+ 3000000 // end 2 megabytes later so we don't lose pages cut by chunks
-
+  let percent = 100 / workerCount
+  let start = percent * workerNum
+  let end = start + percent
+  console.log(`#${workerNum} -   ${start}% → ${end}%`)
   let driver = {
     file: options.file,
-    start: startByte,
-    end: endByte,
+    start: `${start}%`,
+    end: `${end}%`,
     splitter: "</page>",
-    each: async (xml, resume) => {
+    each: (xml, resume) => {
       let page = parsePage(xml)
       if (page !== null) {
         page = parseWiki(page, options)
         pages.push(page)
       }
       if (pages.length >= options.batch_size) {
-        await writeDb(options, pages, workerNum)
-        pages = []
+        writeDb(options, pages, workerNum).then(() => {
+          pages = []
+          resume()
+        })
+      } else {
+        resume()
       }
-      resume()
-    },
-    atPercent: {
-      5: () => {
-        console.log(workerNum + ' 5%!')
-      },
-      25: () => {
-        console.log(workerNum + ' 25%!')
-      },
-      50: () => {
-        console.log(workerNum + ' 50%!')
-      },
-      75: () => {
-        console.log(workerNum + ' 75%!')
-      },
     }
   }
   let p = sundayDriver(driver)
@@ -50,12 +38,13 @@ const doSection = async (options, chunkSize, workerNum) => {
     if (pages.length > 0) {
       await writeDb(options, pages, workerNum)
     }
+    console.log('\n')
+    console.log(`    💪  worker #${workerNum} has finished 💪 `)
     process.send({
       type: "workerDone",
       pid: process.pid
     })
   })
-
   return process.pid
 };
 

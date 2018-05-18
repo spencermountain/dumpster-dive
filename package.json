@@ -24,13 +24,13 @@
     "chalk": "2.4.1",
     "mongodb": "3.0.7",
     "prettysize": "1.1.0",
-    "sunday-driver": "^1.0.0",
+    "sunday-driver": "1.0.1",
     "worker-nodes": "1.6.0",
     "wtf_wikipedia": "^3.1.1",
     "yargs": "11.0.0"
   },
   "devDependencies": {
-    "shelljs": "^0.8.1",
+    "shelljs": "0.8.2",
     "tap-dancer": "0.0.3",
     "tape": "4.9.0"
   },

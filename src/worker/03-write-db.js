@@ -18,9 +18,6 @@ const writeMsg = function(pages, count, start, workerNum) {
 
 const writeDb = async (options, pages, workerNum) => {
   const start = Date.now()
-  // pages[30] = {
-  //   _id: 'duplicate'
-  // }
   let obj = await openDB(options)
 
   let result = await obj.col.insertMany(pages, mongoConfig).catch(async (err) => {
