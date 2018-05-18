@@ -1,5 +1,6 @@
-// const sundayDriver = require('sunday-driver')
-const sundayDriver = require('/Users/spencer/mountain/sunday-driver/src/index.js')
+const chalk = require('chalk')
+const sundayDriver = require('sunday-driver')
+// const sundayDriver = require('/Users/spencer/mountain/sunday-driver/src/index.js')
 const parsePage = require('./01-parsePage')
 const parseWiki = require('./02-parseWiki');
 const writeDb = require('./03-write-db');
@@ -28,6 +29,13 @@ const doSection = async (options, workerCount, workerNum) => {
         })
       } else {
         resume()
+      }
+    },
+    atPoint: {
+      50: () => {
+        console.log('')
+        console.log(chalk.grey(`   (worker #${workerNum} is 50% done)`))
+        console.log('')
       }
     }
   }

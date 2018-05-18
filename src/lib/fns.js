@@ -29,5 +29,13 @@ exports.timeSince = function(start) {
 }
 
 exports.alignRight = function(str) {
-  return ("     " + str).slice(-10);
+  return ("      " + str).slice(-13);
+}
+
+exports.niceTime = function(mins) {
+  if (mins <= 60) {
+    return mins.toFixed(1) + ' mins'
+  }
+  let hours = mins / 60
+  return hours.toFixed(1) + ' hrs'
 }
