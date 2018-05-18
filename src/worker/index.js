@@ -17,10 +17,14 @@ const doSection = async (options, workerCount, workerNum) => {
     end: `${end}%`,
     splitter: "</page>",
     each: (xml, resume) => {
+      //pull-out sections from this xml
       let page = parsePage(xml)
       if (page !== null) {
+        //parse the page into json
         page = parseWiki(page, options)
-        pages.push(page)
+        if (page !== null) {
+          pages.push(page)
+        }
       }
       if (pages.length >= options.batch_size) {
         writeDb(options, pages, workerNum).then(() => {

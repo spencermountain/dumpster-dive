@@ -56,7 +56,7 @@ Object.keys(options).forEach((k) => {
 
 //grab the wiki file
 if (!file) {
-  console.log('please supply a filename to the wikipedia article dump')
+  console.log('❌ please supply a filename to the wikipedia article dump')
   process.exit(1)
 }
 //try to make-up the language name for the db
@@ -67,5 +67,4 @@ if (file.match(/-latest-pages-articles/)) {
 }
 options.file = file
 options.db = db
-// console.log(options)
 dumpster(options)
