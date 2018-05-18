@@ -4,6 +4,9 @@ const encode = require('./_encode');
 
 //doesn't support fancy things like &copy; to ©, etc
 const escapeXML = function(str) {
+  if (typeof str !== 'string') {
+    str = ''
+  }
   return str.replace(/&apos;/g, "'")
     .replace(/&quot;/g, '"')
     .replace(/&gt;/g, '>')
@@ -12,10 +15,10 @@ const escapeXML = function(str) {
 }
 
 //get parsed json from the wiki markup
-const parseData = function(page, options) {
+const parseWiki = function(page, options) {
   try {
-    page.script = escapeXML(page.script || '')
-    let doc = wtf(page.script);
+    page.wiki = escapeXML(page.wiki || '')
+    let doc = wtf(page.wiki);
     //dont insert this if it's a redirect
     if (options.skip_redirects === true && doc.isRedirect()) {
       return null
@@ -44,4 +47,4 @@ const parseData = function(page, options) {
   }
 };
 
-module.exports = parseData
+module.exports = parseWiki

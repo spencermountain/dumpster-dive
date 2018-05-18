@@ -116,6 +116,9 @@ db.pages.find().skip(200).limit(2)
 
 //find a specific page
 db.pages.findOne({title:"Toronto"}).categories
+
+//find the last page
+db.wikipedia.find().sort({$natural:-1}).limit(1)
 ````
 alternatively, you can run `dumpster-report afwiki` to see a quick spot-check of the records it has created across the database.
 

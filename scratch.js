@@ -2,8 +2,8 @@ const dumpster = require('./src')
 const drop = require('./src/lib/drop-db')
 
 // const path = '/Users/spencer/data/wikipedia/afwiki-latest-pages-articles.xml' //4.3mins
-// const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml' //5mins
-const path = '/Users/spencer/data/wikipedia/eswiki-latest-pages-articles.xml' //2hrs
+const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml' //5mins
+// const path = '/Users/spencer/data/wikipedia/eswiki-latest-pages-articles.xml' //2hrs  - 12gb→5gb
 // const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml'  //6hrs
 // const path = './tests/smallwiki-latest-pages-articles.xml'
 // const path = './tests/tinywiki-latest-pages-articles.xml'
@@ -24,6 +24,15 @@ let options = {
 drop(options).then(() => {
   dumpster(options)
 })
+
+// const fs = require('fs');
+// let str = fs.readFileSync(path).toString()
+// let str = `
+// <text xml:space="preserve">
+// this duplicate should stay
+// from here too
+// </text>`
+// console.log(str.match(/<text xml:space="preserve">([\s\S]*?)<\/text>/))
 
 
 //      half-               6021472
