@@ -27,3 +27,7 @@ exports.timeSince = function(start) {
   }
   return duration
 }
+
+exports.alignRight = function(str) {
+  return ("     " + str).slice(-10);
+}

@@ -3,7 +3,10 @@ const WorkerNodes = require('worker-nodes');
 const fs = require("fs");
 const chalk = require('chalk')
 const EventEmitter = require('events');
-const margin = '            '
+const right = require('./lib/fns').alignRight
+const margin = '         '
+//estimate of duration:
+const mbPerMinute = 55
 
 class WorkerPool extends EventEmitter {
   constructor(options) {
@@ -21,13 +24,15 @@ class WorkerPool extends EventEmitter {
   }
 
   printHello() {
-    console.log('\n\n\n' + margin + ' ----------')
-    console.log(margin + `  oh hi 👋`)
-    console.log('\n')
-    console.log(margin + `file size: ${chalk.green(pretty(this.fileSize))}`)
-    console.log(margin + 'creating  ' + chalk.blue(this.workerCount + ' workers') + ``)
-    console.log(margin + `each worker:  ${chalk.magenta(pretty(this.chunkSize))}`);
-    console.log(margin + ' ----------')
+    let megaBytes = this.chunkSize / 1048576 //1,048,576
+    let duration = megaBytes / mbPerMinute
+    console.log('\n\n\n' + margin + '---------------------------')
+    console.log(margin + chalk.yellow(`         oh hi `) + `👋`)
+    console.log(margin + chalk.green(`size:`) + `        ${chalk.green(right(pretty(this.fileSize)))}`)
+    console.log(margin + `             ${chalk.blue(right(this.workerCount + ' workers'))}`)
+    console.log(margin + `             ${chalk.magenta(right(pretty(this.chunkSize)))}${chalk.magenta('/worker')}`);
+    console.log(margin + chalk.red(`estimate:`) + `    ${chalk.red(right(duration.toFixed(1) + ' mins'))}`);
+    console.log(margin + '---------------------------')
     console.log('\n')
   }
 

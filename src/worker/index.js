@@ -9,7 +9,7 @@ const doSection = async (options, workerCount, workerNum) => {
   let percent = 100 / workerCount
   let start = percent * workerNum
   let end = start + percent
-  console.log(`#${workerNum} -   ${start}% → ${end}%`)
+  // console.log(`#${workerNum} -   ${start}% → ${end}%`)
   let driver = {
     file: options.file,
     start: `${start}%`,
