@@ -10,7 +10,7 @@ test('no-redirects', function(t) {
     skip_redirects: true,
     skip_disambig: true,
   }
-  db.drop(dbName, 'wikipedia', () => {
+  db.drop(dbName, 'pages', () => {
     dumpster(obj, () => {
       db.firstTen(dbName, docs => {
         t.equal(docs.length, 5, 'five records')

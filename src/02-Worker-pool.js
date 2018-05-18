@@ -3,7 +3,12 @@ const WorkerNodes = require('worker-nodes');
 const fs = require("fs");
 const chalk = require('chalk')
 const EventEmitter = require('events');
-const margin = '            '
+const fns = require('./lib/fns')
+const right = fns.alignRight
+const niceTime = fns.niceTime
+const margin = '         '
+//estimate of duration:
+const mbPerMinute = 58
 
 class WorkerPool extends EventEmitter {
   constructor(options) {
@@ -21,19 +26,19 @@ class WorkerPool extends EventEmitter {
   }
 
   printHello() {
-    console.log('\n\n\n' + margin + ' ----------')
-    console.log(margin + `  oh hi 👋`)
-    console.log('\n')
-    console.log(margin + `total file size: ${chalk.green(pretty(this.fileSize))}`)
-    console.log(margin + 'creating ' + chalk.blue(this.workerCount + ' workers') + ``)
-    console.log(margin + chalk.grey('-') + ` each worker will be given: ${chalk.magenta(pretty(this.chunkSize))} ` + chalk.grey('-'));
-    console.log(margin + ' ----------')
+    let megaBytes = this.chunkSize / 1048576 //1,048,576
+    let duration = megaBytes / mbPerMinute
+    console.log('\n\n\n' + margin + '---------------------------')
+    console.log(margin + chalk.yellow(`         oh hi `) + `👋`)
+    console.log(margin + chalk.green(`size:`) + `        ${chalk.green(right(pretty(this.fileSize)))}`)
+    console.log(margin + `             ${chalk.blue(right(this.workerCount + ' workers'))}`)
+    console.log(margin + `             ${chalk.magenta(right(pretty(this.chunkSize) + ' each'))}`);
+    console.log(margin + chalk.red(`estimate:`) + `    ${chalk.red(right(niceTime(duration)))}`);
+    console.log(margin + '---------------------------')
     console.log('\n')
   }
 
   isDone() {
-    console.log('\n')
-    console.log('    💪  a worker has finished 💪 ')
     this.running -= 1
     console.log(chalk.grey('      - ' + this.running + ' workers still running -\n'))
     if (this.running === 0) {
@@ -61,7 +66,7 @@ class WorkerPool extends EventEmitter {
     this.printHello()
     //convoluted loop to wire-up each worker
     for(let i = 0; i < self.workerCount; i += 1) {
-      self.workerNodes.call.doSection(options, this.chunkSize, i).then(() => {
+      self.workerNodes.call.doSection(options, this.workerCount, i).then(() => {
         self.running += 1
         //once all workers have been started..
         if (self.running === self.workerCount) {

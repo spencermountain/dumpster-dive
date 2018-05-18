@@ -3,12 +3,9 @@ const openDb = require('./open-db')
 //
 const dropDb = async function(options) {
   let obj = await openDb(options)
-  obj.col.deleteMany({}).then(() => {
-    console.log('dropped')
-    obj.col.count().then((count) => {
-      console.log('  - now ' + count + ' records - ')
-    })
-  })
-  return
+  await obj.col.deleteMany({})
+  console.log('dropped')
+  let count = await obj.col.count()
+  console.log('  - now ' + count + ' records - ')
 }
 module.exports = dropDb

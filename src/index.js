@@ -1,7 +1,7 @@
 //stream a big wikipedia xml.bz2 file into mongodb
 //  because why not.
 const chalk = require('chalk')
-const prelim = require('./01-prelim-stuff')
+const prelim = require('./01-prepwork')
 const WorkerPool = require("./02-Worker-pool")
 const hound = require("./03-logger")
 const openDB = require('./lib/open-db')
@@ -13,15 +13,14 @@ const noop = function() {}
 const finish = async function(options) {
   let obj = await openDB(options)
   console.log('\n\n      👍  closing down.\n')
-  obj.col.count().then((count) => {
-    let duration = fns.timeSince(start)
-    console.log('     -- final count is ' + chalk.magenta(fns.niceNumber(count)) + ' pages --')
-    console.log('       ' + chalk.yellow(`took ${duration}`))
-    console.log('              🎉')
-    console.log('\n\n')
-    obj.client.close()
-    process.exit()
-  })
+  let count = await obj.col.count()
+  let duration = fns.timeSince(start)
+  console.log('     -- final count is ' + chalk.magenta(fns.niceNumber(count)) + ' pages --')
+  console.log('       ' + chalk.yellow(`took ${duration}`))
+  console.log('              🎉')
+  console.log('\n\n')
+  await obj.client.close()
+  process.exit()
 }
 
 //open up a mongo db, and start xml-streaming..
@@ -51,6 +50,7 @@ const main = (options, done) => {
 
   //handle ctrl-c gracefully
   process.on('SIGINT', async function() {
+    logger.stop();
     workers.cleanup();
     oneSec(() => {
       process.exit();

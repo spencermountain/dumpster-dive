@@ -12,10 +12,10 @@ const escapeXML = function(str) {
 }
 
 //get parsed json from the wiki markup
-const parseData = function(page, options) {
+const parseWiki = function(page, options) {
   try {
-    page.script = escapeXML(page.script || '')
-    let doc = wtf(page.script);
+    page.wiki = escapeXML(page.wiki || '')
+    let doc = wtf(page.wiki);
     //dont insert this if it's a redirect
     if (options.skip_redirects === true && doc.isRedirect()) {
       return null
@@ -24,7 +24,12 @@ const parseData = function(page, options) {
       return null
     }
     //turn the wtf_wikipedia document into storable json
-    let data = doc.json(options)
+    let data = {}
+    if (!options.custom) { //default format
+      data = doc.json(options)
+    } else { //DIY format
+      data = options.custom(doc)
+    }
     data.title = page.title || data.title
     data = encode.encodeData(data);
     //use the title/pageID from the xml
@@ -39,4 +44,4 @@ const parseData = function(page, options) {
   }
 };
 
-module.exports = parseData
+module.exports = parseWiki

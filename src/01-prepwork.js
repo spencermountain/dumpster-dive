@@ -3,7 +3,7 @@ const fs = require("fs")
 const config = require("../config")
 const cpuCount = require('os').cpus().length
 
-const guardFile = function(options) {
+const guardIO = function(options) {
   if (!options.file || !fs.existsSync(options.file)) {
     console.log(chalk.red('\n  --can\'t find file:  "' + chalk.blue(options.file) + '" ---'));
     console.log(chalk.grey('     please supply a filename for the wikipedia article dump in xml format'));
@@ -16,8 +16,8 @@ const guardFile = function(options) {
   }
 }
 
-//a little housework first,
-const prepare = function(options) {
+//a little housework first, for our config object
+const prepWork = function(options) {
   options = options || {}
   options = Object.assign({}, options);
 
@@ -25,9 +25,10 @@ const prepare = function(options) {
   if (!options.db) {
     options.db = options.file.match(/\/([a-z-]+)-latest-pages/)[1] || 'wikipedia'
   }
-  guardFile(options)
+  //make sure the file looks good..
+  guardIO(options)
 
-  //few defaults
+  //set a few defaults
   options.dbName = options.db
   options.workers = options.workers || cpuCount
   options.batch_size = options.batch_size || config.batch_size
@@ -38,4 +39,4 @@ const prepare = function(options) {
   });
   return options
 }
-module.exports = prepare
+module.exports = prepWork

@@ -24,16 +24,18 @@
 
   <h2 align="center">💂 Yup 💂</h2>
   <div><sup>do it on your laptop.</sup></div>
+	<img src="https://user-images.githubusercontent.com/399657/39391259-b57ca9e0-4a6e-11e8-8b33-2064e5fc187e.png"/>
 </div>
 
-![image](https://user-images.githubusercontent.com/399657/39391259-b57ca9e0-4a6e-11e8-8b33-2064e5fc187e.png)
 `dumpster-dive` is a **nodejs** script that puts a **highly-queryable** wikipedia on your computer in a nice afternoon.
 
 It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn ***wikiscript*** into whatever json.
 
 <div align="center">
- -- <b>en-wikipedia</b> takes about 7-hours, end-to-end --
+ -- <b>en-wikipedia</b> takes about 5-hours, end-to-end --
 </div>
+
+![dumpster](https://user-images.githubusercontent.com/399657/40262198-a268b95a-5ad3-11e8-86ef-29c2347eec81.gif)
 
 ```bash
 npm install -g dumpster-dive
@@ -53,11 +55,11 @@ dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --html=true
 ````bash
 $ mongo        #enter the mongo shell
 use enwiki     #grab the database
-db.wikipedia.find({title:"Toronto"})[0].categories
+db.pages.count()
+# 4,926,056...
+db.pages.find({title:"Toronto"})[0].categories
 #[ "Former colonial capitals in Canada",
 #  "Populated places established in 1793" ...]
-db.wikipedia.count()
-# 4,926,056...
 ````
 
 # Steps:
@@ -106,16 +108,21 @@ The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
 The console will update you every couple seconds to let you know where it's at.
 
 ### 7️⃣ done!
+![image](https://user-images.githubusercontent.com/399657/40262181-7c1f17bc-5ad3-11e8-95ab-55f324022d43.png)
+
 go check-out the data! to view your data in the mongo console:
 ````javascript
 $ mongo
 use afwiki //your db name
 
 //show a random page
-db.wikipedia.find().skip(200).limit(2)
+db.pages.find().skip(200).limit(2)
 
 //find a specific page
-db.wikipedia.findOne({title:"Toronto"}).categories
+db.pages.findOne({title:"Toronto"}).categories
+
+//find the last page
+db.wikipedia.find().sort({$natural:-1}).limit(1)
 ````
 alternatively, you can run `dumpster-report afwiki` to see a quick spot-check of the records it has created across the database.
 
@@ -153,6 +160,22 @@ dumpster(obj, () => console.log('done!') )
 you can tell wtf_wikipedia what you want it to parse, and which data you don't need:
 ```bash
 dumpster ./my-wiki-dump.xml --infoboxes=false --citations=false --categories=false --links=false
+```
+* **custom json formatting**
+you can grab whatever data you want, by passing-in a `custom` function. It takes a [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) `Doc` object, and you can return your cool data:
+```js
+let obj={
+	file: path,
+  db: dbName,
+	custom: function(doc) {
+		return {
+			_id: doc.title(),   //for duplicate-detection
+			title: doc.title(), //for the logger..
+			categories: doc.categories() //whatever you want!
+		}
+	}
+}
+dumpster(obj, () => console.log('custom wikipedia!') )
 ```
 
 ## how it works:

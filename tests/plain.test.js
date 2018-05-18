@@ -11,7 +11,7 @@ test('plaintext', function(t) {
     html: true,
     markdown: true,
   }
-  db.drop(dbName, 'wikipedia', () => {
+  db.drop(dbName, 'pages', () => {
     dumpster(obj, () => {
       db.firstTen(dbName, docs => {
         t.equal(docs.length, 7, '7 records')

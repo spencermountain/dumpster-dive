@@ -1,83 +1,63 @@
 const chalk = require('chalk')
-const fns = require('../lib/fns')
-const LineByLineReader = require('line-by-line')
-const parseLine = require('./01-parseLine')
+const sundayDriver = require('sunday-driver')
+// const sundayDriver = require('/Users/spencer/mountain/sunday-driver/src/index.js')
+const parsePage = require('./01-parsePage')
 const parseWiki = require('./02-parseWiki');
 const writeDb = require('./03-write-db');
 
-const doSection = async (options, chunkSize, workerNum) => {
-  let startByte = 0
-  if (workerNum !== 0) {
-    startByte = (workerNum * chunkSize) //- 1000000 // start a megabyte earlier
+const doSection = async (options, workerCount, workerNum) => {
+  let pages = []
+  let percent = 100 / workerCount
+  let start = percent * workerNum
+  let end = start + percent
+  // console.log(`#${workerNum} -   ${start}% → ${end}%`)
+  let driver = {
+    file: options.file,
+    start: `${start}%`,
+    end: `${end}%`,
+    splitter: "</page>",
+    each: (xml, resume) => {
+      //pull-out sections from this xml
+      let page = parsePage(xml)
+      if (page !== null) {
+        //parse the page into json
+        page = parseWiki(page, options)
+        if (page !== null) {
+          pages.push(page)
+        }
+      }
+      if (pages.length >= options.batch_size) {
+        writeDb(options, pages, workerNum).then(() => {
+          pages = []
+          resume()
+        })
+      } else {
+        resume()
+      }
+    },
+    atPoint: {
+      50: () => {
+        console.log('')
+        console.log(chalk.grey(`   (worker #${workerNum} is 50% done)`))
+        console.log('')
+      }
+    }
   }
-  let endByte = startByte + chunkSize //+ 3000000 // end 2 megabytes later so we don't lose pages cut by chunks
-
-  // console.log('starting worker #' + workerNum + ' :      ' + startByte + ' → ' + endByte)
-  let lr = new LineByLineReader(options.file, {
-    start: startByte,
-    end: endByte
-  });
-
-  let state = {};
-  let pageCount = 0;
-  let pages = [];
-  let workerBegin = Date.now()
-
-  const insertToDb = async function(isLast) {
-    lr.pause();
+  let p = sundayDriver(driver)
+  p.catch(console.log)
+  p.then(async () => { //on done
+    // insert the remaining pages
     if (pages.length > 0) {
-      await writeDb(options, pages)
+      await writeDb(options, pages, workerNum)
     }
-    pages = [];
-
-    //log some nice kinda output
-    let seconds = ((Date.now() - workerBegin) / 1000).toFixed(1)
-    let output = chalk.yellow(`worker #${workerNum}  - `)
-    output += chalk.grey(` +${fns.niceNumber(options.batch_size)} pages  - (${seconds}s)  - `)
-    output += chalk.magenta(` at ${fns.niceNumber(pageCount)}`)
-    console.log('    ' + output);
-
-    workerBegin = Date.now()
-    lr.resume();
-    if (isLast === true) {
-      process.send({
-        type: "workerDone",
-        pid: process.pid
-      })
-    }
-  };
-
-  //reached the end of a page
-  const donePage = function(pageObj) {
-    pageCount += 1
-    pageObj = parseWiki(pageObj, options)
-    if (pageObj !== null) {
-      pages.push(pageObj);
-    } else {
-      console.log(chalk.green('   -skipping page: ""'))
-    }
-    // doArticleTimeCounter += Date.now() - doArticleTime
-    if (pageCount % options.batch_size === 0) {
-      insertToDb();
-    }
-  }
-
-  lr.on('error', (e) => {
-    // 'err' contains error object
-    console.error(chalk.red("linereader error"));
-    console.log(e)
-  });
-
-  lr.on('line', (line) => {
-    state = parseLine(line, state, donePage)
-  });
-
-  lr.on('end', function() {
-    // All lines are read, file is closed now.
-    // insert remaining pages.
-    insertToDb(true);
-  });
-  return (process.pid)
+    console.log('\n')
+    console.log(`    💪  worker #${workerNum} has finished 💪 `)
+    process.send({
+      type: "workerDone",
+      pid: process.pid
+    })
+  })
+  return process.pid
 };
 
 module.exports = {
