@@ -32,8 +32,10 @@
 It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn ***wikiscript*** into whatever json.
 
 <div align="center">
- -- <b>en-wikipedia</b> takes about 7-hours, end-to-end --
+ -- <b>en-wikipedia</b> takes about 5-hours, end-to-end --
 </div>
+
+![dumpster](https://user-images.githubusercontent.com/399657/40262198-a268b95a-5ad3-11e8-86ef-29c2347eec81.gif)
 
 ```bash
 npm install -g dumpster-dive
@@ -106,6 +108,8 @@ The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
 The console will update you every couple seconds to let you know where it's at.
 
 ### 7️⃣ done!
+![image](https://user-images.githubusercontent.com/399657/40262181-7c1f17bc-5ad3-11e8-95ab-55f324022d43.png)
+
 go check-out the data! to view your data in the mongo console:
 ````javascript
 $ mongo
