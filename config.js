@@ -5,4 +5,6 @@ module.exports = {
   "collection": "pages",
   //update interval
   "logInterval": 10000,
+  //which wikipedia namespace to parse
+  "namespace": 0
 }
