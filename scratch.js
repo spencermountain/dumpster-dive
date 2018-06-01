@@ -13,13 +13,13 @@ const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1];
 let options = {
   file: path,
   db: dbName,
-  custom: function(doc) {
-    return {
-      // _id: doc.title(),
-      foo: 'bar',
-    // categories: doc.categories(),
-    };
-  }
+// custom: function(doc) {
+//   return {
+//     // _id: doc.title(),
+//     foo: 'bar',
+//   // categories: doc.categories(),
+//   };
+// }
 };
 
 //delete all pages

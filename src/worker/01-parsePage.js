@@ -1,11 +1,14 @@
 const isRedirect = /<redirect title="/
-const isMain = /<ns>0<\/ns>/
+const namespace = require('../../config').namespace
 
 const shouldSkip = function(page) {
+  //is it a redirect?
   if (isRedirect.test(page) === true) {
     return true
   }
-  if (isMain.test(page) !== true) {
+  //is it a different namespace?
+  const wantNamespace = new RegExp('<ns>' + namespace + '<\/ns>')
+  if (wantNamespace.test(page) === false) {
     return true
   }
   return false
