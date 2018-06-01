@@ -20,3 +20,6 @@
 * fix connection time-outs & improve logging output
 * change default collection name to `pages`
 * add `.custom()` function support
+### v3.2.0
+* update to [wtf_wikipedia v4.2.0](https://github.com/spencermountain/wtf_wikipedia/blob/master/changelog.md#310)
+* support passing-in arbitrary functions to worker
