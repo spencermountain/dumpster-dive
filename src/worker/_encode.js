@@ -3,7 +3,6 @@
 
 const encodeStr = function(str) {
   if (typeof str !== 'string') {
-    console.log(str)
     str = ''
   }
   return str

@@ -31,12 +31,12 @@ const parseWiki = function(page, options) {
     } else { //DIY format
       data = options.custom(doc);
     }
-    data.title = page.title || data.title;
     data = encode.encodeData(data);
     //use the title/pageID from the xml
-    data.title = page.title || data.title || '';
-    data.pageID = page.pageID || data.pageID || '';
-    data._id = encode.encodeStr(data.title);
+    data.title = data.title || page.title
+    data.pageID = data.pageID || page.pageID
+    data._id = data._id || data.title
+    data._id = encode.encodeStr(data._id);
     return data;
   } catch (e) {
     console.log(chalk.red('\n---Error on "' + page.title + '"'));

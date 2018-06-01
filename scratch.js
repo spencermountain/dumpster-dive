@@ -14,10 +14,9 @@ let options = {
   file: path,
   db: dbName,
   custom: function(doc) {
-    console.log('hello!');
     return {
-      _id: doc.title(),
-      title: 'foobar',
+      // _id: doc.title(),
+      foo: 'bar',
     // categories: doc.categories(),
     };
   }

@@ -44,7 +44,7 @@ class Logger {
       page = page[0]
       count = fns.niceNumber(count)
       console.log('')
-      console.log(chalk.grey('     current: ') + chalk.green(count) + ' pages' + chalk.blue('  - "' + page.title + '"     '))
+      console.log(chalk.grey('     current: ') + chalk.green(count) + ' pages' + chalk.blue(' - "' + page.title + '"     '))
       console.log('')
     }
     await obj.client.close()

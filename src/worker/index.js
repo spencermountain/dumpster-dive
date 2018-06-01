@@ -4,8 +4,10 @@ const sundayDriver = require('sunday-driver');
 const parsePage = require('./01-parsePage');
 const parseWiki = require('./02-parseWiki');
 const writeDb = require('./03-write-db');
+const jsonfn = require('jsonfn').JSONfn
 
-const doSection = async (options, workerCount, workerNum) => {
+const doSection = async (optionStr, workerCount, workerNum) => {
+  let options = jsonfn.parse(optionStr)
   let pages = [];
   let percent = 100 / workerCount;
   let start = percent * workerNum;

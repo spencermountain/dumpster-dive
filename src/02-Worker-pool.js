@@ -2,13 +2,14 @@ const pretty = require('prettysize');
 const WorkerNodes = require('worker-nodes');
 const fs = require('fs');
 const chalk = require('chalk');
+const jsonfn = require('jsonfn').JSONfn
 const EventEmitter = require('events');
 const fns = require('./lib/fns');
 const right = fns.alignRight;
 const niceTime = fns.niceTime;
 const margin = '         ';
 //estimate of duration:
-const mbPerMinute = 58;
+const mbPerMinute = 45; //new macbooks are ~58
 
 class WorkerPool extends EventEmitter {
   constructor(options) {
@@ -66,7 +67,9 @@ class WorkerPool extends EventEmitter {
     this.printHello();
     //convoluted loop to wire-up each worker
     for(let i = 0; i < self.workerCount; i += 1) {
-      self.workerNodes.call.doSection(options, this.workerCount, i).then(() => {
+      //stringify options, so it gets passed to the web worker
+      let optionStr = jsonfn.stringify(options)
+      self.workerNodes.call.doSection(optionStr, this.workerCount, i).then(() => {
         self.running += 1;
         //once all workers have been started..
         if (self.running === self.workerCount) {

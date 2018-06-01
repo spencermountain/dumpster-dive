@@ -21,11 +21,12 @@
   },
   "dependencies": {
     "chalk": "2.4.1",
+    "jsonfn": "^0.31.0",
     "mongodb": "3.0.7",
     "prettysize": "1.1.0",
     "sunday-driver": "1.0.1",
     "worker-nodes": "1.6.0",
-    "wtf_wikipedia": "4.1.1",
+    "wtf_wikipedia": "4.2.0",
     "yargs": "11.0.0"
   },
   "devDependencies": {
