@@ -4,8 +4,8 @@ const drop = require('./src/lib/drop-db');
 //144mb → 2.5 minutes = 57mb per worker per minute
 
 // const path = '/Users/spencer/data/wikipedia/afwiki-latest-pages-articles.xml' //4.3mins
-const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml'; //5mins  //144 MB each
-// const path = '/Users/spencer/data/wikipedia/eswiki-latest-pages-articles.xml' //2hrs  - 12gb→5gb
+// const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml'; //5mins  //144 MB each
+const path = '/Users/spencer/data/wikipedia/eswiki-latest-pages-articles.xml' //2hrs  - 12gb→5gb
 // const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml' //6hrs
 // const path = './tests/smallwiki-latest-pages-articles.xml' //3s
 // const path = './tests/tinywiki-latest-pages-articles.xml' //2s

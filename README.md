@@ -111,7 +111,7 @@ The console will update you every couple seconds to let you know where it's at.
 ![image](https://user-images.githubusercontent.com/399657/40262181-7c1f17bc-5ad3-11e8-95ab-55f324022d43.png)
 
 go check-out the data! to view your data in the mongo console:
-````javascript
+```js
 $ mongo
 use afwiki //your db name
 
@@ -122,8 +122,15 @@ db.pages.find().skip(200).limit(2)
 db.pages.findOne({title:"Toronto"}).categories
 
 //find the last page
-db.wikipedia.find().sort({$natural:-1}).limit(1)
-````
+db.pages.find().sort({$natural:-1}).limit(1)
+
+// all the governors of Kentucky
+db.pages.count({ categories : { $eq : "Governors of Kentucky" }}
+
+//pages without images
+db.pages.count({ images: {$size: 0} })
+```
+
 alternatively, you can run `dumpster-report afwiki` to see a quick spot-check of the records it has created across the database.
 
 ### Same for the English wikipedia:
@@ -166,7 +173,7 @@ you can grab whatever data you want, by passing-in a `custom` function. It takes
 ```js
 let obj={
 	file: path,
-  db: dbName,
+	db: dbName,
 	custom: function(doc) {
 		return {
 			_id: doc.title(),   //for duplicate-detection
@@ -177,10 +184,12 @@ let obj={
 }
 dumpster(obj, () => console.log('custom wikipedia!') )
 ```
+* **non-main namespaces:**
+do you want to parse all the navboxes? change `namespace` in ./config.js to [another number](https://en.wikipedia.org/wiki/Wikipedia:Namespace)
 
 ## how it works:
 this library uses:
-* [line-by-line](https://www.npmjs.com/package/line-by-line) to stream the gnarly xml file
+* [sunday-driver](https://github.com/spencermountain/sunday-driver) to stream the gnarly xml file
 * [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to brute-parse the article wikiscript contents into JSON.
 
 ## Addendum:
