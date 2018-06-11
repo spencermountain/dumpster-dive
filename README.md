@@ -209,5 +209,3 @@ This library should also work on other wikis with standard xml dumps from [Media
 
 ### PRs welcome!
 This is an important project, come [help us out](./contributing.md).
-
-MIT

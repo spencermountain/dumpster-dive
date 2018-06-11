@@ -23,3 +23,6 @@
 ### v3.2.0
 * update to [wtf_wikipedia v4.2.0](https://github.com/spencermountain/wtf_wikipedia/blob/master/changelog.md#310)
 * support passing-in arbitrary functions to worker
+### 3.3.0
+* bugfix for runtime parsing error
+* due to a recent workplace conflict, I have had to re-license this project non-commercial. Please [email me](mailto:spencermountain@gmail.com) and I will be happy to provide a commercial license at no cost. Apologies for any inconvenience this may cause.
