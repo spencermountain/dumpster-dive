@@ -61,8 +61,8 @@ if (!file) {
 }
 //try to make-up the language name for the db
 let db = 'wikipedia'
-if (file.match(/-latest-pages-articles/)) {
-  db = file.match(/([a-z]+)-latest/) || []
+if (file.match(/-(latest|\d{8})-pages-articles/)) {
+  db = file.match(/([a-z]+)-(latest|\d{8})-pages-articles/) || []
   db = db[1] || 'wikipedia'
 }
 options.file = file
