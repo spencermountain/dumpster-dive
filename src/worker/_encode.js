@@ -41,8 +41,8 @@ const encodeData = function(data) {
   //cleanup table-keys
   if (data.sections && data.sections.length > 0) {
     data.sections.forEach(o => {
-      if (o.tables && o.tables().length > 0) {
-        o.tables().forEach(table => {
+      if (o.tables && o.tables.length > 0) {
+        o.tables.forEach(table => {
           table.forEach(row => {
             let keys = Object.keys(row);
             keys.forEach(k => {
