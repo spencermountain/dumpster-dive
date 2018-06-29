@@ -178,6 +178,7 @@ let obj={
 		return {
 			_id: doc.title(),   //for duplicate-detection
 			title: doc.title(), //for the logger..
+			sections: doc.sections().map(i => i.json()),
 			categories: doc.categories() //whatever you want!
 		}
 	}
