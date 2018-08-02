@@ -6,7 +6,7 @@ const dropDb = async function(options) {
   await obj.col.deleteMany({})
   // await obj.col.drop()
   console.log('dropped')
-  let count = await obj.col.count()
+  let count = await obj.col.countDocuments()
   console.log('  - now ' + count + ' records - ')
 }
 module.exports = dropDb

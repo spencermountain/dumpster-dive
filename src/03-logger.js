@@ -26,7 +26,7 @@ class Logger {
   }
   //# of records entered in db
   count(obj) {
-    return obj.col.count()
+    return obj.col.countDocuments()
   }
   //get the most recent article written
   lastPage(obj) {

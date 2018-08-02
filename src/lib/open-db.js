@@ -9,7 +9,9 @@ const openDb = async function(options) {
   let url = 'mongodb://localhost:27017/' + options.db
 
   return new Promise((resolve, reject) => {
-    MongoClient.connect(url, function(err, client) {
+    MongoClient.connect(url, {
+      useNewUrlParser: true
+    }, function(err, client) {
       if (err) {
         console.log(err)
         reject(err)
