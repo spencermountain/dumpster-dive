@@ -13,7 +13,7 @@ const noop = function() {};
 const finish = async function(options) {
   let obj = await openDB(options);
   console.log('\n\n      👍  closing down.\n');
-  let count = await obj.col.count();
+  let count = await obj.col.countDocuments();
   let duration = fns.timeSince(start);
   console.log('     -- final count is ' + chalk.magenta(fns.niceNumber(count)) + ' pages --');
   console.log('       ' + chalk.yellow(`took ${duration}`));
