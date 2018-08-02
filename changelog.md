@@ -25,4 +25,7 @@
 * support passing-in arbitrary functions to worker
 ### 3.3.0
 * bugfix for runtime parsing error
-* due to a recent workplace conflict, I have had to re-license this project non-commercial. Please [email me](mailto:spencermountain@gmail.com) and I will be happy to provide a commercial license at no cost. Apologies for any inconvenience this may cause.
+### 3.4.2
+* update deps, wtf library improvements
+* relicense as MIT
+* use latest mongo api
