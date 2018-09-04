@@ -22,6 +22,9 @@ const doSection = async (optionStr, workerCount, workerNum) => {
       //pull-out sections from this xml
       let page = parsePage(xml);
       if (page !== null) {
+        if (options.verbose === true) {
+          console.log('   #' + workerNum + '  - ' + page.title)
+        }
         //parse the page into json
         page = parseWiki(page, options);
         if (page !== null) {

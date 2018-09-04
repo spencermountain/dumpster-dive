@@ -208,5 +208,15 @@ $  -->  \u0024
 ### Non-wikipedias
 This library should also work on other wikis with standard xml dumps from [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki). I haven't tested them, but the wtf_wikipedia supports all sorts of non-standard wiktionary/wikivoyage templates, and if you can get a bz-compressed xml dump from your wiki, this should work fine. Open an issue if you find something weird.
 
+### did it break?
+if the script trips at a specific spot, it's helpful to know the article it breaks on, by setting `verbose:true`:
+```js
+dumpster({
+  file: '/path/to/file.xml',
+  verbose: true
+})
+```
+this prints out every page's title while processing it..
+
 ### PRs welcome!
 This is an important project, come [help us out](./contributing.md).
