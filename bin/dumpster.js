@@ -32,6 +32,7 @@ const defaults = {
   images: true,
 
   plaintext: false,
+  verbose:false,
   html: false,
   markdown: false,
   latex: false,
