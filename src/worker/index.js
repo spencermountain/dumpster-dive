@@ -4,10 +4,10 @@ const sundayDriver = require('sunday-driver');
 const parsePage = require('./01-parsePage');
 const parseWiki = require('./02-parseWiki');
 const writeDb = require('./03-write-db');
-const jsonfn = require('jsonfn').JSONfn
+const jsonfn = require('jsonfn').JSONfn;
 
 const doSection = async (optionStr, workerCount, workerNum) => {
-  let options = jsonfn.parse(optionStr)
+  let options = jsonfn.parse(optionStr);
   let pages = [];
   let percent = 100 / workerCount;
   let start = percent * workerNum;
@@ -23,7 +23,7 @@ const doSection = async (optionStr, workerCount, workerNum) => {
       let page = parsePage(xml);
       if (page !== null) {
         if (options.verbose === true) {
-          console.log('   #' + workerNum + '  - ' + page.title)
+          console.log('   #' + workerNum + '  - ' + page.title);
         }
         //parse the page into json
         page = parseWiki(page, options);

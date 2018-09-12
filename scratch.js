@@ -16,8 +16,10 @@ let options = {
   file: path,
   db: dbName,
   templates: false,
-  // verbose: true,
-  workers: 2
+  verbose: true,
+  skip_redirects: true,
+  skip_disambig: true,
+  workers: 1
 // custom: function(doc) {
 //   return {
 //     // _id: doc.title(),
