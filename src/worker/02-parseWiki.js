@@ -30,6 +30,7 @@ const parseWiki = function(page, options) {
     if (!options.custom) { //default format
       data = doc.json(options);
       delete data.infoboxes; //will impliment this is wtf, after a breaking change
+      delete data.citations;
     } else { //DIY format
       data = options.custom(doc);
     }

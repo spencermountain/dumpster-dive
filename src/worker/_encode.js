@@ -29,12 +29,7 @@ const encodeObj = function(obj) {
 //tables & infoboxes & citations could potentially have unsafe keys
 const encodeData = function(data) {
   data = data || {};
-
-  //encode keys in citations
-  if (data.citations && data.citations.length > 0) {
-    data.citations.map(obj => encodeObj(obj));
-  }
-  //cleanup table-keys
+  //cleanup forbidden object key names in mongo
   if (data.sections && data.sections.length > 0) {
     data.sections.forEach(o => {
       //encode keys in templates
@@ -48,7 +43,7 @@ const encodeData = function(data) {
           return tmpl;
         });
       }
-
+      //encode keys in tables
       if (o.tables && o.tables.length > 0) {
         o.tables = o.tables.map(table => encodeObj(table));
       }

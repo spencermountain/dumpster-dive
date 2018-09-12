@@ -30,5 +30,5 @@
 * relicense as MIT
 * use latest mongo api
 ### 3.5.0
+* :warning: remove `.infoboxes` and `.citations` from top-level result. this is duplicate data. find them both in `section[i].templates`
 * improve handling of redirect pages
-* no-longer return `.infoboxes` as a top-level field - keep them in `section.templates`

@@ -28,9 +28,12 @@ const writeDb = async (options, pages, workerNum) => {
       console.log(chalk.red(`====error!===`));
       console.log(err);
     }
-    err = err.result.toJSON();
-    const count = err.nInserted;
-    writeMsg(pages, count, start, workerNum);
+    //pretty-print this duplicate-pages error
+    if (err.result) {
+      err = err.result.toJSON();
+      const count = err.nInserted;
+      writeMsg(pages, count, start, workerNum);
+    }
     await obj.client.close();
   });
   //no errors thrown, all good
