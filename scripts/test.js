@@ -1,6 +1,6 @@
 const exec = require('shelljs').exec
 const chalk = require('chalk')
-const report = '\"node_modules/.bin/tap-dancer\" --color'
+const report = '\"node_modules/.bin/tap-spec\" --color'
 const tape = '\"node_modules/.bin/tape\"'
 
 let tests = [

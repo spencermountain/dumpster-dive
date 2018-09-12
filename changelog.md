@@ -29,3 +29,6 @@
 * update deps, wtf library improvements
 * relicense as MIT
 * use latest mongo api
+### 3.5.0
+* improve handling of redirect pages
+* no-longer return `.infoboxes` as a top-level field - keep them in `section.templates`

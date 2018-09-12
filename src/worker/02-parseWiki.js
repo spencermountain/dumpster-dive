@@ -29,14 +29,15 @@ const parseWiki = function(page, options) {
     let data = {};
     if (!options.custom) { //default format
       data = doc.json(options);
+      delete data.infoboxes; //will impliment this is wtf, after a breaking change
     } else { //DIY format
       data = options.custom(doc);
     }
     data = encode.encodeData(data);
     //use the title/pageID from the xml
-    data.title = page.title || data.title
-    data.pageID = page.pageID || data.pageID
-    data._id = data._id || data.title
+    data.title = page.title || data.title;
+    data.pageID = page.pageID || data.pageID;
+    data._id = data._id || data.title;
     data._id = encode.encodeStr(data._id);
     return data;
   } catch (e) {

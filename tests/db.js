@@ -18,7 +18,7 @@ const open = function(dbName, callback) {
 const count = function(dbName, cb) {
   open(dbName, function(db, client) {
     let col = db.collection('pages')
-    col.count().then(len => {
+    col.countDocuments().then(len => {
       client.close()
       cb(len)
     })

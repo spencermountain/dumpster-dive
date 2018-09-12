@@ -7,7 +7,7 @@ const drop = require('./src/lib/drop-db');
 // const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml'; //5mins  //144 MB each
 // const path = '/Users/spencer/data/wikipedia/eswiki-latest-pages-articles.xml' //2hrs  - 12gb→5gb
 // const path = '/media/spencer/07d11766-2ce6-4f8a-8ec0-a3d144a3d4cd/big_data/wikipedia/afwiki-latest-pages-articles.xml' //6hrs
-const path = '/media/spencer/07d11766-2ce6-4f8a-8ec0-a3d144a3d4cd/big_data/wikipedia/simplewiki-latest-pages-articles.xml'
+const path = '/home/spencer/mountain/dumpster-dive/tests/tinywiki-latest-pages-articles.xml';
 // const path = '/media/spencer/07d11766-2ce6-4f8a-8ec0-a3d144a3d4cd/big_data/wikipedia/eswiki-latest-pages-articles.xml'
 // const path = './tests/smallwiki-latest-pages-articles.xml' //3s
 // const path = './tests/tinywiki-latest-pages-articles.xml' //2s
@@ -15,7 +15,9 @@ const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1];
 let options = {
   file: path,
   db: dbName,
-// verbose: true
+  templates: false,
+  // verbose: true,
+  workers: 2
 // custom: function(doc) {
 //   return {
 //     // _id: doc.title(),

@@ -15,8 +15,8 @@ test('custom-made-tinywiki', function(t) {
         t.equal(docs.length, 7, 'seven records')
 
         let hello = docs.find(d => d.title === 'Hello')
-        t.equal(hello.categories.length, 0, 'no categories')
-        t.equal(hello.images.length, 0, 'no image')
+        t.equal(hello.categories, undefined, 'no categories')
+        t.equal(hello.images, undefined, 'no image')
         t.equal(hello.title, 'Hello', 'has title')
         t.equal(hello.sections.length, 3, 'two sections')
 
