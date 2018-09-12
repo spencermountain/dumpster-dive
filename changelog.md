@@ -29,6 +29,7 @@
 * update deps, wtf library improvements
 * relicense as MIT
 * use latest mongo api
-### 3.5.0
+### 3.6.0
 * :warning: remove `.infoboxes` and `.citations` from top-level result. this is duplicate data. find them both in `section[i].templates`
 * improve handling of redirect pages
+* refactor encoding logic

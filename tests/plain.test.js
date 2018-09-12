@@ -24,9 +24,11 @@ test('plaintext', function(t) {
 
         let redirect = docs.find(d => d.title === 'Redirect page');
         t.notEqual(undefined, redirect, 'no redirect-page');
+        t.equal(redirect.redirectTo.page, 'The Beatles', 'has redirect link');
 
         let disambig = docs.find(d => d.title === 'Disambiguation page');
         t.notEqual(undefined, disambig, 'no disambig-page');
+        t.ok(disambig.sections.length > 1, 'rendering sections');
 
 
         t.end();
