@@ -45,7 +45,9 @@ const encodeData = function(data) {
       }
       //encode keys in tables
       if (o.tables && o.tables.length > 0) {
-        o.tables = o.tables.map(table => encodeObj(table));
+        o.tables = o.tables.map(table => {
+          return table.map((row) => encodeObj(row));
+        });
       }
     });
   }
