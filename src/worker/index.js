@@ -39,14 +39,14 @@ const doSection = async (optionStr, workerCount, workerNum) => {
       } else {
         resume();
       }
-    },
-    atPoint: {
-      50: () => {
-        console.log('');
-        console.log(chalk.grey(`   (worker #${workerNum} is 50% done)`));
-        console.log('');
-      }
     }
+  // atPoint: {
+  //   50: () => {
+  //     console.log('');
+  //     console.log(chalk.grey(`   (worker #${workerNum} is 50% done)`));
+  //     console.log('');
+  //   }
+  // }
   };
   let p = sundayDriver(driver);
   p.catch((err) => {
