@@ -12,7 +12,7 @@ const encodeStr = function(str) {
     .replace(/\./g, '\\u002e');
 };
 
-const encodeObj = function(obj) {
+const encodeObj = function( obj = {} ) {
   let keys = Object.keys(obj);
   for(let i = 0; i < keys.length; i += 1) {
     if (specialChar.test(keys[i]) === true) {
@@ -36,11 +36,14 @@ const encodeData = function(data) {
       if (o.templates) {
         o.templates = o.templates.map(tmpl => {
           tmpl = encodeObj(tmpl);
-          //infoboxes have their stuff here
-          if (tmpl.data) {
-            tmpl.data = encodeObj(tmpl.data);
-          }
           return tmpl;
+        });
+      }
+      //infoboxes have their stuff here
+      if (o.infoboxes) {
+        o.infoboxes = o.infoboxes.map(info => {
+          info = encodeObj(info);
+          return info;
         });
       }
       //encode keys in tables

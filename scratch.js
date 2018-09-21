@@ -2,21 +2,21 @@ const dumpster = require('./src');
 const drop = require('./src/lib/drop-db');
 
 //144mb → 2.5 minutes = 57mb per worker per minute
-const path = '/media/spencer/07d11766-2ce6-4f8a-8ec0-a3d144a3d4cd/big_data/wikipedia/eswiki-latest-pages-articles.xml';
+const path = '/home/spencer/mountain/dumpster-dive/tests/tinywiki-latest-pages-articles.xml';
 // const path = './tests/smallwiki-latest-pages-articles.xml' //3s
 // const path = './tests/tinywiki-latest-pages-articles.xml' //2s
 const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1];
 let options = {
   file: path,
   db: dbName,
-  markdown: true,
-  html: true,
-  latex: true,
-// templates: false,
-// verbose: true,
-// skip_redirects: true,
-// skip_disambig: true,
-// workers: 1
+  // markdown: true,
+  // html: true,
+  // latex: true,
+  // templates: false,
+  // verbose: true,
+  // skip_redirects: true,
+  // skip_disambig: true,
+  workers: 1
 // custom: function(doc) {
 //   return {
 //     // _id: doc.title(),
