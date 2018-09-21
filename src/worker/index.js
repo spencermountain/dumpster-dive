@@ -49,7 +49,12 @@ const doSection = async (optionStr, workerCount, workerNum) => {
     }
   };
   let p = sundayDriver(driver);
-  p.catch(console.log);
+  p.catch((err) => {
+    console.log(chalk.red('\n\n========== Worker error!  ====='));
+    console.log('🚨       worker #' + workerNum + '           🚨');
+    console.log(err);
+    console.log('\n\n');
+  });
   p.then(async () => { //on done
     // insert the remaining pages
     if (pages.length > 0) {

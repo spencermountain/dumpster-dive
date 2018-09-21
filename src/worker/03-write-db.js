@@ -26,7 +26,7 @@ const writeDb = async (options, pages, workerNum) => {
       errCount = fns.niceNumber(errCount);
       console.log(chalk.red(`-- ${errCount}  duplicate pages --`));
     } else {
-      console.log(chalk.red(`====error!===`));
+      console.log(chalk.red(`   ====DB write error (worker ${workerNum})===`));
       console.log(err);
     }
     //pretty-print this duplicate-pages error

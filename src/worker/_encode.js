@@ -2,6 +2,10 @@
 //https://stackoverflow.com/questions/12397118/mongodb-dot-in-key-name/30254815#30254815
 const specialChar = /[\\\.$]/;
 
+const isObject = function(x) {
+  return (typeof x === 'object') && (x !== null);
+};
+
 const encodeStr = function(str) {
   if (typeof str !== 'string') {
     str = '';
@@ -31,24 +35,28 @@ const encodeData = function(data) {
   data = data || {};
   //cleanup forbidden object key names in mongo
   if (data.sections && data.sections.length > 0) {
-    data.sections.forEach(o => {
+    data.sections.forEach(s => {
       //encode keys in templates
-      if (o.templates) {
-        o.templates = o.templates.map(tmpl => {
+      if (s.templates) {
+        s.templates = s.templates.map(tmpl => {
           tmpl = encodeObj(tmpl);
+          //try encoding these, too
+          if (tmpl.data && isObject(tmpl.data)) {
+            tmpl.data = encodeObj(tmpl.data);
+          }
           return tmpl;
         });
       }
       //infoboxes have their stuff here
-      if (o.infoboxes) {
-        o.infoboxes = o.infoboxes.map(info => {
+      if (s.infoboxes) {
+        s.infoboxes = s.infoboxes.map(info => {
           info = encodeObj(info);
           return info;
         });
       }
       //encode keys in tables
-      if (o.tables && o.tables.length > 0) {
-        o.tables = o.tables.map(table => {
+      if (s.tables && s.tables.length > 0) {
+        s.tables = s.tables.map(table => {
           return table.map((row) => encodeObj(row));
         });
       }
