@@ -111,6 +111,7 @@ The console will update you every couple seconds to let you know where it's at.
 ![image](https://user-images.githubusercontent.com/399657/40262181-7c1f17bc-5ad3-11e8-95ab-55f324022d43.png)
 
 go check-out the data! to view your data in the mongo console:
+
 ```js
 $ mongo
 use afwiki //your db name
@@ -206,7 +207,7 @@ $  -->  \u0024
 .  -->  \u002e
 ```
 ### Non-wikipedias
-This library should also work on other wikis with standard xml dumps from [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki). I haven't tested them, but the wtf_wikipedia supports all sorts of non-standard wiktionary/wikivoyage templates, and if you can get a bz-compressed xml dump from your wiki, this should work fine. Open an issue if you find something weird.
+This library should also work on other wikis with standard xml dumps from [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki) (except wikidata!). I haven't tested them, but the wtf_wikipedia supports all sorts of non-standard wiktionary/wikivoyage templates, and if you can get a bz-compressed xml dump from your wiki, this should work fine. Open an issue if you find something weird.
 
 ### did it break?
 if the script trips at a specific spot, it's helpful to know the article it breaks on, by setting `verbose:true`:
@@ -217,6 +218,13 @@ dumpster({
 })
 ```
 this prints out every page's title while processing it..
+
+### 16mb limit?
+To go faster, this library writes a ton of articles at a time (default 800). Mongo has a **16mb** limit on writes, so if you're adding a bunch of data, like `latex`, or `html`, it may make sense to turn this down.
+```
+dumpster --batch_size=100
+```
+that should do the trick.
 
 ### PRs welcome!
 This is an important project, come [help us out](./contributing.md).

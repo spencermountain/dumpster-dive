@@ -39,17 +39,22 @@ const doSection = async (optionStr, workerCount, workerNum) => {
       } else {
         resume();
       }
-    },
-    atPoint: {
-      50: () => {
-        console.log('');
-        console.log(chalk.grey(`   (worker #${workerNum} is 50% done)`));
-        console.log('');
-      }
     }
+  // atPoint: {
+  //   50: () => {
+  //     console.log('');
+  //     console.log(chalk.grey(`   (worker #${workerNum} is 50% done)`));
+  //     console.log('');
+  //   }
+  // }
   };
   let p = sundayDriver(driver);
-  p.catch(console.log);
+  p.catch((err) => {
+    console.log(chalk.red('\n\n========== Worker error!  ====='));
+    console.log('🚨       worker #' + workerNum + '           🚨');
+    console.log(err);
+    console.log('\n\n');
+  });
   p.then(async () => { //on done
     // insert the remaining pages
     if (pages.length > 0) {

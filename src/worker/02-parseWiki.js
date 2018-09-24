@@ -1,5 +1,4 @@
 // const wtf = require('/Users/spencer/mountain/wtf_wikipedia/src');
-// const wtf = require('/home/spencer/mountain/wtf_wikipedia');
 const wtf = require('wtf_wikipedia');
 const chalk = require('chalk');
 const encode = require('./_encode');
@@ -20,17 +19,21 @@ const parseWiki = function(page, options) {
     let doc = wtf(page.wiki);
     //dont insert this if it's a redirect
     if (options.skip_redirects === true && doc.isRedirect()) {
+      if (options.verbose_skip === true) {
+        console.log(chalk.green('skipping redirect:   -   ') + chalk.yellow('"' + page.title + '"'));
+      }
       return null;
     }
     if (options.skip_disambig === true && doc.isDisambiguation()) {
+      if (options.verbose_skip === true) {
+        console.log(chalk.green('skipping disambiguation: ') + chalk.yellow('"' + page.title + '"'));
+      }
       return null;
     }
     //turn the wtf_wikipedia document into storable json
     let data = {};
     if (!options.custom) { //default format
       data = doc.json(options);
-      delete data.infoboxes; //will impliment this is wtf, after a breaking change
-      delete data.citations;
     } else { //DIY format
       data = options.custom(doc);
     }

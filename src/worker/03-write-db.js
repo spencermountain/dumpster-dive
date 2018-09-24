@@ -19,13 +19,14 @@ const writeMsg = function(pages, count, start, workerNum) {
 const writeDb = async (options, pages, workerNum) => {
   const start = Date.now();
   let obj = await openDB(options);
+  // console.log(pages[1].sections[0].infoboxes[0]);
   let result = await obj.col.insertMany(pages, mongoConfig).catch(async (err) => {
     if (err.code === 11000) {
       let errCount = err.result.getWriteErrorCount();
       errCount = fns.niceNumber(errCount);
       console.log(chalk.red(`-- ${errCount}  duplicate pages --`));
     } else {
-      console.log(chalk.red(`====error!===`));
+      console.log(chalk.red(`   ====DB write error (worker ${workerNum})===`));
       console.log(err);
     }
     //pretty-print this duplicate-pages error

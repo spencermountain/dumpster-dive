@@ -1,10 +1,10 @@
-let test = require('tape');
-let db = require('./db');
-let dumpster = require('../');
+var test = require('tape');
+var db = require('./db');
+var dumpster = require('../');
 
 test('no-redirects', function(t) {
-  let dbName = 'tempwikiskip';
-  let obj = {
+  var dbName = 'tempwikiskip';
+  var obj = {
     file: './tests/tinywiki-latest-pages-articles.xml',
     db: dbName,
     workers: 1,
