@@ -1,6 +1,5 @@
 // const wtf = require('/Users/spencer/mountain/wtf_wikipedia/src');
-const wtf = require('/home/spencer/mountain/wtf_wikipedia/src'); //TODO: change me!
-// const wtf = require('wtf_wikipedia');
+const wtf = require('wtf_wikipedia');
 const chalk = require('chalk');
 const encode = require('./_encode');
 

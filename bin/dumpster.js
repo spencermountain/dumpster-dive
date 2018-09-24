@@ -16,12 +16,13 @@ var argv = yargs
   .describe('html', 'include html output [false]')
   .describe('latex', 'include latex output [false]')
   .describe('verbose', 'run in verbose mode [false]')
+  .describe('verbose_skip', 'log skipped disambigs & redirects [false]')
   .describe('workers', 'run in verbose mode [CPUCount]')
   .argv;
 
 const defaults = {
-  batch_size: 1000,
-  workers:null,
+  batch_size: 500,
+  workers: null,
   skip_disambig: true,
   skip_redirects: true,
 
@@ -35,10 +36,12 @@ const defaults = {
   images: true,
 
   plaintext: false,
-  verbose:false,
   html: false,
   markdown: false,
   latex: false,
+
+  verbose: false,
+  verbose_skip: false,
 };
 const toBool = {
   'true': true,

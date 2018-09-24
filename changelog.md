@@ -33,3 +33,9 @@
 * :warning: remove `.infoboxes` and `.citations` from top-level result. this is duplicate data. find them both in `section[i].templates`
 * improve handling of redirect pages
 * refactor encoding logic
+
+## v4
+* major json format changes from [wtf_wikipedia v6.0.0](https://github.com/spencermountain/wtf_wikipedia/pull/190)
+* get skip_redirects actually working
+* reduce default batch_size even lower
+* add `verbose_skip` option, to log disambig/redirect skipping
