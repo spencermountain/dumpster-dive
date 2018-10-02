@@ -22,6 +22,8 @@ class WorkerPool extends EventEmitter {
       autoStart: true,
       maxTasksPerWorker: 1
     });
+    this.skippedRedirects = 0
+    this.skippedDisambigs = 0
     this.fileSize = fs.statSync(options.file)['size'];
     this.chunkSize = Math.floor(this.fileSize / this.workerCount);
   }

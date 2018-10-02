@@ -13,18 +13,20 @@ const escapeXML = function(str) {
 };
 
 //get parsed json from the wiki markup
-const parseWiki = function(page, options) {
+const parseWiki = function(page, options, worker) {
   try {
     page.wiki = escapeXML(page.wiki || '');
     let doc = wtf(page.wiki);
     //dont insert this if it's a redirect
     if (options.skip_redirects === true && doc.isRedirect()) {
+      worker.counts.redirects += 1
       if (options.verbose_skip === true) {
         console.log(chalk.green('skipping redirect:   -   ') + chalk.yellow('"' + page.title + '"'));
       }
       return null;
     }
     if (options.skip_disambig === true && doc.isDisambiguation()) {
+      worker.counts.disambig += 1
       if (options.verbose_skip === true) {
         console.log(chalk.green('skipping disambiguation: ') + chalk.yellow('"' + page.title + '"'));
       }
