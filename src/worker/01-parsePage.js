@@ -10,9 +10,10 @@ const shouldSkip = function(page) {
 };
 
 //wikipedia xml → json
-const parsePage = function(txt) {
+const parsePage = function(txt, worker) {
   //skip redirects, etc
   if (shouldSkip(txt) === true) {
+    worker.ns += 1
     return null;
   }
   let page = {
