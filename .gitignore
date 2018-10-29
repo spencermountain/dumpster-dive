@@ -3,3 +3,4 @@ afwiki-latest-pages-articles.xml
 node_modules
 dump.rdb
 .DS_STORE
+tmp.txt

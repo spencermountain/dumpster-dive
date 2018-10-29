@@ -16,7 +16,7 @@ const escapeXML = function(str) {
 const parseWiki = function(page, options, worker) {
   try {
     page.wiki = escapeXML(page.wiki || '');
-    let doc = wtf(page.wiki);
+    let doc = wtf(page.wiki, options);
     //dont insert this if it's a redirect
     if (options.skip_redirects === true && doc.isRedirect()) {
       worker.counts.redirects += 1
