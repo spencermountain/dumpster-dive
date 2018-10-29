@@ -11,20 +11,21 @@ const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1];
 let options = {
   file: path,
   db: dbName,
-  // markdown: true,
-  // html: true,
-  // latex: true,
-  // templates: false,
-  // verbose: true,
-  // verbose_skip: true,
-  // batch_size: 1
-  // skip_redirects: true,
-  // skip_disambig: true,
-  missing_templates: true
+// markdown: true,
+// html: true,
+// latex: true,
+// templates: false,
+// verbose: true,
+// verbose_skip: true,
+// batch_size: 1
+// skip_redirects: true,
+// skip_disambig: true,
+// missing_templates: true
 // workers: 1
 // custom: function(doc) {
+//   console.log(doc.title())
 //   return {
-//     // _id: doc.title(),
+//     _id: doc.title(),
 //     foo: 'bar',
 //   // categories: doc.categories(),
 //   };
