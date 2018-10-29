@@ -32,6 +32,9 @@ const prepWork = function(options) {
   options.dbName = options.db
   options.workers = options.workers || cpuCount
   options.batch_size = options.batch_size || config.batch_size
+  if (options.encode === undefined) {
+    options.encode = true
+  }
   //some top-level logging
   process.on('unhandledRejection', function(up) {
     console.log(chalk.red('--uncaught top-process error--'))

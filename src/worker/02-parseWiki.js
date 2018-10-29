@@ -39,7 +39,6 @@ const parseWiki = function(page, options, worker) {
     } else { //DIY format
       data = options.custom(doc);
     }
-    data = encode.encodeData(data);
     //use the title/pageID from the xml
     data.title = page.title || data.title;
     data.pageID = page.pageID || data.pageID;

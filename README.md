@@ -179,13 +179,15 @@ let obj={
 		return {
 			_id: doc.title(),   //for duplicate-detection
 			title: doc.title(), //for the logger..
-			sections: doc.sections().map(i => i.json()),
+			sections: doc.sections().map(i => i.json({encode:true})),
 			categories: doc.categories() //whatever you want!
 		}
 	}
 }
 dumpster(obj, () => console.log('custom wikipedia!') )
 ```
+if you're using any `.json()` methods, pass a `{encode:true}` in to avoid mongo complaints about key-names.
+
 * **non-main namespaces:**
 do you want to parse all the navboxes? change `namespace` in ./config.js to [another number](https://en.wikipedia.org/wiki/Wikipedia:Namespace)
 
