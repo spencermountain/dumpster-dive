@@ -36,8 +36,9 @@ const parsePage = function(txt, worker) {
     console.log('--no page id--');
   }
   //get wiki text
-  m = txt.match(/<text xml:space="preserve">([\s\S]*?)<\/text>/);
+  m = txt.match(/<text xml:space="preserve"([\s\S]*?)<\/text>/);
   if (m !== null) {
+    m[1] = m[1].replace(/^.*?>/, '')
     page.wiki = m[1];
   }
   return page;

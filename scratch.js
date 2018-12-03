@@ -4,10 +4,14 @@ const drop = require('./src/lib/drop-db');
 //144mb → 2.5 minutes = 57mb per worker per minute
 // const path = '/home/spencer/mountain/dumpster-dive/tests/tinywiki-latest-pages-articles.xml';
 // const path = '/media/spencer/07d11766-2ce6-4f8a-8ec0-a3d144a3d4cd/big_data/wikipedia/enwiki-latest-pages-articles.xml';
-const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml'
+// const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml'
 // const path = './tests/smallwiki-latest-pages-articles.xml'; //3s
+const path = '/Users/spencer/data/wikipedia/twinpeaks_pages_current.xml'; //3s
 // const path = './tests/tinywiki-latest-pages-articles.xml'; //2s
-const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1];
+const dbName = 'twinpeaks' //path.match(/\/([a-z-]+)-latest-pages/)[1];
+
+//db.pages.find({title:'Doppelgängers'})
+
 let options = {
   file: path,
   db: dbName,
@@ -31,7 +35,6 @@ let options = {
 //   };
 // }
 };
-
 
 // #1  - Pous Adrianus I
 // #2  - Beenvis
