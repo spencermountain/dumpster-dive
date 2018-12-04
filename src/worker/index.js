@@ -33,6 +33,7 @@ const doSection = async (optionStr, workerCount, workerNum) => {
     end: `${end}%`,
     splitter: '</page>',
     each: (xml, resume) => {
+      // console.log(workerNum, xml.substr(0, 200))
       //pull-out sections from this xml
       let page = parsePage(xml, this);
       if (page !== null) {

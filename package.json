@@ -21,17 +21,17 @@
   },
   "dependencies": {
     "chalk": "2.4.1",
-    "jsonfn": "^0.31.0",
-    "mongodb": "3.1.8",
+    "jsonfn": "0.31.0",
+    "mongodb": "3.1.10",
     "prettysize": "1.1.0",
-    "sunday-driver": "1.0.1",
+    "sunday-driver": "1.0.2",
     "worker-nodes": "1.6.1",
     "wtf_wikipedia": "6.2.1",
-    "yargs": "12.0.2"
+    "yargs": "12.0.5"
   },
   "devDependencies": {
-    "shelljs": "0.8.2",
-    "tap-spec": "^5.0.0",
+    "shelljs": "0.8.3",
+    "tap-spec": "5.0.0",
     "tape": "4.9.1"
   },
   "license": "MIT"
