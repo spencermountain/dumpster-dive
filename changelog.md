@@ -39,3 +39,8 @@
 * get skip_redirects actually working
 * reduce default batch_size even lower
 * add `verbose_skip` option, to log disambig/redirect skipping
+
+## v5
+* more consistent template json, via [wtf_wikipedia@7](https://github.com/spencermountain/wtf_wikipedia/blob/master/changelog.md#700)
+* removal of empty `[]` results in `Section`.
+* fs fixes for node > 9
