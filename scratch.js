@@ -13,25 +13,39 @@ const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1];
 let options = {
   file: path,
   db: dbName,
-// markdown: true,
-// html: true,
-// latex: true,
-// templates: false,
-// verbose: true,
-// verbose_skip: true,
+  skip_redirects: false,
+  skip_disambig: false,
+  missing_templates: true,
+  custom: function(doc) {
+    let words = doc.plaintext().split(/[ \n]/g).length
+    let sections = doc.sections().map((s) => s.title)
+    let templates = doc.templates().map((s) => s.template)
+    let references = doc.references()
+    let coordinates = doc.coordinates(0)
+    let images = doc.images()
+    let infobox = doc.infoboxes()
+    let tables = doc.tables()
+    let categories = doc.categories()
+    return {
+      title: doc.title(),
+      is_redirect: doc.isRedirect(),
+      is_disambig: doc.isDisambiguation(),
+      words: words,
+      section_count: sections.length,
+      template_count: templates.length,
+      category_count: categories.length,
+      reference_count: references.length,
+      infobox_count: infobox.length,
+      image_count: images.length,
+      tables_count: tables.length,
+      coordinates: coordinates,
+      sections: sections,
+      templates: templates,
+      categories: categories,
+    };
+  },
 // batch_size: 1
-// skip_redirects: true,
-// skip_disambig: true,
-// missing_templates: true
 // workers: 2
-// custom: function(doc) {
-//   console.log(doc.title())
-//   return {
-//     _id: doc.title(),
-//     foo: 'bar',
-//   // categories: doc.categories(),
-//   };
-// }
 };
 
 // #1  - Pous Adrianus I
