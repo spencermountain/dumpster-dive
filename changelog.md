@@ -44,3 +44,8 @@
 * more consistent template json, via [wtf_wikipedia@7](https://github.com/spencermountain/wtf_wikipedia/blob/master/changelog.md#700)
 * removal of empty `[]` results in `Section`.
 * fs fixes for node > 9
+
+### 5.1.0
+* update to wtf_wikipedia 7.2.9
+* fix for doc.title() in custom parser
+* update deps

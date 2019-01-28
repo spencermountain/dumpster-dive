@@ -16,6 +16,7 @@ const escapeXML = function(str) {
 const parseWiki = function(page, options, worker) {
   try {
     page.wiki = escapeXML(page.wiki || '');
+    // options.title = options.title || page.title
     let doc = wtf(page.wiki, options);
     //dont insert this if it's a redirect
     if (options.skip_redirects === true && doc.isRedirect()) {
@@ -32,6 +33,8 @@ const parseWiki = function(page, options, worker) {
       }
       return null;
     }
+    //add-in the proper xml page-title
+    doc.title(page.title)
     //turn the wtf_wikipedia document into storable json
     let data = {};
     if (!options.custom) { //default format
