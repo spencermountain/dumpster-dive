@@ -40,8 +40,8 @@ const main = (options, done) => {
 
   workers.on('allWorkersFinished', () => {
     logger.stop();
-    oneSec(() => {
-      done();
+    oneSec(async () => {
+      await done();
       oneSec(() => {
         finish(options);
       });
