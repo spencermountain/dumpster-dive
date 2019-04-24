@@ -20,27 +20,7 @@ let argv = yargs
   .describe('workers', 'run in verbose mode [CPUCount]').argv;
 
 const defaults = {
-  batch_size: 500,
-  workers: null,
-  skip_disambig: true,
-  skip_redirects: true,
-
-  // title: true,
-  pageID: true,
-  categories: true,
-  citations: true,
-  coordinates: true,
-  infoboxes: true,
-  sections: true,
-  images: true,
-
-  plaintext: false,
-  html: false,
-  markdown: false,
-  latex: false,
-
-  verbose: false,
-  verbose_skip: false
+  batch_size: 500
 };
 const toBool = {
   true: true,
