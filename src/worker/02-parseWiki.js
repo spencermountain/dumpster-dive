@@ -1,4 +1,3 @@
-// const wtf = require('/Users/spencer/mountain/wtf_wikipedia/src');
 const wtf = require('wtf_wikipedia');
 const chalk = require('chalk');
 const encode = require('./_encode');
@@ -18,7 +17,7 @@ const parseWiki = function(page, options, worker) {
   try {
     page.wiki = escapeXML(page.wiki || '');
     // options.title = options.title || page.title
-    let doc = wtf(page.wiki, options);
+    const doc = wtf(page.wiki, options);
     //dont insert this if it's a redirect
     if (options.skip_redirects === true && doc.isRedirect()) {
       worker.counts.redirects += 1;

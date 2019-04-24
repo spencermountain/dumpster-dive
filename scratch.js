@@ -17,7 +17,7 @@ let options = {
   skip_disambig: false,
   missing_templates: true,
   custom: function(doc) {
-    console.log('+++' + doc.title() + '+++')
+    console.log('+++' + doc.title() + '+++');
     // let words = doc.plaintext().split(/[ \n]/g).length
     // let sections = doc.sections().map((s) => s.title)
     // let templates = doc.templates().map((s) => s.template)
@@ -28,25 +28,25 @@ let options = {
     // let tables = doc.tables()
     // let categories = doc.categories()
     return {
-      title: doc.title(),
-    // is_redirect: doc.isRedirect(),
-    // is_disambig: doc.isDisambiguation(),
-    // words: words,
-    // section_count: sections.length,
-    // template_count: templates.length,
-    // category_count: categories.length,
-    // reference_count: references.length,
-    // infobox_count: infobox.length,
-    // image_count: images.length,
-    // tables_count: tables.length,
-    // coordinates: coordinates,
-    // sections: sections,
-    // templates: templates,
-    // categories: categories,
+      title: doc.title()
+      // is_redirect: doc.isRedirect(),
+      // is_disambig: doc.isDisambiguation(),
+      // words: words,
+      // section_count: sections.length,
+      // template_count: templates.length,
+      // category_count: categories.length,
+      // reference_count: references.length,
+      // infobox_count: infobox.length,
+      // image_count: images.length,
+      // tables_count: tables.length,
+      // coordinates: coordinates,
+      // sections: sections,
+      // templates: templates,
+      // categories: categories,
     };
-  },
-// batch_size: 1
-// workers: 2
+  }
+  // batch_size: 1
+  // workers: 2
 };
 
 // #1  - Pous Adrianus I
@@ -55,7 +55,6 @@ let options = {
 // #1  - SK Koeban Krasnodar
 // #3  - Vleitjagra
 // #4  - Indiese gelowe
-
 
 //delete all pages
 drop(options).then(() => {
@@ -70,7 +69,6 @@ drop(options).then(() => {
 // from here too
 // </text>`
 // console.log(str.match(/<text xml:space="preserve">([\s\S]*?)<\/text>/))
-
 
 //      half-               6021472
 // Euston Road            - 5888070

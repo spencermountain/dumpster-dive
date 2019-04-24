@@ -11,10 +11,10 @@ const start = Date.now();
 const noop = function() {};
 
 const finish = async function(options) {
-  let obj = await openDB(options);
+  const obj = await openDB(options);
   console.log('\n\n      👍  closing down.\n');
-  let count = await obj.col.countDocuments();
-  let duration = fns.timeSince(start);
+  const count = await obj.col.countDocuments();
+  const duration = fns.timeSince(start);
   console.log('     -- final count is ' + chalk.magenta(fns.niceNumber(count)) + ' pages --');
   console.log('       ' + chalk.yellow(`took ${duration}`));
   console.log('              🎉');
@@ -31,11 +31,11 @@ const main = (options, done) => {
   options = prelim(options);
 
   //init workers
-  let workers = new WorkerPool(options);
+  const workers = new WorkerPool(options);
   workers.start();
 
   //start the logger:
-  let logger = hound(options, workers);
+  const logger = hound(options, workers);
   logger.start();
 
   workers.on('allWorkersFinished', () => {
@@ -56,7 +56,6 @@ const main = (options, done) => {
       process.exit();
     });
   });
-
 };
 
 module.exports = main;

@@ -16,7 +16,7 @@ const parsePage = function(txt, worker) {
     worker.ns += 1;
     return null;
   }
-  let page = {
+  const page = {
     title: null,
     pageID: null,
     wiki: ''

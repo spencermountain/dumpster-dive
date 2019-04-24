@@ -22,18 +22,20 @@ class WorkerPool extends EventEmitter {
       autoStart: true,
       maxTasksPerWorker: 1
     });
-    this.skippedRedirects = 0
-    this.skippedDisambigs = 0
+    this.skippedRedirects = 0;
+    this.skippedDisambigs = 0;
     this.fileSize = fs.statSync(options.file)['size'];
     this.chunkSize = Math.floor(this.fileSize / this.workerCount);
   }
 
   printHello() {
-    let megaBytes = this.chunkSize / 1048576; //1,048,576
-    let duration = megaBytes / mbPerMinute;
+    const megaBytes = this.chunkSize / 1048576; //1,048,576
+    const duration = megaBytes / mbPerMinute;
     console.log('\n\n\n' + margin + '---------------------------');
     console.log(margin + chalk.yellow(`         oh hi `) + `👋`);
-    console.log(margin + chalk.green(`size:`) + `        ${chalk.green(right(pretty(this.fileSize)))}`);
+    console.log(
+      margin + chalk.green(`size:`) + `        ${chalk.green(right(pretty(this.fileSize)))}`
+    );
     console.log(margin + `             ${chalk.blue(right(this.workerCount + ' workers'))}`);
     console.log(margin + `             ${chalk.magenta(right(pretty(this.chunkSize) + ' each'))}`);
     console.log(margin + chalk.red(`estimate:`) + `    ${chalk.red(right(niceTime(duration)))}`);
@@ -53,8 +55,8 @@ class WorkerPool extends EventEmitter {
 
   //pay attention to them when they finish
   listen() {
-    this.workerNodes.workersQueue.storage.forEach((worker) => {
-      worker.process.child.on('message', (msg) => {
+    this.workerNodes.workersQueue.storage.forEach(worker => {
+      worker.process.child.on('message', msg => {
         // this.emit('msg', msg);
         if (msg.type === 'workerDone') {
           this.isDone();
@@ -64,13 +66,13 @@ class WorkerPool extends EventEmitter {
   }
 
   start() {
-    let self = this;
-    let options = this.options;
+    const self = this;
+    const options = this.options;
     this.printHello();
     //convoluted loop to wire-up each worker
-    for(let i = 0; i < self.workerCount; i += 1) {
+    for (let i = 0; i < self.workerCount; i += 1) {
       //stringify options, so it gets passed to the web worker
-      let optionStr = jsonfn.stringify(options);
+      const optionStr = jsonfn.stringify(options);
       self.workerNodes.call.doSection(optionStr, this.workerCount, i).then(() => {
         self.running += 1;
         //once all workers have been started..

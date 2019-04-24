@@ -1,6 +1,6 @@
-let test = require('tape');
-var exec = require('shelljs').exec;
-let db = require('./db');
+const test = require('tape');
+const exec = require('shelljs').exec;
+const db = require('./db');
 
 // this test actually writes to mongodb! ( in the tlg-wikipedia table)
 test('test-real-smallwiki', function(t) {

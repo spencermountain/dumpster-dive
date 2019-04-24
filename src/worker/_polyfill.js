@@ -1,4 +1,3 @@
-
 //clearer than indexOf - string.includes is node>=6.3
 if (!String.prototype.includes) {
   String.prototype.includes = function(search, start) {
