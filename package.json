@@ -2,7 +2,12 @@
   "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
   "name": "dumpster-dive",
   "description": "get a wikipedia dump parsed into mongodb",
-  "version": "5.1.2",
+  "version": "5.2.0",
+  "scripts": {
+    "test": "node ./scripts/test.js",
+    "cleanup": "rm /tmp/worker.logs && touch /tmp/worker.logs",
+    "watch": "node ./scratch.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
@@ -14,20 +19,22 @@
     "node": ">=6.0.0"
   },
   "main": "./src/index.js",
-  "scripts": {
-    "test": "node ./scripts/test.js",
-    "cleanup": "rm /tmp/worker.logs && touch /tmp/worker.logs",
-    "watch": "node ./scratch.js"
+  "prettier": {
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "printWidth": 100
   },
   "dependencies": {
     "chalk": "2.4.2",
     "jsonfn": "0.31.0",
-    "mongodb": "3.1.13",
+    "mongodb": "3.2.3",
     "prettysize": "2.0.0",
     "sunday-driver": "1.0.2",
     "worker-nodes": "1.6.1",
     "wtf_wikipedia": "7.3.0",
-    "yargs": "12.0.5"
+    "yargs": "13.2.2"
   },
   "devDependencies": {
     "shelljs": "0.8.3",

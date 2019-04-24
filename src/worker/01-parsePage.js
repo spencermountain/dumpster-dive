@@ -2,7 +2,7 @@ const namespace = require('../../config').namespace;
 
 const shouldSkip = function(page) {
   //is it a different namespace?
-  const wantNamespace = new RegExp('<ns>' + namespace + '<\/ns>');
+  const wantNamespace = new RegExp('<ns>' + namespace + '</ns>');
   if (wantNamespace.test(page) === false) {
     return true;
   }
@@ -13,7 +13,7 @@ const shouldSkip = function(page) {
 const parsePage = function(txt, worker) {
   //skip redirects, etc
   if (shouldSkip(txt) === true) {
-    worker.ns += 1
+    worker.ns += 1;
     return null;
   }
   let page = {
@@ -38,7 +38,7 @@ const parsePage = function(txt, worker) {
   //get wiki text
   m = txt.match(/<text xml:space="preserve"([\s\S]*?)<\/text>/);
   if (m !== null) {
-    m[1] = m[1].replace(/^.*?>/, '')
+    m[1] = m[1].replace(/^.*?>/, '');
     page.wiki = m[1];
   }
   return page;
