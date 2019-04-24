@@ -51,8 +51,12 @@ const parseWiki = function(page, options, worker) {
     //use the title/pageID from the xml
     data.title = data.title || page.title;
     data.pageID = data.pageID || page.pageID;
-    data._id = data._id || data.title || Date.now();
+    data._id = data._id || data.title;
     data._id = encode.encodeStr(data._id);
+    //create a fallback id, if none is found
+    if (!data._id || data._id === true) {
+      delete data._id;
+    }
     return data;
   } catch (e) {
     console.log(chalk.red('\n---Error on "' + page.title + '"'));

@@ -8,7 +8,7 @@ const niceNum = require('../lib/fns').niceNumber;
 
 const doSection = async (optionStr, workerCount, workerNum) => {
   const options = jsonfn.parse(optionStr);
-  const pages = [];
+  let pages = [];
   const percent = 100 / workerCount;
   const start = percent * workerNum;
   const end = start + percent;
@@ -36,8 +36,7 @@ const doSection = async (optionStr, workerCount, workerNum) => {
     end: `${end}%`,
     splitter: '</page>',
     each: (xml, resume) => {
-      // console.log(workerNum, xml.substr(0, 200))
-      //pull-out sections from this xml
+      // pull-out sections from this xml
       let page = parsePage(xml, this);
       if (page !== null) {
         if (options.verbose === true) {

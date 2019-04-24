@@ -19,7 +19,7 @@ const writeMsg = function(pages, count, start, workerNum) {
 const writeDb = async (options, pages, workerNum) => {
   const start = Date.now();
   const obj = await openDB(options);
-  // console.log(pages[1].sections[0].infoboxes[0]);
+
   const result = await obj.col.insertMany(pages, mongoConfig).catch(async err => {
     if (err.code === 11000) {
       let errCount = err.result.getWriteErrorCount();

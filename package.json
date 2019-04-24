@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node ./scripts/test.js",
     "cleanup": "rm /tmp/worker.logs && touch /tmp/worker.logs",
-    "watch": "node ./scratch.js"
+    "watch": "node ./scratch.js",
+    "lint": "eslint ./src/**/*.js"
   },
   "repository": {
     "type": "git",

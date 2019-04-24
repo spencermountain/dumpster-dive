@@ -2,9 +2,9 @@
 // npm run watch > ./tmp.txt
 const sundayDriver = require('sunday-driver');
 
-let templates = {};
+const templates = {};
 
-let obj = {
+const obj = {
   file: './tmp.txt',
   splitter: '\n',
   each: (line, resume) => {
@@ -16,7 +16,7 @@ let obj = {
   }
 };
 
-let p = sundayDriver(obj);
+const p = sundayDriver(obj);
 p.then(() => {
   let keys = Object.keys(templates);
   keys = keys.sort((a, b) => {
@@ -25,13 +25,13 @@ p.then(() => {
     }
     return 1;
   });
-  let show = keys.slice(0, 1000);
+  const show = keys.slice(0, 1000);
   show.forEach(key => {
     let k = key.replace('\n', '');
     k = k.replace('::', '');
     k = k.replace(/^ +/, '');
     k = k.replace(/ /g, '_');
-    let link = `* [${k}](https://en.wikipedia.org/wiki/Template:${k})`;
+    const link = `* [${k}](https://en.wikipedia.org/wiki/Template:${k})`;
     console.log(link + '\t    -   ' + templates[key]);
   });
 });

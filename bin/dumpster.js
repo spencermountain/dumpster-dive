@@ -1,7 +1,7 @@
 #! /usr/bin/env node
-var dumpster = require('../src');
-var yargs = require('yargs');
-var argv = yargs
+let dumpster = require('../src');
+let yargs = require('yargs');
+let argv = yargs
   .usage('dumpster <xml filepath> [options]')
   .example('dumpster ./my/wikipedia-dump.xml --plaintext true --categories false')
   .describe('batch_size', 'how many articles to write to mongo at once [1000]')
@@ -25,7 +25,7 @@ const defaults = {
   skip_disambig: true,
   skip_redirects: true,
 
-  title: true,
+  // title: true,
   pageID: true,
   categories: true,
   citations: true,
