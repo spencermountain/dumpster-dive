@@ -22,7 +22,7 @@ const parsePage = function(txt, worker) {
     wiki: ''
   };
   //get page title
-  let m = txt.match(/<title>(.*?)<\/title>/);
+  let m = txt.match(/<title>([\s\S]+?)<\/title>/);
   if (m !== null) {
     page.title = m[1];
   } else {
