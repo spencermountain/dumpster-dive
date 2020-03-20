@@ -1,4 +1,5 @@
-const wtf = require('wtf_wikipedia');
+// const wtf = require('wtf_wikipedia');
+const wtf = require('/Users/spencer/mountain/wtf_wikipedia/src'); //TODO: changeme
 const chalk = require('chalk');
 const encode = require('./_encode');
 
@@ -39,6 +40,12 @@ const parseWiki = function(page, options, worker) {
     }
     //add-in the proper xml page-title
     doc.title(page.title);
+
+    // TODO:remove me
+    // let m = page.title.match(/\(.*?\)$/);
+    // if (m) {
+    //   console.log(m[0]);
+    // }
     //turn the wtf_wikipedia document into storable json
     let data = {};
     if (!options.custom) {
