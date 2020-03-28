@@ -1,7 +1,10 @@
 // const wtf = require('wtf_wikipedia');
 const wtf = require('/Users/spencer/mountain/wtf_wikipedia/src'); //TODO: changeme
+const plugin = require('/Users/spencer/mountain/wtf_wikipedia/plugins/classify/src');
+wtf.extend(plugin);
 const chalk = require('chalk');
-const encode = require('./_encode');
+const fs = require('fs');
+// const encode = require('./_encode');
 
 //doesn't support fancy things like &copy; to ©, etc
 const escapeXML = function(str) {
@@ -40,34 +43,13 @@ const parseWiki = function(page, options, worker) {
     }
     //add-in the proper xml page-title
     doc.title(page.title);
+    options.custom(doc, worker, fs);
 
-    // TODO:remove me
-    // let m = page.title.match(/\(.*?\)$/);
-    // if (m) {
-    //   console.log(m[0]);
-    // }
-    //turn the wtf_wikipedia document into storable json
-    let data = {};
-    if (!options.custom) {
-      //default format
-      data = doc.json(options);
-    } else {
-      //DIY format
-      data = options.custom(doc);
-    }
-    //use the title/pageID from the xml
-    data.title = data.title || page.title;
-    data.pageID = data.pageID || page.pageID;
-    data._id = data._id || data.title;
-    data._id = encode.encodeStr(data._id);
-    //create a fallback id, if none is found
-    if (!data._id || data._id === true) {
-      delete data._id;
-    }
-    return data;
+    return {};
   } catch (e) {
     console.log(chalk.red('\n---Error on "' + page.title + '"'));
     console.log(e);
+    console.log(page.wiki);
     return null;
   }
 };

@@ -4,27 +4,59 @@ const dumpster = require('./src');
 //144mb → 2.5 minutes = 57mb per worker per minute
 // const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml';
 const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml';
-// const path = './tests/smallwiki-latest-pages-articles.xml'; //3s
-// const path = './tests/tinywiki-latest-pages-articles.xml'; //2s
 const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1];
 
 const options = {
   file: path,
   db: dbName,
-  // skip_redirects: false,
-  // skip_disambig: false,
-  // missing_templates: true,
-  // custom: function(doc) {
-  //   console.log('+++' + doc.title() + '+++');
-  //   return {
-  //     title: doc.title()
-  //   };
-  // }
-  // batch_size: 1
-  workers: 1
+  workers: 1,
+  log: function(worker) {
+    // sort by freq
+    const topk = function(arr) {
+      let obj = {};
+      arr.forEach(a => {
+        obj[a] = obj[a] || 0;
+        obj[a] += 1;
+      });
+      let res = Object.keys(obj).map(k => [k, obj[k]]);
+      return res.sort((a, b) => {
+        if (a[1] > b[1]) {
+          return -1;
+        }
+        if (a[1] < b[1]) {
+          return 1;
+        }
+        return 0;
+      });
+    };
+
+    let arr = topk(worker.titles.Person || []);
+    worker.fs.writeFileSync('./results/titles.json', JSON.stringify(arr.slice(0, 70)));
+
+    console.log(arr.slice(0, 30));
+    // Object.keys(worker.titles).forEach(k => {
+    //   let arr = topk(worker.titles[k]).map(a => a[0].replace(/[\(\)]/g, ''));
+    //   console.log(`${k}:   `, arr.slice(0, 5).join(', '));
+    // });
+    console.log('\n----\n');
+  },
+  custom: function(doc, worker) {
+    let result = doc.classify();
+    result = result || {};
+    let category = result.category;
+    worker.results[category] = worker.results[category] || 0;
+    worker.results[category] += 1;
+
+    // get page titles per root
+    if (result.root) {
+      let m = doc.title().match(/\(.*\)/);
+      if (m) {
+        let title = m[0].replace(/[\(\)]/g, '');
+        worker.titles[result.root] = worker.titles[result.root] || [];
+        worker.titles[result.root].push(title);
+      }
+    }
+  }
 };
 
-//delete all pages
-// drop(options).then(() => {
 dumpster(options);
-// });

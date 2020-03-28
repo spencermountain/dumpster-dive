@@ -2,9 +2,7 @@ const chalk = require('chalk');
 const sundayDriver = require('sunday-driver');
 const parsePage = require('./01-parsePage');
 const parseWiki = require('./02-parseWiki');
-// const writeDb = require('./03-write-db');
 const jsonfn = require('jsonfn').JSONfn;
-const niceNum = require('../lib/fns').niceNumber;
 
 const doSection = async (optionStr, workerCount, workerNum) => {
   const options = jsonfn.parse(optionStr);
@@ -15,22 +13,16 @@ const doSection = async (optionStr, workerCount, workerNum) => {
   this.counts = {
     pages: 0,
     redirects: 0,
-    ns: 0,
     disambig: 0
   };
+  this.results = {};
+  this.titles = {};
+  this.categories = {};
+  this.sections = {};
   this.logger = setInterval(() => {
-    console.log(this.counts);
-    // console.log(`      ${chalk.yellow('─── worker #' + workerNum + ' ───')}: `);
-    // console.log(`         ${chalk.green('+' + niceNum(this.counts.pages))} ${chalk.grey('pages')}`);
-    // console.log(
-    //   `         ${chalk.magenta(niceNum(this.counts.redirects * -1))} ${chalk.grey('redirects')}`
-    // );
-    // console.log(
-    //   `         ${chalk.magenta(niceNum(this.counts.disambig * -1))} ${chalk.grey('disambig')}`
-    // );
-    // console.log(`         ${chalk.magenta(niceNum(this.counts.ns * -1))} ${chalk.grey('ns')}`);
-  }, 20000 + workerNum * 15);
-  // console.log(`#${workerNum} -   ${start}% → ${end}%`)
+    options.log(this);
+  }, 2000);
+
   const driver = {
     file: options.file,
     start: `${start}%`,
@@ -50,11 +42,9 @@ const doSection = async (optionStr, workerCount, workerNum) => {
         }
       }
       if (pages.length >= options.batch_size) {
-        // writeDb(options, pages, workerNum).then(() => {
         this.counts.pages += pages.length;
         pages = [];
         resume();
-        // });
       } else {
         resume();
       }

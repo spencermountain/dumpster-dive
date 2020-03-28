@@ -1,4 +1,4 @@
-const namespace = require('../../config').namespace;
+const namespace = 0;
 
 const shouldSkip = function(page) {
   //is it a different namespace?

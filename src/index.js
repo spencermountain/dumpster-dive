@@ -3,7 +3,7 @@
 // const chalk = require('chalk');
 const prelim = require('./01-prepwork');
 const WorkerPool = require('./02-Worker-pool');
-const hound = require('./03-logger');
+// const hound = require('./03-logger');
 // const openDB = require('./lib/open-db');
 const fns = require('./lib/fns');
 const oneSec = fns.oneSec;
@@ -11,15 +11,6 @@ const oneSec = fns.oneSec;
 const noop = function() {};
 
 const finish = async function(options) {
-  // const obj = await openDB(options);
-  // console.log('\n\n      👍  closing down.\n');
-  // const count = await obj.col.countDocuments();
-  // const duration = fns.timeSince(start);
-  // console.log('     -- final count is ' + chalk.magenta(fns.niceNumber(count)) + ' pages --');
-  // console.log('       ' + chalk.yellow(`took ${duration}`));
-  // console.log('              🎉');
-  // console.log('\n\n');
-  // await obj.client.close();
   process.exit();
 };
 
@@ -35,11 +26,11 @@ const main = (options, done) => {
   workers.start();
 
   //start the logger:
-  const logger = hound(options, workers);
-  logger.start();
+  // const logger = hound(options, workers);
+  // logger.start();
 
   workers.on('allWorkersFinished', () => {
-    logger.stop();
+    // logger.stop();
     oneSec(async () => {
       await done();
       oneSec(() => {
@@ -50,7 +41,7 @@ const main = (options, done) => {
 
   //handle ctrl-c gracefully
   process.on('SIGINT', async function() {
-    logger.stop();
+    // logger.stop();
     workers.cleanup();
     oneSec(() => {
       process.exit();

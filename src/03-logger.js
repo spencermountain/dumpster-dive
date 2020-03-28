@@ -40,7 +40,6 @@ class Logger {
   }
   //log some output
   async stat() {
-    console.log('stat');
     // console.time('stat')
     // const obj = await openDB(this.options);
     // let count = await this.count(obj);

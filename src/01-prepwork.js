@@ -1,6 +1,5 @@
 const chalk = require('chalk');
 const fs = require('fs');
-const config = require('../config');
 const cpuCount = require('os').cpus().length;
 
 const guardIO = function(options) {
@@ -23,20 +22,12 @@ const prepWork = function(options) {
   options = options || {};
   options = Object.assign({}, options);
 
-  //guess an appropriate dbName
-  if (!options.db) {
-    options.db = options.file.match(/\/([a-z-]+)-latest-pages/)[1] || 'wikipedia';
-  }
   //make sure the file looks good..
   guardIO(options);
 
   //set a few defaults
-  options.dbName = options.db;
   options.workers = options.workers || cpuCount;
-  options.batch_size = options.batch_size || config.batch_size;
-  if (options.encode === undefined) {
-    options.encode = true;
-  }
+
   //some top-level logging
   process.on('unhandledRejection', function(up) {
     console.log(chalk.red('--uncaught top-process error--'));
