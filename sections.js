@@ -19,9 +19,11 @@ const options = {
         }
         return 0;
       });
+      let total = worker.counts.pages || 1;
+      let arr = keys.map(k => [k, (obj[k] / total) * 100]);
       fs.writeFileSync(
         `./results/sections/${root}.json`,
-        JSON.stringify(keys.slice(0, 70), null, 2)
+        JSON.stringify(arr.slice(0, 70), null, 2)
       );
     });
     console.log(`\n--${worker.counts.pages}--\n`);

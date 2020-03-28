@@ -7,7 +7,6 @@ const fs = require('fs');
 
 const doSection = async (optionStr, workerCount, workerNum) => {
   const options = jsonfn.parse(optionStr);
-  let pages = [];
   const percent = 100 / workerCount;
   const start = percent * workerNum;
   const end = start + percent;
@@ -38,17 +37,9 @@ const doSection = async (optionStr, workerCount, workerNum) => {
         }
         //parse the page into json
         page = parseWiki(page, options, this);
-        if (page !== null) {
-          pages.push(page);
-        }
       }
-      if (pages.length >= options.batch_size) {
-        this.counts.pages += pages.length;
-        pages = [];
-        resume();
-      } else {
-        resume();
-      }
+      this.counts.pages += 1;
+      resume();
     }
   };
   const p = sundayDriver(driver);
@@ -62,9 +53,6 @@ const doSection = async (optionStr, workerCount, workerNum) => {
     //on done
     clearInterval(this.logger);
     // insert the remaining pages
-    if (pages.length > 0) {
-      // await writeDb(options, pages, workerNum);
-    }
     console.log('\n');
     console.log(`    💪  worker #${workerNum} has finished 💪 `);
     process.send({
