@@ -1,14 +1,11 @@
 const dumpster = require('./src');
-// const drop = require('./src/lib/drop-db');
 
-//144mb → 2.5 minutes = 57mb per worker per minute
-// const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml';
-const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml';
+const path = '/Users/spencer/data/wikipedia/enwiki-latest-pages-articles.xml';
+// const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml';
 const dbName = path.match(/\/([a-z-]+)-latest-pages/)[1];
 
 const options = {
   file: path,
-  db: dbName,
   workers: 1,
   log: function(worker, fs) {
     // sort by freq
@@ -32,9 +29,9 @@ const options = {
 
     Object.keys(worker.titles).forEach(k => {
       let arr = topk(worker.titles[k] || []);
-      fs.writeFileSync(`./results/${k}.json`, JSON.stringify(arr.slice(0, 70), null, 2));
+      fs.writeFileSync(`./results/titles/${k}.json`, JSON.stringify(arr.slice(0, 70), null, 2));
     });
-    console.log('\n----\n');
+    console.log(`\n--${worker.counts.pages}--\n`);
   },
   custom: function(doc, worker) {
     let result = doc.classify();
