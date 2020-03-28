@@ -3,6 +3,7 @@ const sundayDriver = require('sunday-driver');
 const parsePage = require('./01-parsePage');
 const parseWiki = require('./02-parseWiki');
 const jsonfn = require('jsonfn').JSONfn;
+const fs = require('fs');
 
 const doSection = async (optionStr, workerCount, workerNum) => {
   const options = jsonfn.parse(optionStr);
@@ -20,7 +21,7 @@ const doSection = async (optionStr, workerCount, workerNum) => {
   this.categories = {};
   this.sections = {};
   this.logger = setInterval(() => {
-    options.log(this);
+    options.log(this, fs);
   }, 2000);
 
   const driver = {

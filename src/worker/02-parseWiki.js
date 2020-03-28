@@ -3,7 +3,6 @@ const wtf = require('/Users/spencer/mountain/wtf_wikipedia/src'); //TODO: change
 const plugin = require('/Users/spencer/mountain/wtf_wikipedia/plugins/classify/src');
 wtf.extend(plugin);
 const chalk = require('chalk');
-const fs = require('fs');
 // const encode = require('./_encode');
 
 //doesn't support fancy things like &copy; to ©, etc
@@ -43,7 +42,7 @@ const parseWiki = function(page, options, worker) {
     }
     //add-in the proper xml page-title
     doc.title(page.title);
-    options.custom(doc, worker, fs);
+    options.custom(doc, worker);
 
     return {};
   } catch (e) {

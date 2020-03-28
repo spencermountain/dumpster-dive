@@ -10,7 +10,7 @@ const options = {
   file: path,
   db: dbName,
   workers: 1,
-  log: function(worker) {
+  log: function(worker, fs) {
     // sort by freq
     const topk = function(arr) {
       let obj = {};
@@ -30,14 +30,10 @@ const options = {
       });
     };
 
-    let arr = topk(worker.titles.Person || []);
-    worker.fs.writeFileSync('./results/titles.json', JSON.stringify(arr.slice(0, 70)));
-
-    console.log(arr.slice(0, 30));
-    // Object.keys(worker.titles).forEach(k => {
-    //   let arr = topk(worker.titles[k]).map(a => a[0].replace(/[\(\)]/g, ''));
-    //   console.log(`${k}:   `, arr.slice(0, 5).join(', '));
-    // });
+    Object.keys(worker.titles).forEach(k => {
+      let arr = topk(worker.titles[k] || []);
+      fs.writeFileSync(`./results/${k}.json`, JSON.stringify(arr.slice(0, 70), null, 2));
+    });
     console.log('\n----\n');
   },
   custom: function(doc, worker) {
