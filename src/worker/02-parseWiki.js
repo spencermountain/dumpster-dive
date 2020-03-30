@@ -48,7 +48,7 @@ const parseWiki = function(page, options, worker) {
   } catch (e) {
     console.log(chalk.red('\n---Error on "' + page.title + '"'));
     console.log(e);
-    console.log(page.wiki);
+    // console.log(page.wiki);
     return null;
   }
 };

@@ -19,6 +19,8 @@ const doSection = async (optionStr, workerCount, workerNum) => {
   this.titles = {};
   this.categories = {};
   this.sections = {};
+  this.infoboxes = {};
+  this.templates = {};
   this.logger = setInterval(() => {
     options.log(this, fs);
   }, 2000);
