@@ -40,7 +40,6 @@ const doSection = async (optionStr, workerCount, workerNum) => {
         //parse the page into json
         page = parseWiki(page, options, this);
       }
-      this.counts.pages += 1;
       resume();
     }
   };

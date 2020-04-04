@@ -32,7 +32,7 @@ const options = {
     let result = doc.classify();
     result = result || {};
     // get page titles per root
-    if (result.root) {
+    if (!result.root) {
       worker.infoboxes[result.root] = worker.infoboxes[result.root] || [];
       let infoboxes = doc
         .infoboxes()

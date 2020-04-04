@@ -36,9 +36,11 @@ const options = {
       worker.categories[result.root] = worker.categories[result.root] || [];
       let templates = doc.categories().filter(s => s);
       templates.forEach(s => {
-        let title = s.toLowerCase();
-        worker.categories[result.root][title] = worker.categories[result.root][title] || 0;
-        worker.categories[result.root][title] += 1;
+        let cat = s.toLowerCase();
+        cat.split(/ /).forEach(title => {
+          worker.categories[result.root][title] = worker.categories[result.root][title] || 0;
+          worker.categories[result.root][title] += 1;
+        });
       });
     }
   }

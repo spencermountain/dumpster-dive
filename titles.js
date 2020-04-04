@@ -41,7 +41,7 @@ const options = {
     worker.results[category] += 1;
 
     // get page titles per root
-    if (result.root) {
+    if (!result.root) {
       let m = doc.title().match(/\(.*\)/);
       if (m) {
         let title = m[0].replace(/[\(\)]/g, '');
