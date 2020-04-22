@@ -8,9 +8,9 @@ const openDB = require('./lib/open-db');
 const fns = require('./lib/fns');
 const oneSec = fns.oneSec;
 const start = Date.now();
-const noop = function() {};
+const noop = function () {};
 
-const finish = async function(options) {
+const finish = async function (options) {
   const obj = await openDB(options);
   console.log('\n\n      👍  closing down.\n');
   const count = await obj.col.countDocuments();
@@ -29,7 +29,6 @@ const main = (options, done) => {
 
   //make sure the file exists, and things
   options = prelim(options);
-
   //init workers
   const workers = new WorkerPool(options);
   workers.start();
@@ -49,7 +48,7 @@ const main = (options, done) => {
   });
 
   //handle ctrl-c gracefully
-  process.on('SIGINT', async function() {
+  process.on('SIGINT', async function () {
     logger.stop();
     workers.cleanup();
     oneSec(() => {

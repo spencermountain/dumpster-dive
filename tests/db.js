@@ -1,28 +1,25 @@
 const MongoClient = require('mongodb').MongoClient;
 
-const open = function(dbName, callback) {
+const open = function (dbName, callback) {
   const url = 'mongodb://localhost:27017/' + dbName;
-  MongoClient.connect(
-    url,
-    {
-      useNewUrlParser: true
-    },
-    function(err, client) {
-      if (err) {
-        console.log(err);
-        process.exit(1);
-      }
-      const db = client.db(dbName);
-      callback(db, client);
+  MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, function (
+    err,
+    client
+  ) {
+    if (err) {
+      console.log(err);
+      process.exit(1);
     }
-  );
+    const db = client.db(dbName);
+    callback(db, client);
+  });
 };
 
 //count all pages
-const count = function(dbName, cb) {
-  open(dbName, function(db, client) {
+const count = function (dbName, cb) {
+  open(dbName, function (db, client) {
     const col = db.collection('pages');
-    col.countDocuments().then(len => {
+    col.countDocuments().then((len) => {
       client.close();
       cb(len);
     });
@@ -30,10 +27,10 @@ const count = function(dbName, cb) {
 };
 
 //grab a couple
-const firstTen = function(dbName, cb) {
-  open(dbName, function(db, client) {
+const firstTen = function (dbName, cb) {
+  open(dbName, function (db, client) {
     const col = db.collection('pages');
-    col.find({}).toArray(function(err, docs) {
+    col.find({}).toArray(function (err, docs) {
       if (err) {
         console.log(err);
       }
@@ -45,13 +42,13 @@ const firstTen = function(dbName, cb) {
 };
 
 //delete all pages
-const drop = function(dbName, colName, cb) {
-  open(dbName, function(db, client) {
+const drop = function (dbName, colName, cb) {
+  open(dbName, function (db, client) {
     db.collection('pages');
     const col = db.collection(colName);
     // console.log('dropping ' + colName)
     col.deleteMany({});
-    setTimeout(function() {
+    setTimeout(function () {
       client.close();
       cb();
     }, 2000);

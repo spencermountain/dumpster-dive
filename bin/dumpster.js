@@ -12,15 +12,23 @@ let argv = yargs
   .describe('coordinates', 'include coordinate data? [true]')
   .describe('infoboxes', 'include infobox data? [true]')
   .describe('images', 'include image data? [true]')
-  .describe('markdown', 'include markdown output [false]')
-  .describe('html', 'include html output [false]')
-  .describe('latex', 'include latex output [false]')
+  .describe('plaintext', 'include page plaintext? [false]')
   .describe('verbose', 'run in verbose mode [false]')
   .describe('verbose_skip', 'log skipped disambigs & redirects [false]')
   .describe('workers', 'run in verbose mode [CPUCount]').argv;
 
 const defaults = {
-  batch_size: 500
+  batch_size: 500,
+  skip_disambig: true,
+  skip_redirects: true,
+  categories: true,
+  citations: true,
+  coordinates: true,
+  infoboxes: true,
+  images: true,
+  plaintext: false,
+  verbose: false,
+  verbose_skip: false
 };
 const toBool = {
   true: true,
@@ -30,7 +38,7 @@ const toBool = {
 let file = argv['_'][0];
 //set defaults to given arguments
 let options = Object.assign({}, defaults);
-Object.keys(options).forEach(k => {
+Object.keys(options).forEach((k) => {
   if (argv.hasOwnProperty(k) && argv[k] !== undefined) {
     //coerce strings to booleans
     if (toBool.hasOwnProperty(argv[k])) {

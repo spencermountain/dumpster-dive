@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const encode = require('./_encode');
 
 //doesn't support fancy things like &copy; to ©, etc
-const escapeXML = function(str) {
+const escapeXML = function (str) {
   return str
     .replace(/&apos;/g, "'")
     .replace(/&quot;/g, '"')
@@ -13,7 +13,7 @@ const escapeXML = function(str) {
 };
 
 //get parsed json from the wiki markup
-const parseWiki = function(page, options, worker) {
+const parseWiki = function (page, options, worker) {
   try {
     page.wiki = escapeXML(page.wiki || '');
     // options.title = options.title || page.title
@@ -47,6 +47,10 @@ const parseWiki = function(page, options, worker) {
     } else {
       //DIY format
       data = options.custom(doc);
+    }
+    // add plaintext output
+    if (options.plaintext === true) {
+      data.plaintext = doc.text();
     }
     //use the title/pageID from the xml
     data.title = data.title || page.title;
