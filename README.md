@@ -84,7 +84,7 @@ The Afrikaans wikipedia (around 47,000 articles) only takes a few minutes to dow
 # dowload an xml dump (38mb, couple minutes)
 wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
 ```
-the english dump is 16Gb. The [download page](https://dumps.wikimedia.org) is confusing, but you'll want this file: `${LANG}wiki-latest-pages-articles.xml.bz2 `
+the english dump is 16Gb. The [download page](https://dumps.wikimedia.org/enwiki/latest/) is confusing, but you'll want this file: `${LANG}wiki-latest-pages-articles.xml.bz2 `
 
 ### 4️⃣ unzip it
 i know, this sucks. but it makes the parser so much faster.
