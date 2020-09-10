@@ -60,7 +60,7 @@ const doSection = async (optionStr, workerCount, workerNum) => {
     }
   };
   const p = sundayDriver(driver);
-  p.catch(err => {
+  p.catch((err) => {
     console.log(chalk.red('\n\n========== Worker error!  ====='));
     console.log('🚨       worker #' + workerNum + '           🚨');
     console.log(err);
@@ -75,6 +75,7 @@ const doSection = async (optionStr, workerCount, workerNum) => {
     }
     console.log('\n');
     console.log(`    💪  worker #${workerNum} has finished 💪 `);
+    process.send = process.send || function () {};
     process.send({
       type: 'workerDone',
       pid: process.pid
