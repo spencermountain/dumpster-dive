@@ -6,7 +6,7 @@ const openDb = async function (options) {
   if (!options.db) {
     console.warn('\n--missing db name--');
   }
-  const url = config.db_url + options.db;
+  const url = (options.db_url) ? options.db_url : config.db_url;
 
   return new Promise((resolve, reject) => {
     MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true }, function (
