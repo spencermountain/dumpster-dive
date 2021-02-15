@@ -2,7 +2,7 @@
   "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
   "name": "dumpster-dive",
   "description": "get a wikipedia dump parsed into mongodb",
-  "version": "5.4.0",
+  "version": "5.5.0",
   "scripts": {
     "test": "node ./scripts/test.js",
     "cleanup": "rm /tmp/worker.logs && touch /tmp/worker.logs",
