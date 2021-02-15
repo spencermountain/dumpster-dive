@@ -1,3 +1,8 @@
+### 5.5.0
+
+- **[fix]** - allow setting mongodb url #92 (Thanks Vid!)
+- update deps
+
 ### 5.4.0
 
 - **[fix]** - for encoding in references #89

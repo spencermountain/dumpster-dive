@@ -30,17 +30,17 @@
   "dependencies": {
     "chalk": "4.1.0",
     "jsonfn": "0.31.0",
-    "mongodb": "3.6.2",
+    "mongodb": "3.6.4",
     "prettysize": "2.0.0",
     "sunday-driver": "1.0.2",
     "worker-nodes": "1.6.1",
     "wtf_wikipedia": "8.5.1",
-    "yargs": "16.0.3"
+    "yargs": "16.2.0"
   },
   "devDependencies": {
     "shelljs": "0.8.4",
     "tap-spec": "5.0.0",
-    "tape": "5.0.1"
+    "tape": "5.1.1"
   },
   "license": "MIT"
 }

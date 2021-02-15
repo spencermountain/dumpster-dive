@@ -51,7 +51,7 @@ dumpster({ file: './enwiki-latest-pages-articles.xml', db: 'enwiki' }, callback)
 ### Command-Line:
 
 ```bash
-dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --html=true
+dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --images=false
 ```
 
 _then check out the articles in mongo:_
