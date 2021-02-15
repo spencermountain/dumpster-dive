@@ -220,7 +220,7 @@ if you're using any `.json()` methods, pass a `{encode:true}` in to avoid mongo 
   if your databse is non-local, or requires authentication, set it like this:
 
 ```js
-dumpster({ db_url: 'mongodb://localhost:27017/' }, () => console.log('done!'));
+dumpster({ db_url: 'mongodb://username:password@localhost:27017/' }, () => console.log('done!'));
 ```
 
 ## how it works:
