@@ -1,3 +1,7 @@
+### 5.6.0
+
+- update deps
+
 ### 5.5.0
 
 - **[fix]** - allow setting mongodb url #92 (Thanks Vid!)
