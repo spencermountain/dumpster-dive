@@ -28,19 +28,19 @@
     "printWidth": 100
   },
   "dependencies": {
-    "chalk": "4.1.2",
+    "chalk": "5.0.1",
     "jsonfn": "0.31.0",
     "mongodb": "3.6.4",
     "prettysize": "2.0.0",
     "sunday-driver": "1.0.2",
     "worker-nodes": "1.6.1",
-    "wtf_wikipedia": "9.0.1",
-    "yargs": "17.1.1"
+    "wtf_wikipedia": "10.0.0",
+    "yargs": "17.4.0"
   },
   "devDependencies": {
-    "shelljs": "0.8.4",
+    "shelljs": "0.8.5",
     "tap-spec": "5.0.0",
-    "tape": "5.3.1"
+    "tape": "5.5.2"
   },
   "license": "MIT"
 }
