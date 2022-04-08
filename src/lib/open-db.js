@@ -18,7 +18,7 @@ const openDb = async function (options) {
         reject(err);
       }
       const db = client.db(options.db);
-      const collection = db.collection(config.collection);
+      const collection = db.collection((options.collection) ? options.collection : config.collection);
       //we use all of these.
       const obj = {
         db: db,

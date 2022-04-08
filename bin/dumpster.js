@@ -15,7 +15,10 @@ let argv = yargs
   .describe('plaintext', 'include page plaintext? [false]')
   .describe('verbose', 'run in verbose mode [false]')
   .describe('verbose_skip', 'log skipped disambigs & redirects [false]')
-  .describe('workers', 'run in verbose mode [CPUCount]').argv;
+  .describe('workers', 'run in verbose mode [CPUCount]')
+  .describe('db_url', 'the location of the mongo database [false]')
+  .describe('db', 'name of the database to store data [false]')
+  .describe('collection', 'name of collection to store data [false]').argv;
 
 const defaults = {
   batch_size: 500,
@@ -54,11 +57,19 @@ if (!file) {
   process.exit(1);
 }
 //try to make-up the language name for the db
-let db = 'wikipedia';
-if (file.match(/-(latest|\d{8})-pages-articles/)) {
-  db = file.match(/([a-z]+)-(latest|\d{8})-pages-articles/) || [];
-  db = db[1] || 'wikipedia';
+if (!argv.db) {
+  let db = 'wikipedia';
+  if (file.match(/-(latest|\d{8})-pages-articles/)) {
+    db = file.match(/([a-z]+)-(latest|\d{8})-pages-articles/) || [];
+    db = db[1] || 'wikipedia';
+  }
+  options.db = db;
+} else {
+  options.db = argv.db;
 }
+
+options.db_url = argv.db_url;
+options.collection = argv.collection;
 options.file = file;
-options.db = db;
+
 dumpster(options);
