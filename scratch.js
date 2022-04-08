@@ -2,7 +2,7 @@ const dumpster = require('./src');
 const drop = require('./src/lib/drop-db');
 
 //144mb → 2.5 minutes = 57mb per worker per minute
-const path = '/Users/spencer/Desktop/afwiki-latest-pages-articles.xml';
+const path = '/Users/spencer/data/wikipedias/afwiki-latest-pages-articles.xml';
 // const path = '/Users/spencer/Downloads/afwiki-latest-pages-articles.xml';
 // const path = '/Users/spencer/data/wikipedia/simplewiki-latest-pages-articles.xml'
 // const path = './tests/smallwiki-latest-pages-articles.xml'; //3s
