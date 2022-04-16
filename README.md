@@ -27,13 +27,17 @@
 	<img src="https://user-images.githubusercontent.com/399657/39391259-b57ca9e0-4a6e-11e8-8b33-2064e5fc187e.png"/>
 </div>
 
-`dumpster-dive` is a **nodejs** script that puts a **highly-queryable** wikipedia on your computer in a nice afternoon.
+`dumpster-dive` is a **node** script that puts a **highly-queryable** wikipedia on your computer in a nice afternoon.
 
 <!-- spacer -->
 <img height="15px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
 
-It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn **_wikiscript_** into whatever json.
+It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn **_wikiscript_** into any json.
+
+<!-- spacer -->
+<img height="15px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+
 
 <div align="center">
  -- <b>en-wikipedia</b> takes about 5-hours, end-to-end --
@@ -46,7 +50,9 @@ It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process 
 <!-- spacer -->
 <img height="25px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
-this library writes data to a database - if you'd like to simply write files to the filesystem, use **[dumpster-dip](https://github.com/spencermountain/dumpster-dip)**
+this library writes to a database<br/>
+
+if you'd like to simply write files to the filesystem, use **[dumpster-dip](https://github.com/spencermountain/dumpster-dip)** instead of dumpster-dive.
 
 <!-- spacer -->
 <img height="25px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
@@ -63,6 +69,10 @@ npm install -g dumpster-dive
 var dumpster = require('dumpster-dive');
 dumpster({ file: './enwiki-latest-pages-articles.xml', db: 'enwiki' }, callback);
 ```
+
+<!-- spacer -->
+<img height="15px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+
 
 ### Command-Line:
 
@@ -83,7 +93,7 @@ db.pages.find({title:"Toronto"})[0].categories
 ```
 
 <!-- spacer -->
-<img height="50px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+<img height="55px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
 
 # Steps:
