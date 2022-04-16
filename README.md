@@ -37,6 +37,12 @@ It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process 
 
 ![dumpster](https://user-images.githubusercontent.com/399657/40262198-a268b95a-5ad3-11e8-86ef-29c2347eec81.gif)
 
+<p></p>
+
+this library writes data to a database - if you'd like to simply write files to the filesystem, use **[dumpster-dip](https://github.com/spencermountain/dumpster-dip)**
+
+<p></p>
+
 ```bash
 npm install -g dumpster-dive
 ```
