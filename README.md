@@ -29,6 +29,10 @@
 
 `dumpster-dive` is a **nodejs** script that puts a **highly-queryable** wikipedia on your computer in a nice afternoon.
 
+<!-- spacer -->
+<img height="15px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+
+
 It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn **_wikiscript_** into whatever json.
 
 <div align="center">
@@ -39,7 +43,13 @@ It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process 
 
 <p></p>
 
+<!-- spacer -->
+<img height="25px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+
 this library writes data to a database - if you'd like to simply write files to the filesystem, use **[dumpster-dip](https://github.com/spencermountain/dumpster-dip)**
+
+<!-- spacer -->
+<img height="25px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
 <p></p>
 
@@ -71,6 +81,10 @@ db.pages.find({title:"Toronto"})[0].categories
 #[ "Former colonial capitals in Canada",
 #  "Populated places established in 1793" ...]
 ```
+
+<!-- spacer -->
+<img height="50px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+
 
 # Steps:
 
@@ -132,6 +146,9 @@ The console will update you every couple seconds to let you know where it's at.
 
 ![image](https://user-images.githubusercontent.com/399657/40262181-7c1f17bc-5ad3-11e8-95ab-55f324022d43.png)
 
+<!-- spacer -->
+<img height="25px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+
 go check-out the data! to view your data in the mongo console:
 
 ```js
@@ -156,12 +173,19 @@ db.pages.count({ images: {$size: 0} })
 
 alternatively, you can run `dumpster-report afwiki` to see a quick spot-check of the records it has created across the database.
 
+<!-- spacer -->
+<img height="25px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+
 ### Same for the English wikipedia:
 
 the english wikipedia will work under the same process, but
 the download will take an afternoon, and the loading/parsing a couple hours. The en wikipedia dump is a 13 GB (for [enwiki-20170901-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/20170901/enwiki-20170901-pages-articles.xml.bz2)), and becomes a pretty legit mongo collection uncompressed. It's something like 51GB, but mongo can do it 💪.
 
-### Options:
+<!-- spacer -->
+<img height="40px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+
+
+## Options:
 
 dumpster follows all the conventions of [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia), and you can pass-in any fields for it to include in it's json.
 
@@ -228,6 +252,9 @@ if you're using any `.json()` methods, pass a `{encode:true}` in to avoid mongo 
 ```js
 dumpster({ db_url: 'mongodb://username:password@localhost:27017/' }, () => console.log('done!'));
 ```
+
+<!-- spacer -->
+<img height="40px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
 ## how it works:
 
