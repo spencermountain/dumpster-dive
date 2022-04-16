@@ -50,9 +50,9 @@ It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process 
 <!-- spacer -->
 <img height="25px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
-this library writes to a database<br/>
+this library writes to a database,<br/>
 
-if you'd like to simply write files to the filesystem, use **[dumpster-dip](https://github.com/spencermountain/dumpster-dip)** instead of dumpster-dive.
+if you'd like to simply write files to the filesystem, use **[dumpster-dip](https://github.com/spencermountain/dumpster-dip)** instead.
 
 <!-- spacer -->
 <img height="25px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
@@ -62,6 +62,10 @@ if you'd like to simply write files to the filesystem, use **[dumpster-dip](http
 ```bash
 npm install -g dumpster-dive
 ```
+
+<!-- spacer -->
+<img height="15px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
+
 
 ### 😎 API
 
@@ -80,7 +84,7 @@ dumpster({ file: './enwiki-latest-pages-articles.xml', db: 'enwiki' }, callback)
 dumpster /path/to/my-wikipedia-article-dump.xml --citations=false --images=false
 ```
 
-_then check out the articles in mongo:_
+_then check em out in mongo:_
 
 ```bash
 $ mongo        #enter the mongo shell
@@ -148,7 +152,7 @@ dumpster ./afwiki-latest-pages-articles.xml
 
 just put some [epsom salts](https://www.youtube.com/watch?v=QSlIHCu2Smw) in there, it feels great.
 
-The en-wiki dump should take a few hours. Maybe 8. Should be done before dinner.
+The en-wiki dump should take a few hours. Maybe 8. Maybe 4. Have a snack prepared.
 
 The console will update you every couple seconds to let you know where it's at.
 
@@ -159,7 +163,7 @@ The console will update you every couple seconds to let you know where it's at.
 <!-- spacer -->
 <img height="25px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
-go check-out the data! to view your data in the mongo console:
+hey, go check-out your data - hit-up the mongo console:
 
 ```js
 $ mongo
