@@ -31,7 +31,8 @@ const writeDb = async (options, pages, workerNum) => {
     }
     //pretty-print this duplicate-pages error
     if (err.result) {
-      err = err.result.toJSON();
+      // err = err.result.toJSON();
+      err = err.result;
       const count = err.nInserted;
       writeMsg(pages, count, start, workerNum);
     }
