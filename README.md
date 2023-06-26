@@ -123,11 +123,15 @@ mongod --config /mypath/to/mongod.conf
 The Afrikaans wikipedia (around 93,000 articles) only takes a few minutes to download, and 5 mins to load into mongo on a macbook:
 
 ```bash
-# dowload an xml dump (38mb, couple minutes)
+# download an xml dump (38mb, couple minutes)
 wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.bz2
 ```
 
-the english dump is 16Gb. The [download page](https://dumps.wikimedia.org/enwiki/latest/) is confusing, but you'll want this file: `${LANG}wiki-latest-pages-articles.xml.bz2 `
+the english dump is 16Gb. The [download page](https://dumps.wikimedia.org/enwiki/latest/) is confusing, but you'll want this file:
+`https://dumps.wikimedia.org/${LANG}wiki/latest/${LANG}wiki-latest-pages-articles.xml.bz2 `
+
+for example: `https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2 `
+
 
 ### 4️⃣ unzip it
 
