@@ -128,10 +128,12 @@ wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.
 ```
 
 the english dump is 16Gb. The [download page](https://dumps.wikimedia.org/enwiki/latest/) is confusing, but you'll want this file:
-`https://dumps.wikimedia.org/${LANG}wiki/latest/${LANG}wiki-latest-pages-articles.xml.bz2 `
+<pre>wget https://dumps.wikimedia.org/<b>${LANG}</b>wiki/latest/<b>${LANG}</b>wiki-latest-pages-articles.xml.bz2</pre>
 
-for example: `https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2 `
-
+for example, the English version is:
+```bash
+wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
+```
 
 ### 4️⃣ unzip it
 
