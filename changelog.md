@@ -1,6 +1,11 @@
-### 5.6.0
+### 5.6.3
+- **[update]** - dependencies
 
-- update deps
+### 5.6.2
+- **[update]** - dependencies
+
+### 5.6.0
+- **[update]** - dependencies
 
 ### 5.5.0
 
