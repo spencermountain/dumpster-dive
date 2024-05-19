@@ -145,7 +145,14 @@ bzip2 -d ./afwiki-latest-pages-articles.xml.bz2
 
 On a macbook, unzipping en-wikipedia takes an hour or so. This is the most-boring part. Eat some lunch.
 
-The english wikipedia is around 60Gb.
+Or use a multithread bzip2 implementation like `lbzip2`, which takes around 4 minutes on a M1 Pro Mac with 13 threads:
+
+```bash
+brew install lbzip2
+bzip2 -d ./afwiki-latest-pages-articles.xml.bz2
+```
+
+The english wikipedia is around 100Gb.
 
 ### 5️⃣ OK, start it off
 
