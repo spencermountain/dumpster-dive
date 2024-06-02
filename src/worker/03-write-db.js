@@ -20,7 +20,16 @@ const writeDb = async (options, pages, workerNum) => {
   const start = Date.now();
   const obj = await openDB(options);
 
-  const result = await obj.col.insertMany(pages, mongoConfig).catch(async err => {
+  // Prepare bulk operations
+  const bulkOps = pages.map(page => ({
+    updateOne: {
+       filter: { _id: page._id }, // Assuming `_id` is the unique key
+       update: { $set: page },
+       upsert: true,
+    },
+  }));
+    
+  const result = await obj.col.bulkWrite(bulkOps, mongoConfig).catch(async err => {
     if (err.code === 11000) {
       let errCount = err.result.getWriteErrorCount();
       errCount = fns.niceNumber(errCount);
@@ -40,7 +49,7 @@ const writeDb = async (options, pages, workerNum) => {
   });
   //no errors thrown, all good
   if (result) {
-    const count = result.insertedCount;
+    const count = result.upsertedCount;
     writeMsg(pages, count, start, workerNum);
     await obj.client.close();
   }
