@@ -149,7 +149,7 @@ Or use a multithread bzip2 implementation like `lbzip2`, which takes around 4 mi
 
 ```bash
 brew install lbzip2
-bzip2 -d ./afwiki-latest-pages-articles.xml.bz2
+lbzip2 -d ./afwiki-latest-pages-articles.xml.bz2
 ```
 
 The english wikipedia is around 100Gb.
