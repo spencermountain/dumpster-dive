@@ -32,12 +32,10 @@
 <!-- spacer -->
 <img height="15px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
-
 It uses [worker-nodes](https://github.com/allegro/node-worker-nodes) to process pages in parallel, and [wtf_wikipedia](https://github.com/spencermountain/wtf_wikipedia) to turn **_wikiscript_** into any json.
 
 <!-- spacer -->
 <img height="15px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
-
 
 <div align="center">
  -- <b>en-wikipedia</b> takes about 5-hours, end-to-end --
@@ -66,7 +64,6 @@ npm install -g dumpster-dive
 <!-- spacer -->
 <img height="15px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
-
 ### 😎 API
 
 ```js
@@ -76,7 +73,6 @@ dumpster({ file: './enwiki-latest-pages-articles.xml', db: 'enwiki' }, callback)
 
 <!-- spacer -->
 <img height="15px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
-
 
 ### Command-Line:
 
@@ -99,7 +95,6 @@ db.pages.find({title:"Toronto"})[0].categories
 <!-- spacer -->
 <img height="55px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
 
-
 # Steps:
 
 ### 1️⃣ you can do this.
@@ -109,7 +104,7 @@ just a few Gb. you can do this.
 
 ### 2️⃣ get ready
 
-Install [nodejs](https://nodejs.org/en/) (at least `v6`), [mongodb](https://docs.mongodb.com/manual/installation/) (at least `v3`)
+Install [nodejs](https://nodejs.org/en/) (at least `v12`), [mongodb](https://docs.mongodb.com/manual/installation/) (~v7)
 
 ```bash
 # install this script
@@ -128,9 +123,11 @@ wget https://dumps.wikimedia.org/afwiki/latest/afwiki-latest-pages-articles.xml.
 ```
 
 the english dump is 16Gb. The [download page](https://dumps.wikimedia.org/enwiki/latest/) is confusing, but you'll want this file:
+
 <pre>wget https://dumps.wikimedia.org/<b>${LANG}</b>wiki/latest/<b>${LANG}</b>wiki-latest-pages-articles.xml.bz2</pre>
 
 for example, the English version is:
+
 ```bash
 wget https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2
 ```
@@ -210,7 +207,6 @@ the download will take an afternoon, and the loading/parsing a couple hours. The
 
 <!-- spacer -->
 <img height="40px" src="https://user-images.githubusercontent.com/399657/68221862-17ceb980-ffb8-11e9-87d4-7b30b6488f16.png"/>
-
 
 ## Options:
 
