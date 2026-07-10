@@ -74,4 +74,12 @@ test('xml entity decoding', () => {
   assert.strictEqual(decode('&amp;lt;'), '&lt;') // double-encoded stays literal
   assert.strictEqual(decode('&quot;hi&quot; &#039;yo&#039;'), `"hi" 'yo'`)
   assert.strictEqual(decode('&#8212;'), '—')
+  assert.strictEqual(decode('&#x1F600;'), '😀')
+  assert.strictEqual(decode('no entities'), 'no entities')
+})
+
+test('junk entities never throw', () => {
+  assert.strictEqual(decode('&#11111111;'), '&#11111111;') // > 0x10ffff
+  assert.strictEqual(decode('&#xFFFFFFFF;'), '&#xFFFFFFFF;')
+  assert.strictEqual(decode('&bogus; &'), '&bogus; &')
 })

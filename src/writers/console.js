@@ -6,7 +6,7 @@ const consoleWriter = {
     return new Promise((resolve) => {
       let ok = true
       for (let article of batch) {
-        ok = process.stdout.write(JSON.stringify(article) + '\n')
+        ok = process.stdout.write(JSON.stringify(article) + '\n') && ok
       }
       if (ok) {
         resolve()

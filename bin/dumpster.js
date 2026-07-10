@@ -33,8 +33,10 @@ flags:
   -v, --version
 `
 
-const args = parseArgs({
-  options: {
+let args = null
+try {
+  args = parseArgs({
+    options: {
     lang: { type: 'string', short: 'l' },
     project: { type: 'string', short: 'p' },
     date: { type: 'string' },
@@ -49,8 +51,12 @@ const args = parseArgs({
     quiet: { type: 'boolean', short: 'q' },
     help: { type: 'boolean', short: 'h' },
     version: { type: 'boolean', short: 'v' },
-  },
-}).values
+    },
+  }).values
+} catch (err) {
+  process.stderr.write(`  ✗ ${err.message}\n\n${usage}`)
+  process.exit(1)
+}
 
 if (args.help) {
   console.log(usage)

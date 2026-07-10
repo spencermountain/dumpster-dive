@@ -1,17 +1,6 @@
-// wikimedia database names: 'en' + 'wikipedia' → 'enwiki'
-const suffixes = {
-  wikipedia: 'wiki',
-  wiktionary: 'wiktionary',
-  wikiquote: 'wikiquote',
-  wikibooks: 'wikibooks',
-  wikisource: 'wikisource',
-  wikinews: 'wikinews',
-  wikiversity: 'wikiversity',
-  wikivoyage: 'wikivoyage',
-}
-
+// wikimedia database names: 'en'+'wikipedia' → 'enwiki', 'fr'+'wiktionary' → 'frwiktionary'
 const dbName = function (lang, project) {
-  let suffix = suffixes[project] || project
+  let suffix = project === 'wikipedia' ? 'wiki' : project
   return lang.replace(/-/g, '_') + suffix
 }
 

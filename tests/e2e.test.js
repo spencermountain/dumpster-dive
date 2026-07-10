@@ -162,3 +162,7 @@ test('bad fmt throws early', async () => {
 test('missing index file explains itself', async () => {
   await assert.rejects(() => dumpster({ file: '/nope/enwiki-latest-pages-articles-multistream.xml.bz2', verbose: false }), /cannot find dump file/)
 })
+
+test('underivable index filename explains itself', async () => {
+  await assert.rejects(() => dumpster({ file: '/nope/enwiki-weird-name.xml.bz2', verbose: false }), /cannot derive the index filename/)
+})

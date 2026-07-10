@@ -8,10 +8,8 @@ import loadPageviews from './lib/pageviews.js'
 import readIndex from './lib/read-index.js'
 import partition from './lib/partition.js'
 import runPool from './lib/pool.js'
-import Progress from './lib/progress.js'
+import Progress, { comma } from './lib/progress.js'
 import consoleWriter from './writers/console.js'
-
-const comma = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
 // a plugin is { open?(opts), write(articles), close?(stats) }
 // a bare async function is shorthand for { write }
@@ -32,6 +30,9 @@ const normalizePlugin = function (plugin) {
 const ensureFiles = async function (opts, progress) {
   if (opts.file !== null) {
     let index = opts.index || opts.file.replace(/-multistream\.xml\.bz2$/, '-multistream-index.txt.bz2')
+    if (index === opts.file) {
+      throw new Error(`cannot derive the index filename from '${opts.file}'\n  (pass the -multistream-index.txt.bz2 path as the 'index' option)`)
+    }
     if (existsSync(opts.file) === false) {
       throw new Error(`cannot find dump file: ${opts.file}`)
     }
@@ -43,8 +44,8 @@ const ensureFiles = async function (opts, progress) {
   mkdirSync(opts.dir, { recursive: true })
   let fileUrl = dumpUrl(opts)
   let idxUrl = indexUrl(opts)
-  let file = path.join(opts.dir, fileUrl.replace(/^.*\//, ''))
-  let index = path.join(opts.dir, idxUrl.replace(/^.*\//, ''))
+  let file = path.join(opts.dir, path.basename(fileUrl))
+  let index = path.join(opts.dir, path.basename(idxUrl))
   await download(idxUrl, index, progress)
   await download(fileUrl, file, progress)
   return { file, index }

@@ -118,3 +118,4 @@ class Progress {
 }
 
 export default Progress
+export { comma }
