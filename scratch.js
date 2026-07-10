@@ -1,12 +1,11 @@
-import dumpster from './src/index.js';
+import dumpster from './src/index.js'
 
-const path = '/Users/spencer/data/wikipedias/afwiki-latest-pages-articles.xml';
-
-const options = {
-  file: path,
-};
-
-//delete all pages
-drop(options).then(() => {
-  dumpster(options);
-});
+// tiny wiki, ~600kb download - good for kicking the tires
+let stats = await dumpster({
+  lang: 'srn',
+  dir: '/Users/spencer/data/wikipedias',
+  plugin: (batch) => {
+    batch.forEach((article) => console.log(article.title))
+  },
+})
+console.error(stats)

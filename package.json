@@ -2,19 +2,34 @@
   "author": "Spencer Kelly <spencermountain@gmail.com> (http://spencermounta.in)",
   "name": "dumpster-dive",
   "description": "parse a wikipedia dump into json",
-  "version": "5.6.3",
-  "scripts": {},
+  "version": "6.0.0",
+  "type": "module",
+  "bin": {
+    "dumpster": "./bin/dumpster.js"
+  },
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "make-fixture": "node ./tests/make-fixture.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git://github.com/spencermountain/wikipedia-to-mongodb.git"
+    "url": "git://github.com/spencermountain/dumpster-dive.git"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.3.0"
   },
   "main": "./src/index.js",
-  "dependencies": {
-    "wtf_wikipedia": "^10.3.0"
+  "exports": {
+    ".": "./src/index.js"
   },
-  "devDependencies": {},
+  "files": [
+    "bin/",
+    "src/"
+  ],
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "unbzip2-stream": "^1.4.3",
+    "wtf_wikipedia": "^10.4.2"
+  },
   "license": "MIT"
 }

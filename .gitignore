@@ -1,6 +1,11 @@
-afwiki-latest-pages-articles.xml
-*.log
 node_modules
-dump.rdb
+*.log
 .DS_STORE
 tmp.txt
+# downloaded dumps + outputs
+*.xml.bz2
+*.txt.bz2
+*-user.bz2
+*.part
+*.ndjson
+!tests/fixtures/*.bz2
