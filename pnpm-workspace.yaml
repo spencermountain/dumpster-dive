@@ -1,2 +1,4 @@
+allowBuilds:
+  wtf_wikipedia: set this to true or false
 ignoredBuiltDependencies:
   - wtf_wikipedia
