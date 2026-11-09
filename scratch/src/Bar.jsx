@@ -7,6 +7,9 @@ const FULL = '█'
 const TRACK = '#666666'
 // partial cell, in eighths - index 0 is an empty cell, 8 is a full one
 const EIGHTHS = ['', '▏', '▎', '▍', '▌', '▋', '▊', '▉', FULL]
+// half-block end caps, to round off the bar
+const LEFT_CAP = '▐'
+const RIGHT_CAP = '▌'
 
 // clamp any input into an integer 0-100
 const toPercent = function (n) {
@@ -26,7 +29,12 @@ const fill = function (pct, width) {
 // horizontal bar chart for a percentage integer
 const Bar = function ({ percent = 0, width = 75, label = '', status = '', color = 'green' }) {
   let pct = toPercent(percent)
-  let { full, partial, empty } = fill(pct, width)
+  // the caps take one cell each; the scale runs across the cells between them
+  let inner = Math.max(0, width - 2)
+  let { full, partial, empty } = fill(pct, inner)
+  // caps take the fill colour once the bar reaches them
+  let leftColor = pct > 0 ? color : TRACK
+  let rightColor = pct >= 100 ? color : TRACK
   return (
     <Box flexDirection="row" justifyContent="flex-start" alignItems="center">
       <Box
@@ -51,11 +59,13 @@ const Bar = function ({ percent = 0, width = 75, label = '', status = '', color 
       >
         {/* the actual bar chart*/}
         <Box width={width} marginBottom={1}>
+          <Text color={leftColor}>{LEFT_CAP}</Text>
           <Text color={color}>{FULL.repeat(full)}</Text>
           <Text color={color} backgroundColor={TRACK}>
             {partial}
           </Text>
           <Text color={TRACK}>{FULL.repeat(empty)}</Text>
+          <Text color={rightColor}>{RIGHT_CAP}</Text>
         </Box>
         <Text>{String(pct)}%</Text>
       </Box>

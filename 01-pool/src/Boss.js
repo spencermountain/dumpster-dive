@@ -14,6 +14,8 @@ class Boss extends EventEmitter {
     this.opts = opts || {}
     this.stream = stream
     this.gate = makeGate() //pause/resume control
+    // Max batches in flight per worker before the stream is paused.
+    this.maxQueue = this.opts.maxQueue || 4
     this.managers = []
     this.workQueue = []
     this.writeQueue = []
@@ -51,6 +53,10 @@ class Boss extends EventEmitter {
       // this.pause()
     }
     this.emit('results', this.writeQueue.pop())
+    // A finished batch may free up room for the paused stream.
+    if (this.gate.isPaused && this.smallestQueue() < this.maxQueue) {
+      this.resume()
+    }
   }
   updateCounts() {
     this.totals = {
@@ -75,11 +81,11 @@ class Boss extends EventEmitter {
     const lowestQueueLength = sorted[0].state.queueLength
     return lowestQueueLength
   }
-  // Pick the lowest reported queue without reordering the pool.
+  // Pick the worker with the fewest batches in flight.
   async assignTask(batch) {
-    if (this.smallestQueue() >= 15) {
-      this.impatientPause()
-      // Hold this batch until capacity returns instead of dropping it.
+    if (this.smallestQueue() >= this.maxQueue) {
+      this.pause()
+      // Hold this batch until a payload comes back and resumes the gate.
       await this.gate.wait()
     }
     const sorted = [...this.managers].sort((a, b) => a.state.queueLength - b.state.queueLength)
@@ -96,18 +102,6 @@ class Boss extends EventEmitter {
   pause() {
     console.log('\n   ╭ pausing')
     this.gate.pause()
-  }
-  // pause, but try to resume
-  impatientPause() {
-    this.pause()
-    const waiting = setInterval(() => {
-      const queue = this.smallestQueue()
-      console.log(`   | ⌛ - queue: ${queue}`)
-      if (queue <= 1) {
-        clearInterval(waiting)
-        this.resume()
-      }
-    }, 750)
   }
   resume() {
     console.log('   ╰ resuming')
@@ -135,6 +129,8 @@ class Boss extends EventEmitter {
     await this.allWorkersDone()
     await Promise.all(this.managers.map((manager) => manager.calmExit()))
     console.log('  ╰ pool closed\n\n')
+    // Recount, since the heartbeat snapshot can be a few seconds stale.
+    this.updateCounts()
     this.emit('done', this.totals)
   }
 }

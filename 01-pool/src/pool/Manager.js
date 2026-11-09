@@ -38,11 +38,13 @@ class Manager extends EventEmitter {
     w.on('message', (msg) => {
       const { type } = msg
       if (type === 'status') {
-        const { state } = msg
-        // console.log(`[w${this.index}]`, state)
-        this.state = state
+        console.log(msg)
+        // Workers cannot report while parsing, so only trust their alive flag.
+        this.state.alive = msg.state.alive
       } else if (type === 'payload') {
         const { counts } = msg
+        // One payload comes back per assigned batch.
+        this.state.queueLength -= 1
         // Payloads contain counts, not a worker-state snapshot.
         Object.keys(this.totals).forEach((key) => {
           this.totals[key] += counts[key]
@@ -55,6 +57,8 @@ class Manager extends EventEmitter {
   }
   // recieve another buffer from the Boss
   assign(task) {
+    // Count here, so the Boss sees the queue grow before the worker reports.
+    this.state.queueLength += 1
     this.w.postMessage({ type: 'task', task }, [task])
   }
   calmExit() {

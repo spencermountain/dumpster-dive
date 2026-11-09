@@ -28,6 +28,14 @@ const rowFill = function (eighths, row) {
   return Math.min(8, Math.max(0, eighths - below))
 }
 
+// quadrant-block cap rows, to round off the top and bottom of the bar
+const topCap = function (width) {
+  return '▝' + '▀'.repeat(Math.max(0, width - 2)) + '▘'
+}
+const bottomCap = function (width) {
+  return '▗' + '▄'.repeat(Math.max(0, width - 2)) + '▖'
+}
+
 // one row of the bar: full track, full fill, or a partial glyph over the track colour
 const Row = function ({ n, width, color }) {
   if (n === 0) {
@@ -44,6 +52,7 @@ const Row = function ({ n, width, color }) {
 }
 
 // vertical bar chart for a count against a max, with headroom above max
+// height is the number of scale rows; a cap row is added above and below
 const VBar = function ({ value = 0, max = 1200, height = 18, width = 4, label = 'backlog' }) {
   let top = max * OVERFLOW
   let ratio = Math.min(1, Math.max(0, value / top))
@@ -51,6 +60,9 @@ const VBar = function ({ value = 0, max = 1200, height = 18, width = 4, label = 
   let color = pickColor(value, max)
   // the row whose top edge sits at max
   let maxRow = Math.round(height / OVERFLOW) - 1
+  // caps take the fill colour once the bar reaches them
+  let bottomColor = eighths > 0 ? color : TRACK
+  let topColor = eighths >= height * 8 ? color : TRACK
   // rows are drawn top-down
   let rows = []
   for (let row = height - 1; row >= 0; row -= 1) {
@@ -58,6 +70,7 @@ const VBar = function ({ value = 0, max = 1200, height = 18, width = 4, label = 
   }
   return (
     <Box flexDirection="column" alignSelf="flex-start" paddingX={1} borderColor="dim">
+      <Text color={topColor}>{topCap(width)}</Text>
       {rows.map((row) => (
         <Box key={row}>
           <Box width={width} flexShrink={0}>
@@ -66,6 +79,7 @@ const VBar = function ({ value = 0, max = 1200, height = 18, width = 4, label = 
           <Text dimColor>{row === maxRow ? ' ◂ max' : ''}</Text>
         </Box>
       ))}
+      <Text color={bottomColor}>{bottomCap(width)}</Text>
       <Text>{label}</Text>
       <Text color={color}>
         {value} / {max}
