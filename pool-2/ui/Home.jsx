@@ -72,13 +72,13 @@ const App = function ({ boss }) {
   const items = [
     {
       id: 'pause',
-      label: paused ? 'Resume' : 'Pause',
+      label: paused ? '▶ Resume' : '⏸ Pause',
       description: 'take a break'
     },
     {
       id: 'end',
       label: snap.ending ? 'Ending…' : 'End early',
-      description: 'keep what is parsed, and finish',
+      description: 'keep what is done, and finish',
       disabled: snap.ending
     },
     { id: 'exit', label: 'Exit', description: 'quit now' }
@@ -112,7 +112,7 @@ const App = function ({ boss }) {
           right={<StatsRight f={f} now={now} />}
         />
       ))}
-      <Box flexDirection="column" marginX={2}>
+      <Box flexDirection="column" marginX={2} paddingTop={2}>
         <Text>
           <Text color="green">{totals.complete.toLocaleString()}</Text> pages
           <Text dimColor>
@@ -120,11 +120,6 @@ const App = function ({ boss }) {
             {totals.skipped.toLocaleString()} skipped {'  '}
             {totals.errors} errors
           </Text>
-        </Text>
-        <Text dimColor>
-          files: {jobs.done} / {jobs.total}
-          {endNote}
-          {pauseNote(snap.workers)}
         </Text>
         <Text>
           <Text dimColor>write queue: </Text>

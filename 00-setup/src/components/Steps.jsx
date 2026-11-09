@@ -7,14 +7,14 @@ import { store } from '../store.js'
 const Steps = () => {
   const { steps, livePage } = useSnapshot(store)
   return (
-    <Box width="100%" justifyContent="center" gap={1} marginTop={1}>
+    <Box paddingLeft={2} gap={1} marginTop={1}>
       {steps.map((step) => {
         if (step.done) {
           return <Text key={step.key}>●</Text>
         }
         const isCurrent = step.key === livePage
         return (
-          <Text key={step.key} bold={isCurrent} color={isCurrent ? 'blue' : 'grey'} dimColor={!isCurrent}>
+          <Text key={step.key} bold={isCurrent} color={isCurrent ? 'white' : 'grey'}>
             ○
           </Text>
         )

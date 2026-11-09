@@ -3,13 +3,11 @@ import { Box, Text } from 'ink'
 
 // characters for the filled and empty parts of the bar
 const FULL = '█'
-// dim-grey track colour - hex so the same shade works as foreground and background
+const SHADE = '░' // light-shade track behind the fill
+// dim-grey track colour
 const TRACK = '#666666'
 // partial cell, in eighths - index 0 is an empty cell, 8 is a full one
 const EIGHTHS = ['', '▏', '▎', '▍', '▌', '▋', '▊', '▉', FULL]
-// half-block end caps, to round off the bar
-const LEFT_CAP = '▐'
-const RIGHT_CAP = '▌'
 
 // clamp any input into an integer 0-100
 const toPercent = function (n) {
@@ -46,20 +44,20 @@ const Bar = function ({
   if (dim) {
     color = TRACK
   }
-  // the caps take one cell each; the scale runs across the cells between them
-  let inner = Math.max(0, width - 2)
-  let { full, partial, empty } = fill(pct, inner)
-  // caps take the fill colour once the bar reaches them
-  let leftColor = pct > 0 ? color : TRACK
-  let rightColor = pct >= 100 ? color : TRACK
+  let { full, partial, empty } = fill(pct, width)
   return (
-    <Box flexDirection="row" justifyContent="flex-start" alignItems="stretch">
+    <Box
+      flexDirection="row"
+      justifyContent="flex-start"
+      alignItems="stretch"
+      paddingTop={2}
+      paddingLeft={1}
+    >
       {/* title level with the bar, subtitle level with the status row */}
       <Box
         flexDirection="column"
         justifyContent="space-between"
         paddingX={1}
-        paddingY={1}
         width={LABEL_WIDTH}
         flexShrink={0}
       >
@@ -68,25 +66,14 @@ const Bar = function ({
         </Text>
         <Text dimColor>{subtitle}</Text>
       </Box>
-      <Box
-        flexDirection="column"
-        alignItems="flex-end"
-        paddingX={1}
-        borderStyle="round"
-        borderColor={dim ? TRACK : 'dim'}
-      >
+      <Box flexDirection="column" alignItems="flex-start" paddingX={1}>
         {/* the actual bar chart*/}
         <Box width={width}>
-          <Text color={leftColor}>{LEFT_CAP}</Text>
-          <Text color={color}>{FULL.repeat(full)}</Text>
-          <Text color={color} backgroundColor={TRACK}>
-            {partial}
-          </Text>
-          <Text color={TRACK}>{FULL.repeat(empty)}</Text>
-          <Text color={rightColor}>{RIGHT_CAP}</Text>
+          <Text color={color}>{FULL.repeat(full) + partial}</Text>
+          <Text color={TRACK}>{SHADE.repeat(empty)}</Text>
         </Box>
         {/* a rule, then the status row: details left, rate, runtime and percent right */}
-        <Text color={TRACK}>{'─'.repeat(width)}</Text>
+        {/* <Text color={TRACK}>{'─'.repeat(width)}</Text>*/}
         <Box width={width} flexDirection="row">
           {left}
           <Box flexGrow={1} />

@@ -6,7 +6,7 @@ import { ScrollList } from 'ink-scroll-list';
 const defaultState = {
   project: null, // wikipedia, wiktionary
   lang: null,
-  namespaces: null, // { 0: true, 1: false } by namespace number
+  namespaces: null, // { 0: true, 4: true } by namespace number
   source: null, // meta.wikimedia.org, local
   writer: null, // sqlite, duckdb
   // include: null, // {disambiguation, redirects}
@@ -15,22 +15,34 @@ const defaultState = {
   // runtime: null //workers, chunks, resume
 };
 const order = Object.keys(defaultState);
+const CONFIRM = 'confirm'; // final review page, kept out of userState
 
 const store = proxy({
   userState: { ...defaultState },
+  confirmed: false,
   // getters
   get livePage() {
-    return order.find((key) => this.userState[key] === null)
+    const key = order.find((k) => this.userState[k] === null);
+    if (key === undefined && this.confirmed === false) {
+      return CONFIRM
+    }
+    return key
   },
   // one entry per dialogue page, for the pagination indicator
   get steps() {
-    return order.map((key) => ({ key, done: this.userState[key] !== null }))
+    const steps = order.map((key) => ({ key, done: this.userState[key] !== null }));
+    steps.push({ key: CONFIRM, done: this.confirmed });
+    return steps
   },
   // actions
+  confirm: () => {
+    store.confirmed = true;
+  },
   // clear the previous answer so its page becomes live again
   // returns false when already on the first page
   goBack: () => {
-    const i = order.indexOf(store.livePage);
+    const live = store.livePage;
+    const i = live === CONFIRM ? order.length : order.indexOf(live);
     if (i <= 0) {
       return false
     }
@@ -41,6 +53,7 @@ const store = proxy({
 
 const resetStore = (initialState = {}) => {
   store.userState = { ...defaultState, ...structuredClone(initialState) };
+  store.confirmed = false;
 };
 
 // global keys - left/esc step backward, and close the dialogue from the first page
@@ -66,57 +79,105 @@ const Show = ({ condition, fallback = null, children }) => {
   return condition ? /*#__PURE__*/react.createElement(react.Fragment, null, children) : /*#__PURE__*/react.createElement(react.Fragment, null, fallback)
 };
 
-const SinglePick = ({ list, title, description, onSelect }) => {
-    // cursor starts on the default choice, so right-arrow accepts it
-    const defaultIndex = Math.max(
-      list.findIndex((obj) => obj.isDefault === true),
-      0
-    );
-    const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
-    // Handle keyboard navigation in the parent
-    useInput((_, key) => {
-      if (key.upArrow) {
-        setSelectedIndex((prev) => Math.max(prev - 1, 0));
+// a non-checkable list row: 'show more' or 'Done'
+const ActionRow = ({ label, isSelected, dim }) => {
+  return (
+    /*#__PURE__*/react.createElement(Box, { gap: 1, height: 1 }, /*#__PURE__*/react.createElement(Text, { bold: true, color: "blue" }, isSelected ? '❯' : ' '), /*#__PURE__*/react.createElement(Text, { bold: true, color: isSelected ? 'blue' : 'white', dimColor: dim && !isSelected }, label))
+  )
+};
+
+// fold a long list to its first `collapseAt` rows, until expand() is called
+// `startExpanded` forces it open (eg. when the default row would be hidden)
+const useFold = (list, collapseAt, startExpanded = false) => {
+  const [expanded, setExpanded] = useState(startExpanded || list.length <= collapseAt);
+  const visible = expanded ? list : list.slice(0, collapseAt);
+  return {
+    expanded,
+    expand: () => setExpanded(true),
+    visible,
+    hiddenCount: list.length - visible.length,
+    moreIndex: expanded ? -1 : visible.length // index of the 'show more' row
+  }
+};
+
+// one-line page heading: `Step 1: Project - Select which project...`
+const Header = ({ title, description }) => {
+  const { steps, livePage } = useSnapshot(store);
+  const num = steps.findIndex((step) => step.key === livePage) + 1;
+  return (
+    /*#__PURE__*/react.createElement(Box, { height: 1, gap: 1 }, /*#__PURE__*/react.createElement(Text, { color: "white" }, "Step ", num, ":"), /*#__PURE__*/react.createElement(Text, { underline: true, color: "green" }, title || ''), /*#__PURE__*/react.createElement(Text, { dimColor: true }, "- ", description || ''))
+  )
+};
+
+// radio-style list - enter, space or right-arrow selects the highlighted row
+// long lists start folded at `collapseAt` rows, with a 'show more' row to unfold
+const SinglePick = ({ list, title, description, onSelect, collapseAt = 5 }) => {
+  // cursor starts on the default choice, so right-arrow accepts it
+  const defaultIndex = Math.max(
+    list.findIndex((obj) => obj.isDefault === true),
+    0
+  );
+  const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
+  const fold = useFold(list, collapseAt, defaultIndex >= collapseAt);
+  const { visible, moreIndex } = fold;
+  const lastIndex = fold.expanded ? visible.length - 1 : moreIndex;
+
+  useInput((input, key) => {
+    if (key.upArrow) {
+      setSelectedIndex((prev) => Math.max(prev - 1, 0));
+    }
+    if (key.downArrow) {
+      setSelectedIndex((prev) => Math.min(prev + 1, lastIndex));
+    }
+    if (key.return || key.rightArrow || input === ' ') {
+      if (selectedIndex === moreIndex) {
+        fold.expand(); // cursor lands on the first revealed row
+        return
       }
-      if (key.downArrow) {
-        setSelectedIndex((prev) => Math.min(prev + 1, list.length - 1));
-      }
-      if (key.return || key.rightArrow) {
-        onSelect(list[selectedIndex].id);
-      }
-    });
-    const isLongList = list.length > 20;
-    return (
-      /*#__PURE__*/react.createElement(Box, { flexDirection: "column", padding: 2 }, /*#__PURE__*/react.createElement(Text, { bold: true, underline: true, color: "cyan" }, title || ''), /*#__PURE__*/react.createElement(Box, { paddingLeft: 2, height: 1 }, /*#__PURE__*/react.createElement(Text, { dim: true }, description || '', ":")), /*#__PURE__*/react.createElement(Box,
-          { borderStyle: "single",
+      onSelect(visible[selectedIndex].id);
+    }
+  });
+  const isLongList = visible.length > 20;
+  const rowMargin = isLongList ? 0 : 1;
+  return (
+    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", padding: 2 }, /*#__PURE__*/react.createElement(Header, { title: title, description: description }), /*#__PURE__*/react.createElement(Box,
+        { borderStyle: "single",
+        borderColor: "grey",
+        borderTop: false,
+        borderLeft: true,
+        borderBottom: false,
+        borderRight: false,
+        maxHeight: 20,
+        maxWidth: 60,
+        paddingLeft: 2,
+        paddingTop: 1,
+        paddingBottom: 1,
+        marginBottom: 1,
+        marginLeft: 4 }, /*#__PURE__*/react.createElement(ScrollList,
+          { selectedIndex: selectedIndex,
+          paddingLeft: 1,
+          gap: 1,
+          borderStyle: "singleDouble",
           borderColor: "grey",
           borderTop: false,
-          borderLeft: true,
-          borderBottom: false,
-          borderRight: false,
-          maxHeight: 20,
-          maxWidth: 60,
-          paddingLeft: 2,
-          paddingTop: 1,
-          paddingBottom: 1,
-          marginBottom: 1,
-          marginLeft: 4 }, /*#__PURE__*/react.createElement(ScrollList,
-            { selectedIndex: selectedIndex,
-            paddingLeft: 1,
-            gap: 1,
-            borderStyle: "singleDouble",
-            borderColor: "grey",
-            borderTop: false,
-            borderLeft: false,
-            borderBottom: isLongList,
-            borderRight: false }, list.map((obj, i) => (
-              /*#__PURE__*/react.createElement(Box, { key: i, gap: 1, paddingBottom: 0, height: 1, marginBottom: isLongList ? 0 : 1 }, /*#__PURE__*/react.createElement(Text, { bold: true, color: "blue" }, i === selectedIndex ? '❯' : ' '), /*#__PURE__*/react.createElement(Text, { bold: true }, i === selectedIndex ? '●' : '○'), /*#__PURE__*/react.createElement(Text,
+          borderLeft: false,
+          borderBottom: isLongList,
+          borderRight: false }, visible.map((obj, i) => {
+            const isSelected = i === selectedIndex;
+            return (
+              /*#__PURE__*/react.createElement(Box, { key: i, gap: 1, paddingBottom: 0, height: 1, marginBottom: rowMargin }, /*#__PURE__*/react.createElement(Text, { bold: true, color: "blue" }, isSelected ? '❯' : ' '), /*#__PURE__*/react.createElement(Text, { bold: true }, isSelected ? '●' : '○'), /*#__PURE__*/react.createElement(Text,
                   { bold: obj.isDefault === true,
-                  color: i === selectedIndex ? 'blue' : 'white',
-                  dimColor: i !== selectedIndex }, obj.label), /*#__PURE__*/react.createElement(Text, { color: "grey" }, "- ", obj.description || ''))
-            )))))
-    )
-  };
+                  color: isSelected ? 'blue' : 'white',
+                  dimColor: !isSelected }, obj.label), /*#__PURE__*/react.createElement(Text, { color: "grey" }, "- ", obj.description || ''))
+            )
+          }), fold.expanded ? null : (
+            /*#__PURE__*/react.createElement(Box, { key: "more" }, /*#__PURE__*/react.createElement(ActionRow,
+                { label: `▸ show ${fold.hiddenCount} more`,
+                isSelected: selectedIndex === moreIndex,
+                dim: true }))
+          ))))
+  )
+};
 
 // https://en.wikipedia.org/wiki/List_of_Wikipedias
 // (as of Sep 2026)
@@ -489,7 +550,7 @@ const round = (num) => {
   return num
 };
 
-const Page$6 = () => {
+const Page$7 = () => {
   const list = langs.map((obj) => {
     let desc = obj.name;
     if (store.userState.project === 'wikipedia') {
@@ -524,24 +585,25 @@ const initialChecked = (list) => {
   return obj
 };
 
-// a non-checkable row: 'show more' or 'Done'
-const ActionRow = ({ label, isSelected, dim }) => {
-  return (
-    /*#__PURE__*/react.createElement(Box, { gap: 1, height: 1 }, /*#__PURE__*/react.createElement(Text, { bold: true, color: "blue" }, isSelected ? '❯' : ' '), /*#__PURE__*/react.createElement(Text, { bold: true, color: isSelected ? 'blue' : 'white', dimColor: dim && !isSelected }, label))
-  )
+// keep only the checked ids - {} when nothing is on
+const onlyTrue = (checked) => {
+  const obj = {};
+  Object.keys(checked).forEach((id) => {
+    if (checked[id] === true) {
+      obj[id] = true;
+    }
+  });
+  return obj
 };
 
-// checkbox-group sibling of SinglePick - space/enter toggles, 'Done' row submits
+// checkbox-group sibling of SinglePick - space/enter toggles, 'Done' row or right-arrow submits
 // long lists start folded at `collapseAt` rows, with a 'show more' row to unfold
 const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [checked, setChecked] = useState(() => initialChecked(list));
-  const [expanded, setExpanded] = useState(list.length <= collapseAt);
-
-  const visible = expanded ? list : list.slice(0, collapseAt);
-  const hiddenCount = list.length - visible.length;
-  const moreIndex = expanded ? -1 : visible.length; // the 'show more' row, if folded
-  const doneIndex = expanded ? visible.length : visible.length + 1; // trailing 'Done' row
+  const fold = useFold(list, collapseAt);
+  const { visible, moreIndex } = fold;
+  const doneIndex = fold.expanded ? visible.length : visible.length + 1; // trailing 'Done' row
 
   useInput((input, key) => {
     if (key.upArrow) {
@@ -551,16 +613,16 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
       setSelectedIndex((prev) => Math.min(prev + 1, doneIndex));
     }
     if (key.rightArrow) {
-      onDone({ ...checked }); // accept the current state from any row
+      onDone(onlyTrue(checked)); // accept the current state from any row
       return
     }
     if (key.return || input === ' ') {
       if (selectedIndex === doneIndex) {
-        onDone({ ...checked });
+        onDone(onlyTrue(checked));
         return
       }
       if (selectedIndex === moreIndex) {
-        setExpanded(true); // cursor lands on the first revealed row
+        fold.expand(); // cursor lands on the first revealed row
         return
       }
       const id = String(visible[selectedIndex].id);
@@ -570,7 +632,7 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
   const isLongList = visible.length > 20;
   const rowMargin = isLongList ? 0 : 1;
   return (
-    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", padding: 2 }, /*#__PURE__*/react.createElement(Text, { bold: true, underline: true, color: "cyan" }, title || ''), /*#__PURE__*/react.createElement(Box, { paddingLeft: 2, height: 1 }, /*#__PURE__*/react.createElement(Text, { dim: true }, description || '', ":")), /*#__PURE__*/react.createElement(Box,
+    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", padding: 2 }, /*#__PURE__*/react.createElement(Header, { title: title, description: description }), /*#__PURE__*/react.createElement(Box,
         { borderStyle: "single",
         borderColor: "grey",
         borderTop: false,
@@ -605,9 +667,9 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
             return (
               /*#__PURE__*/react.createElement(Box, { key: i, gap: 1, paddingBottom: 0, height: 1, marginBottom: rowMargin }, /*#__PURE__*/react.createElement(Text, { bold: true, color: "blue" }, isSelected ? '❯' : ' '), /*#__PURE__*/react.createElement(Text, { bold: true, color: color }, isOn ? '◉' : '○'), /*#__PURE__*/react.createElement(Text, { bold: isSelected, color: color }, obj.label), /*#__PURE__*/react.createElement(Text, { color: "grey" }, "- ", obj.description || ''))
             )
-          }), expanded ? null : (
+          }), fold.expanded ? null : (
             /*#__PURE__*/react.createElement(Box, { key: "more", marginBottom: rowMargin }, /*#__PURE__*/react.createElement(ActionRow,
-                { label: `▸ show ${hiddenCount} more`,
+                { label: `▸ show ${fold.hiddenCount} more`,
                 isSelected: selectedIndex === moreIndex,
                 dim: true }))
           ), /*#__PURE__*/react.createElement(Box, { key: "done" }, /*#__PURE__*/react.createElement(ActionRow, { label: "Done", isSelected: selectedIndex === doneIndex })))))
@@ -639,7 +701,7 @@ const list$4 = namespaces.map((obj) => {
   }
 });
 
-const Page$5 = () => {
+const Page$6 = () => {
   return (
     /*#__PURE__*/react.createElement(Box, { flexDirection: "column" }, /*#__PURE__*/react.createElement(MultiPick,
         { title: "Namespaces",
@@ -675,7 +737,7 @@ const list$3 = projects.map((obj) => {
   }
 });
 
-const Page$4 = () => {
+const Page$5 = () => {
   return (
     /*#__PURE__*/react.createElement(Box, { flexDirection: "column" }, /*#__PURE__*/react.createElement(SinglePick,
         { title: "Project",
@@ -686,8 +748,8 @@ const Page$4 = () => {
 };
 
 const list$2 = [
-  { label: '⬇ Download', id: 'wikimedia', description: 'from wikimedia.org', isDefault: true },
-  { label: '📦 Local Dump', id: 'local', description: 'Use a local .gz file' },
+  { label: 'Download', id: 'wikimedia', description: 'from wikimedia.org', isDefault: true },
+  { label: 'Local Dump', id: 'local', description: 'Use a local .gz file' },
   {
     label: 'Third-party Download ↗',
     id: 'third-party',
@@ -695,7 +757,7 @@ const list$2 = [
   }
 ];
 
-const Page$3 = () => {
+const Page$4 = () => {
   return (
     /*#__PURE__*/react.createElement(Box, { flexDirection: "column" }, /*#__PURE__*/react.createElement(SinglePick,
         { title: "Source",
@@ -717,7 +779,7 @@ const list$1 = [
   { label: 'None', id: 'none', description: 'Console-only' }
 ];
 
-const Page$2 = () => {
+const Page$3 = () => {
   return (
     /*#__PURE__*/react.createElement(Box, { flexDirection: "column" }, /*#__PURE__*/react.createElement(SinglePick,
         { title: "Writer",
@@ -736,7 +798,7 @@ const list = [
   { label: 'Markdown', id: 'markdown', description: 'Converted to Markdown' }
 ];
 
-const Page$1 = () => {
+const Page$2 = () => {
   return (
     /*#__PURE__*/react.createElement(Box, { flexDirection: "column" }, /*#__PURE__*/react.createElement(SinglePick,
         { title: "Output Format",
@@ -746,13 +808,66 @@ const Page$1 = () => {
   )
 };
 
+const labels = {
+  project: 'Project',
+  lang: 'Language',
+  namespaces: 'Namespaces',
+  source: 'Source',
+  writer: 'Writer',
+  format: 'Format'
+};
+
+// namespace ids -> names, eg. { 0: true, 4: true } -> 'Articles, Project'
+const namespaceNames = (obj) => {
+  const names = Object.keys(obj).map((id) => {
+    const found = namespaces.find((ns) => String(ns.id) === id);
+    return found ? found.name : id
+  });
+  return names.length > 0 ? names.join(', ') : 'none'
+};
+
+const format = (key, value) => {
+  if (key === 'namespaces') {
+    return namespaceNames(value)
+  }
+  return String(value)
+};
+
+// final review of every answer - enter/space/right confirms, left/esc goes back
+const Page$1 = () => {
+  const { userState } = useSnapshot(store);
+  useInput((input, key) => {
+    if (key.return || key.rightArrow || input === ' ') {
+      store.confirm();
+    }
+  });
+  return (
+    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", padding: 2 }, /*#__PURE__*/react.createElement(Header, { title: "Confirm", description: "Review your choices" }), /*#__PURE__*/react.createElement(Box,
+        { flexDirection: "column",
+        borderStyle: "single",
+        borderColor: "grey",
+        borderTop: false,
+        borderLeft: true,
+        borderBottom: false,
+        borderRight: false,
+        paddingLeft: 3,
+        paddingTop: 1,
+        paddingBottom: 1,
+        marginBottom: 1,
+        marginLeft: 4 }, Object.keys(labels).map((key) => (
+          /*#__PURE__*/react.createElement(Box, { key: key, height: 1 }, /*#__PURE__*/react.createElement(Text, { dimColor: true }, labels[key].padEnd(12)), /*#__PURE__*/react.createElement(Text, { color: "green" }, format(key, userState[key])))
+        )), /*#__PURE__*/react.createElement(Box, { marginTop: 1 }, /*#__PURE__*/react.createElement(ActionRow, { label: "Confirm", isSelected: true })), /*#__PURE__*/react.createElement(Text, { dimColor: true }, "← back")))
+  )
+};
+
 const pages = {
-  project: Page$4,
-  lang: Page$6,
-  namespaces: Page$5,
-  source: Page$3,
-  writer: Page$2,
-  format: Page$1
+  project: Page$5,
+  lang: Page$7,
+  namespaces: Page$6,
+  source: Page$4,
+  writer: Page$3,
+  format: Page$2,
+  confirm: Page$1
 };
 
 const Page = function () {
@@ -767,13 +882,13 @@ const Page = function () {
 const Steps = () => {
   const { steps, livePage } = useSnapshot(store);
   return (
-    /*#__PURE__*/react.createElement(Box, { width: "100%", justifyContent: "center", gap: 1, marginTop: 1 }, steps.map((step) => {
+    /*#__PURE__*/react.createElement(Box, { paddingLeft: 2, gap: 1, marginTop: 1 }, steps.map((step) => {
         if (step.done) {
           return /*#__PURE__*/react.createElement(Text, { key: step.key }, "●")
         }
         const isCurrent = step.key === livePage;
         return (
-          /*#__PURE__*/react.createElement(Text, { key: step.key, bold: isCurrent, color: isCurrent ? 'blue' : 'grey', dimColor: !isCurrent }, "○")
+          /*#__PURE__*/react.createElement(Text, { key: step.key, bold: isCurrent, color: isCurrent ? 'white' : 'grey' }, "○")
         )
       }))
   )

@@ -9,6 +9,7 @@ import Project from './Project/Index.jsx'
 import Source from './Source/Index.jsx'
 import Writer from './Writer/Index.jsx'
 import Format from './Format/Index.jsx'
+import Confirm from './Confirm/Index.jsx'
 
 const pages = {
   project: Project,
@@ -16,7 +17,8 @@ const pages = {
   namespaces: Namespace,
   source: Source,
   writer: Writer,
-  format: Format
+  format: Format,
+  confirm: Confirm
 }
 
 const Page = function () {

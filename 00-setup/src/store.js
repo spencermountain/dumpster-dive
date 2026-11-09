@@ -3,7 +3,7 @@ import { proxy } from 'valtio'
 const defaultState = {
   project: null, // wikipedia, wiktionary
   lang: null,
-  namespaces: null, // { 0: true, 1: false } by namespace number
+  namespaces: null, // { 0: true, 4: true } by namespace number
   source: null, // meta.wikimedia.org, local
   writer: null, // sqlite, duckdb
   // include: null, // {disambiguation, redirects}
@@ -12,22 +12,34 @@ const defaultState = {
   // runtime: null //workers, chunks, resume
 }
 const order = Object.keys(defaultState)
+const CONFIRM = 'confirm' // final review page, kept out of userState
 
 export const store = proxy({
   userState: { ...defaultState },
+  confirmed: false,
   // getters
   get livePage() {
-    return order.find((key) => this.userState[key] === null)
+    const key = order.find((k) => this.userState[k] === null)
+    if (key === undefined && this.confirmed === false) {
+      return CONFIRM
+    }
+    return key
   },
   // one entry per dialogue page, for the pagination indicator
   get steps() {
-    return order.map((key) => ({ key, done: this.userState[key] !== null }))
+    const steps = order.map((key) => ({ key, done: this.userState[key] !== null }))
+    steps.push({ key: CONFIRM, done: this.confirmed })
+    return steps
   },
   // actions
+  confirm: () => {
+    store.confirmed = true
+  },
   // clear the previous answer so its page becomes live again
   // returns false when already on the first page
   goBack: () => {
-    const i = order.indexOf(store.livePage)
+    const live = store.livePage
+    const i = live === CONFIRM ? order.length : order.indexOf(live)
     if (i <= 0) {
       return false
     }
@@ -38,4 +50,5 @@ export const store = proxy({
 
 export const resetStore = (initialState = {}) => {
   store.userState = { ...defaultState, ...structuredClone(initialState) }
+  store.confirmed = false
 }
