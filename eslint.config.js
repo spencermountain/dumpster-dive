@@ -1,0 +1,45 @@
+import react from 'eslint-plugin-react'
+
+export default [
+  { ignores: ['**/builds/**', '**/scratch.js', '**/tests/**'] },
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
+    plugins: { react },
+    rules: {
+      'react/jsx-uses-react': 'error',
+      'react/jsx-uses-vars': 'error',
+      'regexp/no-misleading-capturing-group': 0, //todo remove this
+      'regexp/no-super-linear-backtracking': 0, //todo remove this, too
+      'comma-dangle': [1, 'only-multiline'],
+      quotes: [0, 'single', 'avoid-escape'],
+      'max-nested-callbacks': [1, 4],
+      'max-params': [1, 5],
+      'consistent-return': 1,
+      'no-bitwise': 1,
+      'no-empty': 1,
+      'no-console': 'off',
+      'no-duplicate-imports': 1,
+      'no-eval': 2,
+      'no-implied-eval': 2,
+      'no-mixed-operators': 2,
+      'no-multi-assign': 2,
+      'no-nested-ternary': 1,
+      'no-prototype-builtins': 0,
+      'no-self-compare': 1,
+      'no-sequences': 1,
+      'no-shadow': 2,
+      'no-unmodified-loop-condition': 1,
+      'no-use-before-define': 1,
+      'prefer-const': 0,
+      radix: 1,
+      'no-unused-vars': 1,
+      'regexp/prefer-d': 0,
+      'regexp/prefer-w': 0,
+      'regexp/prefer-range': 0,
+      'regexp/no-unused-capturing-group': 0,
+      'regexp/optimal-quantifier-concatenation': 0,
+      curly: ['warn', 'all']
+    }
+  }
+]

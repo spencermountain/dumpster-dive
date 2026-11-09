@@ -1,0 +1,9 @@
+packages:
+  - 01-cli
+  - 02-fetch
+  - 03-run
+  - 04-pool
+
+allowBuilds:
+  esbuild: true
+  wtf_wikipedia: true

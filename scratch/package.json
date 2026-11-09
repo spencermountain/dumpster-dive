@@ -1,0 +1,29 @@
+{
+  "name": "@dumpster-lib/scratch",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Interactive terminal dialogue for configuring Wikimedia processing",
+  "exports": "./builds/app.js",
+  "files": [
+    "builds"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "watch": "node run.js",
+    "watch:stay": "node --watch --watch-preserve-output run.js",
+    "build": "rollup --config",
+    "build:watch": "rollup --config --watch"
+  },
+  "dependencies": {
+    "ink": "^7.1.1",
+    "react": "^19.2.0",
+    "valtio": "^2.3.2"
+  },
+  "devDependencies": {
+    "rollup": "^4.63.5",
+    "tsx": "^4.23.15"
+  }
+}

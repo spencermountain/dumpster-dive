@@ -1,0 +1,21 @@
+{
+  "name": "@dumpster-lib/result",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Pageviews tools (placeholder)",
+  "exports": "./src/index.js",
+  "scripts": {
+    "watch": "node scratch.js",
+    "dev": "node scratch.js"
+  },
+  "dependencies": {
+    "@inkjs/ui": "^2.0.0",
+    "bzip2-codec": "^2.0.1",
+    "ink": "^7.1.1",
+    "react": "^19.2.0",
+    "unbzip2-stream": "^1.4.3",
+    "undici": "^8.11.2",
+    "wtf_wikipedia": "^10.4.2"
+  }
+}

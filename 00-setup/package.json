@@ -1,0 +1,37 @@
+{
+  "name": "@dumpster-lib/cli",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Interactive terminal dialogue for configuring Wikimedia processing",
+  "exports": "./builds/app.js",
+  "files": [
+    "builds"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node run.js",
+    "watch": "node run.js",
+    "watch:stay": "node --watch --watch-preserve-output run.js",
+    "build": "rollup --config",
+    "build:watch": "rollup --config --watch",
+    "start": "node run.js --production",
+    "prepack": "pnpm run build",
+    "test": "pnpm run build && node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "@pppp606/ink-chart": "^0.2.8",
+    "ink": "^7.1.1",
+    "ink-link": "^5.0.0",
+    "ink-scroll-list": "^0.5.0",
+    "ink-spinner": "^5.0.0",
+    "react": "^19.2.0",
+    "valtio": "^2.3.2"
+  },
+  "devDependencies": {
+    "rollup": "^4.63.5",
+    "tsx": "^4.23.15"
+  }
+}
