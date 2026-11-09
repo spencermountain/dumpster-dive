@@ -26,31 +26,26 @@ const fill = function (pct, width) {
   return { full, partial, empty }
 }
 
-// cells for the status/label column, so long names truncate instead of wrapping
-const LABEL_WIDTH = 18
-// text cells inside that column, after its border, padding, and a cell of slack
-const LABEL_TEXT = LABEL_WIDTH - 5
-
-// cut a string to fit, marking the cut
-const clip = function (str, n) {
-  if (str.length <= n) {
-    return str
-  }
-  return str.slice(0, n - 1) + '…'
-}
+// cells for the title/subtitle column on the left
+const LABEL_WIDTH = 12
 
 // horizontal bar chart for a percentage integer
-// left and right are nodes for the row under the bar; the percent sits at the far right
+// title and subtitle label the bar on the left; left and right are nodes for the
+// row under the bar, with the percent at the far right. dim greys out a pending bar
 const Bar = function ({
   percent = 0,
   width = 75,
-  label = '',
-  status = '',
+  title = '',
+  subtitle = '',
   color = 'green',
+  dim = false,
   left = null,
   right = null
 }) {
   let pct = toPercent(percent)
+  if (dim) {
+    color = TRACK
+  }
   // the caps take one cell each; the scale runs across the cells between them
   let inner = Math.max(0, width - 2)
   let { full, partial, empty } = fill(pct, inner)
@@ -58,28 +53,27 @@ const Bar = function ({
   let leftColor = pct > 0 ? color : TRACK
   let rightColor = pct >= 100 ? color : TRACK
   return (
-    <Box flexDirection="row" justifyContent="flex-start" alignItems="center">
+    <Box flexDirection="row" justifyContent="flex-start" alignItems="stretch">
+      {/* title level with the bar, subtitle level with the status row */}
       <Box
         flexDirection="column"
-        alignItems="center"
         justifyContent="space-between"
         paddingX={1}
-        marginX={1}
+        paddingY={1}
         width={LABEL_WIDTH}
         flexShrink={0}
-        height="100%"
-        borderStyle="round"
-        borderColor="grey"
       >
-        <Text>{clip(status || '', LABEL_TEXT)}</Text>
-        <Text>{clip(label || '', LABEL_TEXT)}</Text>
+        <Text bold={!dim} dimColor={dim}>
+          {title}
+        </Text>
+        <Text dimColor>{subtitle}</Text>
       </Box>
       <Box
         flexDirection="column"
         alignItems="flex-end"
         paddingX={1}
         borderStyle="round"
-        borderColor="dim"
+        borderColor={dim ? TRACK : 'dim'}
       >
         {/* the actual bar chart*/}
         <Box width={width}>
@@ -97,7 +91,7 @@ const Bar = function ({
           {left}
           <Box flexGrow={1} />
           {right}
-          <Text>{String(pct)}%</Text>
+          <Text dimColor={dim}>{String(pct)}%</Text>
         </Box>
       </Box>
     </Box>

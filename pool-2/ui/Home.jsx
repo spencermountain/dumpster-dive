@@ -2,31 +2,40 @@ import React, { useEffect, useState } from 'react'
 import { Box, Text, useApp, useInput } from 'ink'
 import { useSnapshot } from 'valtio'
 import Bar from './Bar.jsx'
+import Menu from './Menu.jsx'
 import { StatsLeft, StatsRight } from './Stats.jsx'
+import { niceBytes } from './_lib.js'
 import store from './store.js'
 
-// 'frwiki-2026-10-01-p13159990p17639014.xml.bz2' → 'p13159990p17639014'
-const shortName = function (file) {
-  return file.match(/-(p\d+p\d+)\./)?.[1] || file
-}
-
 // download progress, when the file size is known
-const percentOf = function (w) {
-  if (!w.size) {
+const percentOf = function (f) {
+  if (!f.size) {
     return 0
   }
-  return (w.bytes / w.size) * 100
+  return (f.bytes / f.size) * 100
 }
 
 // short names for pause reasons
 const reasons = { writeQueue: 'queue' }
 
-const statusOf = function (w) {
-  if (w.paused) {
-    const why = w.pauses.map((r) => reasons[r] || r).join(',')
-    return `paused: ${why}`
+// 'paused: user, queue' for the footer, or ''
+const pauseNote = function (workers) {
+  const why = new Set()
+  workers.forEach((w) => w.pauses.forEach((r) => why.add(reasons[r] || r)))
+  if (why.size === 0) {
+    return ''
   }
-  return w.status
+  return `  — paused: ${[...why].join(', ')}`
+}
+
+const barColor = function (f) {
+  if (f.paused) {
+    return 'yellow'
+  }
+  if (f.status === 'error') {
+    return 'red'
+  }
+  return 'green'
 }
 
 const App = function ({ boss }) {
@@ -39,34 +48,68 @@ const App = function ({ boss }) {
     return () => clearInterval(timer)
   }, [])
 
+  const paused = snap.workers.some((w) => w.pauses.includes('user'))
+  const togglePause = () => {
+    if (paused) {
+      boss.resumeAll('user')
+    } else {
+      boss.pauseAll('user')
+    }
+  }
+
   // listening for input keeps the app alive; esc quits (ctrl-c handled by ink)
   useInput((input, key) => {
     if (key.escape) {
       exit()
     }
-    // p toggles a user pause on every worker
+    // p is a shortcut for the first menu item
     if (input === 'p') {
-      const paused = boss.workers.some((w) => w.pauses.includes('user'))
-      if (paused) {
-        boss.resumeAll('user')
-      } else {
-        boss.pauseAll('user')
-      }
+      togglePause()
     }
   })
 
+  // the choices at the bottom of the page
+  const items = [
+    {
+      id: 'pause',
+      label: paused ? 'Resume' : 'Pause',
+      description: 'take a break'
+    },
+    {
+      id: 'end',
+      label: snap.ending ? 'Ending…' : 'End early',
+      description: 'keep what is parsed, and finish',
+      disabled: snap.ending
+    },
+    { id: 'exit', label: 'Exit', description: 'quit now' }
+  ]
+  const onPick = (id) => {
+    if (id === 'pause') {
+      togglePause()
+    } else if (id === 'end') {
+      boss.endEarly()
+    } else if (id === 'exit') {
+      exit()
+    }
+  }
+
   const { totals, jobs, writeQueue } = snap
+  let endNote = ''
+  if (snap.finished) {
+    endNote = snap.ending ? '  — ended early' : '  — finished'
+  }
   return (
     <Box flexDirection="column" width={100}>
-      {snap.workers.map((w) => (
+      {snap.files.map((f) => (
         <Bar
-          key={w.index}
-          label={w.job ? shortName(w.job.file) : '—'}
-          status={statusOf(w)}
-          percent={percentOf(w)}
-          color={w.paused ? 'yellow' : 'green'}
-          left={<StatsLeft w={w} />}
-          right={<StatsRight w={w} now={now} />}
+          key={f.index}
+          title={`File #${f.index + 1}`}
+          subtitle={niceBytes(f.size)}
+          percent={percentOf(f)}
+          color={barColor(f)}
+          dim={f.status === 'pending'}
+          left={<StatsLeft f={f} />}
+          right={<StatsRight f={f} now={now} />}
         />
       ))}
       <Box flexDirection="column" marginX={2}>
@@ -80,13 +123,17 @@ const App = function ({ boss }) {
         </Text>
         <Text dimColor>
           files: {jobs.done} / {jobs.total}
-          {snap.finished ? '  — finished' : ''}
+          {endNote}
+          {pauseNote(snap.workers)}
         </Text>
         <Text>
           <Text dimColor>write queue: </Text>
           <Text color="blue">{writeQueue.queueLength}</Text>
         </Text>
-        <Text dimColor>p to pause/resume, esc or ctrl-c to quit</Text>
+      </Box>
+      <Box flexDirection="column" marginX={2} marginTop={1}>
+        <Menu items={items} onPick={onPick} />
+        <Text dimColor>↑↓ to choose, enter to pick · p pauses, esc or ctrl-c quits</Text>
       </Box>
     </Box>
   )

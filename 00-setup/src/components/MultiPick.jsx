@@ -44,6 +44,10 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
     if (key.downArrow) {
       setSelectedIndex((prev) => Math.min(prev + 1, doneIndex))
     }
+    if (key.rightArrow) {
+      onDone({ ...checked }) // accept the current state from any row
+      return
+    }
     if (key.return || input === ' ') {
       if (selectedIndex === doneIndex) {
         onDone({ ...checked })

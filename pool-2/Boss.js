@@ -4,40 +4,48 @@ import { JobQueue } from './lib/JobQueue.js'
 
 const countKeys = ['pages', 'skipped', 'complete', 'errors']
 
-const makeWorkerState = (index) => {
+// one record per dump file, pending until a worker picks it up
+const makeFileState = (job) => {
   return {
-    index,
-    status: 'idle', // idle | running | finished
-    pauses: [], // reasons this worker is paused
-    job: null,
-    bytes: 0, // compressed bytes read for the current job
-    size: null, // compressed size of the current job, when known
+    ...job, // index, file, path or url, hash, size
+    status: 'pending', // pending | running | finished | stopped | error
+    worker: null, // index of the worker on it
+    bytes: 0, // compressed bytes read so far
     pages: 0,
     skipped: 0,
     complete: 0,
     errors: 0,
     written: 0, // articles the writer has finished with
-    startedAt: null, // first job assigned
-    finishedAt: null, // last job done
+    startedAt: null,
+    finishedAt: null,
     rate: 0, // compressed mb/s, over the last second or so
     rateAt: null,
     rateBytes: 0
   }
 }
 
-// refresh a worker's download rate once at least a second has passed
-const updateRate = function (worker, bytes) {
+const makeWorkerState = (index) => {
+  return {
+    index,
+    status: 'idle', // idle | running | finished
+    pauses: [], // reasons this worker is paused
+    file: null // index of the file it is on
+  }
+}
+
+// refresh a file's download rate once at least a second has passed
+const updateRate = function (file, bytes) {
   const now = Date.now()
-  if (worker.rateAt === null) {
-    worker.rateAt = now
-    worker.rateBytes = bytes
+  if (file.rateAt === null) {
+    file.rateAt = now
+    file.rateBytes = bytes
     return
   }
-  const seconds = (now - worker.rateAt) / 1000
+  const seconds = (now - file.rateAt) / 1000
   if (seconds >= 1) {
-    worker.rate = (bytes - worker.rateBytes) / 1e6 / seconds
-    worker.rateAt = now
-    worker.rateBytes = bytes
+    file.rate = (bytes - file.rateBytes) / 1e6 / seconds
+    file.rateAt = now
+    file.rateBytes = bytes
   }
 }
 
@@ -45,18 +53,19 @@ class Boss extends EventEmitter {
   constructor(opts, jobs) {
     super()
     this.opts = opts
-    this.jobs = jobs // dump files still to assign
-    this.jobsTotal = jobs.length
+    this.files = jobs.map(makeFileState)
+    this.jobs = [...jobs] // dump files still to assign
     this.jobsDone = 0
     this.workers = []
     this.threads = []
     this.closing = false
+    this.ending = false // asked to stop reading and finish with what we have
     this.finished = false
     // batches of parsed pages waiting for the writer, written one at a time
     const write = opts.writer || (async () => {})
     const writeBatch = async ({ index, batch }) => {
       await write(batch)
-      this.workers[index].written += batch.length
+      this.files[index].written += batch.length
       this.changed()
     }
     this.writeQueue = new JobQueue(writeBatch, {
@@ -69,7 +78,7 @@ class Boss extends EventEmitter {
   }
   init() {
     // no point in more workers than files
-    const count = Math.min(this.opts.workerCount || 2, this.jobsTotal)
+    const count = Math.min(this.opts.workerCount || 2, this.files.length)
     // functions cannot cross into a worker thread
     const opts = { ...this.opts }
     delete opts.writer
@@ -91,17 +100,24 @@ class Boss extends EventEmitter {
     const workers = this.workers.map((w) => {
       return { ...w, pauses: [...w.pauses], paused: w.pauses.length > 0 }
     })
+    // a file is paused when the worker on it is
+    const files = this.files.map((f) => {
+      const paused = f.status === 'running' && workers[f.worker].paused
+      return { ...f, paused }
+    })
     const totals = { pages: 0, skipped: 0, complete: 0, errors: 0 }
-    workers.forEach((w) => {
+    files.forEach((f) => {
       countKeys.forEach((key) => {
-        totals[key] += w[key]
+        totals[key] += f[key]
       })
     })
     return {
       workers,
+      files,
       totals,
       writeQueue: this.writeQueue.status,
-      jobs: { total: this.jobsTotal, pending: this.jobs.length, done: this.jobsDone },
+      jobs: { total: this.files.length, pending: this.jobs.length, done: this.jobsDone },
+      ending: this.ending,
       finished: this.finished
     }
   }
@@ -116,45 +132,56 @@ class Boss extends EventEmitter {
     const job = this.jobs.shift()
     if (!job) {
       worker.status = 'finished'
-      worker.job = null
+      worker.file = null
       worker.pauses = []
-      worker.finishedAt = Date.now()
-      worker.rate = 0
       this.changed()
       this.checkDone()
       return
     }
+    const file = this.files[job.index]
     worker.status = 'running'
-    worker.job = job
-    worker.bytes = 0
-    worker.size = null
-    worker.rateAt = null
-    worker.startedAt = worker.startedAt || Date.now()
+    worker.file = job.index
+    file.status = 'running'
+    file.worker = worker.index
+    file.startedAt = Date.now()
     this.threads[worker.index].postMessage({ type: 'job', job })
     this.changed()
+  }
+  // a file has left its worker, one way or another
+  settleFile(file, status) {
+    file.status = status
+    file.finishedAt = Date.now()
+    file.rate = 0
   }
   handleMessage(index, msg) {
     if (this.closing) {
       return
     }
     const worker = this.workers[index]
+    const file = this.files[worker.file]
     const { type } = msg
     if (type === 'start') {
-      worker.size = msg.size
-      worker.decoder = msg.decoder
+      file.size = msg.size || file.size
+      file.decoder = msg.decoder
     } else if (type === 'batch') {
       countKeys.forEach((key) => {
-        worker[key] += msg.counts[key]
+        file[key] += msg.counts[key]
       })
-      worker.bytes = msg.bytes
-      updateRate(worker, msg.bytes)
-      this.writeQueue.push({ index, batch: msg.payload })
+      file.bytes = msg.bytes
+      updateRate(file, msg.bytes)
+      this.writeQueue.push({ index: file.index, batch: msg.payload })
     } else if (type === 'done') {
-      worker.bytes = msg.bytes
+      file.bytes = msg.bytes
+      this.settleFile(file, 'finished')
       this.jobsDone += 1
       this.assignNext(worker)
+    } else if (type === 'stopped') {
+      // a job we cut short; its parsed batches are already queued
+      this.settleFile(file, 'stopped')
+      this.assignNext(worker)
     } else if (type === 'error') {
-      worker.errors += 1
+      file.errors += 1
+      this.settleFile(file, 'error')
       this.emit('warn', { worker: index, job: msg.job, message: msg.message })
       this.assignNext(worker)
     }
@@ -167,12 +194,15 @@ class Boss extends EventEmitter {
     if (this.closing) {
       return
     }
-    // a crashed worker is retired; its current job is lost
+    // a crashed worker is retired; its current file is lost
     const worker = this.workers[index]
-    this.emit('warn', { worker: index, job: worker.job, message: `exited with code ${code}` })
+    const file = worker.file === null ? null : this.files[worker.file]
+    this.emit('warn', { worker: index, job: file, message: `exited with code ${code}` })
+    if (file) {
+      this.settleFile(file, 'error')
+    }
     worker.status = 'finished'
-    worker.job = null
-    worker.finishedAt = Date.now()
+    worker.file = null
     this.changed()
     this.checkDone()
   }
@@ -208,6 +238,22 @@ class Boss extends EventEmitter {
   }
   resumeAll(reason = 'user') {
     this.workers.forEach((w) => this.resume(w.index, reason))
+  }
+  // stop reading, write what has been parsed, and finish as a success
+  endEarly() {
+    if (this.ending || this.closing) {
+      return
+    }
+    this.ending = true
+    this.jobs = [] // nothing more gets assigned
+    this.workers.forEach((worker) => {
+      if (worker.status === 'running') {
+        worker.pauses = [] // a held job can't stop
+        this.threads[worker.index].postMessage({ type: 'stop' })
+      }
+    })
+    this.changed()
+    this.checkDone()
   }
   // when the write queue empties: let the workers go again, or finish up
   watchDrain() {

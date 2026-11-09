@@ -4,6 +4,7 @@ import { snapshot, subscribe, useSnapshot } from 'valtio'
 import { store } from './store.js'
 import useKeyboard from './keyboard.js'
 import Page from './pages/Page.jsx'
+import Steps from './components/Steps.jsx'
 
 
 const App = function ({ clear }) {
@@ -37,6 +38,7 @@ const App = function ({ clear }) {
   if (!livePage) return null
   return (
     <Box width="100%" overflow="hidden" flexDirection="column">
+      <Steps />
       <Box flexDirection="column" flexGrow={1} flexShrink={1} minHeight={0} overflow="hidden">
         <Page />
       </Box>

@@ -21,11 +21,21 @@ class Worker {
       send({ type: 'done', ...result })
     } catch (err) {
       // a job we cancelled ourselves is not an error
-      if (!this.aborter.signal.aborted) {
+      if (this.aborter.signal.aborted) {
+        send({ type: 'stopped', job })
+      } else {
         send({ type: 'error', job, message: err.message })
       }
     }
     this.running = null
+  }
+  // cut the current job short; batches already parsed stay with the boss
+  stop() {
+    if (!this.running) {
+      return
+    }
+    this.gate.resume() // a paused job can't settle
+    this.aborter.abort()
   }
   pause() {
     this.gate.pause()

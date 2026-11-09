@@ -21,4 +21,20 @@ const percentOf = function (part, whole) {
   return Math.round((part / whole) * 100)
 }
 
-export { niceTime, niceRate, percentOf }
+// '25gb', '178mb'
+const niceBytes = function (bytes) {
+  if (!bytes) {
+    return ''
+  }
+  const units = ['b', 'kb', 'mb', 'gb', 'tb']
+  let total = bytes
+  let unit = 0
+  while (total >= 1000 && unit < units.length - 1) {
+    total /= 1000
+    unit += 1
+  }
+  const digits = total < 10 ? 1 : 0
+  return `${total.toFixed(digits)}${units[unit]}`
+}
+
+export { niceTime, niceRate, niceBytes, percentOf }

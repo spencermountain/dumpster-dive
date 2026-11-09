@@ -15,21 +15,27 @@ const order = Object.keys(defaultState)
 
 export const store = proxy({
   userState: { ...defaultState },
-  page: 0,
   // getters
-  get doublePage() {
-    return this.page * 2
-  },
   get livePage() {
     return order.find((key) => this.userState[key] === null)
   },
+  // one entry per dialogue page, for the pagination indicator
+  get steps() {
+    return order.map((key) => ({ key, done: this.userState[key] !== null }))
+  },
   // actions
-  nextPage: () => {
-    store.page += 1
+  // clear the previous answer so its page becomes live again
+  // returns false when already on the first page
+  goBack: () => {
+    const i = order.indexOf(store.livePage)
+    if (i <= 0) {
+      return false
+    }
+    store.userState[order[i - 1]] = null
+    return true
   }
 })
 
 export const resetStore = (initialState = {}) => {
   store.userState = { ...defaultState, ...structuredClone(initialState) }
-  store.page = 0
 }

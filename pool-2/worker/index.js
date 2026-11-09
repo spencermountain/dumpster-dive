@@ -15,6 +15,8 @@ parentPort.on('message', (message) => {
     w.pause()
   } else if (type === 'resume') {
     w.resume()
+  } else if (type === 'stop') {
+    w.stop()
   } else if (type === 'shutdown') {
     w.shutdown()
   }

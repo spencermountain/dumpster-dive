@@ -3,44 +3,50 @@ import { Text } from 'ink'
 import { niceTime, niceRate, percentOf } from './_lib.js'
 
 // a blank keeps the column aligned while running
-const icons = { idle: ' ', running: ' ', paused: '⏸', finished: '✓' }
+const icons = { running: ' ', paused: '⏸', finished: '✓', stopped: '⏹', error: '✗' }
 
-const iconFor = function (w) {
-  if (w.paused && w.status !== 'finished') {
+const iconFor = function (f) {
+  if (f.paused) {
     return icons.paused
   }
-  return icons[w.status] || icons.idle
+  return icons[f.status] || ' '
 }
 
-// runtime since the first job, frozen once the worker finishes
-const runtimeOf = function (w, now) {
-  if (!w.startedAt) {
+// runtime since the file started, frozen once it settles
+const runtimeOf = function (f, now) {
+  if (!f.startedAt) {
     return ''
   }
-  return niceTime((w.finishedAt || now) - w.startedAt)
+  return niceTime((f.finishedAt || now) - f.startedAt)
 }
 
 // left side of the status row: state, pages seen, and the share kept
-const StatsLeft = function ({ w }) {
+const StatsLeft = function ({ f }) {
+  if (f.status === 'pending') {
+    return <Text dimColor>  waiting</Text>
+  }
   return (
     <>
-      <Text>{iconFor(w)} </Text>
-      <Text>{w.pages.toLocaleString()} pages</Text>
+      <Text color={f.status === 'error' ? 'red' : undefined}>{iconFor(f)} </Text>
+      <Text>{f.pages.toLocaleString()} pages</Text>
       <Text color="green">
         {' '}
-        {w.complete.toLocaleString()} kept ({percentOf(w.complete, w.pages)}%)
+        {f.complete.toLocaleString()} kept ({percentOf(f.complete, f.pages)}%)
       </Text>
     </>
   )
 }
 
-// right side: download rate (blank once finished), then runtime
-const StatsRight = function ({ w, now }) {
-  const done = w.status === 'finished'
+// right side: download rate while running, then runtime
+const StatsRight = function ({ f, now }) {
+  if (f.status === 'pending') {
+    return null
+  }
+  const running = f.status === 'running'
   return (
     <>
-      <Text dimColor>{done ? '' : niceRate(w.rate) + '  '}</Text>
-      <Text color={done ? 'green' : 'blue'}>{runtimeOf(w, now)} </Text>
+      <Text dimColor>{running ? niceRate(f.rate) + '  ' : ''}</Text>
+      <Text color={running ? 'blue' : 'green'}>{runtimeOf(f, now)} </Text>
     </>
   )
 }

@@ -4,7 +4,12 @@
   import { Show } from './lib.jsx'
 
   const SinglePick = ({ list, title, description, onSelect }) => {
-    const [selectedIndex, setSelectedIndex] = useState(0)
+    // cursor starts on the default choice, so right-arrow accepts it
+    const defaultIndex = Math.max(
+      list.findIndex((obj) => obj.isDefault === true),
+      0
+    )
+    const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
     // Handle keyboard navigation in the parent
     useInput((_, key) => {
       if (key.upArrow) {
@@ -13,7 +18,7 @@
       if (key.downArrow) {
         setSelectedIndex((prev) => Math.min(prev + 1, list.length - 1))
       }
-      if (key.return) {
+      if (key.return || key.rightArrow) {
         onSelect(list[selectedIndex].id)
       }
     })
@@ -57,11 +62,15 @@
           >
             {list.map((obj, i) => (
               <Box key={i} gap={1} paddingBottom={0} height={1} marginBottom={isLongList ? 0 : 1}>
+                {/* cursor*/}
+                <Text bold color="blue">
+                  {i === selectedIndex ? '❯' : ' '}
+                </Text>
                 {/* icon*/}
                 <Text bold>{i === selectedIndex ? '●' : '○'}</Text>
-                {/* title*/}
+                {/* title - bold marks the default choice*/}
                 <Text
-                  bold
+                  bold={obj.isDefault === true}
                   color={i === selectedIndex ? 'blue' : 'white'}
                   dimColor={i !== selectedIndex}
                 >

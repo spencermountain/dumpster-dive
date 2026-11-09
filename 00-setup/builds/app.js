@@ -18,33 +18,43 @@ const order = Object.keys(defaultState);
 
 const store = proxy({
   userState: { ...defaultState },
-  page: 0,
   // getters
-  get doublePage() {
-    return this.page * 2
-  },
   get livePage() {
     return order.find((key) => this.userState[key] === null)
   },
+  // one entry per dialogue page, for the pagination indicator
+  get steps() {
+    return order.map((key) => ({ key, done: this.userState[key] !== null }))
+  },
   // actions
-  nextPage: () => {
-    store.page += 1;
+  // clear the previous answer so its page becomes live again
+  // returns false when already on the first page
+  goBack: () => {
+    const i = order.indexOf(store.livePage);
+    if (i <= 0) {
+      return false
+    }
+    store.userState[order[i - 1]] = null;
+    return true
   }
 });
 
 const resetStore = (initialState = {}) => {
   store.userState = { ...defaultState, ...structuredClone(initialState) };
-  store.page = 0;
 };
 
+// global keys - left/esc step backward, and close the dialogue from the first page
 const useKeyboard = function (finish) {
   const { isRawModeSupported } = useStdin();
   useInput(
     (input, key) => {
-      if (key.return) {
-        store.nextPage();
+      if (key.leftArrow || key.escape) {
+        const wentBack = store.goBack();
+        if (!wentBack) {
+          finish();
+        }
       }
-      if (key.escape || (key.ctrl && input === 'c')) {
+      if (key.ctrl && input === 'c') {
         finish();
       }
     },
@@ -57,7 +67,12 @@ const Show = ({ condition, fallback = null, children }) => {
 };
 
 const SinglePick = ({ list, title, description, onSelect }) => {
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    // cursor starts on the default choice, so right-arrow accepts it
+    const defaultIndex = Math.max(
+      list.findIndex((obj) => obj.isDefault === true),
+      0
+    );
+    const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
     // Handle keyboard navigation in the parent
     useInput((_, key) => {
       if (key.upArrow) {
@@ -66,7 +81,7 @@ const SinglePick = ({ list, title, description, onSelect }) => {
       if (key.downArrow) {
         setSelectedIndex((prev) => Math.min(prev + 1, list.length - 1));
       }
-      if (key.return) {
+      if (key.return || key.rightArrow) {
         onSelect(list[selectedIndex].id);
       }
     });
@@ -95,8 +110,8 @@ const SinglePick = ({ list, title, description, onSelect }) => {
             borderLeft: false,
             borderBottom: isLongList,
             borderRight: false }, list.map((obj, i) => (
-              /*#__PURE__*/react.createElement(Box, { key: i, gap: 1, paddingBottom: 0, height: 1, marginBottom: isLongList ? 0 : 1 }, /*#__PURE__*/react.createElement(Text, { bold: true }, i === selectedIndex ? '●' : '○'), /*#__PURE__*/react.createElement(Text,
-                  { bold: true,
+              /*#__PURE__*/react.createElement(Box, { key: i, gap: 1, paddingBottom: 0, height: 1, marginBottom: isLongList ? 0 : 1 }, /*#__PURE__*/react.createElement(Text, { bold: true, color: "blue" }, i === selectedIndex ? '❯' : ' '), /*#__PURE__*/react.createElement(Text, { bold: true }, i === selectedIndex ? '●' : '○'), /*#__PURE__*/react.createElement(Text,
+                  { bold: obj.isDefault === true,
                   color: i === selectedIndex ? 'blue' : 'white',
                   dimColor: i !== selectedIndex }, obj.label), /*#__PURE__*/react.createElement(Text, { color: "grey" }, "- ", obj.description || ''))
             )))))
@@ -535,6 +550,10 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
     if (key.downArrow) {
       setSelectedIndex((prev) => Math.min(prev + 1, doneIndex));
     }
+    if (key.rightArrow) {
+      onDone({ ...checked }); // accept the current state from any row
+      return
+    }
     if (key.return || input === ' ') {
       if (selectedIndex === doneIndex) {
         onDone({ ...checked });
@@ -744,6 +763,22 @@ const Page = function () {
   )
 };
 
+// horizontal pagination dots - ● done, ○ current (blue), ○ upcoming (dim)
+const Steps = () => {
+  const { steps, livePage } = useSnapshot(store);
+  return (
+    /*#__PURE__*/react.createElement(Box, { width: "100%", justifyContent: "center", gap: 1, marginTop: 1 }, steps.map((step) => {
+        if (step.done) {
+          return /*#__PURE__*/react.createElement(Text, { key: step.key }, "●")
+        }
+        const isCurrent = step.key === livePage;
+        return (
+          /*#__PURE__*/react.createElement(Text, { key: step.key, bold: isCurrent, color: isCurrent ? 'blue' : 'grey', dimColor: !isCurrent }, "○")
+        )
+      }))
+  )
+};
+
 const App = function ({ clear }) {
   const { livePage } = useSnapshot(store);
   const { exit } = useApp();
@@ -774,7 +809,7 @@ const App = function ({ clear }) {
 
   if (!livePage) return null
   return (
-    /*#__PURE__*/react.createElement(Box, { width: "100%", overflow: "hidden", flexDirection: "column" }, /*#__PURE__*/react.createElement(Box, { flexDirection: "column", flexGrow: 1, flexShrink: 1, minHeight: 0, overflow: "hidden" }, /*#__PURE__*/react.createElement(Page, null)))
+    /*#__PURE__*/react.createElement(Box, { width: "100%", overflow: "hidden", flexDirection: "column" }, /*#__PURE__*/react.createElement(Steps, null), /*#__PURE__*/react.createElement(Box, { flexDirection: "column", flexGrow: 1, flexShrink: 1, minHeight: 0, overflow: "hidden" }, /*#__PURE__*/react.createElement(Page, null)))
   )
 };
 
