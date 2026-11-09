@@ -15,19 +15,6 @@ const percentOf = function (f) {
   return (f.bytes / f.size) * 100
 }
 
-// short names for pause reasons
-const reasons = { writeQueue: 'queue' }
-
-// 'paused: user, queue' for the footer, or ''
-const pauseNote = function (workers) {
-  const why = new Set()
-  workers.forEach((w) => w.pauses.forEach((r) => why.add(reasons[r] || r)))
-  if (why.size === 0) {
-    return ''
-  }
-  return `  — paused: ${[...why].join(', ')}`
-}
-
 const barColor = function (f) {
   if (f.paused) {
     return 'yellow'
@@ -72,7 +59,7 @@ const App = function ({ boss }) {
   const items = [
     {
       id: 'pause',
-      label: paused ? '▶ Resume' : '⏸ Pause',
+      label: paused ? '▶ Resume ' : '⏸ Pause  ',
       description: 'take a break'
     },
     {
@@ -81,7 +68,7 @@ const App = function ({ boss }) {
       description: 'keep what is done, and finish',
       disabled: snap.ending
     },
-    { id: 'exit', label: 'Exit', description: 'quit now' }
+    { id: 'exit', label: 'Exit     ', description: 'bail-out now' }
   ]
   const onPick = (id) => {
     if (id === 'pause') {
@@ -93,11 +80,7 @@ const App = function ({ boss }) {
     }
   }
 
-  const { totals, jobs, writeQueue } = snap
-  let endNote = ''
-  if (snap.finished) {
-    endNote = snap.ending ? '  — ended early' : '  — finished'
-  }
+  const { totals, writeQueue } = snap
   return (
     <Box flexDirection="column" width={100}>
       {snap.files.map((f) => (
@@ -120,10 +103,10 @@ const App = function ({ boss }) {
             {totals.skipped.toLocaleString()} skipped {'  '}
             {totals.errors} errors
           </Text>
-        </Text>
-        <Text>
-          <Text dimColor>write queue: </Text>
-          <Text color="blue">{writeQueue.queueLength}</Text>
+          <Text>
+            <Text color="blue"> {' ' + writeQueue.queueLength + ' '}</Text>
+            <Text dimColor>write backlog</Text>
+          </Text>
         </Text>
       </Box>
       <Box flexDirection="column" marginX={2} marginTop={1}>

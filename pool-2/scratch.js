@@ -4,10 +4,10 @@ import startPool from './index.js'
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 // the ui has jsx files, so tsx loads it
-const { default: startUi, sync } = await tsImport('./ui/render.js', import.meta.url)
+const { default: startUi, sync, showSummary } = await tsImport('./ui/render.js', import.meta.url)
 
 const opts = {
-  lang: 'fr',
+  lang: 'af',
   project: 'wikipedia',
   date: '2026-10-01',
   // local files skip the download; .xml files skip the decoder
@@ -18,7 +18,9 @@ const opts = {
   writer: async (batch) => {
     await wait(20)
     return batch.length
-  }
+  },
+  // a writer plugin can add its own lines to the summary screen
+  summary: async () => [['writer', 'dummy writer, nothing persisted']]
 }
 
 const boss = await startPool(opts)
@@ -27,13 +29,19 @@ sync(boss.state)
 boss.on('state', sync)
 
 const ui = startUi(boss)
-boss.on('done', async () => {
-  await wait(1500) // linger on 100%
-  ui.close()
+let quit = false
+// finished, or ended early: replace the live page with the report
+boss.on('done', async (state) => {
+  ui.close({ clear: true })
+  if (!quit) {
+    const extra = opts.summary ? await opts.summary(state) : []
+    await showSummary(state, opts, extra)
+  }
 })
 
-// quitting the ui early stops the pool too
+// quitting the ui early stops the pool too, with no report
 await ui.done
+quit = true
 if (!boss.closing) {
   await boss.close()
 }

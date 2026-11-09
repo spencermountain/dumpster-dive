@@ -24,7 +24,7 @@ const onlyTrue = (checked) => {
   return obj
 }
 
-// checkbox-group sibling of SinglePick - space/enter toggles, 'Done' row or right-arrow submits
+// checkbox-group sibling of SinglePick - space toggles, enter/right-arrow or the 'Done' row submits
 // long lists start folded at `collapseAt` rows, with a 'show more' row to unfold
 const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -40,11 +40,11 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
     if (key.downArrow) {
       setSelectedIndex((prev) => Math.min(prev + 1, doneIndex))
     }
-    if (key.rightArrow) {
+    if (key.return || key.rightArrow) {
       onDone(onlyTrue(checked)) // accept the current state from any row
       return
     }
-    if (key.return || input === ' ') {
+    if (input === ' ') {
       if (selectedIndex === doneIndex) {
         onDone(onlyTrue(checked))
         return
@@ -60,7 +60,7 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
   const isLongList = visible.length > 20
   const rowMargin = isLongList ? 0 : 1
   return (
-    <Box flexDirection="column" padding={2}>
+    <Box flexDirection="column" paddingX={2} paddingBottom={2}>
       <Header title={title} description={description} />
       <Box
         borderStyle="single"
@@ -120,7 +120,7 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
           {fold.expanded ? null : (
             <Box key="more" marginBottom={rowMargin}>
               <ActionRow
-                label={`▸ show ${fold.hiddenCount} more`}
+                label={`► show ${fold.hiddenCount} more`}
                 isSelected={selectedIndex === moreIndex}
                 dim={true}
               />

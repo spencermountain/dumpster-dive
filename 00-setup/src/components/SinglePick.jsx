@@ -35,7 +35,7 @@ const SinglePick = ({ list, title, description, onSelect, collapseAt = 5 }) => {
   const isLongList = visible.length > 20
   const rowMargin = isLongList ? 0 : 1
   return (
-    <Box flexDirection="column" padding={2}>
+    <Box flexDirection="column" paddingX={2} paddingBottom={2}>
       <Header title={title} description={description} />
       <Box
         borderStyle="single"
@@ -55,7 +55,7 @@ const SinglePick = ({ list, title, description, onSelect, collapseAt = 5 }) => {
         <ScrollList
           selectedIndex={selectedIndex}
           paddingLeft={1}
-          gap={1}
+          gap={0}
           borderStyle="singleDouble"
           borderColor="grey"
           borderTop={false}
@@ -89,7 +89,7 @@ const SinglePick = ({ list, title, description, onSelect, collapseAt = 5 }) => {
           {fold.expanded ? null : (
             <Box key="more">
               <ActionRow
-                label={`▸ show ${fold.hiddenCount} more`}
+                label={`► show ${fold.hiddenCount} more`}
                 isSelected={selectedIndex === moreIndex}
                 dim={true}
               />

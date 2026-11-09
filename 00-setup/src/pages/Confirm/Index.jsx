@@ -1,18 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Text, useInput } from 'ink'
 import { useSnapshot } from 'valtio'
 import { store } from '../../store.js'
-import { ActionRow } from '../../components/lib.jsx'
 import Header from '../../components/Header.jsx'
 import namespaces from '../Namespace/namespaces.js'
 
 const labels = {
-  project: 'Project',
   lang: 'Language',
-  namespaces: 'Namespaces',
+  project: 'Project',
+  format: 'Format',
   source: 'Source',
-  writer: 'Writer',
-  format: 'Format'
+  namespaces: 'Namespaces',
+  writer: 'Writer'
 }
 
 // namespace ids -> names, eg. { 0: true, 4: true } -> 'Articles, Project'
@@ -31,16 +30,36 @@ const format = (key, value) => {
   return String(value)
 }
 
-// final review of every answer - enter/space/right confirms, left/esc goes back
+// blue cursor cell, shared by both action rows
+const Cursor = ({ on }) => {
+  return (
+    <Text bold color="blue">
+      {on ? '❯' : ' '}
+    </Text>
+  )
+}
+
+// final review of every answer, then a two-row list: begin or go back
 const Page = () => {
   const { userState } = useSnapshot(store)
+  const [index, setIndex] = useState(0) // 0 begin, 1 back
   useInput((input, key) => {
+    if (key.upArrow) {
+      setIndex(0)
+    }
+    if (key.downArrow) {
+      setIndex(1)
+    }
     if (key.return || key.rightArrow || input === ' ') {
-      store.confirm()
+      if (index === 0) {
+        store.confirm()
+      } else {
+        store.goBack()
+      }
     }
   })
   return (
-    <Box flexDirection="column" padding={2}>
+    <Box flexDirection="column" paddingX={2} paddingBottom={2}>
       <Header title="Confirm" description="Review your choices" />
       <Box
         flexDirection="column"
@@ -53,7 +72,6 @@ const Page = () => {
         paddingLeft={3}
         paddingTop={1}
         paddingBottom={1}
-        marginBottom={1}
         marginLeft={4}
       >
         {Object.keys(labels).map((key) => (
@@ -62,10 +80,20 @@ const Page = () => {
             <Text color="green">{format(key, userState[key])}</Text>
           </Box>
         ))}
-        <Box marginTop={1}>
-          <ActionRow label="Confirm" isSelected={true} />
+        {/* begin*/}
+        <Box gap={1} marginTop={1}>
+          <Cursor on={index === 0} />
+          <Text bold color="white" backgroundColor="blue">
+            {' ✓ Begin '}
+          </Text>
         </Box>
-        <Text dimColor>← back</Text>
+        {/* back*/}
+        <Box gap={1} marginTop={1}>
+          <Cursor on={index === 1} />
+          <Text color="red" bold={index === 1}>
+            ← back
+          </Text>
+        </Box>
       </Box>
     </Box>
   )

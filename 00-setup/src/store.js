@@ -1,13 +1,13 @@
 import { proxy } from 'valtio'
 
 const defaultState = {
-  project: null, // wikipedia, wiktionary
   lang: null,
-  namespaces: null, // { 0: true, 4: true } by namespace number
+  project: null, // wikipedia, wiktionary
+  format: null, // json, html
   source: null, // meta.wikimedia.org, local
-  writer: null, // sqlite, duckdb
+  namespaces: null, // { 0: true, 4: true } by namespace number
   // include: null, // {disambiguation, redirects}
-  format: null // json, html
+  writer: null // sqlite, duckdb
   // properties: null, // {summary, classification}
   // runtime: null //workers, chunks, resume
 }

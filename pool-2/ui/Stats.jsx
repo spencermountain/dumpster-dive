@@ -23,7 +23,7 @@ const runtimeOf = function (f, now) {
 // left side of the status row: state, pages seen, and the share kept
 const StatsLeft = function ({ f }) {
   if (f.status === 'pending') {
-    return <Text dimColor>  waiting</Text>
+    return <Text dimColor> pending</Text>
   }
   return (
     <>

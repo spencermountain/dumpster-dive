@@ -61,6 +61,8 @@ class Boss extends EventEmitter {
     this.closing = false
     this.ending = false // asked to stop reading and finish with what we have
     this.finished = false
+    this.startedAt = Date.now()
+    this.finishedAt = null
     // batches of parsed pages waiting for the writer, written one at a time
     const write = opts.writer || (async () => {})
     const writeBatch = async ({ index, batch }) => {
@@ -79,9 +81,10 @@ class Boss extends EventEmitter {
   init() {
     // no point in more workers than files
     const count = Math.min(this.opts.workerCount || 2, this.files.length)
-    // functions cannot cross into a worker thread
-    const opts = { ...this.opts }
-    delete opts.writer
+    // functions (writer, summary hooks) cannot cross into a worker thread
+    const opts = Object.fromEntries(
+      Object.entries(this.opts).filter(([, value]) => typeof value !== 'function')
+    )
     for (let i = 0; i < count; i++) {
       const thread = new Worker(new URL('./worker/index.js', import.meta.url), {
         type: 'module',
@@ -105,11 +108,13 @@ class Boss extends EventEmitter {
       const paused = f.status === 'running' && workers[f.worker].paused
       return { ...f, paused }
     })
-    const totals = { pages: 0, skipped: 0, complete: 0, errors: 0 }
+    const totals = { pages: 0, skipped: 0, complete: 0, errors: 0, written: 0, bytes: 0 }
     files.forEach((f) => {
       countKeys.forEach((key) => {
         totals[key] += f[key]
       })
+      totals.written += f.written
+      totals.bytes += f.bytes
     })
     return {
       workers,
@@ -118,7 +123,9 @@ class Boss extends EventEmitter {
       writeQueue: this.writeQueue.status,
       jobs: { total: this.files.length, pending: this.jobs.length, done: this.jobsDone },
       ending: this.ending,
-      finished: this.finished
+      finished: this.finished,
+      startedAt: this.startedAt,
+      elapsed: (this.finishedAt || Date.now()) - this.startedAt
     }
   }
   changed() {
@@ -283,6 +290,7 @@ class Boss extends EventEmitter {
     })
     await Promise.all(exits)
     this.finished = true
+    this.finishedAt = Date.now()
     // one last snapshot, with the drained write queue
     this.changed()
     this.emit('done', this.state)

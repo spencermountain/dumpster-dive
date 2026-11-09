@@ -4,13 +4,13 @@ import { proxy, useSnapshot, subscribe, snapshot } from 'valtio';
 import { ScrollList } from 'ink-scroll-list';
 
 const defaultState = {
-  project: null, // wikipedia, wiktionary
   lang: null,
-  namespaces: null, // { 0: true, 4: true } by namespace number
+  project: null, // wikipedia, wiktionary
+  format: null, // json, html
   source: null, // meta.wikimedia.org, local
-  writer: null, // sqlite, duckdb
+  namespaces: null, // { 0: true, 4: true } by namespace number
   // include: null, // {disambiguation, redirects}
-  format: null // json, html
+  writer: null // sqlite, duckdb
   // properties: null, // {summary, classification}
   // runtime: null //workers, chunks, resume
 };
@@ -56,18 +56,18 @@ const resetStore = (initialState = {}) => {
   store.confirmed = false;
 };
 
-// global keys - left/esc step backward, and close the dialogue from the first page
+// global keys - left steps backward (closing from the first page), esc or ctrl-c closes
 const useKeyboard = function (finish) {
   const { isRawModeSupported } = useStdin();
   useInput(
     (input, key) => {
-      if (key.leftArrow || key.escape) {
+      if (key.leftArrow) {
         const wentBack = store.goBack();
         if (!wentBack) {
           finish();
         }
       }
-      if (key.ctrl && input === 'c') {
+      if (key.escape || (key.ctrl && input === 'c')) {
         finish();
       }
     },
@@ -140,7 +140,7 @@ const SinglePick = ({ list, title, description, onSelect, collapseAt = 5 }) => {
   const isLongList = visible.length > 20;
   const rowMargin = isLongList ? 0 : 1;
   return (
-    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", padding: 2 }, /*#__PURE__*/react.createElement(Header, { title: title, description: description }), /*#__PURE__*/react.createElement(Box,
+    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", paddingX: 2, paddingBottom: 2 }, /*#__PURE__*/react.createElement(Header, { title: title, description: description }), /*#__PURE__*/react.createElement(Box,
         { borderStyle: "single",
         borderColor: "grey",
         borderTop: false,
@@ -156,7 +156,7 @@ const SinglePick = ({ list, title, description, onSelect, collapseAt = 5 }) => {
         marginLeft: 4 }, /*#__PURE__*/react.createElement(ScrollList,
           { selectedIndex: selectedIndex,
           paddingLeft: 1,
-          gap: 1,
+          gap: 0,
           borderStyle: "singleDouble",
           borderColor: "grey",
           borderTop: false,
@@ -172,7 +172,7 @@ const SinglePick = ({ list, title, description, onSelect, collapseAt = 5 }) => {
             )
           }), fold.expanded ? null : (
             /*#__PURE__*/react.createElement(Box, { key: "more" }, /*#__PURE__*/react.createElement(ActionRow,
-                { label: `▸ show ${fold.hiddenCount} more`,
+                { label: `► show ${fold.hiddenCount} more`,
                 isSelected: selectedIndex === moreIndex,
                 dim: true }))
           ))))
@@ -532,12 +532,6 @@ var langs = [
   { id: 'tig', name: 'Tigre', count:64}
 ];
 
-const titleCase = function (str = '') {
-  return str.replace(/\w\S*/g, function (txt) {
-    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-  })
-};
-
 const round = (num) => {
   if (num > 1_000_000) {
     let n = Math.round(num / 100_000) / 10;
@@ -551,22 +545,16 @@ const round = (num) => {
 };
 
 const Page$7 = () => {
+  // language is chosen before the project, so counts are wikipedia article counts
   const list = langs.map((obj) => {
-    let desc = obj.name;
-    if (store.userState.project === 'wikipedia') {
-      desc += ' (' + round(obj.count) + ')';
-    }
     return {
       id: obj.id,
       label: obj.id,
-      description: desc,
+      description: obj.name + ' (' + round(obj.count) + ' pages)',
       isDefault: obj.id === 'en'
     }
   });
-  let desc = 'Which language ' + titleCase(store.userState.project) + '';
-  // if (store.userState.project !== 'wikipedia') {
-  // desc = 'Not all languages may be available for ' + store.userState.project
-  // }
+  let desc = 'Which language';
   return (
     /*#__PURE__*/react.createElement(Box, { flexDirection: "column" }, /*#__PURE__*/react.createElement(SinglePick,
         { title: "Language",
@@ -596,7 +584,7 @@ const onlyTrue = (checked) => {
   return obj
 };
 
-// checkbox-group sibling of SinglePick - space/enter toggles, 'Done' row or right-arrow submits
+// checkbox-group sibling of SinglePick - space toggles, enter/right-arrow or the 'Done' row submits
 // long lists start folded at `collapseAt` rows, with a 'show more' row to unfold
 const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -612,11 +600,11 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
     if (key.downArrow) {
       setSelectedIndex((prev) => Math.min(prev + 1, doneIndex));
     }
-    if (key.rightArrow) {
+    if (key.return || key.rightArrow) {
       onDone(onlyTrue(checked)); // accept the current state from any row
       return
     }
-    if (key.return || input === ' ') {
+    if (input === ' ') {
       if (selectedIndex === doneIndex) {
         onDone(onlyTrue(checked));
         return
@@ -632,7 +620,7 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
   const isLongList = visible.length > 20;
   const rowMargin = isLongList ? 0 : 1;
   return (
-    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", padding: 2 }, /*#__PURE__*/react.createElement(Header, { title: title, description: description }), /*#__PURE__*/react.createElement(Box,
+    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", paddingX: 2, paddingBottom: 2 }, /*#__PURE__*/react.createElement(Header, { title: title, description: description }), /*#__PURE__*/react.createElement(Box,
         { borderStyle: "single",
         borderColor: "grey",
         borderTop: false,
@@ -669,7 +657,7 @@ const MultiPick = ({ list, title, description, onDone, collapseAt = 5 }) => {
             )
           }), fold.expanded ? null : (
             /*#__PURE__*/react.createElement(Box, { key: "more", marginBottom: rowMargin }, /*#__PURE__*/react.createElement(ActionRow,
-                { label: `▸ show ${fold.hiddenCount} more`,
+                { label: `► show ${fold.hiddenCount} more`,
                 isSelected: selectedIndex === moreIndex,
                 dim: true }))
           ), /*#__PURE__*/react.createElement(Box, { key: "done" }, /*#__PURE__*/react.createElement(ActionRow, { label: "Done", isSelected: selectedIndex === doneIndex })))))
@@ -809,12 +797,12 @@ const Page$2 = () => {
 };
 
 const labels = {
-  project: 'Project',
   lang: 'Language',
-  namespaces: 'Namespaces',
+  project: 'Project',
+  format: 'Format',
   source: 'Source',
-  writer: 'Writer',
-  format: 'Format'
+  namespaces: 'Namespaces',
+  writer: 'Writer'
 };
 
 // namespace ids -> names, eg. { 0: true, 4: true } -> 'Articles, Project'
@@ -833,16 +821,34 @@ const format = (key, value) => {
   return String(value)
 };
 
-// final review of every answer - enter/space/right confirms, left/esc goes back
+// blue cursor cell, shared by both action rows
+const Cursor = ({ on }) => {
+  return (
+    /*#__PURE__*/react.createElement(Text, { bold: true, color: "blue" }, on ? '❯' : ' ')
+  )
+};
+
+// final review of every answer, then a two-row list: begin or go back
 const Page$1 = () => {
   const { userState } = useSnapshot(store);
+  const [index, setIndex] = useState(0); // 0 begin, 1 back
   useInput((input, key) => {
+    if (key.upArrow) {
+      setIndex(0);
+    }
+    if (key.downArrow) {
+      setIndex(1);
+    }
     if (key.return || key.rightArrow || input === ' ') {
-      store.confirm();
+      if (index === 0) {
+        store.confirm();
+      } else {
+        store.goBack();
+      }
     }
   });
   return (
-    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", padding: 2 }, /*#__PURE__*/react.createElement(Header, { title: "Confirm", description: "Review your choices" }), /*#__PURE__*/react.createElement(Box,
+    /*#__PURE__*/react.createElement(Box, { flexDirection: "column", paddingX: 2, paddingBottom: 2 }, /*#__PURE__*/react.createElement(Header, { title: "Confirm", description: "Review your choices" }), /*#__PURE__*/react.createElement(Box,
         { flexDirection: "column",
         borderStyle: "single",
         borderColor: "grey",
@@ -853,10 +859,9 @@ const Page$1 = () => {
         paddingLeft: 3,
         paddingTop: 1,
         paddingBottom: 1,
-        marginBottom: 1,
         marginLeft: 4 }, Object.keys(labels).map((key) => (
           /*#__PURE__*/react.createElement(Box, { key: key, height: 1 }, /*#__PURE__*/react.createElement(Text, { dimColor: true }, labels[key].padEnd(12)), /*#__PURE__*/react.createElement(Text, { color: "green" }, format(key, userState[key])))
-        )), /*#__PURE__*/react.createElement(Box, { marginTop: 1 }, /*#__PURE__*/react.createElement(ActionRow, { label: "Confirm", isSelected: true })), /*#__PURE__*/react.createElement(Text, { dimColor: true }, "← back")))
+        )), /*#__PURE__*/react.createElement(Box, { gap: 1, marginTop: 1 }, /*#__PURE__*/react.createElement(Cursor, { on: index === 0 }), /*#__PURE__*/react.createElement(Text, { bold: true, color: "white", backgroundColor: "blue" }, ' ✓ Begin ')), /*#__PURE__*/react.createElement(Box, { gap: 1, marginTop: 1 }, /*#__PURE__*/react.createElement(Cursor, { on: index === 1 }), /*#__PURE__*/react.createElement(Text, { color: "red", bold: index === 1 }, "← back"))))
   )
 };
 
@@ -878,19 +883,82 @@ const Page = function () {
   )
 };
 
-// horizontal pagination dots - ● done, ○ current (blue), ○ upcoming (dim)
+// horizontal pagination dots - ● done, ○ current (white), ○ upcoming (grey)
+// the final confirm step is a ✓, green once reached
 const Steps = () => {
   const { steps, livePage } = useSnapshot(store);
+  const last = steps.length - 1;
   return (
-    /*#__PURE__*/react.createElement(Box, { paddingLeft: 2, gap: 1, marginTop: 1 }, steps.map((step) => {
+    /*#__PURE__*/react.createElement(Box, { paddingLeft: 2, gap: 1, marginTop: 1 }, steps.map((step, i) => {
+        const isCurrent = step.key === livePage;
+        if (i === last) {
+          const reached = isCurrent || step.done;
+          return (
+            /*#__PURE__*/react.createElement(Text, { key: step.key, bold: reached, color: reached ? 'green' : 'grey' }, "✓")
+          )
+        }
         if (step.done) {
           return /*#__PURE__*/react.createElement(Text, { key: step.key }, "●")
         }
-        const isCurrent = step.key === livePage;
         return (
           /*#__PURE__*/react.createElement(Text, { key: step.key, bold: isCurrent, color: isCurrent ? 'white' : 'grey' }, "○")
         )
       }))
+  )
+};
+
+const sources = {
+  wikimedia: 'from wikimedia.org',
+  local: 'from a local dump',
+  'third-party': 'from a third-party server'
+};
+const writers = {
+  filesystem: '→ Filesystem',
+  duckdb: '→ DuckDb',
+  sqlite: '→ Sqlite',
+  none: '→ console'
+};
+
+const nameOf = (list, id) => {
+  const found = list.find((obj) => String(obj.id) === String(id));
+  return found ? found.name : String(id)
+};
+
+// turn the answers so far into phrases, eg. ['English Wikipedia', 'Articles', ...]
+const buildParts = (state) => {
+  const parts = [];
+  // language and project merge into one phrase, eg. 'English Wikipedia'
+  if (state.lang !== null) {
+    parts.push(nameOf(langs, state.lang));
+  }
+  if (state.project !== null) {
+    parts.push(nameOf(projects, state.project));
+  }
+  if (state.format !== null) {
+    parts.push('as [' + state.format + ']');
+  }
+  if (state.source !== null) {
+    parts.push(sources[state.source] || state.source);
+  }
+  if (state.namespaces !== null) {
+    const names = Object.keys(state.namespaces).map((id) => nameOf(namespaces, id));
+    parts.push(names.length > 0 ? names.join('/') : 'no pages');
+  }
+  if (state.writer !== null) {
+    parts.push(writers[state.writer] || state.writer);
+  }
+  return parts
+};
+
+// one-line description of the selection so far, built up as pages complete
+// each phrase is a dim-blue block on a grey background
+const Summary = () => {
+  const { userState } = useSnapshot(store);
+  const parts = buildParts(userState);
+  return (
+    /*#__PURE__*/react.createElement(Box, { paddingLeft: 2, height: 1, gap: 1 }, parts.map((part, i) => (
+        /*#__PURE__*/react.createElement(Box, { key: i, gap: 1 }, i > 0 ? /*#__PURE__*/react.createElement(Text, { dimColor: true }, "❯") : null, /*#__PURE__*/react.createElement(Text, { color: "blue", dimColor: true, underline: true }, part))
+      )))
   )
 };
 
@@ -924,7 +992,7 @@ const App = function ({ clear }) {
 
   if (!livePage) return null
   return (
-    /*#__PURE__*/react.createElement(Box, { width: "100%", overflow: "hidden", flexDirection: "column" }, /*#__PURE__*/react.createElement(Steps, null), /*#__PURE__*/react.createElement(Box, { flexDirection: "column", flexGrow: 1, flexShrink: 1, minHeight: 0, overflow: "hidden" }, /*#__PURE__*/react.createElement(Page, null)))
+    /*#__PURE__*/react.createElement(Box, { width: "100%", overflow: "hidden", flexDirection: "column" }, /*#__PURE__*/react.createElement(Steps, null), /*#__PURE__*/react.createElement(Summary, null), /*#__PURE__*/react.createElement(Box, { flexDirection: "column", flexGrow: 1, flexShrink: 1, minHeight: 0, overflow: "hidden" }, /*#__PURE__*/react.createElement(Page, null)))
   )
 };
 

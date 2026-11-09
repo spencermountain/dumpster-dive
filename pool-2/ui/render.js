@@ -1,6 +1,7 @@
 import { createElement } from 'react'
 import { render } from 'ink'
 import Home from './Home.jsx'
+import Summary from './Summary.jsx'
 import store, { sync } from './store.js'
 
 // mount the ui around a running boss; returns a handle to close it
@@ -10,11 +11,15 @@ const start = function (boss) {
     exitOnCtrlC: true
   })
   let closed = false
-  const close = () => {
+  // clear wipes the live page from the terminal instead of leaving its last frame
+  const close = ({ clear = false } = {}) => {
     if (closed) {
       return
     }
     closed = true
+    if (clear) {
+      app.clear()
+    }
     app.unmount()
     app.cleanup()
   }
@@ -23,5 +28,18 @@ const start = function (boss) {
   return { close, done }
 }
 
-export { store, sync }
+// print the final report once and give the terminal back
+const showSummary = async function (state, opts, extra) {
+  const app = render(createElement(Summary, { state, opts, extra }), {
+    alternateScreen: false,
+    exitOnCtrlC: false,
+    patchConsole: false
+  })
+  // let the frame reach the terminal before unmounting
+  await new Promise((resolve) => setImmediate(resolve))
+  app.unmount()
+  app.cleanup()
+}
+
+export { store, sync, showSummary }
 export default start

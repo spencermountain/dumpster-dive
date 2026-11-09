@@ -21,7 +21,7 @@ const Menu = function ({ items, onPick }) {
   })
 
   return (
-    <Box flexDirection="column">
+    <Box flexDirection="column" paddingBottom={2}>
       {items.map((item, i) => {
         const isSelected = i === index
         return (
@@ -29,7 +29,11 @@ const Menu = function ({ items, onPick }) {
             <Text bold color="blue">
               {isSelected ? '❯' : ' '}
             </Text>
-            <Text bold color={isSelected ? 'blue' : 'white'} dimColor={!isSelected || item.disabled}>
+            <Text
+              bold
+              color={isSelected ? 'blue' : 'white'}
+              dimColor={!isSelected || item.disabled}
+            >
               {item.label}
             </Text>
             <Text color="grey">{item.description ? `- ${item.description}` : ''}</Text>

@@ -3,7 +3,6 @@ import { Box, Text } from 'ink'
 import { store } from '../../store.js'
 import SinglePick from '../../components/SinglePick.jsx'
 import langs from './langs.js'
-import { titleCase } from './titleCase.jsx'
 
 const round = (num) => {
   if (num > 1_000_000) {
@@ -18,22 +17,16 @@ const round = (num) => {
 }
 
 const Page = () => {
+  // language is chosen before the project, so counts are wikipedia article counts
   const list = langs.map((obj) => {
-    let desc = obj.name
-    if (store.userState.project === 'wikipedia') {
-      desc += ' (' + round(obj.count) + ')'
-    }
     return {
       id: obj.id,
       label: obj.id,
-      description: desc,
+      description: obj.name + ' (' + round(obj.count) + ' pages)',
       isDefault: obj.id === 'en'
     }
   })
-  let desc = 'Which language ' + titleCase(store.userState.project) + ''
-  // if (store.userState.project !== 'wikipedia') {
-  // desc = 'Not all languages may be available for ' + store.userState.project
-  // }
+  let desc = 'Which language'
   return (
     <Box flexDirection="column">
       <SinglePick
