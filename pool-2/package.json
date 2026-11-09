@@ -1,0 +1,23 @@
+{
+  "name": "@dumpster-lib/pool-2",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "two-worker dump pool: each worker fetches, unzips and parses one dump file",
+  "exports": "./index.js",
+  "scripts": {
+    "watch": "node scratch.js",
+    "dev": "node scratch.js"
+  },
+  "dependencies": {
+    "bzip2-codec": "^2.0.1",
+    "ink": "^7.1.1",
+    "react": "^19.2.0",
+    "unbzip2-stream": "^1.4.3",
+    "valtio": "^2.3.2",
+    "wtf_wikipedia": "^10.4.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

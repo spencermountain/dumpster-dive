@@ -3,6 +3,7 @@ import { proxy } from 'valtio'
 const defaultState = {
   project: null, // wikipedia, wiktionary
   lang: null,
+  namespaces: null, // { 0: true, 1: false } by namespace number
   source: null, // meta.wikimedia.org, local
   writer: null, // sqlite, duckdb
   // include: null, // {disambiguation, redirects}

@@ -4,6 +4,7 @@ import { useSnapshot } from 'valtio'
 import { store } from '../store.js'
 import { Show } from '../components/lib.jsx'
 import Lang from './Lang/Index.jsx'
+import Namespace from './Namespace/Index.jsx'
 import Project from './Project/Index.jsx'
 import Source from './Source/Index.jsx'
 import Writer from './Writer/Index.jsx'
@@ -12,6 +13,7 @@ import Format from './Format/Index.jsx'
 const pages = {
   project: Project,
   lang: Lang,
+  namespaces: Namespace,
   source: Source,
   writer: Writer,
   format: Format
