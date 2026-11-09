@@ -57,13 +57,7 @@ const VBar = function ({ value = 0, max = 1200, height = 18, width = 4, label = 
     rows.push(row)
   }
   return (
-    <Box
-      flexDirection="column"
-      alignSelf="flex-start"
-      paddingX={1}
-      borderStyle="round"
-      borderColor="dim"
-    >
+    <Box flexDirection="column" alignSelf="flex-start" paddingX={1} borderColor="dim">
       {rows.map((row) => (
         <Box key={row}>
           <Box width={width} flexShrink={0}>
